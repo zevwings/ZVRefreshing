@@ -1,3 +1,4 @@
+// swiftlint:disable trailing_whitespace
 //
 //  HomeTableViewController.swift
 //  Example
@@ -13,6 +14,7 @@ class RootTableViewController: UITableViewController {
     var numberOfRows = 20
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let footer = RefreshAutoNormalFooter {
             print("refreshHeader.refreshHandler")
             DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
