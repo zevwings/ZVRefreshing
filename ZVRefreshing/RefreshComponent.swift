@@ -12,6 +12,11 @@ public class RefreshComponent: UIView {
     private struct AssocaiationKey {
         static var state = "com.zevwings.assocaiationkey.state"
     }
+
+    private struct OnceToken {
+        static var tableView = "com.zevwings.once.table.excute"
+        static var collectionView = "com.zevwings.once.collection.excute"
+    }
     
     /// 控件是否处于刷新状态
     public var isRefreshing: Bool { return self.state == .refreshing || self.state == .willRefresh }
@@ -128,6 +133,17 @@ public class RefreshComponent: UIView {
         super.willMove(toSuperview: newSuperview)
         
         guard let superview = newSuperview as? UIScrollView else { return }
+        
+        // 当添加到视图时
+        if superview.isKind(of: UITableView.self) {
+            DispatchQueue.once(token: OnceToken.collectionView, block: {
+                UITableView.once()
+            })
+        } else if superview.isKind(of: UICollectionView.self) {
+            DispatchQueue.once(token: OnceToken.collectionView, block: { 
+                UICollectionView.once()
+            })
+        }
         
         self._removeObservers()
         

@@ -66,15 +66,12 @@ public extension UIScrollView {
     
     internal var reloadDataHandler: ReloadDataHandler? {
         get {
-            let value = objc_getAssociatedObject(self, &AssociationKey.handler)
-            let closure = unsafeBitCast(value, to: ReloadDataHandler.self)
-            return closure
+            let value = objc_getAssociatedObject(self, &AssociationKey.handler) as AnyObject
+            return unsafeBitCast(value, to: ReloadDataHandler.self)
         }
         set {
-            var value: AnyObject? = nil
-            if newValue != nil {
-                value = unsafeBitCast(newValue, to: NSObject.self )
-            }
+            guard newValue != nil else { return }
+            let value = unsafeBitCast(newValue, to: AnyObject.self )
             objc_setAssociatedObject(self, &AssociationKey.handler, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
@@ -86,17 +83,18 @@ public extension UIScrollView {
 
 extension UITableView {
     
-    override open class func initialize() {
-        
-        struct Once {
-            static var token = UUID().uuidString
+
+    class func once() {
+
+        struct OnceToken {
+            static var token = "com.zevwings.once.table.exchange"
         }
-        
+
         if self !== UITableView.self { return }
         
-        DispatchQueue.once(token: Once.token) {
-            self.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
-                                        m2: #selector(UITableView._reloadData))
+        DispatchQueue.once(token: OnceToken.token) {
+            UITableView.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
+                                               m2: #selector(UITableView._reloadData))
         }
     }
 
@@ -108,17 +106,17 @@ extension UITableView {
 
 extension UICollectionView {
     
-    override open class func initialize() {
+    class func once() {
         
-        struct Once {
-            static var token = UUID().uuidString
+        struct OnceToken {
+            static var token = "com.zevwings.once.collection.exchange"
         }
         
         if self !== UICollectionView.self { return }
         
-        DispatchQueue.once(token: Once.token) {
-            self.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
-                                        m2: #selector(UICollectionView._reloadData))
+        DispatchQueue.once(token: OnceToken.token) {
+            UICollectionView.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
+                                                    m2: #selector(UICollectionView._reloadData))
         }
     }
     
