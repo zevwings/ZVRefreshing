@@ -57,8 +57,13 @@ public class RefreshAnimationHeader: RefreshStateHeader {
     }
 }
 
-extension RefreshAnimationHeader {
-    open func setImages(_ images: [UIImage], duration: TimeInterval, forState state: RefreshState){
+public extension RefreshAnimationHeader {
+    
+    public func setImages(_ images: [UIImage], forState state: RefreshState){
+        self.setImages(images, duration: Double(images.count) * 0.1, forState: state)
+    }
+    
+    public func setImages(_ images: [UIImage], duration: TimeInterval, forState state: RefreshState){
         if images.count == 0 { return }
         
         self.stateImages.updateValue(images, forKey: state)
@@ -69,22 +74,18 @@ extension RefreshAnimationHeader {
             }
         }
     }
-    
-    open func setImages(_ images: [UIImage], forState state: RefreshState){
-        self.setImages(images, duration: Double(images.count) * 0.1, forState: state)
-    }
 }
 
 extension RefreshAnimationHeader {
     
-    override open func prepare() {
+    override func prepare() {
         super.prepare()
         if self.animationView.superview == nil {
             self.addSubview(self.animationView)
         }
     }
     
-    override open func placeSubViews() {
+    override func placeSubViews() {
         super.placeSubViews()
         if self.animationView.constraints.count > 0 { return }
         self.animationView.frame = self.bounds

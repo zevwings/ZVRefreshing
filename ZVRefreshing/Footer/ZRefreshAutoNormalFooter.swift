@@ -16,7 +16,7 @@ public class RefreshAutoNormalFooter: RefreshAutoStateFooter {
         return activityIndicator
     }()
     
-    open var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
+    public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
         didSet {
             self.activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
             self.setNeedsLayout()
@@ -37,19 +37,19 @@ public class RefreshAutoNormalFooter: RefreshAutoStateFooter {
             }
         }
     }
+}
+
+extension RefreshAutoNormalFooter {
     
-    override open func prepare() {
+    override func prepare() {
         super.prepare()
         
-        self.activityIndicatorViewStyle = .gray
-        
-        self.activityIndicator.hidesWhenStopped = true
         if self.activityIndicator.superview == nil {
             self.addSubview(self.activityIndicator)
         }
     }
     
-    override open func placeSubViews() {
+    override func placeSubViews() {
         super.placeSubViews()
         if self.activityIndicator.constraints.count > 0 { return }
         

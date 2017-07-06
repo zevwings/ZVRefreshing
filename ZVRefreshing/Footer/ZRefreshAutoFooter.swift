@@ -51,7 +51,7 @@ public class RefreshAutoFooter: RefreshFooter {
     }
     
     
-    override open func willMove(toSuperview newSuperview: UIView?) {
+    override public func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
         if self.scrollView == nil { return }

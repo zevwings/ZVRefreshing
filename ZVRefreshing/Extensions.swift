@@ -8,23 +8,24 @@
 
 import UIKit
 
-
-private var headerAssociationKey: UInt8 = 0
-private var footerAssociationKey: UInt8 = 0
-private var reloadDataClosureKey: UInt8 = 0
-
 public extension UIScrollView {
+    
+    private struct AssociationKey {
+        static var header  = "com.zevwings.assocaiationkey.header"
+        static var footer  = "com.zevwings.assocaiationkey.footer"
+        static var handler = "com.zevwings.assocaiationkey.handler"
+    }
     
     public var header: RefreshHeader? {
         get {
-            return objc_getAssociatedObject(self, &headerAssociationKey) as? RefreshHeader
+            return objc_getAssociatedObject(self, &AssociationKey.header) as? RefreshHeader
         }
         set {
             if (self.header != newValue) {
                 self.header?.removeFromSuperview()
                 if newValue != nil { self.insertSubview(newValue!, at: 0) }
                 self.willChangeValue(forKey: "com.zevwings.value.header")
-                objc_setAssociatedObject(self, &headerAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &AssociationKey.header, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 self.didChangeValue(forKey: "com.zevwings.value.header")
             }
         }
@@ -32,133 +33,130 @@ public extension UIScrollView {
     
     public var footer: RefreshFooter? {
         get {
-            return objc_getAssociatedObject(self, &footerAssociationKey) as? RefreshFooter
+            return objc_getAssociatedObject(self, &AssociationKey.footer) as? RefreshFooter
         }
         set {
             if (self.footer != newValue) {
                 self.footer?.removeFromSuperview()
                 if newValue != nil { self.insertSubview(newValue!, at: 0) }
                 self.willChangeValue(forKey: "com.zevwings.value.footer")
-                objc_setAssociatedObject(self, &footerAssociationKey, newValue, .OBJC_ASSOCIATION_RETAIN)
+                objc_setAssociatedObject(self, &AssociationKey.footer, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 self.didChangeValue(forKey: "com.zevwings.value.footer")
             }
         }
     }
     
     var totalDataCount: Int {
-        get {
-            var totalCount: Int = 0
-            if self.isKind(of: UITableView.classForCoder()) {
-                let tableView = self as? UITableView
-                for section in 0 ..< tableView!.numberOfSections {
-                    totalCount += tableView!.numberOfRows(inSection: section)
-                }
-            } else if self.isKind(of: UICollectionView.classForCoder()) {
-                let collectionView = self as? UICollectionView
-                
-                for section in 0 ..< collectionView!.numberOfSections  {
-                    totalCount += collectionView!.numberOfItems(inSection: section)
-                }
+        
+        var totalCount: Int = 0
+        if self.isKind(of: UITableView.classForCoder()) {
+            let tableView = self as? UITableView
+            for section in 0 ..< tableView!.numberOfSections {
+                totalCount += tableView!.numberOfRows(inSection: section)
             }
-            return totalCount
+        } else if self.isKind(of: UICollectionView.classForCoder()) {
+            let collectionView = self as? UICollectionView
+            
+            for section in 0 ..< collectionView!.numberOfSections  {
+                totalCount += collectionView!.numberOfItems(inSection: section)
+            }
         }
+        return totalCount
     }
     
-    internal var reloadDataClosure: ReloadDataClosure? {
+    internal var reloadDataHandler: ReloadDataHandler? {
         get {
-            let value = objc_getAssociatedObject(self, &reloadDataClosureKey)
-            let closure = unsafeBitCast(value, to: ReloadDataClosure.self)
+            let value = objc_getAssociatedObject(self, &AssociationKey.handler)
+            let closure = unsafeBitCast(value, to: ReloadDataHandler.self)
             return closure
         }
         set {
             var value: AnyObject? = nil
             if newValue != nil {
-                value = unsafeBitCast(
-                    newValue,
-                    to: AnyObject.self
-                )
+                value = unsafeBitCast(newValue, to: NSObject.self )
             }
-            objc_setAssociatedObject(self, &reloadDataClosureKey, value, .OBJC_ASSOCIATION_COPY_NONATOMIC)
+            objc_setAssociatedObject(self, &AssociationKey.handler, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 
     func executeReloadDataBlock() {
-        self.reloadDataClosure?(self.totalDataCount)
+        self.reloadDataHandler?(self.totalDataCount)
     }
 }
 
-//extension UITableView {
-//    
-//    override open class func initialize() {
-//        struct Static {
-//            static var token: Int = 0
-//        }
-//        
-//        if self !== UITableView.self {
-//            return
-//        }
-//        
-//        dispatch_once(&Static.token) {
-//            self.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
-//                                        m2: #selector(UITableView.refreshReloadData))
-//        }
-//    }
-//
-//    func refreshReloadData() {
-//        self.refreshReloadData()
-//        self.executeReloadDataBlock()
-//    }
-//}
-//
-//extension UICollectionView {
-//    
-//    override open class func initialize() {
-//        struct Static {
-//            static var token: Int = 0
-//        }
-//        
-//        if self !== UICollectionView.self {
-//            return
-//        }
-//        
-//        dispatch_once(&Static.token) {
-//            self.exchangeClassMethod(m1: #selector(UICollectionView.reloadData),
-//                                     m2: #selector(UICollectionView.refreshReloadData))
-//        }
-//    }
-//    
-//    func refreshReloadData() {
-//        self.refreshReloadData()
-//        self.executeReloadDataBlock()
-//    }
-//}
-//
-//extension NSObject {
-//    
-//    class func exchangeInstanceMethod(m1: Selector, m2: Selector) {
-//        
-//        let method1 = class_getInstanceMethod(self, m1)
-//        let method2 = class_getInstanceMethod(self, m2)
-//        
-//        let didAddMethod = class_addMethod(self, m1, method_getImplementation(method2), method_getTypeEncoding(method2))
-//        
-//        if didAddMethod {
-//            class_replaceMethod(self, m2, method_getImplementation(method1), method_getTypeEncoding(method1))
-//        } else {
-//            method_exchangeImplementations(method1, method2)
-//        }
-//    }
-//    
-//    class func exchangeClassMethod(m1: Selector, m2: Selector) {
-//        
-//        let method1 = class_getClassMethod(self, m1)
-//        let method2 = class_getClassMethod(self, m2)
-//        let didAddMethod = class_addMethod(self, m1, method_getImplementation(method2), method_getTypeEncoding(method2))
-//        
-//        if didAddMethod {
-//            class_replaceMethod(self, m2, method_getImplementation(method1), method_getTypeEncoding(method1))
-//        } else {
-//            method_exchangeImplementations(method1, method2)
-//        }
-//    }
-//}
+extension UITableView {
+    
+    override open class func initialize() {
+        
+        struct Once {
+            static var token = UUID().uuidString
+        }
+        
+        if self !== UITableView.self { return }
+        
+        DispatchQueue.once(token: Once.token) {
+            self.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
+                                        m2: #selector(UITableView._reloadData))
+        }
+    }
+
+    func _reloadData() {
+        self._reloadData()
+        self.executeReloadDataBlock()
+    }
+}
+
+extension UICollectionView {
+    
+    override open class func initialize() {
+        
+        struct Once {
+            static var token = UUID().uuidString
+        }
+        
+        if self !== UICollectionView.self { return }
+        
+        DispatchQueue.once(token: Once.token) {
+            self.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
+                                        m2: #selector(UICollectionView._reloadData))
+        }
+    }
+    
+    func _reloadData() {
+        self._reloadData()
+        self.executeReloadDataBlock()
+    }
+}
+
+extension NSObject {
+    
+    class func exchangeInstanceMethod(m1: Selector, m2: Selector) {
+        
+        let method1 = class_getInstanceMethod(self, m1)
+        let method2 = class_getInstanceMethod(self, m2)
+        
+        let didAddMethod = class_addMethod(self, m1, method_getImplementation(method2), method_getTypeEncoding(method2))
+        
+        if didAddMethod {
+            class_replaceMethod(self, m2, method_getImplementation(method1), method_getTypeEncoding(method1))
+        } else {
+            method_exchangeImplementations(method1, method2)
+        }
+    }
+}
+
+extension DispatchQueue {
+    
+    private static var _onceTracker = [String]()
+
+    class func once(token: String, block:() -> Void) {
+        
+        objc_sync_enter(self)
+        defer { objc_sync_exit(self) }
+        if _onceTracker.contains(token) { return }
+        _onceTracker.append(token)
+        block()
+    }
+}
+
+

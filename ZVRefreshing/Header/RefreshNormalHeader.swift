@@ -72,7 +72,7 @@ public class RefreshNormalHeader: RefreshStateHeader {
 
 extension RefreshNormalHeader {
     
-    override open func prepare() {
+    override func prepare() {
         super.prepare()
         
         if self.arrowView.superview == nil {
@@ -84,7 +84,7 @@ extension RefreshNormalHeader {
         }
     }
     
-    override open func placeSubViews() {
+    override func placeSubViews() {
         super.placeSubViews()
         
         var centerX = self.width * 0.5

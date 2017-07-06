@@ -24,7 +24,7 @@ public class RefreshFooter: RefreshComponent {
         
         if  superview.isKind(of: UITableView.classForCoder()) ||
             superview.isKind(of: UICollectionView.classForCoder()) {
-            superview.reloadDataClosure = { totalCount in
+            superview.reloadDataHandler = { totalCount in
                 if self.isAutomaticallyHidden {
                     self.isHidden = (totalCount == 0)
                 }
@@ -32,7 +32,8 @@ public class RefreshFooter: RefreshComponent {
         }
     }
     
-    var isNoMoreData: Bool = false {
+    /// 设置组件是否为RefreshState.noMoreData
+    public var isNoMoreData: Bool = false {
         didSet {
             if self.isNoMoreData {
                 self.state = .noMoreData

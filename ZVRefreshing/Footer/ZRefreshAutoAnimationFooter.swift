@@ -49,20 +49,24 @@ public class RefreshAutoAnimationFooter: RefreshAutoStateFooter {
             }
         }
     }
+}
+
+extension RefreshAutoAnimationFooter {
     
-    open func setImages(_ images: [UIImage], state: RefreshState) {
+    /// 为相应状态设置图片
+    public func setImages(_ images: [UIImage], state: RefreshState) {
         self.setImages(images, duration: Double(images.count) * 0.1, state: state)
     }
     
-    open func setImages(_ images: [UIImage], duration: TimeInterval, state: RefreshState){
+    /// 为相应状态设置图片
+    public func setImages(_ images: [UIImage], duration: TimeInterval, state: RefreshState){
         
         guard images.count > 0 else { return }
-
-        self.stateImages.updateValue(images, forKey: state)
-        self.stateDurations.updateValue(duration, forKey: state)
+        
+        self.stateImages[self.state] = images
+        self.stateDurations[self.state] = duration
         guard let image = images.first, image.size.height < self.height else { return }
         self.height = image.size.height
-
     }
 }
 

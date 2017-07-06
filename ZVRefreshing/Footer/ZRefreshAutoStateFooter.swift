@@ -27,16 +27,18 @@ public class RefreshAutoStateFooter: RefreshAutoFooter {
             }
         }
     }
+}
+
+extension RefreshAutoStateFooter {
     
-    open func setTitle(_ title: String?, forState state: RefreshState) {
+    public func setTitle(_ title: String?, forState state: RefreshState) {
         if title == nil {return}
         self.stateTitles.updateValue(title!, forKey: state)
         self.stateLabel.text = self.stateTitles[self.state]
     }
-    
-    internal func stateLabelClicked() {
-        if self.state == .idle { self.beginRefreshing() }
-    }
+}
+
+extension RefreshAutoStateFooter {
     
     override func prepare() {
         super.prepare()
@@ -48,7 +50,7 @@ public class RefreshAutoStateFooter: RefreshAutoFooter {
         self.setTitle(Constants.Footer.Auto.idle , forState: .idle)
         self.setTitle(Constants.Footer.Auto.refreshing, forState: .refreshing)
         self.setTitle(Constants.Footer.Auto.noMoreData, forState: .noMoreData)
-
+        
         self.stateLabel.isUserInteractionEnabled = true
         self.stateLabel.addGestureRecognizer(.init(target: self, action: #selector(RefreshAutoStateFooter.stateLabelClicked)))
     }
@@ -58,5 +60,9 @@ public class RefreshAutoStateFooter: RefreshAutoFooter {
         
         if self.stateLabel.constraints.count > 0 { return }
         self.stateLabel.frame = self.bounds
+    }
+    
+    internal func stateLabelClicked() {
+        if self.state == .idle { self.beginRefreshing() }
     }
 }

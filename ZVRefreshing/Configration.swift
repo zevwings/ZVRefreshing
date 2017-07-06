@@ -12,7 +12,7 @@ public typealias RefreshHandler = () -> ()
 public typealias BeginRefreshingCompletionHandler = () -> ()
 public typealias EndRefreshingCompletionHandler = () -> ()
 
-internal typealias ReloadDataClosure = @convention(block) (_ value: Int) -> ()
+internal typealias ReloadDataHandler = @convention(block) (_ totalCount: Int) -> ()
 
 public enum RefreshState: String {
     

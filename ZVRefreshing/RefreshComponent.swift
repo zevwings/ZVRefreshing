@@ -124,7 +124,7 @@ public class RefreshComponent: UIView {
         super.layoutSubviews()
     }
     
-    open override func willMove(toSuperview newSuperview: UIView?) {
+    override public func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
         guard let superview = newSuperview as? UIScrollView else { return }
@@ -142,7 +142,7 @@ public class RefreshComponent: UIView {
         self._addObservers()
     }
     
-    open override func draw(_ rect: CGRect) {
+    override public func draw(_ rect: CGRect) {
         super.draw(rect)
         if self.state == .willRefresh { self.state = .refreshing }
     }
