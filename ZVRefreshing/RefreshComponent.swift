@@ -100,9 +100,9 @@ public class RefreshComponent: UIView {
             guard self.isRefreshing == false else { return }
             
             if self.isAutomaticallyChangeAlpha {
-                self.alpha = self.pullingPercent;
+                self.alpha = self.pullingPercent
             } else {
-                self.alpha = 1.0;
+                self.alpha = 1.0
             }
         }
     }

@@ -11,7 +11,7 @@ import UIKit
 internal class RefreshingLabel: UILabel {
 
     internal init() {
-        super.init(frame: CGRect.zero);
+        super.init(frame: CGRect.zero)
         self.font = Component.font
         self.textColor = Component.tintColor
         self.autoresizingMask = .flexibleWidth

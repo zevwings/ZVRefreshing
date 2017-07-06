@@ -19,11 +19,10 @@ public class RefreshBackNormalFooter: RefreshBackStateFooter {
         var activityIndicator = UIActivityIndicatorView()
         activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
         activityIndicator.hidesWhenStopped = true
-        
         return activityIndicator
     }()
     
-    open var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
+    public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
         didSet {
             self.activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
             self.setNeedsLayout()
@@ -35,45 +34,54 @@ public class RefreshBackNormalFooter: RefreshBackStateFooter {
             return super.state
         }
         set {
-            let result = self.checkState(newValue)
-            if result.0 { return }
+            let checked = self.checkState(newValue)
+            guard checked.result == false else { return }
             super.state = newValue
             
-            if newValue == .idle {
-                if result.1 == .refreshing {
+            switch newValue {
+            case .idle:
+                if checked.oldState == .refreshing {
                     self.arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
                     UIView.animate(withDuration: Config.AnimationDuration.fast, animations: {
                         self.activityIndicator.alpha = 0.0
-                        }, completion: { (flag) in
-                            self.activityIndicator.alpha = 1.0
-                            self.activityIndicator.stopAnimating()
-                            self.arrowView.isHidden = false
+                    }, completion: { finished in
+                        self.activityIndicator.alpha = 1.0
+                        self.activityIndicator.stopAnimating()
+                        self.arrowView.isHidden = false
                     })
                 } else {
                     self.arrowView.isHidden = false
                     self.activityIndicator.stopAnimating()
                     UIView.animate(withDuration: Config.AnimationDuration.fast, animations: {
                         self.arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
-                        }, completion: { (flag) in
+                    }, completion: { finished in
                     })
                 }
-            } else if newValue == .pulling {
+                break
+            case .pulling:
                 self.arrowView.isHidden = false
                 self.activityIndicator.stopAnimating()
                 UIView.animate(withDuration: Config.AnimationDuration.fast, animations: {
                     self.arrowView.transform = CGAffineTransform.identity
                 })
-            } else if newValue == .refreshing {
+                break
+            case .refreshing:
                 self.arrowView.isHidden = true
                 self.activityIndicator.startAnimating()
-            } else if newValue == .noMoreData {
+                break
+            case .noMoreData:
                 self.arrowView.isHidden = true
                 self.activityIndicator.stopAnimating()
+                break
+            default:
+                break
             }
         }
     }
+}
+
+extension RefreshBackNormalFooter {
     
-    // MARK: - Override
     override open func prepare() {
         super.prepare()
         
@@ -81,8 +89,6 @@ public class RefreshBackNormalFooter: RefreshBackStateFooter {
             self.addSubview(self.arrowView)
         }
         
-        self.activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
-        self.activityIndicator.hidesWhenStopped = true
         if self.activityIndicator.superview == nil {
             self.addSubview(self.activityIndicator)
         }
@@ -90,26 +96,24 @@ public class RefreshBackNormalFooter: RefreshBackStateFooter {
     
     override open func placeSubViews() {
         super.placeSubViews()
-
-        var arrowCenterX = self.frame.width * 0.5
-        if (!self.stateLabel.isHidden) {
+        
+        var arrowCenterX = self.width * 0.5
+        if !self.stateLabel.isHidden {
             arrowCenterX -= 100
         }
-        let arrowCenterY = self.frame.height * 0.5
+        let arrowCenterY = self.height * 0.5
         let arrowCenter = CGPoint(x: arrowCenterX, y: arrowCenterY)
         
-        if (self.arrowView.constraints.count == 0 && self.arrowView.image != nil) {
+        if self.arrowView.constraints.count == 0 && self.arrowView.image != nil {
             self.arrowView.isHidden = false
-            var rect = self.arrowView.frame
-            rect.size = self.arrowView.image!.size
-            self.arrowView.frame = rect
+            self.arrowView.size = self.arrowView.image!.size
             self.arrowView.center = arrowCenter
         } else {
             self.arrowView.isHidden = true
         }
         
-        if (self.activityIndicator.constraints.count == 0) {
-            self.activityIndicator.center = arrowCenter;
+        if self.activityIndicator.constraints.count == 0 {
+            self.activityIndicator.center = arrowCenter
         }
     }
 }

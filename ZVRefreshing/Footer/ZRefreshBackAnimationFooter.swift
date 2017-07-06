@@ -58,39 +58,45 @@ public class RefreshBackAnimationFooter: RefreshBackStateFooter {
             }
         }
     }
+}
+
+extension RefreshBackAnimationFooter {
     
-    open func setImages(_ images: [UIImage], state: RefreshState){
+    public func setImages(_ images: [UIImage], state: RefreshState){
         self.setImages(images, duration: Double(images.count) * 0.1, state: state)
     }
     
-    open func setImages(_ images: [UIImage], duration: TimeInterval, state: RefreshState){
+    public func setImages(_ images: [UIImage], duration: TimeInterval, state: RefreshState){
         if images.count == 0 { return }
         
         self.stateImages.updateValue(images, forKey: state)
         self.stateDurations.updateValue(duration, forKey: state)
         if let image = images.first {
-            if image.size.height > self.frame.height {
-                self.frame.size.height = image.size.height
+            if image.size.height > self.height {
+                self.height = image.size.height
             }
         }
     }
+}
+
+extension RefreshBackAnimationFooter {
     
-    override open func prepare() {
+    override func prepare() {
         super.prepare()
         if self.animationView.superview == nil {
             self.addSubview(self.animationView)
         }
     }
     
-    override open func placeSubViews() {
+    override func placeSubViews() {
         super.placeSubViews()
         if self.animationView.constraints.count > 0 { return }
         self.animationView.frame = self.bounds
         if self.stateLabel.isHidden {
             self.animationView.contentMode = .center
         } else {
-            self.animationView.contentMode = .right;
-            self.animationView.frame.size.width = self.frame.width * 0.5 - 90;
+            self.animationView.contentMode = .right
+            self.animationView.width = self.width * 0.5 - 90
         }
     }
 }

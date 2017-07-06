@@ -59,7 +59,7 @@ public class RefreshNormalHeader: RefreshStateHeader {
                 self.activityIndicator.stopAnimating()
                 self.arrowView.isHidden = false
                 UIView.animate(withDuration: Config.AnimationDuration.fast, animations: {
-                    self.arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi));
+                    self.arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
                 })
             } else if newValue == .refreshing {
                 self.activityIndicator.alpha = 1.0

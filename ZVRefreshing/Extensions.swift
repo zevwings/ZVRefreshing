@@ -145,7 +145,7 @@ public extension UIScrollView {
 //        if didAddMethod {
 //            class_replaceMethod(self, m2, method_getImplementation(method1), method_getTypeEncoding(method1))
 //        } else {
-//            method_exchangeImplementations(method1, method2);
+//            method_exchangeImplementations(method1, method2)
 //        }
 //    }
 //    
@@ -158,7 +158,7 @@ public extension UIScrollView {
 //        if didAddMethod {
 //            class_replaceMethod(self, m2, method_getImplementation(method1), method_getTypeEncoding(method1))
 //        } else {
-//            method_exchangeImplementations(method1, method2);
+//            method_exchangeImplementations(method1, method2)
 //        }
 //    }
 //}

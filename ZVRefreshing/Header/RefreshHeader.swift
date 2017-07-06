@@ -126,7 +126,7 @@ extension RefreshHeader {
         } else if self.state == .pulling {
             self.beginRefreshing()
         }else if pullingPercent < 1 {
-            self.pullingPercent = pullingPercent;
+            self.pullingPercent = pullingPercent
         }
     }
 }

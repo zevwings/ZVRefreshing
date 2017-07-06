@@ -57,7 +57,7 @@ public class ZRefreshAutoStateFooter: ZRefreshAutoFooter {
         self.setTitle(Constants.Footer.Auto.refreshing, forState: .refreshing)
         self.setTitle(Constants.Footer.Auto.noMoreData, forState: .noMoreData)
 
-        self.stateLabel.isUserInteractionEnabled = true;
+        self.stateLabel.isUserInteractionEnabled = true
         self.stateLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ZRefreshAutoStateFooter.stateLabelClicked)))
     }
     
@@ -65,6 +65,6 @@ public class ZRefreshAutoStateFooter: ZRefreshAutoFooter {
         super.placeSubViews()
         
         if self.stateLabel.constraints.count > 0 { return }
-        self.stateLabel.frame = self.bounds;
+        self.stateLabel.frame = self.bounds
     }
 }

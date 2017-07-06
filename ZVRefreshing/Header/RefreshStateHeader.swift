@@ -24,7 +24,7 @@ public class RefreshStateHeader: RefreshHeader {
         set {
             if self.checkState(newValue).result { return }
             super.state = newValue
-            self.stateLabel.text = self.stateTitles[self.state];
+            self.stateLabel.text = self.stateTitles[self.state]
             
             let key = self.lastUpdatedTimeKey
             self.lastUpdatedTimeKey = key
@@ -115,7 +115,7 @@ extension RefreshStateHeader {
                 self.lastUpdatedTimeLabel.x = 0
                 self.lastUpdatedTimeLabel.y = statusLabelH
                 self.lastUpdatedTimeLabel.width = self.width
-                self.lastUpdatedTimeLabel.height = self.height - self.lastUpdatedTimeLabel.y;
+                self.lastUpdatedTimeLabel.height = self.height - self.lastUpdatedTimeLabel.y
             }
         }
     }

@@ -54,11 +54,11 @@ public class ZRefreshAutoNormalFooter: ZRefreshAutoStateFooter {
         super.placeSubViews()
         if self.activityIndicator.constraints.count > 0 { return }
         
-        var loadingCenterX = self.frame.width * 0.5;
+        var loadingCenterX = self.frame.width * 0.5
         if !self.stateLabel.isHidden {
             loadingCenterX -= 100
         }
-        let loadingCenterY = self.frame.height * 0.5;
-        self.activityIndicator.center = CGPoint(x: loadingCenterX, y: loadingCenterY);
+        let loadingCenterY = self.frame.height * 0.5
+        self.activityIndicator.center = CGPoint(x: loadingCenterX, y: loadingCenterY)
     }
 }

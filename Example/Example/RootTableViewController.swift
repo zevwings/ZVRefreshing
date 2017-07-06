@@ -18,8 +18,7 @@ class RootTableViewController: UITableViewController {
                 self.tableView.footer?.endRefreshing()
             }
         }
-        self.tableView.footer = footer
-        
+        self.tableView.footer = footer        
 //        let refreshHeader = RefreshNormalHeader(frame: .zero)
 //        refreshHeader.refreshHandler = {
 //            print("refreshHeader.refreshHandler")

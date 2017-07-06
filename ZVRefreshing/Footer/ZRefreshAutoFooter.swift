@@ -33,7 +33,7 @@ public class ZRefreshAutoFooter: RefreshFooter {
             return super.isHidden
         }
         set {
-            let isHidden = self.isHidden;
+            let isHidden = self.isHidden
             super.isHidden = newValue
             if isHidden {
                 if !newValue {
