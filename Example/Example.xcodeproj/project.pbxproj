@@ -14,8 +14,8 @@
 		4D0578E71F0B27DA00F6D5A5 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0578E61F0B27DA00F6D5A5 /* ExampleTests.swift */; };
 		4D0578F21F0B27DA00F6D5A5 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */; };
 		4D2EA7191F0C8190005F8A4D /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2EA7181F0C8190005F8A4D /* RootTableViewController.swift */; };
-		4D94FCDE1F0E00AA00677215 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FCDB1F0E002900677215 /* ZVRefreshing.framework */; };
-		4D94FCDF1F0E00AA00677215 /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FCDB1F0E002900677215 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4D8C7E9D1F10CA5400B6FC4B /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8C7E9C1F10CA5400B6FC4B /* ZVRefreshing.framework */; };
+		4D8C7E9E1F10CA5400B6FC4B /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8C7E9C1F10CA5400B6FC4B /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,27 +33,6 @@
 			remoteGlobalIDString = 4D0578CD1F0B27D900F6D5A5;
 			remoteInfo = Example;
 		};
-		4D94FCDA1F0E002900677215 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D94FCD51F0E002900677215 /* ZVRefreshing.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4D94FC941F0DFFC500677215;
-			remoteInfo = ZVRefreshing;
-		};
-		4D94FCDC1F0E002900677215 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D94FCD51F0E002900677215 /* ZVRefreshing.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 4D94FC9D1F0DFFC500677215;
-			remoteInfo = ZVRefreshingTests;
-		};
-		4D94FCE01F0E00AA00677215 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D94FCD51F0E002900677215 /* ZVRefreshing.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 4D94FC931F0DFFC500677215;
-			remoteInfo = ZVRefreshing;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -63,7 +42,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4D94FCDF1F0E00AA00677215 /* ZVRefreshing.framework in Embed Frameworks */,
+				4D8C7E9E1F10CA5400B6FC4B /* ZVRefreshing.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,7 +72,7 @@
 		4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		4D0578F31F0B27DA00F6D5A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D2EA7181F0C8190005F8A4D /* RootTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
-		4D94FCD51F0E002900677215 /* ZVRefreshing.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZVRefreshing.xcodeproj; path = ../../ZVRefreshing.xcodeproj; sourceTree = "<group>"; };
+		4D8C7E9C1F10CA5400B6FC4B /* ZVRefreshing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZVRefreshing.framework; path = Carthage/Build/iOS/ZVRefreshing.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D94FCDE1F0E00AA00677215 /* ZVRefreshing.framework in Frameworks */,
+				4D8C7E9D1F10CA5400B6FC4B /* ZVRefreshing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +104,7 @@
 		4D0578C51F0B27D900F6D5A5 = {
 			isa = PBXGroup;
 			children = (
+				4D8C7E9C1F10CA5400B6FC4B /* ZVRefreshing.framework */,
 				4D0578D01F0B27D900F6D5A5 /* Example */,
 				4D0578E51F0B27D900F6D5A5 /* ExampleTests */,
 				4D0578F01F0B27DA00F6D5A5 /* ExampleUITests */,
@@ -145,7 +125,6 @@
 		4D0578D01F0B27D900F6D5A5 /* Example */ = {
 			isa = PBXGroup;
 			children = (
-				4D94FCD51F0E002900677215 /* ZVRefreshing.xcodeproj */,
 				4D0578D11F0B27D900F6D5A5 /* AppDelegate.swift */,
 				4D0578D51F0B27D900F6D5A5 /* Main.storyboard */,
 				4D0578D81F0B27D900F6D5A5 /* Assets.xcassets */,
@@ -174,15 +153,6 @@
 			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
-		4D94FCD61F0E002900677215 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				4D94FCDB1F0E002900677215 /* ZVRefreshing.framework */,
-				4D94FCDD1F0E002900677215 /* ZVRefreshingTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -200,7 +170,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				4D94FCE11F0E00AA00677215 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -283,12 +252,6 @@
 			mainGroup = 4D0578C51F0B27D900F6D5A5;
 			productRefGroup = 4D0578CF1F0B27D900F6D5A5 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 4D94FCD61F0E002900677215 /* Products */;
-					ProjectRef = 4D94FCD51F0E002900677215 /* ZVRefreshing.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				4D0578CD1F0B27D900F6D5A5 /* Example */,
@@ -297,23 +260,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		4D94FCDB1F0E002900677215 /* ZVRefreshing.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = ZVRefreshing.framework;
-			remoteRef = 4D94FCDA1F0E002900677215 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		4D94FCDD1F0E002900677215 /* ZVRefreshingTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ZVRefreshingTests.xctest;
-			remoteRef = 4D94FCDC1F0E002900677215 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4D0578CC1F0B27D900F6D5A5 /* Resources */ = {
@@ -396,11 +342,6 @@
 			isa = PBXTargetDependency;
 			target = 4D0578CD1F0B27D900F6D5A5 /* Example */;
 			targetProxy = 4D0578EE1F0B27DA00F6D5A5 /* PBXContainerItemProxy */;
-		};
-		4D94FCE11F0E00AA00677215 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = ZVRefreshing;
-			targetProxy = 4D94FCE01F0E00AA00677215 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -526,6 +467,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Example",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -545,6 +487,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Example",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

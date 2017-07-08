@@ -7,6 +7,7 @@
 //  Copyright © 2017年 zevwings. All rights reserved.
 //
 
+import UIKit
 import ZVRefreshing
 
 class RootTableViewController: UITableViewController {
@@ -15,28 +16,28 @@ class RootTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let footer = RefreshAutoNormalFooter {
-            print("refreshHeader.refreshHandler")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                print("refreshHeader.endRefreshing()")
-                self.tableView.footer?.endRefreshing()
-                self.numberOfRows += 10
-                self.tableView.reloadData()
-            }
-        }
-        self.tableView.footer = footer
-
-        let refreshHeader = RefreshNormalHeader(frame: .zero)
-        refreshHeader.addTarget(self, action: #selector(self.refreshAction(_:)))
-//        refreshHeader.refreshHandler = {
+//        let footer = RefreshAutoNormalFooter {
 //            print("refreshHeader.refreshHandler")
 //            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
 //                print("refreshHeader.endRefreshing()")
-//                self.numberOfRows = 20
-//                refreshHeader.endRefreshing()
+//                self.tableView.footer?.endRefreshing()
+//                self.numberOfRows += 10
+//                self.tableView.reloadData()
 //            }
 //        }
-        tableView.addSubview(refreshHeader)
+//        self.tableView.footer = footer
+//
+//        let refreshHeader = RefreshNormalHeader(frame: .zero)
+//        refreshHeader.addTarget(self, action: #selector(self.refreshAction(_:)))
+////        refreshHeader.refreshHandler = {
+////            print("refreshHeader.refreshHandler")
+////            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+////                print("refreshHeader.endRefreshing()")
+////                self.numberOfRows = 20
+////                refreshHeader.endRefreshing()
+////            }
+////        }
+//        tableView.addSubview(refreshHeader)
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,12 +63,12 @@ class RootTableViewController: UITableViewController {
         return cell
     }
     
-    func refreshAction(_ sender: RefreshComponent) {
-        
-        print("refreshAction")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            print("refreshAction.endRefreshing")
-            sender.endRefreshing()
-        }
-    }
+//    func refreshAction(_ sender: RefreshComponent) {
+//        
+//        print("refreshAction")
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//            print("refreshAction.endRefreshing")
+//            sender.endRefreshing()
+//        }
+//    }
 }
