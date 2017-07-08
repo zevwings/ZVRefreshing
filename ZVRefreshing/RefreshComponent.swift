@@ -20,11 +20,12 @@ public class RefreshComponent: UIView {
     
     /// 控件是否处于刷新状态
     public var isRefreshing: Bool { return self.state == .refreshing || self.state == .willRefresh }
-    
+
     /// 回调对象和回调函数
+    /*
     fileprivate var _target: Any?
     fileprivate var _action: Selector?
-    
+    */
     /// 回调闭包
     public var refreshHandler: RefreshHandler?
     public var beginRefreshingCompletionHandler: BeginRefreshingCompletionHandler?
@@ -59,12 +60,13 @@ public class RefreshComponent: UIView {
     /// - Parameters:
     ///   - target: 回调对象
     ///   - action: 回调函数
+    /*
     public convenience init(target: Any, action: Selector) {
         self.init(frame: .zero)
         
         self._target = target
         self._action = action
-    }
+    }*/
     
     /// 初始化方法
     public override init(frame: CGRect) {
@@ -206,19 +208,20 @@ extension RefreshComponent {
     }
 
     /// 设置回调事件和回调函数
+    /*
     public func addTarget(_ target: Any?, action: Selector) {
         self._target = target
         self._action = action
-    }
+    }*/
     
     /// 触发刷新回调
     internal func executeRefreshCallback() {
         DispatchQueue.main.async {
             self.refreshHandler?()
-            
-//            if let target = self._target, let action = self._action {
-//                _ = (target as AnyObject).perform(action)
-//            }
+            /*
+            if let target = self._target, let action = self._action {
+                _ = (target as AnyObject).perform(action)
+            }*/
             
             self.beginRefreshingCompletionHandler?()
         }
