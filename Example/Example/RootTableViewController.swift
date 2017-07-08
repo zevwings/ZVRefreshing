@@ -25,16 +25,18 @@ class RootTableViewController: UITableViewController {
             }
         }
         self.tableView.footer = footer
-//        let refreshHeader = RefreshNormalHeader(frame: .zero)
+
+        let refreshHeader = RefreshNormalHeader(frame: .zero)
+        refreshHeader.addTarget(self, action: #selector(self.refreshAction(_:)))
 //        refreshHeader.refreshHandler = {
 //            print("refreshHeader.refreshHandler")
 //            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
 //                print("refreshHeader.endRefreshing()")
+//                self.numberOfRows = 20
 //                refreshHeader.endRefreshing()
 //            }
 //        }
-//        tableView.addSubview(refreshHeader)
-//        refreshHeader.beginRefreshing()
+        tableView.addSubview(refreshHeader)
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,5 +60,14 @@ class RootTableViewController: UITableViewController {
         cell.textLabel?.text = "\(indexPath.row)"
 
         return cell
+    }
+    
+    func refreshAction(_ sender: RefreshComponent) {
+        
+        print("refreshAction")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            print("refreshAction.endRefreshing")
+            sender.endRefreshing()
+        }
     }
 }

@@ -204,15 +204,22 @@ extension RefreshComponent {
     public func endRefreshing() {
         self.state = .idle
     }
+
+    /// 设置回调事件和回调函数
+    public func addTarget(_ target: Any?, action: Selector) {
+        self._target = target
+        self._action = action
+    }
     
     /// 触发刷新回调
     internal func executeRefreshCallback() {
         DispatchQueue.main.async {
             self.refreshHandler?()
-            //            if self.target != nil && self.action != nil {
-            //                if !self.target!.responds(to: self.action!) { return }
-            //                self.target!.perform(self.action!, with: self)
-            //            }
+            
+//            if let target = self._target, let action = self._action {
+//                _ = (target as AnyObject).perform(action)
+//            }
+            
             self.beginRefreshingCompletionHandler?()
         }
     }
@@ -222,6 +229,7 @@ extension RefreshComponent {
 
 extension RefreshComponent {
     
+    /// 添加属性监听
     fileprivate func _addObservers() {
         
         let options: NSKeyValueObservingOptions = [.new, .old]
@@ -238,6 +246,7 @@ extension RefreshComponent {
                                                 options: options, context: nil)
     }
     
+    /// 移除属性监听
     fileprivate func _removeObservers() {
         
         self.scrollView?.removeObserver(self, forKeyPath: Config.KeyPath.contentOffset)
@@ -246,7 +255,7 @@ extension RefreshComponent {
         self._panGestureRecognizer = nil
     }
     
-    public override func observeValue(forKeyPath keyPath: String?,
+    override public func observeValue(forKeyPath keyPath: String?,
                                       of object: Any?,
                                       change: [NSKeyValueChangeKey : Any]?,
                                       context: UnsafeMutableRawPointer?) {
@@ -266,7 +275,16 @@ extension RefreshComponent {
         }
     }
 
+    
+    /// 监听UIScrollView.contentOffset 变化时调用
+    /// 子类实现
     internal func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
+    
+    /// 监听UIScrollView.contentSize 变化时调用
+    /// 子类实现
     internal func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
+    
+    /// 监听UIScrollView.panGestureRecognizer.state 变化时调用
+    /// 子类实现
     internal func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 }
