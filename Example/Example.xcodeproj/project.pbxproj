@@ -7,18 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D04C6971F1122B8001B6B96 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D04C6961F1122B8001B6B96 /* MasterViewController.swift */; };
+		4D04C6A11F11263B001B6B96 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D04C69E1F11261B001B6B96 /* ZVRefreshing.framework */; };
+		4D04C6A21F11263B001B6B96 /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D04C69E1F11261B001B6B96 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4D0578D21F0B27D900F6D5A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0578D11F0B27D900F6D5A5 /* AppDelegate.swift */; };
 		4D0578D71F0B27D900F6D5A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D0578D51F0B27D900F6D5A5 /* Main.storyboard */; };
 		4D0578D91F0B27D900F6D5A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D0578D81F0B27D900F6D5A5 /* Assets.xcassets */; };
 		4D0578DC1F0B27D900F6D5A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D0578DA1F0B27D900F6D5A5 /* LaunchScreen.storyboard */; };
 		4D0578E71F0B27DA00F6D5A5 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0578E61F0B27DA00F6D5A5 /* ExampleTests.swift */; };
 		4D0578F21F0B27DA00F6D5A5 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */; };
-		4D2EA7191F0C8190005F8A4D /* RootTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D2EA7181F0C8190005F8A4D /* RootTableViewController.swift */; };
-		4D8C7E9D1F10CA5400B6FC4B /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8C7E9C1F10CA5400B6FC4B /* ZVRefreshing.framework */; };
-		4D8C7E9E1F10CA5400B6FC4B /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D8C7E9C1F10CA5400B6FC4B /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4D8C7EA21F10E0EC00B6FC4B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8C7EA11F10E0EC00B6FC4B /* DetailViewController.swift */; };
+		4DEC37A91F113B94000EFAAF /* RefreshCustomAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37A81F113B94000EFAAF /* RefreshCustomAnimationHeader.swift */; };
+		4DEC37AC1F113BBB000EFAAF /* RefreshCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37AB1F113BBB000EFAAF /* RefreshCustomAnimationFooter.swift */; };
+		4DEC37AE1F11B379000EFAAF /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEC37AD1F11B379000EFAAF /* Reveal.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4D04C69D1F11261B001B6B96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4D04C6981F11261B001B6B96 /* ZVRefreshing.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4D94FC941F0DFFC500677215;
+			remoteInfo = ZVRefreshing;
+		};
+		4D04C69F1F11261B001B6B96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4D04C6981F11261B001B6B96 /* ZVRefreshing.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4D94FC9D1F0DFFC500677215;
+			remoteInfo = ZVRefreshingTests;
+		};
+		4D04C6A31F11263B001B6B96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4D04C6981F11261B001B6B96 /* ZVRefreshing.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 4D94FC931F0DFFC500677215;
+			remoteInfo = ZVRefreshing;
+		};
 		4D0578E31F0B27D900F6D5A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4D0578C61F0B27D900F6D5A5 /* Project object */;
@@ -42,7 +67,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4D8C7E9E1F10CA5400B6FC4B /* ZVRefreshing.framework in Embed Frameworks */,
+				4D04C6A21F11263B001B6B96 /* ZVRefreshing.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,6 +84,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4D04C6961F1122B8001B6B96 /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		4D04C6981F11261B001B6B96 /* ZVRefreshing.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZVRefreshing.xcodeproj; path = ../../ZVRefreshing.xcodeproj; sourceTree = "<group>"; };
 		4D0578CE1F0B27D900F6D5A5 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0578D11F0B27D900F6D5A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4D0578D61F0B27D900F6D5A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -71,8 +98,10 @@
 		4D0578ED1F0B27DA00F6D5A5 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		4D0578F31F0B27DA00F6D5A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D2EA7181F0C8190005F8A4D /* RootTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootTableViewController.swift; sourceTree = "<group>"; };
-		4D8C7E9C1F10CA5400B6FC4B /* ZVRefreshing.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZVRefreshing.framework; path = Carthage/Build/iOS/ZVRefreshing.framework; sourceTree = "<group>"; };
+		4D8C7EA11F10E0EC00B6FC4B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		4DEC37A81F113B94000EFAAF /* RefreshCustomAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshCustomAnimationHeader.swift; sourceTree = "<group>"; };
+		4DEC37AB1F113BBB000EFAAF /* RefreshCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshCustomAnimationFooter.swift; sourceTree = "<group>"; };
+		4DEC37AD1F11B379000EFAAF /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +109,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D8C7E9D1F10CA5400B6FC4B /* ZVRefreshing.framework in Frameworks */,
+				4D04C6A11F11263B001B6B96 /* ZVRefreshing.framework in Frameworks */,
+				4DEC37AE1F11B379000EFAAF /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,10 +131,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D04C6991F11261B001B6B96 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4D04C69E1F11261B001B6B96 /* ZVRefreshing.framework */,
+				4D04C6A01F11261B001B6B96 /* ZVRefreshingTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4D0578C51F0B27D900F6D5A5 = {
 			isa = PBXGroup;
 			children = (
-				4D8C7E9C1F10CA5400B6FC4B /* ZVRefreshing.framework */,
 				4D0578D01F0B27D900F6D5A5 /* Example */,
 				4D0578E51F0B27D900F6D5A5 /* ExampleTests */,
 				4D0578F01F0B27DA00F6D5A5 /* ExampleUITests */,
@@ -125,12 +163,17 @@
 		4D0578D01F0B27D900F6D5A5 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				4D04C6981F11261B001B6B96 /* ZVRefreshing.xcodeproj */,
 				4D0578D11F0B27D900F6D5A5 /* AppDelegate.swift */,
+				4D04C6961F1122B8001B6B96 /* MasterViewController.swift */,
+				4D8C7EA11F10E0EC00B6FC4B /* DetailViewController.swift */,
 				4D0578D51F0B27D900F6D5A5 /* Main.storyboard */,
 				4D0578D81F0B27D900F6D5A5 /* Assets.xcassets */,
 				4D0578DA1F0B27D900F6D5A5 /* LaunchScreen.storyboard */,
 				4D0578DD1F0B27D900F6D5A5 /* Info.plist */,
-				4D2EA7181F0C8190005F8A4D /* RootTableViewController.swift */,
+				4DEC37A81F113B94000EFAAF /* RefreshCustomAnimationHeader.swift */,
+				4DEC37AB1F113BBB000EFAAF /* RefreshCustomAnimationFooter.swift */,
+				4DEC37AD1F11B379000EFAAF /* Reveal.framework */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -170,6 +213,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4D04C6A41F11263B001B6B96 /* PBXTargetDependency */,
 			);
 			name = Example;
 			productName = Example;
@@ -252,6 +296,12 @@
 			mainGroup = 4D0578C51F0B27D900F6D5A5;
 			productRefGroup = 4D0578CF1F0B27D900F6D5A5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 4D04C6991F11261B001B6B96 /* Products */;
+					ProjectRef = 4D04C6981F11261B001B6B96 /* ZVRefreshing.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				4D0578CD1F0B27D900F6D5A5 /* Example */,
@@ -260,6 +310,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		4D04C69E1F11261B001B6B96 /* ZVRefreshing.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ZVRefreshing.framework;
+			remoteRef = 4D04C69D1F11261B001B6B96 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4D04C6A01F11261B001B6B96 /* ZVRefreshingTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ZVRefreshingTests.xctest;
+			remoteRef = 4D04C69F1F11261B001B6B96 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4D0578CC1F0B27D900F6D5A5 /* Resources */ = {
@@ -309,8 +376,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D2EA7191F0C8190005F8A4D /* RootTableViewController.swift in Sources */,
+				4DEC37A91F113B94000EFAAF /* RefreshCustomAnimationHeader.swift in Sources */,
+				4D04C6971F1122B8001B6B96 /* MasterViewController.swift in Sources */,
+				4D8C7EA21F10E0EC00B6FC4B /* DetailViewController.swift in Sources */,
 				4D0578D21F0B27D900F6D5A5 /* AppDelegate.swift in Sources */,
+				4DEC37AC1F113BBB000EFAAF /* RefreshCustomAnimationFooter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,6 +403,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4D04C6A41F11263B001B6B96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZVRefreshing;
+			targetProxy = 4D04C6A31F11263B001B6B96 /* PBXContainerItemProxy */;
+		};
 		4D0578E41F0B27D900F6D5A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4D0578CD1F0B27D900F6D5A5 /* Example */;
@@ -468,10 +543,16 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Example",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zevwings.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -488,9 +569,16 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Example",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Example/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lz",
+					"-framework",
+					Reveal,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.zevwings.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;

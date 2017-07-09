@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class RefreshComponent: UIView {
+open class RefreshComponent: UIView {
     
     private struct AssocaiationKey {
         static var state = "com.zevwings.assocaiationkey.state"
@@ -83,7 +83,7 @@ public class RefreshComponent: UIView {
     // MARK: - Getter & Setter
     
     /// 刷新状态
-    internal var state: RefreshState {
+    open var state: RefreshState {
         get {
             let value = objc_getAssociatedObject(self, &AssocaiationKey.state) as? String
             return RefreshState.mapState(with: value)
@@ -123,15 +123,25 @@ public class RefreshComponent: UIView {
             }
         }
     }
+    
+    /// 设置RefreshComponent子控件颜色
+    open override var tintColor: UIColor! {
+        get {
+            return super.tintColor
+        }
+        set {
+            
+        }
+    }
 
     //MARK: - 重写类方法
     
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         self.placeSubViews()
         super.layoutSubviews()
     }
     
-    override public func willMove(toSuperview newSuperview: UIView?) {
+    override open func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
         guard let superview = newSuperview as? UIScrollView else { return }
@@ -160,7 +170,7 @@ public class RefreshComponent: UIView {
         self._addObservers()
     }
     
-    override public func draw(_ rect: CGRect) {
+    override open func draw(_ rect: CGRect) {
         super.draw(rect)
         if self.state == .willRefresh { self.state = .refreshing }
     }
@@ -170,13 +180,13 @@ public class RefreshComponent: UIView {
 extension RefreshComponent {
     
     /// 初始化控件
-    internal func prepare() {
+    open func prepare() {
         self.autoresizingMask = .flexibleWidth
         self.backgroundColor = UIColor.clear
     }
     
     /// 放置控件，设置控件位置
-    internal func placeSubViews() {}
+    open func placeSubViews() {}
 }
 
 // MARK: - 状态控制
@@ -222,7 +232,6 @@ extension RefreshComponent {
             if let target = self._target, let action = self._action {
                 _ = (target as AnyObject).perform(action)
             }*/
-            
             self.beginRefreshingCompletionHandler?()
         }
     }
@@ -258,10 +267,10 @@ extension RefreshComponent {
         self._panGestureRecognizer = nil
     }
     
-    override public func observeValue(forKeyPath keyPath: String?,
-                                      of object: Any?,
-                                      change: [NSKeyValueChangeKey : Any]?,
-                                      context: UnsafeMutableRawPointer?) {
+    override open func observeValue(forKeyPath keyPath: String?,
+                                    of object: Any?,
+                                    change: [NSKeyValueChangeKey : Any]?,
+                                    context: UnsafeMutableRawPointer?) {
 
         guard self.isUserInteractionEnabled else { return }
 

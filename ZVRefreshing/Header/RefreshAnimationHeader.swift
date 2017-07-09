@@ -31,7 +31,7 @@ public class RefreshAnimationHeader: RefreshStateHeader {
         }
     }
     
-    override var state: RefreshState {
+    override public var state: RefreshState {
         get {
             return super.state
         }
@@ -78,14 +78,14 @@ public extension RefreshAnimationHeader {
 
 extension RefreshAnimationHeader {
     
-    override func prepare() {
+    override public func prepare() {
         super.prepare()
         if self.animationView.superview == nil {
             self.addSubview(self.animationView)
         }
     }
     
-    override func placeSubViews() {
+    override public func placeSubViews() {
         super.placeSubViews()
         if self.animationView.constraints.count > 0 { return }
         self.animationView.frame = self.bounds

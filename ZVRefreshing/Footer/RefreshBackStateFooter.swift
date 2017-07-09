@@ -7,12 +7,12 @@
 
 import UIKit
 
-public class RefreshBackStateFooter: RefreshBackFooter {
+open class RefreshBackStateFooter: RefreshBackFooter {
     
     public fileprivate(set) lazy var stateLabel: UILabel = RefreshingLabel()
     fileprivate var stateTitles:[RefreshState: String] = [:]
     
-    override var state: RefreshState {
+    override open var state: RefreshState {
         get {
             return super.state
         }
@@ -34,7 +34,7 @@ extension RefreshBackStateFooter {
 
 extension RefreshBackStateFooter {
     
-    override func prepare() {
+    override open func prepare() {
         super.prepare()
         
         if self.stateLabel.superview == nil {
@@ -47,7 +47,7 @@ extension RefreshBackStateFooter {
         self.setTitle(Constants.Footer.Back.noMoreData, forState: .noMoreData)
     }
     
-    override func placeSubViews() {
+    override open func placeSubViews() {
         super.placeSubViews()
         if self.stateLabel.constraints.count > 0 { return }
         self.stateLabel.frame = self.bounds

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class RefreshStateHeader: RefreshHeader {
+open class RefreshStateHeader: RefreshHeader {
 
     public fileprivate(set) lazy var lastUpdatedTimeLabel: UILabel = RefreshingLabel()
     public fileprivate(set) lazy var stateLabel: UILabel = RefreshingLabel()
@@ -17,7 +17,7 @@ public class RefreshStateHeader: RefreshHeader {
     fileprivate var calendar = Calendar(identifier: .gregorian)
     fileprivate var lastUpdatedTimeLabelText:((_ date: Date?)->(String))?
     
-    override var state: RefreshState {
+    override open var state: RefreshState {
         get {
             return super.state
         }
@@ -79,7 +79,7 @@ public extension RefreshStateHeader {
 
 extension RefreshStateHeader {
     
-    override func prepare() {
+    override open func prepare() {
         super.prepare()
         
         if self.stateLabel.superview == nil {
@@ -95,7 +95,7 @@ extension RefreshStateHeader {
         self.setTitle(Constants.Header.refreshing, forState: .refreshing)
     }
     
-    override func placeSubViews() {
+    override open func placeSubViews() {
         super.placeSubViews()
         
         guard self.stateLabel.isHidden == false else { return }

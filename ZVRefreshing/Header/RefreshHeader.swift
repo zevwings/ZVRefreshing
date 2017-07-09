@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class RefreshHeader: RefreshComponent {
+open class RefreshHeader: RefreshComponent {
     
     /// 用于存储上次更新时间
     public var lastUpdatedTimeKey: String = Config.lastUpdatedTimeKey
@@ -22,7 +22,7 @@ public class RefreshHeader: RefreshComponent {
 
     fileprivate var insetTop: CGFloat = 0.0
 
-    override var state: RefreshState {
+    override open var state: RefreshState {
         get {
             return super.state
         }
@@ -60,13 +60,13 @@ public class RefreshHeader: RefreshComponent {
 
 extension RefreshHeader {
     
-    override func prepare() {
+    override open func prepare() {
         super.prepare()
         self.lastUpdatedTimeKey = Config.lastUpdatedTimeKey
         self.height = Component.Header.height
     }
     
-    override func placeSubViews() {
+    override open func placeSubViews() {
         super.placeSubViews()
         self.y = -self.height - self.ignoredScrollViewContentInsetTop
     }

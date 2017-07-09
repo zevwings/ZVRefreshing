@@ -7,12 +7,12 @@
 
 import UIKit
 
-public class RefreshBackFooter: RefreshFooter {
+open class RefreshBackFooter: RefreshFooter {
     
     fileprivate var lastBottomDelta: CGFloat = 0.0
     fileprivate var lastRefreshCount: Int = 0
     
-    override var state: RefreshState {
+    override open var state: RefreshState {
         get {
             return super.state
         }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class RefreshFooter: RefreshComponent {
+open class RefreshFooter: RefreshComponent {
 
     /// 忽略的UIScrollView.contentInset.bottom
     public var ignoredScrollViewContentInsetBottom: CGFloat = 0.0
@@ -17,7 +17,7 @@ public class RefreshFooter: RefreshComponent {
     public var pageSize: Int = 0
     public var stateLabelHidden: Bool = false
 
-    override public func willMove(toSuperview newSuperview: UIView?) {
+    override open func willMove(toSuperview newSuperview: UIView?) {
         // 判断superview是否为nil
         guard let superview = newSuperview as? UIScrollView else { return }
         super.willMove(toSuperview: superview)
@@ -57,7 +57,7 @@ extension RefreshFooter {
 
 extension RefreshFooter {
     
-    override func prepare() {
+    override open func prepare() {
         self.height = Component.Footer.height
     }
 }
