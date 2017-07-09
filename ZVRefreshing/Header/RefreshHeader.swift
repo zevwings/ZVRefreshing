@@ -90,7 +90,7 @@ extension RefreshHeader {
 
 extension RefreshHeader {
     
-    internal override func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
+     override open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChanged(change)
         
         guard let scrollView = self.scrollView else { return }

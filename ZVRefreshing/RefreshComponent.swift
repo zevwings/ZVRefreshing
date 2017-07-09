@@ -290,13 +290,13 @@ extension RefreshComponent {
     
     /// 监听UIScrollView.contentOffset 变化时调用
     /// 子类实现
-    internal func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
+    open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
     
     /// 监听UIScrollView.contentSize 变化时调用
     /// 子类实现
-    internal func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
+    open func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
     
     /// 监听UIScrollView.panGestureRecognizer.state 变化时调用
     /// 子类实现
-    internal func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
+    open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 }

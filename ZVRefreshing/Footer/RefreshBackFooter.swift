@@ -89,7 +89,7 @@ extension RefreshBackFooter {
 
 extension RefreshBackFooter {
     
-    override func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
         
         super.scrollViewContentOffsetDidChanged(change)
         
@@ -124,7 +124,7 @@ extension RefreshBackFooter {
         
     }
     
-    override func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentSizeDidChanged(change)
         
         guard let scrollView = self.scrollView else { return }

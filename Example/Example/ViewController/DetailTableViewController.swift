@@ -9,13 +9,11 @@
 import UIKit
 import ZVRefreshing
 
-class DetailViewController: UITableViewController {
+class DetailTableViewController: UITableViewController {
 
     var header: RefreshHeader?
-    var headerHandler: RefreshHandler?
     
     var footer: RefreshFooter?
-    var footerHandler: RefreshHandler?
     
     var rows: Int = 15
     

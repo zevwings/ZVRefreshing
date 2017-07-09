@@ -42,14 +42,14 @@ open class RefreshBackAnimationFooter: RefreshBackStateFooter {
             
             if newValue == .pulling || newValue == .refreshing {
                 
-                guard let images = self.stateImages[state], images.count > 0 else { return }
+                guard let images = self.stateImages[newValue], images.count > 0 else { return }
                 self.animationView.stopAnimating()
                 
                 if images.count == 1 {
                     self.animationView.image = images.last
                 } else {
                     self.animationView.animationImages = images
-                    self.animationView.animationDuration = self.stateDurations[state] ?? 0
+                    self.animationView.animationDuration = self.stateDurations[newValue] ?? 0
                     self.animationView.startAnimating()
                 }
             } else if newValue == .idle {

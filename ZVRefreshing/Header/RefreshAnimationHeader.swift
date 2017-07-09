@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class RefreshAnimationHeader: RefreshStateHeader {
+open class RefreshAnimationHeader: RefreshStateHeader {
 
     public fileprivate(set) lazy var animationView: UIImageView = {
         let animationView = UIImageView()
@@ -31,7 +31,7 @@ public class RefreshAnimationHeader: RefreshStateHeader {
         }
     }
     
-    override public var state: RefreshState {
+    override open var state: RefreshState {
         get {
             return super.state
         }
@@ -40,14 +40,14 @@ public class RefreshAnimationHeader: RefreshStateHeader {
             super.state = newValue
             
             if newValue == .pulling || newValue == .refreshing {
-                let images = self.stateImages[state]
+                let images = self.stateImages[newValue]
                 if images?.count == 0 { return }
                 self.animationView.stopAnimating()
                 if images?.count == 1{
                     self.animationView.image = images?.last
                 } else {
                     self.animationView.animationImages = images
-                    self.animationView.animationDuration = self.stateDurations[state] ?? 0.0
+                    self.animationView.animationDuration = self.stateDurations[newValue] ?? 0.0
                     self.animationView.startAnimating()
                 }
             } else if newValue == .idle {
@@ -78,14 +78,14 @@ public extension RefreshAnimationHeader {
 
 extension RefreshAnimationHeader {
     
-    override public func prepare() {
+    override open func prepare() {
         super.prepare()
         if self.animationView.superview == nil {
             self.addSubview(self.animationView)
         }
     }
     
-    override public func placeSubViews() {
+    override open func placeSubViews() {
         super.placeSubViews()
         if self.animationView.constraints.count > 0 { return }
         self.animationView.frame = self.bounds

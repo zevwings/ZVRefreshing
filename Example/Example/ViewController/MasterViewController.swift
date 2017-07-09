@@ -66,9 +66,10 @@ class MasterViewController: UITableViewController {
     //  swiftlint:disable function_body_length
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let destViewController = segue.destination as? DetailViewController
-        
-        let row = self.tableView.indexPathForSelectedRow?.row ?? 0
+        let indexPath = self.tableView.indexPathForSelectedRow
+                
+        let destViewController = segue.destination as? DetailTableViewController
+        let row = indexPath?.row ?? 0
         switch row {
         case 0:
             // 设置标题
@@ -133,7 +134,7 @@ class MasterViewController: UITableViewController {
             let header = RefreshCustomAnimationHeader()
             destViewController?.header = header
             
-            let footer = RefreshAutoCustomAnimationFooter()
+            let footer = RefreshBackCustomAnimationFooter()
             destViewController?.footer = footer
             break
         default:

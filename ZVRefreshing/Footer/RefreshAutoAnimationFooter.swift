@@ -64,8 +64,8 @@ extension RefreshAutoAnimationFooter {
         
         guard images.count > 0 else { return }
         
-        self.stateImages[self.state] = images
-        self.stateDurations[self.state] = duration
+        self.stateImages[state] = images
+        self.stateDurations[state] = duration
         guard let image = images.first, image.size.height < self.height else { return }
         self.height = image.size.height
     }

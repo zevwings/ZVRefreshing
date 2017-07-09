@@ -70,13 +70,13 @@ open class RefreshAutoFooter: RefreshFooter {
 
 extension RefreshAutoFooter {
     
-    override func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentSizeDidChanged(change)
         guard let scrollView = self.scrollView else { return }
         self.y = scrollView.contentHeight
     }
     
-    override func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChanged(change)
         
         guard self.state == .idle, self.isAutomaticallyRefresh, self.y != 0 else { return }
@@ -93,7 +93,7 @@ extension RefreshAutoFooter {
         }
     }
     
-    override func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewPanStateDidChanged(change)
         
         guard self.state == .idle else { return }
