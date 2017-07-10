@@ -225,8 +225,18 @@ footer.labelInsetLeft = 32.0
 ### 自定义方法
 
 支持重写的属性，方法
-1. 控件刷新状态 `var state: RefreshState`
-2. 控件色调    `var tintColor: UIColor!`
+1. 控件刷新状态 
+
+```
+var state: RefreshState
+```
+
+2. 控件色调    
+
+```
+var tintColor: UIColor!
+```
+
 3. 控件初始化
    
 ```
@@ -241,19 +251,18 @@ open func placeSubViews() {}
 
 5. UIScrollView属性监听方法
 
-- 监听UIScrollView.contentOffset 变化时调用
+- 监听UIScrollView.contentOffset
 
 ```
 open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 ``` 
 
-- 监听UIScrollView.contentSize 变化时调用
+- 监听UIScrollView.contentSize
 
 ```
 open func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 ```    
 - 监听UIScrollView.panGestureRecognizer.state
- 变化时调用
 
 ```
 open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
