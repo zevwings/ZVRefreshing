@@ -28,6 +28,7 @@
 		4D94FCD11F0DFFEC00677215 /* ZVRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBF1F0DFFEC00677215 /* ZVRefreshComponent.swift */; };
 		4D94FCD21F0DFFEC00677215 /* ZVRefreshingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCC01F0DFFEC00677215 /* ZVRefreshingLabel.swift */; };
 		4DDFCE501F135E1F00B62435 /* ZVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFCE4F1F135E1F00B62435 /* ZVActivityIndicatorView.swift */; };
+		4DDFCEA71F13B34D00B62435 /* ZVRefreshing.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DDFCEA91F13B34D00B62435 /* ZVRefreshing.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,9 @@
 		4D94FCBF1F0DFFEC00677215 /* ZVRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshComponent.swift; sourceTree = "<group>"; };
 		4D94FCC01F0DFFEC00677215 /* ZVRefreshingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshingLabel.swift; sourceTree = "<group>"; };
 		4DDFCE4F1F135E1F00B62435 /* ZVActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVActivityIndicatorView.swift; sourceTree = "<group>"; };
+		4DDFCEA81F13B34D00B62435 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ZVRefreshing.strings; sourceTree = "<group>"; };
+		4DDFCEAA1F13B35D00B62435 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ZVRefreshing.strings"; sourceTree = "<group>"; };
+		4DDFCEAB1F13B36200B62435 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/ZVRefreshing.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +120,7 @@
 				4D94FCB01F0DFFEC00677215 /* Footer */,
 				4D94FC971F0DFFC500677215 /* ZVRefreshing.h */,
 				4D94FC981F0DFFC500677215 /* Info.plist */,
+				4DDFCEA91F13B34D00B62435 /* ZVRefreshing.strings */,
 			);
 			path = ZVRefreshing;
 			sourceTree = "<group>";
@@ -235,6 +240,8 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 4D94FC8A1F0DFFC500677215;
 			productRefGroup = 4D94FC951F0DFFC500677215 /* Products */;
@@ -252,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DDFCEA71F13B34D00B62435 /* ZVRefreshing.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,11 +316,25 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		4DDFCEA91F13B34D00B62435 /* ZVRefreshing.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4DDFCEA81F13B34D00B62435 /* en */,
+				4DDFCEAA1F13B35D00B62435 /* zh-Hans */,
+				4DDFCEAB1F13B36200B62435 /* zh-Hant */,
+			);
+			name = ZVRefreshing.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		4D94FCA61F0DFFC500677215 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -367,6 +389,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";

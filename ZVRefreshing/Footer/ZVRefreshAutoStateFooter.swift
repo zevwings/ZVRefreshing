@@ -58,9 +58,9 @@ extension ZVRefreshAutoStateFooter {
             self.addSubview(self.stateLabel)
         }
         
-        self.setTitle(Constants.Footer.Auto.idle , forState: .idle)
-        self.setTitle(Constants.Footer.Auto.refreshing, forState: .refreshing)
-        self.setTitle(Constants.Footer.Auto.noMoreData, forState: .noMoreData)
+        self.setTitle(localized(string: Constants.Footer.Auto.idle) , forState: .idle)
+        self.setTitle(localized(string: Constants.Footer.Auto.refreshing), forState: .refreshing)
+        self.setTitle(localized(string: Constants.Footer.Auto.noMoreData), forState: .noMoreData)
         
         self.stateLabel.isUserInteractionEnabled = true
         self.stateLabel.addGestureRecognizer(.init(target: self, action: #selector(ZVRefreshAutoStateFooter.stateLabelClicked)))

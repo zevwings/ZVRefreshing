@@ -281,3 +281,17 @@ internal extension UILabel {
         return textWidth
     }
 }
+
+internal extension Bundle {
+    class var current: Bundle {
+        return Bundle(for: ZVRefreshComponent.self)
+    }
+//    Bundle(for: ZProgressHUD.classForCoder()).bundlePath.appendingFormat("/ZProgressHUD.bundle/%@", frameworknamed)
+}
+
+func localized(string key: String, comment: String = "") -> String {
+    return NSLocalizedString(key, tableName: "ZVRefreshing", bundle: Bundle.current, value: "", comment: comment.isEmpty ? key: comment)
+}
+//let todayValue = NSLocalizedString("today", tableName: "ZVRefreshing", bundle: Bundle.current, value: "", comment: "")
+//print(todayValue)
+

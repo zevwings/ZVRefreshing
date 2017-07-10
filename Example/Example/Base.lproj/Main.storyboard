@@ -36,6 +36,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Root View Controller" id="c3A-OO-qd0"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wsd-e0-W5I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -64,6 +65,7 @@
                             <outlet property="delegate" destination="wiN-wc-y8t" id="7xa-Mn-zKN"/>
                         </connections>
                     </tableView>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXn-Vm-7P9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -73,9 +75,16 @@
         <scene sceneID="39x-ZS-ei2">
             <objects>
                 <navigationController id="EUC-aR-UPl" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="gEt-UH-hhZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.84313725490000002" green="0.12941176469999999" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="fRA-AM-SKG" kind="relationship" relationship="rootViewController" id="wlo-6y-LCG"/>

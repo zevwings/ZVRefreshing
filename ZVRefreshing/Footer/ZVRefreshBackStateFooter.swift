@@ -53,10 +53,10 @@ extension ZVRefreshBackStateFooter {
             self.addSubview(self.stateLabel)
         }
         
-        self.setTitle(Constants.Footer.Back.idle, forState: .idle)
-        self.setTitle(Constants.Footer.Back.pulling, forState: .pulling)
-        self.setTitle(Constants.Footer.Back.refreshing, forState: .refreshing)
-        self.setTitle(Constants.Footer.Back.noMoreData, forState: .noMoreData)
+        self.setTitle(localized(string: Constants.Footer.Back.idle), forState: .idle)
+        self.setTitle(localized(string: Constants.Footer.Back.pulling), forState: .pulling)
+        self.setTitle(localized(string: Constants.Footer.Back.refreshing), forState: .refreshing)
+        self.setTitle(localized(string: Constants.Footer.Back.noMoreData), forState: .noMoreData)
     }
     
     override open func placeSubViews() {

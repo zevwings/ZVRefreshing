@@ -15,6 +15,7 @@
 		4D0578F21F0B27DA00F6D5A5 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */; };
 		4DDFCE491F13505500B62435 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D04C69E1F11261B001B6B96 /* ZVRefreshing.framework */; };
 		4DDFCE4A1F13505500B62435 /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D04C69E1F11261B001B6B96 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4DDFCEA01F13AE7C00B62435 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DDFCEA21F13AE7C00B62435 /* Localizable.strings */; };
 		4DEC37AE1F11B379000EFAAF /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEC37AD1F11B379000EFAAF /* Reveal.framework */; };
 		4DEC37B81F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B21F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift */; };
 		4DEC37B91F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B31F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift */; };
@@ -98,6 +99,8 @@
 		4D0578ED1F0B27DA00F6D5A5 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		4D0578F31F0B27DA00F6D5A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4DDFCEA11F13AE7C00B62435 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4DDFCEA31F13AEC000B62435 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4DEC37AD1F11B379000EFAAF /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = SOURCE_ROOT; };
 		4DEC37B21F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackCustomAnimationFooter.swift; sourceTree = "<group>"; };
 		4DEC37B31F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshCustomAnimationHeader.swift; sourceTree = "<group>"; };
@@ -174,6 +177,7 @@
 				4D0578DA1F0B27D900F6D5A5 /* LaunchScreen.storyboard */,
 				4D0578DD1F0B27D900F6D5A5 /* Info.plist */,
 				4DEC37AD1F11B379000EFAAF /* Reveal.framework */,
+				4DDFCEA21F13AE7C00B62435 /* Localizable.strings */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -311,6 +315,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 4D0578C51F0B27D900F6D5A5;
 			productRefGroup = 4D0578CF1F0B27D900F6D5A5 /* Products */;
@@ -353,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D0578DC1F0B27D900F6D5A5 /* LaunchScreen.storyboard in Resources */,
+				4DDFCEA01F13AE7C00B62435 /* Localizable.strings in Resources */,
 				4D0578D91F0B27D900F6D5A5 /* Assets.xcassets in Resources */,
 				4D0578D71F0B27D900F6D5A5 /* Main.storyboard in Resources */,
 			);
@@ -457,6 +463,15 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
+		4DDFCEA21F13AE7C00B62435 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4DDFCEA11F13AE7C00B62435 /* Base */,
+				4DDFCEA31F13AEC000B62435 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -464,6 +479,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -514,6 +530,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
