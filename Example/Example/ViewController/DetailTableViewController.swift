@@ -32,6 +32,7 @@ class DetailTableViewController: UITableViewController {
         header?.addTarget(self, action: #selector(DetailTableViewController.refreshAction(_:)))
         self.tableView.header = header
         
+        
         footer?.refreshHandler = {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 self.rows += 15
@@ -44,6 +45,9 @@ class DetailTableViewController: UITableViewController {
             })
         }
         self.tableView.footer = footer
+        
+
+
     }
 
     override func didReceiveMemoryWarning() {

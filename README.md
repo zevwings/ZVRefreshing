@@ -78,31 +78,7 @@ let header = RefreshHeader(refreshHandler: {
 self.tableView.header = header
 ```
 
-3. 开始更新
-
-```
-self.tableView.header?.beginRefreshing()
-```
-
-4. 停止更新
-
-```
-self.tableView.header?.beginRefreshing()
-```
-
-5. 隐藏上次更新时间文本
-
-```
-header.lastUpdatedTimeLabel.isHidden = true
-```
-
-6. 隐藏状态文本
-
-```
-header.stateLabel.isHidden = true
-```
-
-7. 给Header添加 Target and Action
+3. 给Header添加 Target and Action
 
 ```
 header?.addTarget(self, action: #selector(ViewController.refreshAction(_:))
@@ -110,7 +86,30 @@ header?.addTarget(self, action: #selector(ViewController.refreshAction(_:))
 func refreshAction(_ sender: RefreshComponent) {
     // your code
 }
+```
 
+4. 开始更新
+
+```
+self.tableView.header?.beginRefreshing()
+```
+
+5. 停止更新
+
+```
+self.tableView.header?.beginRefreshing()
+```
+
+6. 隐藏上次更新时间文本
+
+```
+header.lastUpdatedTimeLabel.isHidden = true
+```
+
+7. 隐藏状态文本
+
+```
+header.stateLabel.isHidden = true
 ```
 
 8. 自定义状态文本
@@ -135,7 +134,7 @@ header.activityIndicatorViewStyle = .whiteLarge
 11. 自定义 TableView.contentInset属性时，需要设置 RefreshComponent.ignoredScrollViewContentInsetTop属性
 
 ```
-self.tableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0)
+self.tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom:0, right: 0)
 header.ignoredScrollViewContentInsetTop = 30
 ```
 
@@ -146,21 +145,119 @@ header.labelInsetLeft = 32.0
 ```
 
 #### Footer
-- Init Footer with target an action.
+1. 使用Target-Action初始化方法，初始化Footer
 
 ```
-let footer = RefreshBackNormalFooter()
-footer?.addTarget(self, action: #selector(DetailTableViewController.refreshAction(_:)))
+let footer = RefreshFooter(target: self, action: #selector(DetailTableViewController.refreshAction(_:)))
 self.tableView.footer = footer
 
 ```
-- Init Footer with Block
+
+2. 使用Block初始化方法，初始化Footer
 
 ```
-let footer = RefreshHeader(refreshHandler: {
-             // Your code
-})
+let footer = RefreshFooter {
+            
+        }
 self.tableView.footer = footer
 ```
+
+3. 给Footer添加Target-Action
+
+```
+footer?.addTarget(self, action: #selector(ViewController.refreshAction(_:))
+
+func refreshAction(_ sender: RefreshComponent) {
+    // your code
+}
+```
+
+4. 开始更新
+
+```
+self.tableView.footer?.beginRefreshing()
+```
+
+5. 停止更新
+
+```
+self.tableView.footer?.beginRefreshing()
+```
+
+6. 隐藏状态文本
+
+```
+footer.stateLabel.isHidden = true
+```
+
+7. 自定义状态文本
+
+```
+footer.setTitle("下拉后更新...", forState: .idle)
+```
+
+8. 自定义动画图片
+
+```
+footer.setImages(refreshingImages, state: .refreshing)
+footer.setImages(refreshingImages, duration: 1.0, state: .refreshing)
+```
+
+9. 自定义 ActivityIndicator.activityIndicatorViewStyle 属性
+
+```
+footer.activityIndicatorViewStyle = .whiteLarge
+```
+
+10. 自定义 TableView.contentInset属性时，需要设置 RefreshComponent.ignoredScrollViewContentInsetTop属性
+
+```
+self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
+footer.ignoredScrollViewContentInsetBottom
+```
+
+11. 自定义 ActivityIndicator 与 状态文本间距
+
+```
+footer.labelInsetLeft = 32.0
+```
+
+### 自定义方法
+
+支持重写的属性，方法
+1. 控件刷新状态 `var state: RefreshState`
+2. 控件色调    `var tintColor: UIColor!`
+3. 控件初始化
+   
+```
+open func prepare() {}
+```
+   
+4. 控件位置
+
+```
+open func placeSubViews() {}
+```
+
+5. UIScrollView属性监听方法
+
+- 监听UIScrollView.contentOffset 变化时调用
+
+```
+open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
+``` 
+
+- 监听UIScrollView.contentSize 变化时调用
+
+```
+open func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
+```    
+- 监听UIScrollView.panGestureRecognizer.state
+ 变化时调用
+
+```
+open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
+```
+
 
 
