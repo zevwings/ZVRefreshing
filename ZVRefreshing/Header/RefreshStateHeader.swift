@@ -18,6 +18,17 @@ open class RefreshStateHeader: RefreshHeader {
     fileprivate var calendar = Calendar(identifier: .gregorian)
     fileprivate var lastUpdatedTimeLabelText:((_ date: Date?)->(String))?
     
+    open override var tintColor: UIColor! {
+        get {
+            return super.tintColor
+        }
+        set {
+            super.tintColor = newValue
+            self.lastUpdatedTimeLabel.textColor = newValue
+            self.stateLabel.textColor = newValue
+        }
+    }
+    
     override open var state: RefreshState {
         get {
             return super.state

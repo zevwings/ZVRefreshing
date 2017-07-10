@@ -291,3 +291,28 @@ internal extension UILabel {
         return textWidth
     }
 }
+
+
+extension UIImage {
+    
+    /// 为图片指定颜色
+    ///
+    /// - Parameter color: 图片颜色
+    /// - Returns: UIImage
+    func tintImage(with color: UIColor) -> UIImage? {
+        
+        let rect = CGRect(x: 0.0, y: 0.0, width: self.size.width, height: self.size.height)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, self.scale)
+        let context = UIGraphicsGetCurrentContext()
+        if context == nil { return nil}
+        
+        self.draw(in: rect)
+        context!.setFillColor(color.cgColor)
+        context!.setBlendMode(.sourceAtop)
+        context!.fill(rect)
+        let result = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return result
+    }
+}

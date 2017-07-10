@@ -127,7 +127,7 @@ open class RefreshComponent: UIView {
             return super.tintColor
         }
         set {
-            
+            super.tintColor = newValue
         }
     }
 

@@ -114,6 +114,7 @@ class MasterViewController: UITableViewController {
         case 3:
             // 设置标题
             destViewController?.title = self.rows[3]
+            
             // 设置 Header
             let header = RefreshNormalHeader()
             header.setTitle("下拉后更新...", forState: .idle)
@@ -121,6 +122,7 @@ class MasterViewController: UITableViewController {
             header.setTitle("正在刷新数据...", forState: .refreshing)
             
             destViewController?.header = header
+            
             // 设置 Footer
             let footer = RefreshBackNormalFooter()
             footer.setTitle("上拉加载更多数据...", forState: .idle)
@@ -128,6 +130,10 @@ class MasterViewController: UITableViewController {
             footer.setTitle("正在刷新数据...", forState: .refreshing)
             footer.setTitle("没有数据啦", forState: .noMoreData)
             destViewController?.footer = footer
+            
+            header.tintColor = .black
+            footer.tintColor = .black
+            
             break
         case 4:
             destViewController?.title = self.rows[4]

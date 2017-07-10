@@ -23,6 +23,16 @@ public class RefreshAutoNormalFooter: RefreshAutoStateFooter {
         }
     }
     
+    open override var tintColor: UIColor! {
+        get {
+            return super.tintColor
+        }
+        set {
+            super.tintColor = newValue
+            self.activityIndicator.color = newValue
+        }
+    }
+    
     override public var state: RefreshState {
         get {
             return super.state

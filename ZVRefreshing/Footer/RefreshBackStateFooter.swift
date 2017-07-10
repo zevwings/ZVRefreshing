@@ -13,6 +13,16 @@ open class RefreshBackStateFooter: RefreshBackFooter {
     public var labelInsetLeft: CGFloat = 24.0
     fileprivate var stateTitles:[RefreshState: String] = [:]
     
+    open override var tintColor: UIColor! {
+        get {
+            return super.tintColor
+        }
+        set {
+            super.tintColor = newValue
+            self.stateLabel.textColor = newValue
+        }
+    }
+    
     override open var state: RefreshState {
         get {
             return super.state
@@ -23,6 +33,7 @@ open class RefreshBackStateFooter: RefreshBackFooter {
             self.stateLabel.text = self.stateTitles[newValue]
         }
     }
+    
 }
 
 extension RefreshBackStateFooter {

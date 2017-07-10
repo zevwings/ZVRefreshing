@@ -20,18 +20,17 @@ class DetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        header?.refreshHandler = {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-//                self.tableView.footer?.isNoMoreData = false
-//                self.rows = 15
-//                self.tableView.reloadData()
-//                self.tableView.header?.endRefreshing()
-//
-//            })
-//        }
-        header?.addTarget(self, action: #selector(DetailTableViewController.refreshAction(_:)))
+        header?.refreshHandler = {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.tableView.footer?.isNoMoreData = false
+                self.rows = 15
+                self.tableView.reloadData()
+                self.tableView.header?.endRefreshing()
+
+            })
+        }
+
         self.tableView.header = header
-        
         
         footer?.refreshHandler = {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
@@ -46,8 +45,6 @@ class DetailTableViewController: UITableViewController {
         }
         self.tableView.footer = footer
         
-
-
     }
 
     override func didReceiveMemoryWarning() {

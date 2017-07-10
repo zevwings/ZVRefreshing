@@ -29,6 +29,19 @@ public class RefreshNormalHeader: RefreshStateHeader {
         }
     }
     
+    public override var tintColor: UIColor! {
+        get {
+            return super.tintColor
+        }
+        set {
+            super.tintColor = newValue
+            self.activityIndicator.color = newValue
+            self.arrowView.tintColor = newValue
+            let image = UIImage.resource(named: "arrow.png")
+            self.arrowView.image = image?.tintImage(with: newValue)
+        }
+    }
+    
     override public var state: RefreshState {
         get {
             return super.state
