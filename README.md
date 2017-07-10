@@ -57,13 +57,10 @@ $ carthage update
 - Last, Select the `ZRefreshing.framework` to Add to your platform. 
 
 ## Usage
-You should import `ZVRefreshing` when you needed.
+在需要使用 `ZVRefreshing`时，使用 `import ZVRefreshing`导入便可以使用
 
-```
-import ZVRefreshing
-```
 #### Header
-1. Init Header with target an action.
+1. 使用Target-Action初始化方法，初始化Header
 
 ```
 let header = RefreshNormalHeader()
@@ -72,7 +69,7 @@ self.tableView.header = header
 
 ```
 
-2. Init Header with Block
+2. 使用Block初始化方法，初始化Header
 
 ```
 let header = RefreshHeader(refreshHandler: {
@@ -81,31 +78,31 @@ let header = RefreshHeader(refreshHandler: {
 self.tableView.header = header
 ```
 
-3. Start Refreshing
+3. 开始更新
 
 ```
 self.tableView.header?.beginRefreshing()
 ```
 
-4. Stop Refreshing
+4. 停止更新
 
 ```
 self.tableView.header?.beginRefreshing()
 ```
 
-5. Hide the lastUpdateTime
+5. 隐藏上次更新时间文本
 
 ```
 header.lastUpdatedTimeLabel.isHidden = true
 ```
 
-6. Hide the state
+6. 隐藏状态文本
 
 ```
 header.stateLabel.isHidden = true
 ```
 
-7. Add Target and Action
+7. 给Header添加 Target and Action
 
 ```
 header?.addTarget(self, action: #selector(ViewController.refreshAction(_:))
@@ -116,30 +113,36 @@ func refreshAction(_ sender: RefreshComponent) {
 
 ```
 
-8. Custom State label text
+8. 自定义状态文本
 
 ```
 header.setTitle("下拉后更新...", forState: .idle)
 ```
 
-9. Custom Animation Images
+9. 自定义动画图片
 
 ```
 header.setImages(refreshingImages, state: .refreshing)
 header.setImages(refreshingImages, duration: 1.0, state: .refreshing)
 ```
 
-10. Custom ActivityIndicator Style
+10. 自定义 ActivityIndicator.activityIndicatorViewStyle 属性
 
 ```
 header.activityIndicatorViewStyle = .whiteLarge
 ```
 
-11. Custom Content Inset Top
+11. 自定义 TableView.contentInset属性时，需要设置 RefreshComponent.ignoredScrollViewContentInsetTop属性
 
 ```
 self.tableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0)
 header.ignoredScrollViewContentInsetTop = 30
+```
+
+12. 自定义 ArrowImageView/activityIndicator 与 状态文本间距
+
+```
+header.labelInsetLeft = 32.0
 ```
 
 #### Footer
