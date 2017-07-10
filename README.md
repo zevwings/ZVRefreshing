@@ -1,17 +1,17 @@
 # ZVRefreshing
 
 ![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)[](https://github.com/Carthage/Carthage)
-ZRefreshing is a pure-swift and wieldy Refreshing Control.
+ZRefreshing 是使用纯Swift开发，简单易用刷新控件。
 
 
 ## Installation
 ### Cocoapod
-First, [CocoaPods](https://cocoapods.org) is a dependency manager for Swift and Objective-C Cocoa projects. It has over 34 thousand libraries and is used in over 2.3 million apps. CocoaPods can help you scale your projects elegantly.
+第一步，安装 [CocoaPods](https://cocoapods.org)，关于Pods更多的介绍和功能，请移步[CocoaPods 主页](https://cocoapods.org)；
 
 ```
 $ sudo gem install cocoapods
 ```
-Second, Integrate ZVRefreshing with Cocoapods and write it into your Podfile.
+第二步, 使用[CocoaPods](https://cocoapods.org)集成 `ZVRefreshing` ，并写入到你的`Podfile`中；
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
@@ -23,38 +23,38 @@ target 'TargetName' do
 end
 ```
 
-Last, install the dependencies in your project.
+最后，使用[CocoaPods](https://cocoapods.org) 安装你的依赖库。
 
 ```
 $ pod install
 ```
 ### Carthage 
-[Carthage](https://github.com/Carthage/Carthage) is intended to be the simplest way to add frameworks to your Cocoa application.
 
-First, you can install Carthage with Homebrew.
+第一步，使用[Homebrew](https://brew.sh)安装[Carthage](https://github.com/Carthage/Carthage)，关于Carthage更多的介绍和功能，请移步[Carthage 主页](https://github.com/Carthage/Carthage)；
 
 ```
 $ brew update
 $ brew install carthage
 ```
 
-Second, Integrate ZVRefreshing with Carthage and write it into your Cartfile.
+第二步， 使用[Carthage](https://github.com/Carthage/Carthage)集成 `ZVRefreshing` ，并写入到你的`Cartfile`中；
 
 ```
 github "zevwings/ZVRefreshing" ~> 0.0.1
 ```
 
-Last, install the dependecies by 
+第三步，使用[Carthage](https://github.com/Carthage/Carthage) 安装依赖；
 
 ```
 $ carthage update
 ```
+
+最后，在Carthage/Build文件夹下面找到 `ZVRefreshing.framework` 并拖到Targets -> Genral的Embedded Binaries下。
+
 ### Manual
-- First, Download this project, And drag ZVRefreshing.xcodeproj to your own project.
+第一步，下载本项目，并将 `ZVRefreshing.xcodeproj` 拖到你的目录下；
 
-- Second, In your Target’s General tab, click the ’+’ button under Linked Frameworks and Libraries.
-
-- Last, Select the `ZRefreshing.framework` to Add to your platform. 
+第二步，在你的项目配置找到 Targets -> Genral -> Embedded Binaries，点击 `+` 按钮， 选择`ZVRefreshing.framework` 并添加到工程。 
 
 ## Usage
 在需要使用 `ZVRefreshing`时，使用 `import ZVRefreshing`导入便可以使用
@@ -224,7 +224,7 @@ footer.labelInsetLeft = 32.0
 
 ### 自定义方法
 
-支持重写的属性，方法
+当需要自定义刷新控件时，可以继承RefreshComponent或者其子类，支持重写的属性，方法如下
 1. 控件刷新状态 
 
 ```
