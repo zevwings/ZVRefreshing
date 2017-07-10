@@ -1,6 +1,7 @@
 # ZVRefreshing
 
 ![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)[](https://github.com/Carthage/Carthage)
+<br/>
 ZRefreshing 是使用纯Swift开发，简单易用刷新控件。
 
 
@@ -228,13 +229,13 @@ footer.labelInsetLeft = 32.0
 1. 控件刷新状态 
 
 ```
-var state: RefreshState
+open var state: RefreshState
 ```
 
 2. 控件色调    
 
 ```
-var tintColor: UIColor!
+open override var tintColor: UIColor!
 ```
 
 3. 控件初始化
