@@ -119,6 +119,7 @@ class MasterViewController: UITableViewController {
             header.setTitle("下拉后更新...", forState: .idle)
             header.setTitle("释放立即更新...", forState: .pulling)
             header.setTitle("正在刷新数据...", forState: .refreshing)
+            header.arrowView.image = UIImage(named: "")
             destViewController?.header = header
             // 设置 Footer
             let footer = RefreshBackNormalFooter()

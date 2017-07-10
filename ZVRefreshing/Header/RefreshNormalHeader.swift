@@ -89,7 +89,8 @@ extension RefreshNormalHeader {
         
         var centerX = self.width * 0.5
         if !self.stateLabel.isHidden {
-            centerX -= 100
+            let labelWidth = max(self.lastUpdatedTimeLabel.textWidth, self.stateLabel.textWidth)
+            centerX -= (labelWidth * 0.5 + self.labelInsetLeft)
         }
         let centerY = self.height * 0.5
         let center = CGPoint(x: centerX, y: centerY)

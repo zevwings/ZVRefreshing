@@ -99,7 +99,7 @@ extension RefreshBackNormalFooter {
         
         var arrowCenterX = self.width * 0.5
         if !self.stateLabel.isHidden {
-            arrowCenterX -= 100
+            arrowCenterX -= (self.stateLabel.textWidth * 0.5 + self.labelInsetLeft)
         }
         let arrowCenterY = self.height * 0.5
         let arrowCenter = CGPoint(x: arrowCenterX, y: arrowCenterY)

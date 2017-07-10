@@ -12,7 +12,8 @@ open class RefreshStateHeader: RefreshHeader {
 
     public fileprivate(set) lazy var lastUpdatedTimeLabel: UILabel = RefreshingLabel()
     public fileprivate(set) lazy var stateLabel: UILabel = RefreshingLabel()
-    
+    public var labelInsetLeft: CGFloat = 24.0
+
     fileprivate var stateTitles: [RefreshState : String] = [:]
     fileprivate var calendar = Calendar(identifier: .gregorian)
     fileprivate var lastUpdatedTimeLabelText:((_ date: Date?)->(String))?

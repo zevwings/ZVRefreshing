@@ -22,10 +22,9 @@ open class RefreshComponent: UIView {
     public var isRefreshing: Bool { return self.state == .refreshing || self.state == .willRefresh }
 
     /// 回调对象和回调函数
-    /*
     fileprivate var _target: Any?
     fileprivate var _action: Selector?
-    */
+    
     /// 回调闭包
     public var refreshHandler: RefreshHandler?
     public var beginRefreshingCompletionHandler: BeginRefreshingCompletionHandler?
@@ -60,13 +59,11 @@ open class RefreshComponent: UIView {
     /// - Parameters:
     ///   - target: 回调对象
     ///   - action: 回调函数
-    /*
     public convenience init(target: Any, action: Selector) {
         self.init(frame: .zero)
-        
         self._target = target
         self._action = action
-    }*/
+    }
     
     /// 初始化方法
     public override init(frame: CGRect) {
@@ -218,20 +215,25 @@ extension RefreshComponent {
     }
 
     /// 设置回调事件和回调函数
-    /*
     public func addTarget(_ target: Any?, action: Selector) {
         self._target = target
         self._action = action
-    }*/
+    }
     
     /// 触发刷新回调
     internal func executeRefreshCallback() {
         DispatchQueue.main.async {
+            // 执行 refresh handler
             self.refreshHandler?()
-            /*
+            // 执行 refresh action
             if let target = self._target, let action = self._action {
-                _ = (target as AnyObject).perform(action)
-            }*/
+                if (target as AnyObject).responds(to: action) {
+                    DispatchQueue.main.async(execute: {
+                        Thread.detachNewThreadSelector(action, toTarget: target, with: self)
+                    })
+                }
+            }
+            // 执行
             self.beginRefreshingCompletionHandler?()
         }
     }
@@ -287,7 +289,6 @@ extension RefreshComponent {
         }
     }
 
-    
     /// 监听UIScrollView.contentOffset 变化时调用
     /// 子类实现
     open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
@@ -299,4 +300,10 @@ extension RefreshComponent {
     /// 监听UIScrollView.panGestureRecognizer.state 变化时调用
     /// 子类实现
     open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
+}
+
+fileprivate extension RefreshComponent {
+    
+    func perform(selector aSelector: Selector, target: Any) {
+    }
 }

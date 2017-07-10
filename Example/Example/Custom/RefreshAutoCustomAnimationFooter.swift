@@ -23,5 +23,6 @@ class RefreshAutoCustomAnimationFooter: RefreshAutoAnimationFooter {
         }
 
         self.setImages(refreshingImages, state: .refreshing)
+        
     }
 }

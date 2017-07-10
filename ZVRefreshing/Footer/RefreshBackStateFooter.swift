@@ -10,6 +10,7 @@ import UIKit
 open class RefreshBackStateFooter: RefreshBackFooter {
     
     public fileprivate(set) lazy var stateLabel: UILabel = RefreshingLabel()
+    public var labelInsetLeft: CGFloat = 24.0
     fileprivate var stateTitles:[RefreshState: String] = [:]
     
     override open var state: RefreshState {

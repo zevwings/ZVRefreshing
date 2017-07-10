@@ -20,15 +20,16 @@ class DetailTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        header?.refreshHandler = {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                self.tableView.footer?.isNoMoreData = false
-                self.rows = 15
-                self.tableView.reloadData()
-                self.tableView.header?.endRefreshing()
-
-            })
-        }
+//        header?.refreshHandler = {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+//                self.tableView.footer?.isNoMoreData = false
+//                self.rows = 15
+//                self.tableView.reloadData()
+//                self.tableView.header?.endRefreshing()
+//
+//            })
+//        }
+        header?.addTarget(self, action: #selector(DetailTableViewController.refreshAction(_:)))
         self.tableView.header = header
         
         footer?.refreshHandler = {
@@ -65,5 +66,15 @@ class DetailTableViewController: UITableViewController {
         cell.textLabel?.text = "行数: \(indexPath.row + 1)　　　数据 : \(arc4random())"
         return cell
     }
+    
+    func refreshAction(_ sender: RefreshComponent) {
+        print(sender)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+            self.tableView.footer?.isNoMoreData = false
+            self.rows = 15
+            self.tableView.reloadData()
+            self.tableView.header?.endRefreshing()
 
+        })
+    }
 }

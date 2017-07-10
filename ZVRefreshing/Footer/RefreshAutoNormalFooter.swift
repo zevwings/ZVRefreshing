@@ -55,7 +55,7 @@ extension RefreshAutoNormalFooter {
         
         var loadingCenterX = self.width * 0.5
         if !self.stateLabel.isHidden {
-            loadingCenterX -= 100
+            loadingCenterX -= (self.stateLabel.textWidth * 0.5 + self.labelInsetLeft)
         }
         let loadingCenterY = self.height * 0.5
         self.activityIndicator.center = CGPoint(x: loadingCenterX, y: loadingCenterY)
