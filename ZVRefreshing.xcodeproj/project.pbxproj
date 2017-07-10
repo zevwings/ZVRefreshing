@@ -27,7 +27,6 @@
 		4D94FCD01F0DFFEC00677215 /* RefreshStateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBE1F0DFFEC00677215 /* RefreshStateHeader.swift */; };
 		4D94FCD11F0DFFEC00677215 /* RefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBF1F0DFFEC00677215 /* RefreshComponent.swift */; };
 		4D94FCD21F0DFFEC00677215 /* RefreshingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCC01F0DFFEC00677215 /* RefreshingLabel.swift */; };
-		4D94FCD31F0DFFEC00677215 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4D94FCC11F0DFFEC00677215 /* Resource.bundle */; };
 		4DDFCE501F135E1F00B62435 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFCE4F1F135E1F00B62435 /* ActivityIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +64,6 @@
 		4D94FCBE1F0DFFEC00677215 /* RefreshStateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshStateHeader.swift; sourceTree = "<group>"; };
 		4D94FCBF1F0DFFEC00677215 /* RefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshComponent.swift; sourceTree = "<group>"; };
 		4D94FCC01F0DFFEC00677215 /* RefreshingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshingLabel.swift; sourceTree = "<group>"; };
-		4D94FCC11F0DFFEC00677215 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		4DDFCE4F1F135E1F00B62435 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -116,7 +114,6 @@
 				4D94FCBF1F0DFFEC00677215 /* RefreshComponent.swift */,
 				4D94FCBA1F0DFFEC00677215 /* Header */,
 				4D94FCB01F0DFFEC00677215 /* Footer */,
-				4D94FCC11F0DFFEC00677215 /* Resource.bundle */,
 				4D94FC971F0DFFC500677215 /* ZVRefreshing.h */,
 				4D94FC981F0DFFC500677215 /* Info.plist */,
 			);
@@ -255,7 +252,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D94FCD31F0DFFEC00677215 /* Resource.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -267,17 +267,6 @@ extension UIScrollView {
     }
 }
 
-internal extension UIImage {
-    
-    /// 从Resource.boundle 中获取图片支援
-    class func resource(named name: String) -> UIImage? {
-        let manualSoure = "Resource.bundle".appendingFormat("%@", name)
-        let frameworkSoure = Bundle(for: RefreshComponent.classForCoder()).bundlePath.appendingFormat("/Resource.bundle/%@", name)
-        let image = UIImage(named: manualSoure) == nil ? UIImage(named: frameworkSoure) : UIImage(named: manualSoure)
-        return image
-    }
-}
-
 internal extension UILabel {
     
     /// 获取textWidth 的宽度
@@ -290,30 +279,5 @@ internal extension UILabel {
                                                         attributes: [NSFontAttributeName: self.font],
                                                         context: nil).size.width
         return textWidth
-    }
-}
-
-
-extension UIImage {
-    
-    /// 为图片指定颜色
-    ///
-    /// - Parameter color: 图片颜色
-    /// - Returns: UIImage
-    func tintImage(with color: UIColor) -> UIImage? {
-        
-        let rect = CGRect(x: 0.0, y: 0.0, width: self.size.width, height: self.size.height)
-        UIGraphicsBeginImageContextWithOptions(rect.size, false, self.scale)
-        let context = UIGraphicsGetCurrentContext()
-        if context == nil { return nil}
-        
-        self.draw(in: rect)
-        context!.setFillColor(color.cgColor)
-        context!.setBlendMode(.sourceAtop)
-        context!.fill(rect)
-        let result = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return result
     }
 }
