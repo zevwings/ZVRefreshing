@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class RefreshHeader: RefreshComponent {
+open class ZVRefreshHeader: ZVRefreshComponent {
     
     /// 用于存储上次更新时间
     public var lastUpdatedTimeKey: String = Config.lastUpdatedTimeKey
@@ -59,7 +59,7 @@ open class RefreshHeader: RefreshComponent {
     }
 }
 
-extension RefreshHeader {
+extension ZVRefreshHeader {
     
     override open func prepare() {
         super.prepare()
@@ -73,7 +73,7 @@ extension RefreshHeader {
     }
 }
 
-extension RefreshHeader {
+extension ZVRefreshHeader {
     
     public override func endRefreshing() {
         
@@ -89,7 +89,7 @@ extension RefreshHeader {
     }
 }
 
-extension RefreshHeader {
+extension ZVRefreshHeader {
     
      override open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChanged(change)

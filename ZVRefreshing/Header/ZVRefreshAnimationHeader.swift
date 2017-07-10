@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class RefreshAnimationHeader: RefreshStateHeader {
+open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
 
     public fileprivate(set) lazy var animationView: UIImageView = {
         let animationView = UIImageView()
@@ -57,7 +57,7 @@ open class RefreshAnimationHeader: RefreshStateHeader {
     }
 }
 
-public extension RefreshAnimationHeader {
+public extension ZVRefreshAnimationHeader {
     
     public func setImages(_ images: [UIImage], forState state: RefreshState){
         self.setImages(images, duration: Double(images.count) * 0.1, forState: state)
@@ -76,7 +76,7 @@ public extension RefreshAnimationHeader {
     }
 }
 
-extension RefreshAnimationHeader {
+extension ZVRefreshAnimationHeader {
     
     override open func prepare() {
         super.prepare()

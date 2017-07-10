@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class RefreshNormalHeader: RefreshStateHeader {
+open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
     
     public fileprivate(set) lazy var activityIndicator: ZVActivityIndicatorView = {
         let indicator = ZVActivityIndicatorView()
@@ -62,7 +62,7 @@ open class RefreshNormalHeader: RefreshStateHeader {
     }
 }
 
-extension RefreshNormalHeader {
+extension ZVRefreshNormalHeader {
     
     override open func prepare() {
         super.prepare()

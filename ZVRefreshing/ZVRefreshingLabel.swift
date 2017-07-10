@@ -8,7 +8,7 @@
 
 import UIKit
 
-internal class RefreshingLabel: UILabel {
+internal class ZVRefreshingLabel: UILabel {
 
     internal init() {
         super.init(frame: CGRect.zero)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class RefreshComponent: UIView {
+open class ZVRefreshComponent: UIView {
     
     private struct AssocaiationKey {
         static var state = "com.zevwings.assocaiationkey.state"
@@ -174,7 +174,7 @@ open class RefreshComponent: UIView {
 }
 
 // MARK: - 组件初始化
-extension RefreshComponent {
+extension ZVRefreshComponent {
     
     /// 初始化控件
     open func prepare() {
@@ -188,7 +188,7 @@ extension RefreshComponent {
 
 // MARK: - 状态控制
 
-extension RefreshComponent {
+extension ZVRefreshComponent {
     
     /// 开始进入刷新状体
     public func beginRefreshing() {
@@ -251,7 +251,7 @@ extension RefreshComponent {
 
 // MARK: - 属性监听
 
-extension RefreshComponent {
+extension ZVRefreshComponent {
     
     /// 添加属性监听
     fileprivate func _addObservers() {
@@ -312,7 +312,7 @@ extension RefreshComponent {
     open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 }
 
-fileprivate extension RefreshComponent {
+fileprivate extension ZVRefreshComponent {
     
     func perform(selector aSelector: Selector, target: Any) {
     }

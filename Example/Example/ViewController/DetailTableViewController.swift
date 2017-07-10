@@ -11,9 +11,9 @@ import ZVRefreshing
 
 class DetailTableViewController: UITableViewController {
 
-    var header: RefreshHeader?
+    var header: ZVRefreshHeader?
     
-    var footer: RefreshFooter?
+    var footer: ZVRefreshFooter?
     
     var rows: Int = 15
     
@@ -68,7 +68,7 @@ class DetailTableViewController: UITableViewController {
         return cell
     }
     
-    func refreshAction(_ sender: RefreshComponent) {
+    func refreshAction(_ sender: ZVRefreshComponent) {
         print(sender)
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
             self.tableView.footer?.isNoMoreData = false

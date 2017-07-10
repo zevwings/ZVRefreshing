@@ -7,9 +7,9 @@
 
 import UIKit
 
-open class RefreshBackStateFooter: RefreshBackFooter {
+open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
-    public fileprivate(set) lazy var stateLabel: UILabel = RefreshingLabel()
+    public fileprivate(set) lazy var stateLabel: UILabel = ZVRefreshingLabel()
     public var labelInsetLeft: CGFloat = 24.0
     fileprivate var stateTitles:[RefreshState: String] = [:]
     
@@ -36,7 +36,7 @@ open class RefreshBackStateFooter: RefreshBackFooter {
     
 }
 
-extension RefreshBackStateFooter {
+extension ZVRefreshBackStateFooter {
     
     public func setTitle(_ title: String, forState state: RefreshState) {
         self.stateTitles.updateValue(title, forKey: state)
@@ -44,7 +44,7 @@ extension RefreshBackStateFooter {
     }
 }
 
-extension RefreshBackStateFooter {
+extension ZVRefreshBackStateFooter {
     
     override open func prepare() {
         super.prepare()

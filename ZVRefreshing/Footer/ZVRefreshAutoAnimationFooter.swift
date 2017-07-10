@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class RefreshAutoAnimationFooter: RefreshAutoStateFooter {
+open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     
     fileprivate(set) lazy var animationView: UIImageView = {
         let animationView = UIImageView()
@@ -52,7 +52,7 @@ open class RefreshAutoAnimationFooter: RefreshAutoStateFooter {
     }
 }
 
-extension RefreshAutoAnimationFooter {
+extension ZVRefreshAutoAnimationFooter {
     
     /// 为相应状态设置图片
     public func setImages(_ images: [UIImage], state: RefreshState) {
@@ -71,7 +71,7 @@ extension RefreshAutoAnimationFooter {
     }
 }
 
-extension RefreshAutoAnimationFooter {
+extension ZVRefreshAutoAnimationFooter {
   
     override open func prepare() {
         super.prepare()

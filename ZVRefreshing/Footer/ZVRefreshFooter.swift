@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class RefreshFooter: RefreshComponent {
+open class ZVRefreshFooter: ZVRefreshComponent {
 
     /// 忽略的UIScrollView.contentInset.bottom
     public var ignoredScrollViewContentInsetBottom: CGFloat = 0.0
@@ -44,7 +44,7 @@ open class RefreshFooter: RefreshComponent {
     }
 }
 
-extension RefreshFooter {
+extension ZVRefreshFooter {
 
     public func endRefreshingWithNoMoreData() {
         self.state = .noMoreData
@@ -55,7 +55,7 @@ extension RefreshFooter {
     }
 }
 
-extension RefreshFooter {
+extension ZVRefreshFooter {
     
     override open func prepare() {
         self.height = Component.Footer.height

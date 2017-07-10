@@ -7,9 +7,9 @@
 
 import UIKit
 
-open class RefreshAutoStateFooter: RefreshAutoFooter {
+open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     
-    public fileprivate(set) lazy var stateLabel: UILabel = RefreshingLabel()
+    public fileprivate(set) lazy var stateLabel: UILabel = ZVRefreshingLabel()
     public var labelInsetLeft: CGFloat = 24.0
     fileprivate var stateTitles:[RefreshState: String] = [:]
     
@@ -40,7 +40,7 @@ open class RefreshAutoStateFooter: RefreshAutoFooter {
     }
 }
 
-extension RefreshAutoStateFooter {
+extension ZVRefreshAutoStateFooter {
     
     public func setTitle(_ title: String?, forState state: RefreshState) {
         if title == nil {return}
@@ -49,7 +49,7 @@ extension RefreshAutoStateFooter {
     }
 }
 
-extension RefreshAutoStateFooter {
+extension ZVRefreshAutoStateFooter {
     
     override open func prepare() {
         super.prepare()
@@ -63,7 +63,7 @@ extension RefreshAutoStateFooter {
         self.setTitle(Constants.Footer.Auto.noMoreData, forState: .noMoreData)
         
         self.stateLabel.isUserInteractionEnabled = true
-        self.stateLabel.addGestureRecognizer(.init(target: self, action: #selector(RefreshAutoStateFooter.stateLabelClicked)))
+        self.stateLabel.addGestureRecognizer(.init(target: self, action: #selector(ZVRefreshAutoStateFooter.stateLabelClicked)))
     }
     
     override open func placeSubViews() {

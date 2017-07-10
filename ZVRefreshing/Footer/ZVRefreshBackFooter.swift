@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class RefreshBackFooter: RefreshFooter {
+open class ZVRefreshBackFooter: ZVRefreshFooter {
     
     fileprivate var lastBottomDelta: CGFloat = 0.0
     fileprivate var lastRefreshCount: Int = 0
@@ -61,7 +61,7 @@ open class RefreshBackFooter: RefreshFooter {
     }
 }
 
-extension RefreshBackFooter {
+extension ZVRefreshBackFooter {
     
     override public func endRefreshing() {
         
@@ -88,7 +88,7 @@ extension RefreshBackFooter {
     }
 }
 
-extension RefreshBackFooter {
+extension ZVRefreshBackFooter {
     
     override open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
         

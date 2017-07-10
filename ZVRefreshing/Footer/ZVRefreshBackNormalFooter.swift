@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class RefreshBackNormalFooter: RefreshBackStateFooter {
+public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     
     fileprivate lazy var activityIndicator : ZVActivityIndicatorView = {
         var activityIndicator = ZVActivityIndicatorView()
@@ -73,7 +73,7 @@ public class RefreshBackNormalFooter: RefreshBackStateFooter {
     }
 }
 
-extension RefreshBackNormalFooter {
+extension ZVRefreshBackNormalFooter {
     
     override public func prepare() {
         super.prepare()

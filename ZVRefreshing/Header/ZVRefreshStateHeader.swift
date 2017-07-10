@@ -8,10 +8,10 @@
 
 import UIKit
 
-open class RefreshStateHeader: RefreshHeader {
+open class ZVRefreshStateHeader: ZVRefreshHeader {
 
-    public fileprivate(set) lazy var lastUpdatedTimeLabel: UILabel = RefreshingLabel()
-    public fileprivate(set) lazy var stateLabel: UILabel = RefreshingLabel()
+    public fileprivate(set) lazy var lastUpdatedTimeLabel: UILabel = ZVRefreshingLabel()
+    public fileprivate(set) lazy var stateLabel: UILabel = ZVRefreshingLabel()
     public var labelInsetLeft: CGFloat = 24.0
 
     fileprivate var stateTitles: [RefreshState : String] = [:]
@@ -85,7 +85,7 @@ open class RefreshStateHeader: RefreshHeader {
     }
 }
 
-public extension RefreshStateHeader {
+public extension ZVRefreshStateHeader {
     
     /// 设置状态文本
     public func setTitle(_ title: String, forState state: RefreshState) {
@@ -94,7 +94,7 @@ public extension RefreshStateHeader {
     }
 }
 
-extension RefreshStateHeader {
+extension ZVRefreshStateHeader {
     
     override open func prepare() {
         super.prepare()

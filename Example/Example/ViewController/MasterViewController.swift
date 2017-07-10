@@ -13,8 +13,8 @@ class MasterViewController: UITableViewController {
     
     var numberOfRows = 20
     
-    private var _header: RefreshHeader?
-    private var _footer: RefreshFooter?
+    private var _header: ZVRefreshHeader?
+    private var _footer: ZVRefreshFooter?
     
     private var sections = ["UITableView", "UICollectionView"]
     private var rows     = ["默认", "隐藏时间", "隐藏时间和状态", "自定义文字", "动画"]
@@ -76,11 +76,11 @@ class MasterViewController: UITableViewController {
             destViewController?.title = self.rows[0]
             
             // 设置Header
-            let header = RefreshNormalHeader()
+            let header = ZVRefreshNormalHeader()
             destViewController?.header = header
 
             // 设置Footer
-            let footer = RefreshBackNormalFooter()
+            let footer = ZVRefreshBackNormalFooter()
             destViewController?.footer = footer
             break
         case 1:
@@ -88,12 +88,12 @@ class MasterViewController: UITableViewController {
             destViewController?.title = self.rows[1]
             
             // 设置 Header
-            let header = RefreshNormalHeader()
+            let header = ZVRefreshNormalHeader()
             header.lastUpdatedTimeLabel.isHidden = true
             destViewController?.header = header
             
             // 设置 Footer
-            let footer = RefreshAutoNormalFooter()
+            let footer = ZVRefreshAutoNormalFooter()
             destViewController?.footer = footer
             break
         case 2:
@@ -101,13 +101,13 @@ class MasterViewController: UITableViewController {
             destViewController?.title = self.rows[2]
             
             // 设置 Header
-            let header = RefreshNormalHeader()
+            let header = ZVRefreshNormalHeader()
             header.stateLabel.isHidden = true
             header.lastUpdatedTimeLabel.isHidden = true
             destViewController?.header = header
             
             // 设置 Footer
-            let footer = RefreshBackNormalFooter()
+            let footer = ZVRefreshBackNormalFooter()
             footer.stateLabel.isHidden = true
             destViewController?.footer = footer
             break
@@ -116,7 +116,7 @@ class MasterViewController: UITableViewController {
             destViewController?.title = self.rows[3]
             
             // 设置 Header
-            let header = RefreshNormalHeader()
+            let header = ZVRefreshNormalHeader()
             header.setTitle("下拉后更新...", forState: .idle)
             header.setTitle("释放立即更新...", forState: .pulling)
             header.setTitle("正在刷新数据...", forState: .refreshing)
@@ -135,7 +135,7 @@ class MasterViewController: UITableViewController {
             destViewController?.header = header
             
             // 设置 Footer
-            let footer = RefreshBackNormalFooter()
+            let footer = ZVRefreshBackNormalFooter()
             footer.setTitle("上拉加载更多数据...", forState: .idle)
             footer.setTitle("释放立即更新...", forState: .pulling)
             footer.setTitle("正在刷新数据...", forState: .refreshing)

@@ -16,9 +16,9 @@ public extension UIScrollView {
         static var handler = "com.zevwings.assocaiationkey.handler"
     }
     
-    public var header: RefreshHeader? {
+    public var header: ZVRefreshHeader? {
         get {
-            return objc_getAssociatedObject(self, &AssociationKey.header) as? RefreshHeader
+            return objc_getAssociatedObject(self, &AssociationKey.header) as? ZVRefreshHeader
         }
         set {
             if (self.header != newValue) {
@@ -31,9 +31,9 @@ public extension UIScrollView {
         }
     }
     
-    public var footer: RefreshFooter? {
+    public var footer: ZVRefreshFooter? {
         get {
-            return objc_getAssociatedObject(self, &AssociationKey.footer) as? RefreshFooter
+            return objc_getAssociatedObject(self, &AssociationKey.footer) as? ZVRefreshFooter
         }
         set {
             if (self.footer != newValue) {

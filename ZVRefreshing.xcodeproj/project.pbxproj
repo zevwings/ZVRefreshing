@@ -12,22 +12,22 @@
 		4D94FCA51F0DFFC500677215 /* ZVRefreshing.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D94FC971F0DFFC500677215 /* ZVRefreshing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4D94FCC21F0DFFEC00677215 /* Configration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCAE1F0DFFEC00677215 /* Configration.swift */; };
 		4D94FCC31F0DFFEC00677215 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCAF1F0DFFEC00677215 /* Extensions.swift */; };
-		4D94FCC41F0DFFEC00677215 /* RefreshBackFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB11F0DFFEC00677215 /* RefreshBackFooter.swift */; };
-		4D94FCC51F0DFFEC00677215 /* RefreshBackStateFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB21F0DFFEC00677215 /* RefreshBackStateFooter.swift */; };
-		4D94FCC61F0DFFEC00677215 /* RefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB31F0DFFEC00677215 /* RefreshFooter.swift */; };
-		4D94FCC71F0DFFEC00677215 /* RefreshAutoAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB41F0DFFEC00677215 /* RefreshAutoAnimationFooter.swift */; };
-		4D94FCC81F0DFFEC00677215 /* RefreshAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB51F0DFFEC00677215 /* RefreshAutoFooter.swift */; };
-		4D94FCC91F0DFFEC00677215 /* RefreshAutoNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB61F0DFFEC00677215 /* RefreshAutoNormalFooter.swift */; };
-		4D94FCCA1F0DFFEC00677215 /* RefreshAutoStateFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB71F0DFFEC00677215 /* RefreshAutoStateFooter.swift */; };
-		4D94FCCB1F0DFFEC00677215 /* RefreshBackAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB81F0DFFEC00677215 /* RefreshBackAnimationFooter.swift */; };
-		4D94FCCC1F0DFFEC00677215 /* RefreshBackNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB91F0DFFEC00677215 /* RefreshBackNormalFooter.swift */; };
-		4D94FCCD1F0DFFEC00677215 /* RefreshAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBB1F0DFFEC00677215 /* RefreshAnimationHeader.swift */; };
-		4D94FCCE1F0DFFEC00677215 /* RefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBC1F0DFFEC00677215 /* RefreshHeader.swift */; };
-		4D94FCCF1F0DFFEC00677215 /* RefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBD1F0DFFEC00677215 /* RefreshNormalHeader.swift */; };
-		4D94FCD01F0DFFEC00677215 /* RefreshStateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBE1F0DFFEC00677215 /* RefreshStateHeader.swift */; };
-		4D94FCD11F0DFFEC00677215 /* RefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBF1F0DFFEC00677215 /* RefreshComponent.swift */; };
-		4D94FCD21F0DFFEC00677215 /* RefreshingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCC01F0DFFEC00677215 /* RefreshingLabel.swift */; };
-		4DDFCE501F135E1F00B62435 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFCE4F1F135E1F00B62435 /* ActivityIndicatorView.swift */; };
+		4D94FCC41F0DFFEC00677215 /* ZVRefreshBackFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB11F0DFFEC00677215 /* ZVRefreshBackFooter.swift */; };
+		4D94FCC51F0DFFEC00677215 /* ZVRefreshBackStateFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB21F0DFFEC00677215 /* ZVRefreshBackStateFooter.swift */; };
+		4D94FCC61F0DFFEC00677215 /* ZVRefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB31F0DFFEC00677215 /* ZVRefreshFooter.swift */; };
+		4D94FCC71F0DFFEC00677215 /* ZVRefreshAutoAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB41F0DFFEC00677215 /* ZVRefreshAutoAnimationFooter.swift */; };
+		4D94FCC81F0DFFEC00677215 /* ZVRefreshAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB51F0DFFEC00677215 /* ZVRefreshAutoFooter.swift */; };
+		4D94FCC91F0DFFEC00677215 /* ZVRefreshAutoNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB61F0DFFEC00677215 /* ZVRefreshAutoNormalFooter.swift */; };
+		4D94FCCA1F0DFFEC00677215 /* ZVRefreshAutoStateFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB71F0DFFEC00677215 /* ZVRefreshAutoStateFooter.swift */; };
+		4D94FCCB1F0DFFEC00677215 /* ZVRefreshBackAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB81F0DFFEC00677215 /* ZVRefreshBackAnimationFooter.swift */; };
+		4D94FCCC1F0DFFEC00677215 /* ZVRefreshBackNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB91F0DFFEC00677215 /* ZVRefreshBackNormalFooter.swift */; };
+		4D94FCCD1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBB1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift */; };
+		4D94FCCE1F0DFFEC00677215 /* ZVRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBC1F0DFFEC00677215 /* ZVRefreshHeader.swift */; };
+		4D94FCCF1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBD1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift */; };
+		4D94FCD01F0DFFEC00677215 /* ZVRefreshStateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBE1F0DFFEC00677215 /* ZVRefreshStateHeader.swift */; };
+		4D94FCD11F0DFFEC00677215 /* ZVRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBF1F0DFFEC00677215 /* ZVRefreshComponent.swift */; };
+		4D94FCD21F0DFFEC00677215 /* ZVRefreshingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCC01F0DFFEC00677215 /* ZVRefreshingLabel.swift */; };
+		4DDFCE501F135E1F00B62435 /* ZVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFCE4F1F135E1F00B62435 /* ZVActivityIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,22 +49,22 @@
 		4D94FCA41F0DFFC500677215 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D94FCAE1F0DFFEC00677215 /* Configration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configration.swift; sourceTree = "<group>"; };
 		4D94FCAF1F0DFFEC00677215 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		4D94FCB11F0DFFEC00677215 /* RefreshBackFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshBackFooter.swift; sourceTree = "<group>"; };
-		4D94FCB21F0DFFEC00677215 /* RefreshBackStateFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshBackStateFooter.swift; sourceTree = "<group>"; };
-		4D94FCB31F0DFFEC00677215 /* RefreshFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshFooter.swift; sourceTree = "<group>"; };
-		4D94FCB41F0DFFEC00677215 /* RefreshAutoAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshAutoAnimationFooter.swift; sourceTree = "<group>"; };
-		4D94FCB51F0DFFEC00677215 /* RefreshAutoFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshAutoFooter.swift; sourceTree = "<group>"; };
-		4D94FCB61F0DFFEC00677215 /* RefreshAutoNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshAutoNormalFooter.swift; sourceTree = "<group>"; };
-		4D94FCB71F0DFFEC00677215 /* RefreshAutoStateFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshAutoStateFooter.swift; sourceTree = "<group>"; };
-		4D94FCB81F0DFFEC00677215 /* RefreshBackAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshBackAnimationFooter.swift; sourceTree = "<group>"; };
-		4D94FCB91F0DFFEC00677215 /* RefreshBackNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshBackNormalFooter.swift; sourceTree = "<group>"; };
-		4D94FCBB1F0DFFEC00677215 /* RefreshAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshAnimationHeader.swift; sourceTree = "<group>"; };
-		4D94FCBC1F0DFFEC00677215 /* RefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshHeader.swift; sourceTree = "<group>"; };
-		4D94FCBD1F0DFFEC00677215 /* RefreshNormalHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshNormalHeader.swift; sourceTree = "<group>"; };
-		4D94FCBE1F0DFFEC00677215 /* RefreshStateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshStateHeader.swift; sourceTree = "<group>"; };
-		4D94FCBF1F0DFFEC00677215 /* RefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshComponent.swift; sourceTree = "<group>"; };
-		4D94FCC01F0DFFEC00677215 /* RefreshingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshingLabel.swift; sourceTree = "<group>"; };
-		4DDFCE4F1F135E1F00B62435 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		4D94FCB11F0DFFEC00677215 /* ZVRefreshBackFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackFooter.swift; sourceTree = "<group>"; };
+		4D94FCB21F0DFFEC00677215 /* ZVRefreshBackStateFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackStateFooter.swift; sourceTree = "<group>"; };
+		4D94FCB31F0DFFEC00677215 /* ZVRefreshFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshFooter.swift; sourceTree = "<group>"; };
+		4D94FCB41F0DFFEC00677215 /* ZVRefreshAutoAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoAnimationFooter.swift; sourceTree = "<group>"; };
+		4D94FCB51F0DFFEC00677215 /* ZVRefreshAutoFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoFooter.swift; sourceTree = "<group>"; };
+		4D94FCB61F0DFFEC00677215 /* ZVRefreshAutoNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoNormalFooter.swift; sourceTree = "<group>"; };
+		4D94FCB71F0DFFEC00677215 /* ZVRefreshAutoStateFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoStateFooter.swift; sourceTree = "<group>"; };
+		4D94FCB81F0DFFEC00677215 /* ZVRefreshBackAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackAnimationFooter.swift; sourceTree = "<group>"; };
+		4D94FCB91F0DFFEC00677215 /* ZVRefreshBackNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackNormalFooter.swift; sourceTree = "<group>"; };
+		4D94FCBB1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAnimationHeader.swift; sourceTree = "<group>"; };
+		4D94FCBC1F0DFFEC00677215 /* ZVRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshHeader.swift; sourceTree = "<group>"; };
+		4D94FCBD1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshNormalHeader.swift; sourceTree = "<group>"; };
+		4D94FCBE1F0DFFEC00677215 /* ZVRefreshStateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshStateHeader.swift; sourceTree = "<group>"; };
+		4D94FCBF1F0DFFEC00677215 /* ZVRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshComponent.swift; sourceTree = "<group>"; };
+		4D94FCC01F0DFFEC00677215 /* ZVRefreshingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshingLabel.swift; sourceTree = "<group>"; };
+		4DDFCE4F1F135E1F00B62435 /* ZVActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVActivityIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,9 +109,9 @@
 			children = (
 				4D94FCAE1F0DFFEC00677215 /* Configration.swift */,
 				4D94FCAF1F0DFFEC00677215 /* Extensions.swift */,
-				4D94FCC01F0DFFEC00677215 /* RefreshingLabel.swift */,
-				4DDFCE4F1F135E1F00B62435 /* ActivityIndicatorView.swift */,
-				4D94FCBF1F0DFFEC00677215 /* RefreshComponent.swift */,
+				4D94FCC01F0DFFEC00677215 /* ZVRefreshingLabel.swift */,
+				4DDFCE4F1F135E1F00B62435 /* ZVActivityIndicatorView.swift */,
+				4D94FCBF1F0DFFEC00677215 /* ZVRefreshComponent.swift */,
 				4D94FCBA1F0DFFEC00677215 /* Header */,
 				4D94FCB01F0DFFEC00677215 /* Footer */,
 				4D94FC971F0DFFC500677215 /* ZVRefreshing.h */,
@@ -132,15 +132,15 @@
 		4D94FCB01F0DFFEC00677215 /* Footer */ = {
 			isa = PBXGroup;
 			children = (
-				4D94FCB31F0DFFEC00677215 /* RefreshFooter.swift */,
-				4D94FCB11F0DFFEC00677215 /* RefreshBackFooter.swift */,
-				4D94FCB21F0DFFEC00677215 /* RefreshBackStateFooter.swift */,
-				4D94FCB91F0DFFEC00677215 /* RefreshBackNormalFooter.swift */,
-				4D94FCB81F0DFFEC00677215 /* RefreshBackAnimationFooter.swift */,
-				4D94FCB51F0DFFEC00677215 /* RefreshAutoFooter.swift */,
-				4D94FCB71F0DFFEC00677215 /* RefreshAutoStateFooter.swift */,
-				4D94FCB61F0DFFEC00677215 /* RefreshAutoNormalFooter.swift */,
-				4D94FCB41F0DFFEC00677215 /* RefreshAutoAnimationFooter.swift */,
+				4D94FCB31F0DFFEC00677215 /* ZVRefreshFooter.swift */,
+				4D94FCB11F0DFFEC00677215 /* ZVRefreshBackFooter.swift */,
+				4D94FCB21F0DFFEC00677215 /* ZVRefreshBackStateFooter.swift */,
+				4D94FCB91F0DFFEC00677215 /* ZVRefreshBackNormalFooter.swift */,
+				4D94FCB81F0DFFEC00677215 /* ZVRefreshBackAnimationFooter.swift */,
+				4D94FCB51F0DFFEC00677215 /* ZVRefreshAutoFooter.swift */,
+				4D94FCB71F0DFFEC00677215 /* ZVRefreshAutoStateFooter.swift */,
+				4D94FCB61F0DFFEC00677215 /* ZVRefreshAutoNormalFooter.swift */,
+				4D94FCB41F0DFFEC00677215 /* ZVRefreshAutoAnimationFooter.swift */,
 			);
 			path = Footer;
 			sourceTree = "<group>";
@@ -148,10 +148,10 @@
 		4D94FCBA1F0DFFEC00677215 /* Header */ = {
 			isa = PBXGroup;
 			children = (
-				4D94FCBC1F0DFFEC00677215 /* RefreshHeader.swift */,
-				4D94FCBE1F0DFFEC00677215 /* RefreshStateHeader.swift */,
-				4D94FCBD1F0DFFEC00677215 /* RefreshNormalHeader.swift */,
-				4D94FCBB1F0DFFEC00677215 /* RefreshAnimationHeader.swift */,
+				4D94FCBC1F0DFFEC00677215 /* ZVRefreshHeader.swift */,
+				4D94FCBE1F0DFFEC00677215 /* ZVRefreshStateHeader.swift */,
+				4D94FCBD1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift */,
+				4D94FCBB1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -269,24 +269,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D94FCC61F0DFFEC00677215 /* RefreshFooter.swift in Sources */,
-				4D94FCCE1F0DFFEC00677215 /* RefreshHeader.swift in Sources */,
+				4D94FCC61F0DFFEC00677215 /* ZVRefreshFooter.swift in Sources */,
+				4D94FCCE1F0DFFEC00677215 /* ZVRefreshHeader.swift in Sources */,
 				4D94FCC21F0DFFEC00677215 /* Configration.swift in Sources */,
-				4D94FCD21F0DFFEC00677215 /* RefreshingLabel.swift in Sources */,
-				4D94FCD11F0DFFEC00677215 /* RefreshComponent.swift in Sources */,
-				4D94FCC81F0DFFEC00677215 /* RefreshAutoFooter.swift in Sources */,
-				4D94FCCD1F0DFFEC00677215 /* RefreshAnimationHeader.swift in Sources */,
-				4D94FCCF1F0DFFEC00677215 /* RefreshNormalHeader.swift in Sources */,
-				4D94FCC91F0DFFEC00677215 /* RefreshAutoNormalFooter.swift in Sources */,
-				4D94FCCC1F0DFFEC00677215 /* RefreshBackNormalFooter.swift in Sources */,
-				4D94FCD01F0DFFEC00677215 /* RefreshStateHeader.swift in Sources */,
-				4D94FCC41F0DFFEC00677215 /* RefreshBackFooter.swift in Sources */,
-				4D94FCCB1F0DFFEC00677215 /* RefreshBackAnimationFooter.swift in Sources */,
-				4D94FCC71F0DFFEC00677215 /* RefreshAutoAnimationFooter.swift in Sources */,
-				4D94FCCA1F0DFFEC00677215 /* RefreshAutoStateFooter.swift in Sources */,
-				4DDFCE501F135E1F00B62435 /* ActivityIndicatorView.swift in Sources */,
+				4D94FCD21F0DFFEC00677215 /* ZVRefreshingLabel.swift in Sources */,
+				4D94FCD11F0DFFEC00677215 /* ZVRefreshComponent.swift in Sources */,
+				4D94FCC81F0DFFEC00677215 /* ZVRefreshAutoFooter.swift in Sources */,
+				4D94FCCD1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift in Sources */,
+				4D94FCCF1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift in Sources */,
+				4D94FCC91F0DFFEC00677215 /* ZVRefreshAutoNormalFooter.swift in Sources */,
+				4D94FCCC1F0DFFEC00677215 /* ZVRefreshBackNormalFooter.swift in Sources */,
+				4D94FCD01F0DFFEC00677215 /* ZVRefreshStateHeader.swift in Sources */,
+				4D94FCC41F0DFFEC00677215 /* ZVRefreshBackFooter.swift in Sources */,
+				4D94FCCB1F0DFFEC00677215 /* ZVRefreshBackAnimationFooter.swift in Sources */,
+				4D94FCC71F0DFFEC00677215 /* ZVRefreshAutoAnimationFooter.swift in Sources */,
+				4D94FCCA1F0DFFEC00677215 /* ZVRefreshAutoStateFooter.swift in Sources */,
+				4DDFCE501F135E1F00B62435 /* ZVActivityIndicatorView.swift in Sources */,
 				4D94FCC31F0DFFEC00677215 /* Extensions.swift in Sources */,
-				4D94FCC51F0DFFEC00677215 /* RefreshBackStateFooter.swift in Sources */,
+				4D94FCC51F0DFFEC00677215 /* ZVRefreshBackStateFooter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class RefreshAutoNormalFooter: RefreshAutoStateFooter {
+public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
 
     fileprivate(set) lazy var  activityIndicator : ZVActivityIndicatorView = {
         var activityIndicator = ZVActivityIndicatorView()
@@ -41,7 +41,7 @@ public class RefreshAutoNormalFooter: RefreshAutoStateFooter {
     }
 }
 
-extension RefreshAutoNormalFooter {
+extension ZVRefreshAutoNormalFooter {
     
     override public func prepare() {
         super.prepare()

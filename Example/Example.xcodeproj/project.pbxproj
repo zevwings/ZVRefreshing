@@ -16,11 +16,11 @@
 		4DDFCE491F13505500B62435 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D04C69E1F11261B001B6B96 /* ZVRefreshing.framework */; };
 		4DDFCE4A1F13505500B62435 /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D04C69E1F11261B001B6B96 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4DEC37AE1F11B379000EFAAF /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEC37AD1F11B379000EFAAF /* Reveal.framework */; };
-		4DEC37B81F11CB16000EFAAF /* RefreshBackCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B21F11CB16000EFAAF /* RefreshBackCustomAnimationFooter.swift */; };
-		4DEC37B91F11CB16000EFAAF /* RefreshCustomAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B31F11CB16000EFAAF /* RefreshCustomAnimationHeader.swift */; };
+		4DEC37B81F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B21F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift */; };
+		4DEC37B91F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B31F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift */; };
 		4DEC37BB1F11CB16000EFAAF /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B61F11CB16000EFAAF /* DetailTableViewController.swift */; };
 		4DEC37BC1F11CB16000EFAAF /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B71F11CB16000EFAAF /* MasterViewController.swift */; };
-		4DEC37BE1F11CB44000EFAAF /* RefreshAutoCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37BD1F11CB44000EFAAF /* RefreshAutoCustomAnimationFooter.swift */; };
+		4DEC37BE1F11CB44000EFAAF /* ZVRefreshAutoCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37BD1F11CB44000EFAAF /* ZVRefreshAutoCustomAnimationFooter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,11 +99,11 @@
 		4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		4D0578F31F0B27DA00F6D5A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DEC37AD1F11B379000EFAAF /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = SOURCE_ROOT; };
-		4DEC37B21F11CB16000EFAAF /* RefreshBackCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshBackCustomAnimationFooter.swift; sourceTree = "<group>"; };
-		4DEC37B31F11CB16000EFAAF /* RefreshCustomAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshCustomAnimationHeader.swift; sourceTree = "<group>"; };
+		4DEC37B21F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackCustomAnimationFooter.swift; sourceTree = "<group>"; };
+		4DEC37B31F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshCustomAnimationHeader.swift; sourceTree = "<group>"; };
 		4DEC37B61F11CB16000EFAAF /* DetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		4DEC37B71F11CB16000EFAAF /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		4DEC37BD1F11CB44000EFAAF /* RefreshAutoCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshAutoCustomAnimationFooter.swift; sourceTree = "<group>"; };
+		4DEC37BD1F11CB44000EFAAF /* ZVRefreshAutoCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoCustomAnimationFooter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,9 +199,9 @@
 		4DEC37B11F11CB16000EFAAF /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				4DEC37B21F11CB16000EFAAF /* RefreshBackCustomAnimationFooter.swift */,
-				4DEC37B31F11CB16000EFAAF /* RefreshCustomAnimationHeader.swift */,
-				4DEC37BD1F11CB44000EFAAF /* RefreshAutoCustomAnimationFooter.swift */,
+				4DEC37B21F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift */,
+				4DEC37B31F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift */,
+				4DEC37BD1F11CB44000EFAAF /* ZVRefreshAutoCustomAnimationFooter.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -395,10 +395,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DEC37B91F11CB16000EFAAF /* RefreshCustomAnimationHeader.swift in Sources */,
+				4DEC37B91F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift in Sources */,
 				4DEC37BC1F11CB16000EFAAF /* MasterViewController.swift in Sources */,
-				4DEC37B81F11CB16000EFAAF /* RefreshBackCustomAnimationFooter.swift in Sources */,
-				4DEC37BE1F11CB44000EFAAF /* RefreshAutoCustomAnimationFooter.swift in Sources */,
+				4DEC37B81F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift in Sources */,
+				4DEC37BE1F11CB44000EFAAF /* ZVRefreshAutoCustomAnimationFooter.swift in Sources */,
 				4DEC37BB1F11CB16000EFAAF /* DetailTableViewController.swift in Sources */,
 				4D0578D21F0B27D900F6D5A5 /* AppDelegate.swift in Sources */,
 			);

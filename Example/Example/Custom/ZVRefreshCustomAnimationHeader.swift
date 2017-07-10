@@ -9,7 +9,7 @@
 import UIKit
 import ZVRefreshing
 
-class RefreshCustomAnimationHeader: RefreshAnimationHeader {
+class RefreshCustomAnimationHeader: ZVRefreshAnimationHeader {
 
     override func prepare() {
         super.prepare()

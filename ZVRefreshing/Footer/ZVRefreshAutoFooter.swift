@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class RefreshAutoFooter: RefreshFooter {
+open class ZVRefreshAutoFooter: ZVRefreshFooter {
 
     public var isAutomaticallyRefresh: Bool = true
     fileprivate var triggerAutomaticallyRefreshPercent: CGFloat = 1.0
@@ -73,7 +73,7 @@ open class RefreshAutoFooter: RefreshFooter {
     }
 }
 
-extension RefreshAutoFooter {
+extension ZVRefreshAutoFooter {
     
     override open func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentSizeDidChanged(change)

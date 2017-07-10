@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class RefreshBackAnimationFooter: RefreshBackStateFooter {
+open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
 
     fileprivate(set) lazy var  animationView: UIImageView = {
         let animationView = UIImageView()
@@ -59,7 +59,7 @@ open class RefreshBackAnimationFooter: RefreshBackStateFooter {
     }
 }
 
-extension RefreshBackAnimationFooter {
+extension ZVRefreshBackAnimationFooter {
     
     public func setImages(_ images: [UIImage], state: RefreshState){
         self.setImages(images, duration: Double(images.count) * 0.1, state: state)
@@ -78,7 +78,7 @@ extension RefreshBackAnimationFooter {
     }
 }
 
-extension RefreshBackAnimationFooter {
+extension ZVRefreshBackAnimationFooter {
     
     override open func prepare() {
         super.prepare()
