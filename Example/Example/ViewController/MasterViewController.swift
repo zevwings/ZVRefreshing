@@ -21,7 +21,7 @@ class MasterViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+            
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,11 +37,16 @@ class MasterViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "HomeCell", for: indexPath)
+        var cell: UITableViewCell?
+        if indexPath.section == 0 {
+            cell = tableView.dequeueReusableCell(withIdentifier: "TableViewTargetCell", for: indexPath)
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: "CollectionViewTargetCell", for: indexPath)
+        }
         
-        cell.textLabel?.text = rows[indexPath.row]
-        cell.textLabel?.font = .systemFont(ofSize: 14.0)
-        return cell
+        cell?.textLabel?.text = rows[indexPath.row]
+        cell?.textLabel?.font = .systemFont(ofSize: 14.0)
+        return cell!
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -55,7 +60,7 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let baseView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 32.0))
-        baseView.backgroundColor = UIColor.lightGray
+        baseView.backgroundColor = UIColor(white: 222.0 / 255.0, alpha: 1.0)
         let label = UILabel(frame: CGRect(x: 12.0, y: 0, width: self.view.frame.width - 36, height: 32.0))
         label.font = .boldSystemFont(ofSize: 14.0)
         label.text = sections[section]
@@ -68,59 +73,46 @@ class MasterViewController: UITableViewController {
         
         let indexPath = self.tableView.indexPathForSelectedRow
                 
-        let destViewController = segue.destination as? DetailTableViewController
         let row = indexPath?.row ?? 0
+        let section = indexPath?.section ?? 0
         switch row {
         case 0:
-            // 设置标题
-            destViewController?.title = self.rows[0]
+            segue.destination.title = self.rows[0]
             
-            // 设置Header
             let header = ZVRefreshNormalHeader()
-            destViewController?.header = header
-
-            // 设置Footer
             let footer = ZVRefreshBackNormalFooter()
-            destViewController?.footer = footer
+
+            _set(for: section, viewController: segue.destination, header: header, footer: footer)
             break
         case 1:
-            // 设置标题
-            destViewController?.title = self.rows[1]
+            segue.destination.title = self.rows[1]
             
-            // 设置 Header
             let header = ZVRefreshNormalHeader()
             header.lastUpdatedTimeLabel.isHidden = true
-            destViewController?.header = header
-            
-            // 设置 Footer
-            let footer = ZVRefreshAutoNormalFooter()
-            destViewController?.footer = footer
+            _set(for: section, viewController: segue.destination, header: header, footer: nil)
             break
         case 2:
-            // 设置标题
-            destViewController?.title = self.rows[2]
+            segue.destination.title = self.rows[2]
             
-            // 设置 Header
             let header = ZVRefreshNormalHeader()
             header.stateLabel.isHidden = true
             header.lastUpdatedTimeLabel.isHidden = true
-            destViewController?.header = header
             
-            // 设置 Footer
             let footer = ZVRefreshBackNormalFooter()
             footer.stateLabel.isHidden = true
-            destViewController?.footer = footer
+
+            _set(for: section, viewController: segue.destination, header: header, footer: footer)
             break
         case 3:
             // 设置标题
-            destViewController?.title = self.rows[3]
+            segue.destination.title = self.rows[3]
             
             // 设置 Header
             let header = ZVRefreshNormalHeader()
             header.setTitle("下拉后更新...", forState: .idle)
             header.setTitle("释放立即更新...", forState: .pulling)
             header.setTitle("正在刷新数据...", forState: .refreshing)
-            
+            header.tintColor = .black
             header.lastUpdatedTimeLabelText = { date in
                 
                 if let d = date {
@@ -132,31 +124,41 @@ class MasterViewController: UITableViewController {
                 return "暂无刷新纪录"
             }
             
-            destViewController?.header = header
-            
             // 设置 Footer
             let footer = ZVRefreshBackNormalFooter()
             footer.setTitle("上拉加载更多数据...", forState: .idle)
             footer.setTitle("释放立即更新...", forState: .pulling)
             footer.setTitle("正在刷新数据...", forState: .refreshing)
             footer.setTitle("没有数据啦", forState: .noMoreData)
-            destViewController?.footer = footer
-            
-            header.tintColor = .black
             footer.tintColor = .black
             
+            _set(for: section, viewController: segue.destination, header: header, footer: footer)
             break
         case 4:
-            destViewController?.title = self.rows[4]
+            segue.destination.title = self.rows[4]
             
             let header = RefreshCustomAnimationHeader()
-            destViewController?.header = header
-            
             let footer = RefreshBackCustomAnimationFooter()
-            destViewController?.footer = footer
+
+            _set(for: section, viewController: segue.destination, header: header, footer: footer)
             break
         default:
             break
+        }
+    }
+    
+    private func _set(for section: Int,
+                      viewController: UIViewController,
+                      header: ZVRefreshHeader?,
+                      footer: ZVRefreshFooter?) {
+        if section == 0 {
+            let target = viewController as? DetailTableViewController
+            target?.header = header
+            target?.footer = footer
+        } else {
+            let target = viewController as? DetailCollectionViewController
+            target?.header = header
+            target?.footer = footer
         }
     }
 }

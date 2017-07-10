@@ -12,18 +12,18 @@ import ZVRefreshing
 class DetailTableViewController: UITableViewController {
 
     var header: ZVRefreshHeader?
-    
     var footer: ZVRefreshFooter?
-    
-    var rows: Int = 15
+    var rows: Int = 16
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        _addBarButton()
+        
         header?.refreshHandler = {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 self.tableView.footer?.isNoMoreData = false
-                self.rows = 15
+                self.rows = 16
                 self.tableView.reloadData()
                 self.tableView.header?.endRefreshing()
 
@@ -34,7 +34,7 @@ class DetailTableViewController: UITableViewController {
         
         footer?.refreshHandler = {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                self.rows += 15
+                self.rows += 16
                 self.tableView.reloadData()
                 if self.rows > 100 {
                     self.tableView.footer?.endRefreshingWithNoMoreData()
@@ -69,13 +69,28 @@ class DetailTableViewController: UITableViewController {
     }
     
     func refreshAction(_ sender: ZVRefreshComponent) {
-        print(sender)
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
             self.tableView.footer?.isNoMoreData = false
-            self.rows = 15
+            self.rows = 16
             self.tableView.reloadData()
             self.tableView.header?.endRefreshing()
 
         })
+    }
+    
+    fileprivate func _addBarButton() {
+        let backButton = UIButton(type: .custom)
+        backButton.frame = CGRect(x: 0, y: 0, width: 64, height: 44)
+        backButton.titleLabel?.font = .systemFont(ofSize: 14.0)
+        backButton.setTitle("返回", for: .normal)
+        backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -24, bottom: 0, right: 0)
+        backButton.addTarget(self, action: #selector(backAction(_:)), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+
+    }
+    
+    func backAction(_ sender: Any?) {
+        self.navigationController?.popViewController(animated: true)
     }
 }

@@ -13,7 +13,10 @@ public extension UIScrollView {
     private struct AssociationKey {
         static var header  = "com.zevwings.assocaiationkey.header"
         static var footer  = "com.zevwings.assocaiationkey.footer"
-        static var handler = "com.zevwings.assocaiationkey.handler"
+    }
+    
+    private struct Storage {
+        static var handler: ZVReloadDataHandler?
     }
     
     public var header: ZVRefreshHeader? {
@@ -66,13 +69,10 @@ public extension UIScrollView {
     
     internal var reloadDataHandler: ZVReloadDataHandler? {
         get {
-            let value = objc_getAssociatedObject(self, &AssociationKey.handler) as AnyObject
-            return unsafeBitCast(value, to: ZVReloadDataHandler.self)
+            return Storage.handler
         }
         set {
-            guard newValue != nil else { return }
-            let value = unsafeBitCast(newValue, to: AnyObject.self )
-            objc_setAssociatedObject(self, &AssociationKey.handler, value, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            Storage.handler = newValue
         }
     }
 

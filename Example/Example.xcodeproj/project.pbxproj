@@ -16,6 +16,7 @@
 		4DDFCE491F13505500B62435 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D04C69E1F11261B001B6B96 /* ZVRefreshing.framework */; };
 		4DDFCE4A1F13505500B62435 /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D04C69E1F11261B001B6B96 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4DDFCEA01F13AE7C00B62435 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DDFCEA21F13AE7C00B62435 /* Localizable.strings */; };
+		4DDFCEAD1F13C10A00B62435 /* DetailCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFCEAC1F13C10A00B62435 /* DetailCollectionViewController.swift */; };
 		4DEC37AE1F11B379000EFAAF /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEC37AD1F11B379000EFAAF /* Reveal.framework */; };
 		4DEC37B81F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B21F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift */; };
 		4DEC37B91F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B31F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift */; };
@@ -101,6 +102,7 @@
 		4D0578F31F0B27DA00F6D5A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DDFCEA11F13AE7C00B62435 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4DDFCEA31F13AEC000B62435 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		4DDFCEAC1F13C10A00B62435 /* DetailCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewController.swift; sourceTree = "<group>"; };
 		4DEC37AD1F11B379000EFAAF /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = SOURCE_ROOT; };
 		4DEC37B21F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackCustomAnimationFooter.swift; sourceTree = "<group>"; };
 		4DEC37B31F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshCustomAnimationHeader.swift; sourceTree = "<group>"; };
@@ -213,8 +215,9 @@
 		4DEC37B41F11CB16000EFAAF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4DEC37B61F11CB16000EFAAF /* DetailTableViewController.swift */,
 				4DEC37B71F11CB16000EFAAF /* MasterViewController.swift */,
+				4DEC37B61F11CB16000EFAAF /* DetailTableViewController.swift */,
+				4DDFCEAC1F13C10A00B62435 /* DetailCollectionViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DEC37B91F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift in Sources */,
+				4DDFCEAD1F13C10A00B62435 /* DetailCollectionViewController.swift in Sources */,
 				4DEC37BC1F11CB16000EFAAF /* MasterViewController.swift in Sources */,
 				4DEC37B81F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift in Sources */,
 				4DEC37BE1F11CB44000EFAAF /* ZVRefreshAutoCustomAnimationFooter.swift in Sources */,
