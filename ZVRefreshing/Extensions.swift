@@ -64,10 +64,10 @@ public extension UIScrollView {
         return totalCount
     }
     
-    internal var reloadDataHandler: ReloadDataHandler? {
+    internal var reloadDataHandler: ZVReloadDataHandler? {
         get {
             let value = objc_getAssociatedObject(self, &AssociationKey.handler) as AnyObject
-            return unsafeBitCast(value, to: ReloadDataHandler.self)
+            return unsafeBitCast(value, to: ZVReloadDataHandler.self)
         }
         set {
             guard newValue != nil else { return }

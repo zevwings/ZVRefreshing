@@ -8,11 +8,11 @@
 
 import UIKit
 
-public typealias RefreshHandler = () -> ()
-public typealias BeginRefreshingCompletionHandler = () -> ()
-public typealias EndRefreshingCompletionHandler = () -> ()
+public typealias ZVRefreshHandler = () -> ()
+public typealias ZVBeginRefreshingCompletionHandler = () -> ()
+public typealias ZVEndRefreshingCompletionHandler = () -> ()
 
-internal typealias ReloadDataHandler = @convention(block) (_ totalCount: Int) -> ()
+internal typealias ZVReloadDataHandler = @convention(block) (_ totalCount: Int) -> ()
 
 public enum ZVRefreshState: String {
     

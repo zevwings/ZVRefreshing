@@ -26,9 +26,9 @@ open class ZVRefreshComponent: UIView {
     fileprivate var _action: Selector?
     
     /// 回调闭包
-    public var refreshHandler: RefreshHandler?
-    public var beginRefreshingCompletionHandler: BeginRefreshingCompletionHandler?
-    public var endRefreshingCompletionHandler: EndRefreshingCompletionHandler?
+    public var refreshHandler: ZVRefreshHandler?
+    public var beginRefreshingCompletionHandler: ZVBeginRefreshingCompletionHandler?
+    public var endRefreshingCompletionHandler: ZVEndRefreshingCompletionHandler?
 
     /// 父视图
     internal var scrollView: UIScrollView?
@@ -49,7 +49,7 @@ open class ZVRefreshComponent: UIView {
     /// 初始化方法
     ///
     /// - Parameter refreshHandler: 回调闭包
-    public convenience init(refreshHandler: @escaping RefreshHandler) {
+    public convenience init(refreshHandler: @escaping ZVRefreshHandler) {
         self.init(frame: .zero)
         self.refreshHandler = refreshHandler
     }
