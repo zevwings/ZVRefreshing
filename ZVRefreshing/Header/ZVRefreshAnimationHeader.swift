@@ -15,8 +15,8 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
         return animationView
     }()
     
-    fileprivate var stateImages: [RefreshState: [UIImage]] = [:]
-    fileprivate var stateDurations: [RefreshState: TimeInterval] = [:]
+    fileprivate var stateImages: [ZVRefreshState: [UIImage]] = [:]
+    fileprivate var stateDurations: [ZVRefreshState: TimeInterval] = [:]
 
     override var pullingPercent: CGFloat {
         didSet {
@@ -31,7 +31,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
         }
     }
     
-    override open var state: RefreshState {
+    override open var state: ZVRefreshState {
         get {
             return super.state
         }
@@ -59,11 +59,11 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
 
 public extension ZVRefreshAnimationHeader {
     
-    public func setImages(_ images: [UIImage], forState state: RefreshState){
+    public func setImages(_ images: [UIImage], forState state: ZVRefreshState){
         self.setImages(images, duration: Double(images.count) * 0.1, forState: state)
     }
     
-    public func setImages(_ images: [UIImage], duration: TimeInterval, forState state: RefreshState){
+    public func setImages(_ images: [UIImage], duration: TimeInterval, forState state: ZVRefreshState){
         if images.count == 0 { return }
         
         self.stateImages.updateValue(images, forKey: state)

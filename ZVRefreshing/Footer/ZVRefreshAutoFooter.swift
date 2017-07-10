@@ -12,7 +12,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     public var isAutomaticallyRefresh: Bool = true
     fileprivate var triggerAutomaticallyRefreshPercent: CGFloat = 1.0
     
-    override open var state: RefreshState {
+    override open var state: ZVRefreshState {
         get {
             return super.state
         }

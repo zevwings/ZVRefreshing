@@ -14,7 +14,7 @@ public typealias EndRefreshingCompletionHandler = () -> ()
 
 internal typealias ReloadDataHandler = @convention(block) (_ totalCount: Int) -> ()
 
-public enum RefreshState: String {
+public enum ZVRefreshState: String {
     
     case idle        = "idle"
     case pulling     = "pulling"
@@ -22,7 +22,7 @@ public enum RefreshState: String {
     case refreshing  = "refreshing"
     case noMoreData  = "noMoreData"
     
-    static func mapState(with stateString: String?) -> RefreshState {
+    static func mapState(with stateString: String?) -> ZVRefreshState {
         
         guard let value = stateString else { return .idle }
         switch value {

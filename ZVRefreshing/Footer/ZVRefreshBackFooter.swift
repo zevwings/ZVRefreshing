@@ -12,7 +12,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
     fileprivate var lastBottomDelta: CGFloat = 0.0
     fileprivate var lastRefreshCount: Int = 0
     
-    override open var state: RefreshState {
+    override open var state: ZVRefreshState {
         get {
             return super.state
         }

@@ -15,8 +15,8 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
         return animationView
     }()
     
-    fileprivate var stateImages: [RefreshState: [UIImage]] = [:]
-    fileprivate var stateDurations: [RefreshState: TimeInterval] = [:]
+    fileprivate var stateImages: [ZVRefreshState: [UIImage]] = [:]
+    fileprivate var stateDurations: [ZVRefreshState: TimeInterval] = [:]
     
     override var pullingPercent: CGFloat {
         didSet {
@@ -31,7 +31,7 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    override open var state: RefreshState {
+    override open var state: ZVRefreshState {
         get {
             return super.state
         }
@@ -61,11 +61,11 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
 
 extension ZVRefreshBackAnimationFooter {
     
-    public func setImages(_ images: [UIImage], state: RefreshState){
+    public func setImages(_ images: [UIImage], state: ZVRefreshState){
         self.setImages(images, duration: Double(images.count) * 0.1, state: state)
     }
     
-    public func setImages(_ images: [UIImage], duration: TimeInterval, state: RefreshState){
+    public func setImages(_ images: [UIImage], duration: TimeInterval, state: ZVRefreshState){
         if images.count == 0 { return }
         
         self.stateImages.updateValue(images, forKey: state)

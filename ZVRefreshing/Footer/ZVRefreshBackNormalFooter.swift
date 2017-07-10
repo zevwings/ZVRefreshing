@@ -25,7 +25,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    override public var state: RefreshState {
+    override public var state: ZVRefreshState {
         get {
             return super.state
         }

@@ -80,10 +80,10 @@ open class ZVRefreshComponent: UIView {
     // MARK: - Getter & Setter
     
     /// 刷新状态
-    open var state: RefreshState {
+    open var state: ZVRefreshState {
         get {
             let value = objc_getAssociatedObject(self, &AssocaiationKey.state) as? String
-            return RefreshState.mapState(with: value)
+            return ZVRefreshState.mapState(with: value)
         }
         set {
             if self.checkState(newValue).result { return }
@@ -92,7 +92,7 @@ open class ZVRefreshComponent: UIView {
     }
     
     /// 检查RefreshState.newValue 是否和 RefreshState.oldState 相同
-    internal func checkState(_ state: RefreshState) -> (result: Bool, oldState: RefreshState) {
+    internal func checkState(_ state: ZVRefreshState) -> (result: Bool, oldState: ZVRefreshState) {
         let oldState = self.state
         if oldState == state { return (true, oldState) }
         return (false, oldState)

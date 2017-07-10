@@ -15,10 +15,10 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
         return animationView
     }()
     
-    fileprivate var stateImages: [RefreshState: [UIImage]] = [:]
-    fileprivate var stateDurations: [RefreshState: TimeInterval] = [:]
+    fileprivate var stateImages: [ZVRefreshState: [UIImage]] = [:]
+    fileprivate var stateDurations: [ZVRefreshState: TimeInterval] = [:]
     
-    override open var state: RefreshState {
+    override open var state: ZVRefreshState {
         get {
             return super.state
         }
@@ -55,12 +55,12 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
 extension ZVRefreshAutoAnimationFooter {
     
     /// 为相应状态设置图片
-    public func setImages(_ images: [UIImage], state: RefreshState) {
+    public func setImages(_ images: [UIImage], state: ZVRefreshState) {
         self.setImages(images, duration: Double(images.count) * 0.1, state: state)
     }
     
     /// 为相应状态设置图片
-    public func setImages(_ images: [UIImage], duration: TimeInterval, state: RefreshState){
+    public func setImages(_ images: [UIImage], duration: TimeInterval, state: ZVRefreshState){
         
         guard images.count > 0 else { return }
         

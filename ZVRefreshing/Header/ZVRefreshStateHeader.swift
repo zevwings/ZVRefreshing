@@ -14,7 +14,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     public fileprivate(set) lazy var stateLabel: UILabel = ZVRefreshingLabel()
     public var labelInsetLeft: CGFloat = 24.0
 
-    fileprivate var stateTitles: [RefreshState : String] = [:]
+    fileprivate var stateTitles: [ZVRefreshState : String] = [:]
     fileprivate var calendar = Calendar(identifier: .gregorian)
     public var lastUpdatedTimeLabelText:((_ date: Date?)->(String))? {
         didSet {
@@ -34,7 +34,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         }
     }
     
-    override open var state: RefreshState {
+    override open var state: ZVRefreshState {
         get {
             return super.state
         }
@@ -88,7 +88,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
 public extension ZVRefreshStateHeader {
     
     /// 设置状态文本
-    public func setTitle(_ title: String, forState state: RefreshState) {
+    public func setTitle(_ title: String, forState state: ZVRefreshState) {
         self.stateTitles.updateValue(title, forKey: state)
         self.stateLabel.text = self.stateTitles[self.state]
     }
