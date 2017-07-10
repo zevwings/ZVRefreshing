@@ -9,19 +9,11 @@ import UIKit
 
 public class RefreshAutoNormalFooter: RefreshAutoStateFooter {
 
-    fileprivate(set) lazy var  activityIndicator : UIActivityIndicatorView = {
-        var activityIndicator = UIActivityIndicatorView()
-        activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
-        activityIndicator.hidesWhenStopped = true
+    fileprivate(set) lazy var  activityIndicator : ZVActivityIndicatorView = {
+        var activityIndicator = ZVActivityIndicatorView()
+        activityIndicator.color = UIColor.lightGray
         return activityIndicator
     }()
-    
-    public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
-        didSet {
-            self.activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
-            self.setNeedsLayout()
-        }
-    }
     
     open override var tintColor: UIColor! {
         get {
@@ -61,13 +53,17 @@ extension RefreshAutoNormalFooter {
     
     override public func placeSubViews() {
         super.placeSubViews()
+        
         if self.activityIndicator.constraints.count > 0 { return }
         
-        var loadingCenterX = self.width * 0.5
+        var centerX = self.width * 0.5
         if !self.stateLabel.isHidden {
-            loadingCenterX -= (self.stateLabel.textWidth * 0.5 + self.labelInsetLeft)
+            centerX -= (self.stateLabel.textWidth * 0.5 + self.labelInsetLeft)
         }
-        let loadingCenterY = self.height * 0.5
-        self.activityIndicator.center = CGPoint(x: loadingCenterX, y: loadingCenterY)
+        
+        self.activityIndicator.frame = CGRect(x: 0, y: 0, width: 24.0, height: 24.0)
+
+        let centerY = self.height * 0.5
+        self.activityIndicator.center = CGPoint(x: centerX, y: centerY)
     }
 }

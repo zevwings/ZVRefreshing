@@ -88,7 +88,7 @@ class MasterViewController: UITableViewController {
             destViewController?.title = self.rows[1]
             
             // 设置 Header
-            let header = RefreshStateHeader()
+            let header = RefreshNormalHeader()
             header.lastUpdatedTimeLabel.isHidden = true
             destViewController?.header = header
             

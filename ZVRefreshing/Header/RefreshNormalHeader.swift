@@ -7,42 +7,25 @@
 
 import UIKit
 
-public class RefreshNormalHeader: RefreshStateHeader {
+open class RefreshNormalHeader: RefreshStateHeader {
     
-    public fileprivate(set) lazy var arrowView: UIImageView = {
-        let arrowView = UIImageView()
-        arrowView.image = UIImage.resource(named: "arrow.png")
-        return arrowView
+    public fileprivate(set) lazy var activityIndicator: ZVActivityIndicatorView = {
+        let indicator = ZVActivityIndicatorView()
+        indicator.color = .lightGray
+        return indicator
     }()
     
-    public fileprivate(set) lazy var activityIndicator : UIActivityIndicatorView = {
-        var activityIndicator = UIActivityIndicatorView()
-        activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
-        activityIndicator.hidesWhenStopped = true
-        return activityIndicator
-    }()
-    
-    public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
-        didSet {
-            self.activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
-            self.setNeedsLayout()
-        }
-    }
-    
-    public override var tintColor: UIColor! {
+    open override var tintColor: UIColor! {
         get {
             return super.tintColor
         }
         set {
             super.tintColor = newValue
             self.activityIndicator.color = newValue
-            self.arrowView.tintColor = newValue
-            let image = UIImage.resource(named: "arrow.png")
-            self.arrowView.image = image?.tintImage(with: newValue)
         }
     }
     
-    override public var state: RefreshState {
+    override open var state: RefreshState {
         get {
             return super.state
         }
@@ -52,71 +35,63 @@ public class RefreshNormalHeader: RefreshStateHeader {
             
             if newValue == .idle {
                 if self.state == .refreshing {
-                    self.arrowView.transform = CGAffineTransform.identity
                     UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
-                        self.activityIndicator.alpha = 0.0
                         }, completion: { finished in
                             guard self.state == .idle else { return }
-                            self.activityIndicator.alpha = 1.0
                             self.activityIndicator.stopAnimating()
-                            self.arrowView.isHidden = false
                     })
                 } else {
                     self.activityIndicator.stopAnimating()
-                    self.arrowView.isHidden = false
-                    UIView.animate(withDuration: Config.AnimationDuration.fast, animations: {
-                        self.arrowView.transform = CGAffineTransform.identity
-                    })
                 }
             } else if newValue == .pulling {
                 self.activityIndicator.stopAnimating()
-                self.arrowView.isHidden = false
-                UIView.animate(withDuration: Config.AnimationDuration.fast, animations: {
-                    self.arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
-                })
             } else if newValue == .refreshing {
-                self.activityIndicator.alpha = 1.0
                 self.activityIndicator.startAnimating()
-                self.arrowView.isHidden = true
             }
+        }
+    }
+    
+    override var pullingPercent: CGFloat {
+        get {
+            return super.pullingPercent
+        }
+        set {
+            super.pullingPercent = newValue
+            self.activityIndicator.percent = newValue
         }
     }
 }
 
 extension RefreshNormalHeader {
     
-    override public func prepare() {
+    override open func prepare() {
         super.prepare()
-        
-        if self.arrowView.superview == nil {
-            self.addSubview(self.arrowView)
-        }
         
         if self.activityIndicator.superview == nil {
             self.addSubview(self.activityIndicator)
         }
     }
-    
-    override public func placeSubViews() {
+
+    open override func placeSubViews() {
         super.placeSubViews()
         
         var centerX = self.width * 0.5
         if !self.stateLabel.isHidden {
-            let labelWidth = max(self.lastUpdatedTimeLabel.textWidth, self.stateLabel.textWidth)
+            var labelWidth: CGFloat = 0.0
+            if self.lastUpdatedTimeLabel.isHidden {
+                labelWidth = self.stateLabel.textWidth
+            } else {
+                labelWidth = max(self.lastUpdatedTimeLabel.textWidth, self.stateLabel.textWidth)
+            }
             centerX -= (labelWidth * 0.5 + self.labelInsetLeft)
         }
+
         let centerY = self.height * 0.5
         let center = CGPoint(x: centerX, y: centerY)
-        
-        if self.arrowView.constraints.count == 0 && self.arrowView.image != nil {
-            self.arrowView.isHidden = false
-            self.arrowView.size = self.arrowView.image!.size
-            self.arrowView.center = center
-        } else {
-            self.arrowView.isHidden = true
-        }
-        
+
         if self.activityIndicator.constraints.count == 0 {
+            
+            self.activityIndicator.frame = CGRect(x: 0, y: 0, width: 24.0, height: 24.0)
             self.activityIndicator.center = center
         }
     }
