@@ -44,6 +44,7 @@ open class RefreshHeader: RefreshComponent {
                     }
                     }, completion: { finished in
                         self.pullingPercent = 0.0
+                        self.endRefreshingCompletionHandler?()
                 })
             } else if newValue == .refreshing {
                 UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {

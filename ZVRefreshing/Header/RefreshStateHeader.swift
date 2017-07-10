@@ -16,7 +16,12 @@ open class RefreshStateHeader: RefreshHeader {
 
     fileprivate var stateTitles: [RefreshState : String] = [:]
     fileprivate var calendar = Calendar(identifier: .gregorian)
-    fileprivate var lastUpdatedTimeLabelText:((_ date: Date?)->(String))?
+    public var lastUpdatedTimeLabelText:((_ date: Date?)->(String))? {
+        didSet {
+            let key = self.lastUpdatedTimeKey
+            self.lastUpdatedTimeKey = key
+        }
+    }
     
     open override var tintColor: UIColor! {
         get {
@@ -67,12 +72,12 @@ open class RefreshStateHeader: RefreshHeader {
                     formatter.dateFormat = "yyyy-MM-dd HH:mm"
                 }
                 let timeString = formatter.string(from: lastUpdatedTime)
-                self.lastUpdatedTimeLabel.text = String(format: "%@%@%@",
+                self.lastUpdatedTimeLabel.text = String(format: "%@ %@ %@",
                                                         Constants.State.lastUpdatedTime,
                                                         isToday ? Constants.State.dateToday : "",
                                                         timeString)
             } else {
-                self.lastUpdatedTimeLabel.text = String(format: "%@%@",
+                self.lastUpdatedTimeLabel.text = String(format: "%@ %@",
                                                         Constants.State.lastUpdatedTime,
                                                         Constants.State.noLastTime)
             }

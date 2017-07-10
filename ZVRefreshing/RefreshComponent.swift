@@ -209,9 +209,19 @@ extension RefreshComponent {
         }
     }
     
+    public func beginRefreshing(with completionHandler: @escaping () -> ()) {
+        self.beginRefreshingCompletionHandler = completionHandler
+        self.beginRefreshing()
+    }
+    
     /// 结束刷新状态
     public func endRefreshing() {
         self.state = .idle
+    }
+    
+    public func endRefreshing(with completionHandler: @escaping () -> ()) {
+        self.endRefreshingCompletionHandler = completionHandler
+        self.endRefreshing()
     }
 
     /// 设置回调事件和回调函数
@@ -223,9 +233,9 @@ extension RefreshComponent {
     /// 触发刷新回调
     internal func executeRefreshCallback() {
         DispatchQueue.main.async {
-            // 执行 refresh handler
+            // 执行刷新回调闭包
             self.refreshHandler?()
-            // 执行 refresh action
+            // 执行刷新回调函数
             if let target = self._target, let action = self._action {
                 if (target as AnyObject).responds(to: action) {
                     DispatchQueue.main.async(execute: {
@@ -233,7 +243,7 @@ extension RefreshComponent {
                     })
                 }
             }
-            // 执行
+            // 执行完成刷新回调闭包
             self.beginRefreshingCompletionHandler?()
         }
     }

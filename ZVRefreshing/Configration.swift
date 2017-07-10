@@ -280,6 +280,7 @@ internal extension UIImage {
 
 internal extension UILabel {
     
+    /// 获取textWidth 的宽度
     var textWidth: CGFloat {
         
         let size = CGSize(width: Int.max, height: Int.max)

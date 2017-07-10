@@ -17,13 +17,18 @@ open class RefreshAutoFooter: RefreshFooter {
             return super.state
         }
         set {
-            if self.checkState(newValue).result { return }
+            let checked = self.checkState(newValue)
+            guard checked.result == false else { return }
             super.state = newValue
             
             if newValue == .refreshing {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
                     self.executeRefreshCallback()
                 })
+            } else if state == .noMoreData || state == .idle {
+                if checked.oldState == .refreshing {
+                    self.endRefreshingCompletionHandler?()
+                }
             }
         }
     }

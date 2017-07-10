@@ -121,6 +121,17 @@ class MasterViewController: UITableViewController {
             header.setTitle("释放立即更新...", forState: .pulling)
             header.setTitle("正在刷新数据...", forState: .refreshing)
             
+            header.lastUpdatedTimeLabelText = { date in
+                
+                if let d = date {
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    return "最后更新时间：\(formatter.string(from: d))"
+                }
+                
+                return "暂无刷新纪录"
+            }
+            
             destViewController?.header = header
             
             // 设置 Footer
@@ -147,7 +158,5 @@ class MasterViewController: UITableViewController {
         default:
             break
         }
-        print(row)
-
     }
 }
