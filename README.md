@@ -2,7 +2,7 @@
 
 ![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)[](https://github.com/Carthage/Carthage)
 <br/>
-ZRefreshing 是使用纯Swift开发，简单易用刷新控件。
+ZVRefreshing 是使用纯Swift开发，简单易用刷新控件。
 
 
 ## Installation
