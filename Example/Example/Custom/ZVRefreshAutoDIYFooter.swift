@@ -25,7 +25,7 @@ class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
         }
     }
     
-    override var state: ZVRefreshState {
+    override var state: State {
         get {
             return super.state
         }

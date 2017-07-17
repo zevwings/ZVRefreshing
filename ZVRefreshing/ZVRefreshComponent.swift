@@ -9,6 +9,35 @@ import UIKit
 
 open class ZVRefreshComponent: UIView {
     
+    public enum State: String {
+        
+        case idle        = "idle"
+        case pulling     = "pulling"
+        case willRefresh = "willRefresh"
+        case refreshing  = "refreshing"
+        case noMoreData  = "noMoreData"
+        
+        static func mapState(with stateString: String?) -> State {
+            
+            guard let value = stateString else { return .idle }
+            switch value {
+            case "idle":
+                return .idle
+            case "pulling":
+                return .pulling
+            case "willRefresh":
+                return .willRefresh
+            case "refreshing":
+                return .refreshing
+            case "noMoreData":
+                return .noMoreData
+            default:
+                return .idle
+            }
+        }
+    }
+
+    
     private struct AssocaiationKey {
         static var state = "com.zevwings.assocaiationkey.state"
     }
@@ -80,10 +109,10 @@ open class ZVRefreshComponent: UIView {
     // MARK: - Getter & Setter
     
     /// 刷新状态
-    open var state: ZVRefreshState {
+    open var state: State {
         get {
             let value = objc_getAssociatedObject(self, &AssocaiationKey.state) as? String
-            return ZVRefreshState.mapState(with: value)
+            return State.mapState(with: value)
         }
         set {
             if self.checkState(newValue).result { return }
@@ -92,7 +121,7 @@ open class ZVRefreshComponent: UIView {
     }
     
     /// 检查RefreshState.newValue 是否和 RefreshState.oldState 相同
-    public func checkState(_ state: ZVRefreshState) -> (result: Bool, oldState: ZVRefreshState) {
+    public func checkState(_ state: State) -> (result: Bool, oldState: State) {
         let oldState = self.state
         if oldState == state { return (true, oldState) }
         return (false, oldState)

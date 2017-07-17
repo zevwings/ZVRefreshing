@@ -11,7 +11,7 @@ import UIKit
 public class ZVActivityIndicatorView: UIView {
     
     public private(set) var isAnimating: Bool = false
-    public var duration: TimeInterval = 1.5
+    public var duration: TimeInterval = 1.0
     public var timingFunction: CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
     
     private lazy var activityIndicatorLayer: CAShapeLayer = {

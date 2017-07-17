@@ -14,34 +14,6 @@ public typealias ZVEndRefreshingCompletionHandler = () -> ()
 
 internal typealias ZVReloadDataHandler = @convention(block) (_ totalCount: Int) -> ()
 
-public enum ZVRefreshState: String {
-    
-    case idle        = "idle"
-    case pulling     = "pulling"
-    case willRefresh = "willRefresh"
-    case refreshing  = "refreshing"
-    case noMoreData  = "noMoreData"
-    
-    static func mapState(with stateString: String?) -> ZVRefreshState {
-        
-        guard let value = stateString else { return .idle }
-        switch value {
-        case "idle":
-            return .idle
-        case "pulling":
-            return .pulling
-        case "willRefresh":
-            return .willRefresh
-        case "refreshing":
-            return .refreshing
-        case "noMoreData":
-            return .noMoreData
-        default:
-            return .idle
-        }
-    }
-}
-
 struct Config {
     
     static let lastUpdatedTimeKey = "com.zevwings.refreshing.lastUpdateTime"
@@ -60,6 +32,7 @@ struct Config {
 }
 
 struct Component {
+    
     static let labelLeftInset: CGFloat = 24.0
     static let font: UIFont = .systemFont(ofSize: 14.0)
     
@@ -113,9 +86,7 @@ internal extension UIView {
             return self.frame.origin
         }
         set {
-            var frame = self.frame
-            frame.origin = newValue
-            self.frame = frame
+            self.frame.origin = newValue
         }
     }
     
@@ -124,9 +95,7 @@ internal extension UIView {
             return self.frame.size
         }
         set {
-            var frame = self.frame
-            frame.size = newValue
-            self.frame = frame
+            self.frame.size = newValue
         }
     }
     
@@ -135,9 +104,7 @@ internal extension UIView {
             return self.frame.origin.x
         }
         set {
-            var frame = self.frame
-            frame.origin.x = newValue
-            self.frame = frame
+            self.frame.origin.x = newValue
         }
     }
     
@@ -146,9 +113,7 @@ internal extension UIView {
             return self.frame.origin.y
         }
         set {
-            var frame = self.frame
-            frame.origin.y = newValue
-            self.frame = frame
+            self.frame.origin.y = newValue
         }
     }
     
@@ -157,9 +122,7 @@ internal extension UIView {
             return self.frame.size.width
         }
         set {
-            var frame = self.frame
-            frame.size.width = newValue
-            self.frame = frame
+            self.frame.size.width = newValue
         }
     }
     
@@ -168,9 +131,7 @@ internal extension UIView {
             return self.frame.size.height
         }
         set {
-            var frame = self.frame
-            frame.size.height = newValue
-            self.frame = frame
+            self.frame.size.height = newValue
         }
     }
 }
@@ -182,9 +143,7 @@ extension UIScrollView {
             return self.contentOffset.y
         }
         set {
-            var offset = self.contentOffset
-            offset.y = newValue
-            self.contentOffset = offset
+            self.contentOffset.y = newValue
         }
     }
     
@@ -193,10 +152,7 @@ extension UIScrollView {
             return self.contentOffset.x
         }
         set {
-            var offset = self.contentOffset
-            offset.x = newValue
-            self.contentOffset = offset
-            
+            self.contentOffset.x = newValue
         }
     }
     
@@ -205,9 +161,7 @@ extension UIScrollView {
             return self.contentSize.width
         }
         set {
-            var size = self.contentSize
-            size.width = newValue
-            self.contentSize = size
+            self.contentSize.width = newValue
         }
     }
     
@@ -216,9 +170,7 @@ extension UIScrollView {
             return self.contentSize.height
         }
         set {
-            var size = self.contentSize
-            size.height = newValue
-            self.contentSize = size
+            self.contentSize.height = newValue
         }
     }
     
@@ -227,9 +179,7 @@ extension UIScrollView {
             return self.contentInset.top
         }
         set {
-            var inset = self.contentInset
-            inset.top = newValue
-            self.contentInset = inset
+            self.contentInset.top = newValue
         }
     }
     
@@ -238,9 +188,7 @@ extension UIScrollView {
             return self.contentInset.bottom
         }
         set {
-            var inset = self.contentInset
-            inset.bottom = newValue
-            self.contentInset = inset
+            self.contentInset.bottom = newValue
         }
     }
     
@@ -249,9 +197,7 @@ extension UIScrollView {
             return self.contentInset.bottom
         }
         set {
-            var inset = self.contentInset
-            inset.left = newValue
-            self.contentInset = inset
+            self.contentInset.left = newValue
         }
     }
     
@@ -260,9 +206,7 @@ extension UIScrollView {
             return self.contentInset.bottom
         }
         set {
-            var inset = self.contentInset
-            inset.right = newValue
-            self.contentInset = inset
+            self.contentInset.right = newValue
         }
     }
 }
@@ -283,15 +227,12 @@ internal extension UILabel {
 }
 
 internal extension Bundle {
+    
     class var current: Bundle {
         return Bundle(for: ZVRefreshComponent.self)
     }
-//    Bundle(for: ZProgressHUD.classForCoder()).bundlePath.appendingFormat("/ZProgressHUD.bundle/%@", frameworknamed)
 }
 
 func localized(string key: String, comment: String = "") -> String {
     return NSLocalizedString(key, tableName: "ZVRefreshing", bundle: Bundle.current, value: "", comment: comment.isEmpty ? key: comment)
 }
-//let todayValue = NSLocalizedString("today", tableName: "ZVRefreshing", bundle: Bundle.current, value: "", comment: "")
-//print(todayValue)
-

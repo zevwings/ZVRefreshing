@@ -22,7 +22,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
 
     fileprivate var insetTop: CGFloat = 0.0
 
-    override open var state: ZVRefreshState {
+    override open var state: State {
         get {
             return super.state
         }

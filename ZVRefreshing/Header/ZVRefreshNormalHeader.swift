@@ -25,7 +25,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         }
     }
     
-    override open var state: ZVRefreshState {
+    override open var state: State {
         get {
             return super.state
         }
