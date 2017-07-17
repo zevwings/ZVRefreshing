@@ -9,15 +9,18 @@
 import UIKit
 import ZVRefreshing
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var numberOfRows = 20
     
     private var _header: ZVRefreshHeader?
     private var _footer: ZVRefreshFooter?
+    private var _isAutoFooter: Bool = true
+    
+    @IBOutlet weak var tableView: UITableView!
     
     private var sections = ["UITableView", "UICollectionView"]
-    private var rows     = ["默认", "隐藏时间", "隐藏时间和状态", "自定义文字", "动画"]
+    private var rows     = ["默认", "隐藏时间", "隐藏时间和状态", "自定义文字", "动画", "DIY 箭头"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,15 +31,15 @@ class MasterViewController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rows.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell?
         if indexPath.section == 0 {
             cell = tableView.dequeueReusableCell(withIdentifier: "TableViewTargetCell", for: indexPath)
@@ -49,15 +52,15 @@ class MasterViewController: UITableViewController {
         return cell!
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 54.0
     }
     
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 32.0
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let baseView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 32.0))
         baseView.backgroundColor = UIColor(white: 222.0 / 255.0, alpha: 1.0)
@@ -80,7 +83,13 @@ class MasterViewController: UITableViewController {
             segue.destination.title = self.rows[0]
             
             let header = ZVRefreshNormalHeader()
-            let footer = ZVRefreshBackNormalFooter()
+            
+            var footer: ZVRefreshFooter?
+            if _isAutoFooter {
+                footer = ZVRefreshAutoNormalFooter()
+            } else {
+                footer = ZVRefreshBackNormalFooter()
+            }
 
             _set(for: section, viewController: segue.destination, header: header, footer: footer)
             break
@@ -89,7 +98,15 @@ class MasterViewController: UITableViewController {
             
             let header = ZVRefreshNormalHeader()
             header.lastUpdatedTimeLabel.isHidden = true
-            _set(for: section, viewController: segue.destination, header: header, footer: nil)
+            
+            var footer: ZVRefreshFooter?
+            if _isAutoFooter {
+                footer = ZVRefreshAutoNormalFooter()
+            } else {
+                footer = ZVRefreshBackNormalFooter()
+            }
+            
+            _set(for: section, viewController: segue.destination, header: header, footer: footer)
             break
         case 2:
             segue.destination.title = self.rows[2]
@@ -98,8 +115,13 @@ class MasterViewController: UITableViewController {
             header.stateLabel.isHidden = true
             header.lastUpdatedTimeLabel.isHidden = true
             
-            let footer = ZVRefreshBackNormalFooter()
-            footer.stateLabel.isHidden = true
+            var footer: ZVRefreshFooter?
+            if _isAutoFooter {
+                footer = ZVRefreshAutoNormalFooter()
+            } else {
+                footer = ZVRefreshBackNormalFooter()
+                (footer as? ZVRefreshBackNormalFooter)?.stateLabel.isHidden = true
+            }
 
             _set(for: section, viewController: segue.destination, header: header, footer: footer)
             break
@@ -125,22 +147,58 @@ class MasterViewController: UITableViewController {
             }
             
             // 设置 Footer
-            let footer = ZVRefreshBackNormalFooter()
-            footer.setTitle("上拉加载更多数据...", forState: .idle)
-            footer.setTitle("释放立即更新...", forState: .pulling)
-            footer.setTitle("正在刷新数据...", forState: .refreshing)
-            footer.setTitle("没有数据啦", forState: .noMoreData)
-            footer.tintColor = .black
-            
-            _set(for: section, viewController: segue.destination, header: header, footer: footer)
+            if _isAutoFooter {
+                
+                let footer = ZVRefreshAutoNormalFooter()
+                footer.setTitle("上拉加载更多数据...", forState: .idle)
+                footer.setTitle("释放立即更新...", forState: .pulling)
+                footer.setTitle("正在刷新数据...", forState: .refreshing)
+                footer.setTitle("没有数据啦", forState: .noMoreData)
+                footer.tintColor = .black
+                
+                _set(for: section,
+                     viewController: segue.destination,
+                     header: header, footer: footer)
+            } else {
+                
+                let footer = ZVRefreshBackNormalFooter()
+                footer.setTitle("上拉加载更多数据...", forState: .idle)
+                footer.setTitle("释放立即更新...", forState: .pulling)
+                footer.setTitle("正在刷新数据...", forState: .refreshing)
+                footer.setTitle("没有数据啦", forState: .noMoreData)
+                footer.tintColor = .black
+                
+                _set(for: section,
+                     viewController: segue.destination,
+                     header: header, footer: footer)
+            }
             break
         case 4:
             segue.destination.title = self.rows[4]
             
-            let header = RefreshCustomAnimationHeader()
-            let footer = RefreshBackCustomAnimationFooter()
-
+            let header = ZVRefreshCustomAnimationHeader()
+            let footer: ZVRefreshFooter?
+            if _isAutoFooter {
+                footer = ZVRefreshAutoCustomAnimationFooter()
+            } else {
+                footer = ZVRefreshBackCustomAnimationFooter()
+            }
             _set(for: section, viewController: segue.destination, header: header, footer: footer)
+            break
+        case 5:
+            segue.destination.title = self.rows[5]
+            
+            let header = ZVRefreshDIYHeader()
+            let footer: ZVRefreshFooter?
+                
+            if _isAutoFooter {
+                footer = ZVRefreshAutoDIYFooter()
+            } else {
+                footer = ZVRefreshBackDIYFooter()
+            }
+            
+            _set(for: section, viewController: segue.destination, header: header, footer: footer)
+
             break
         default:
             break
@@ -161,4 +219,18 @@ class MasterViewController: UITableViewController {
             target?.footer = footer
         }
     }
+    
+    @IBAction func setFooterType(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            _isAutoFooter = true
+            break
+        case 1:
+            _isAutoFooter = false
+            break
+        default:
+            break
+        }
+    }
+    
 }

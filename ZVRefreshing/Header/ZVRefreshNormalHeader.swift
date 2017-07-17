@@ -51,7 +51,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         }
     }
     
-    override var pullingPercent: CGFloat {
+    override open var pullingPercent: CGFloat {
         get {
             return super.pullingPercent
         }

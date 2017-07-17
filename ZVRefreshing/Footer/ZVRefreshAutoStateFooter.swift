@@ -11,7 +11,7 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     
     public fileprivate(set) lazy var stateLabel: UILabel = ZVRefreshingLabel()
     public var labelInsetLeft: CGFloat = 24.0
-    fileprivate var stateTitles:[ZVRefreshState: String] = [:]
+    fileprivate var _stateTitles:[ZVRefreshState: String] = [:]
     
     open override var tintColor: UIColor! {
         get {
@@ -34,7 +34,7 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
             if self.stateLabel.isHidden && newValue == .refreshing {
                 self.stateLabel.text = nil
             } else {
-                self.stateLabel.text = self.stateTitles[newValue]
+                self.stateLabel.text = self._stateTitles[newValue]
             }
         }
     }
@@ -44,8 +44,8 @@ extension ZVRefreshAutoStateFooter {
     
     public func setTitle(_ title: String?, forState state: ZVRefreshState) {
         if title == nil {return}
-        self.stateTitles.updateValue(title!, forKey: state)
-        self.stateLabel.text = self.stateTitles[self.state]
+        self._stateTitles.updateValue(title!, forKey: state)
+        self.stateLabel.text = self._stateTitles[self.state]
     }
 }
 

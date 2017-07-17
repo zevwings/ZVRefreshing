@@ -62,7 +62,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    override var pullingPercent: CGFloat {
+    override public var pullingPercent: CGFloat {
         get {
             return super.pullingPercent
         }

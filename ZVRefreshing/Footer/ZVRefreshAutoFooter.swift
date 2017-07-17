@@ -10,7 +10,7 @@ import UIKit
 open class ZVRefreshAutoFooter: ZVRefreshFooter {
 
     public var isAutomaticallyRefresh: Bool = true
-    fileprivate var triggerAutomaticallyRefreshPercent: CGFloat = 1.0
+    fileprivate var _triggerAutomaticallyRefreshPercent: CGFloat = 1.0
     
     override open var state: ZVRefreshState {
         get {
@@ -88,7 +88,7 @@ extension ZVRefreshAutoFooter {
         guard let scrollView = self.scrollView else { return }
     
         if scrollView.insetTop + scrollView.contentHeight > scrollView.height {
-            if scrollView.offsetY >= (scrollView.contentHeight - scrollView.height + self.height * self.triggerAutomaticallyRefreshPercent + scrollView.insetBottom - self.height) {
+            if scrollView.offsetY >= (scrollView.contentHeight - scrollView.height + self.height * self._triggerAutomaticallyRefreshPercent + scrollView.insetBottom - self.height) {
                 let old = (change?[.oldKey] as? NSValue)?.cgPointValue
                 let new = (change?[.newKey] as? NSValue)?.cgPointValue
                 if old != nil && new != nil && new!.y > old!.y {

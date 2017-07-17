@@ -9,7 +9,7 @@
 import UIKit
 import ZVRefreshing
 
-class RefreshAutoCustomAnimationFooter: ZVRefreshAutoAnimationFooter {
+class ZVRefreshAutoCustomAnimationFooter: ZVRefreshAutoAnimationFooter {
     
     override func prepare() {
         super.prepare()

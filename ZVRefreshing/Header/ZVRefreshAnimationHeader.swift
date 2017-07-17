@@ -15,12 +15,12 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
         return animationView
     }()
     
-    fileprivate var stateImages: [ZVRefreshState: [UIImage]] = [:]
-    fileprivate var stateDurations: [ZVRefreshState: TimeInterval] = [:]
+    fileprivate var _stateImages: [ZVRefreshState: [UIImage]] = [:]
+    fileprivate var _stateDurations: [ZVRefreshState: TimeInterval] = [:]
 
-    override var pullingPercent: CGFloat {
+    override open var pullingPercent: CGFloat {
         didSet {
-            let imgs = self.stateImages[.idle] ?? []
+            let imgs = self._stateImages[.idle] ?? []
             if self.state != .idle || imgs.count == 0 { return }
             self.animationView.stopAnimating()
             var index = Int(CGFloat(imgs.count) * pullingPercent)
@@ -40,14 +40,14 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
             super.state = newValue
             
             if newValue == .pulling || newValue == .refreshing {
-                let images = self.stateImages[newValue]
+                let images = self._stateImages[newValue]
                 if images?.count == 0 { return }
                 self.animationView.stopAnimating()
                 if images?.count == 1{
                     self.animationView.image = images?.last
                 } else {
                     self.animationView.animationImages = images
-                    self.animationView.animationDuration = self.stateDurations[newValue] ?? 0.0
+                    self.animationView.animationDuration = self._stateDurations[newValue] ?? 0.0
                     self.animationView.startAnimating()
                 }
             } else if newValue == .idle {
@@ -66,8 +66,8 @@ public extension ZVRefreshAnimationHeader {
     public func setImages(_ images: [UIImage], duration: TimeInterval, forState state: ZVRefreshState){
         if images.count == 0 { return }
         
-        self.stateImages.updateValue(images, forKey: state)
-        self.stateDurations.updateValue(duration, forKey: state)
+        self._stateImages.updateValue(images, forKey: state)
+        self._stateDurations.updateValue(duration, forKey: state)
         if let image = images.first {
             if image.size.height > self.height {
                 self.size.height = image.size.height

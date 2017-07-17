@@ -15,8 +15,8 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
         return animationView
     }()
     
-    fileprivate var stateImages: [ZVRefreshState: [UIImage]] = [:]
-    fileprivate var stateDurations: [ZVRefreshState: TimeInterval] = [:]
+    fileprivate var _stateImages: [ZVRefreshState: [UIImage]] = [:]
+    fileprivate var _stateDurations: [ZVRefreshState: TimeInterval] = [:]
     
     override open var state: ZVRefreshState {
         get {
@@ -29,7 +29,7 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
             switch newValue {
             case .refreshing:
                 
-                guard let images = self.stateImages[newValue], images.count > 0 else { return }
+                guard let images = self._stateImages[newValue], images.count > 0 else { return }
                 
                 self.animationView.stopAnimating()
                 self.animationView.isHidden = false
@@ -38,7 +38,7 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
                     self.animationView.image = images.last
                 } else {
                     self.animationView.animationImages = images
-                    self.animationView.animationDuration = self.stateDurations[newValue] ?? 0.0
+                    self.animationView.animationDuration = self._stateDurations[newValue] ?? 0.0
                     self.animationView.startAnimating()
                 }
                 break
@@ -64,8 +64,8 @@ extension ZVRefreshAutoAnimationFooter {
         
         guard images.count > 0 else { return }
         
-        self.stateImages[state] = images
-        self.stateDurations[state] = duration
+        self._stateImages[state] = images
+        self._stateDurations[state] = duration
         guard let image = images.first, image.size.height < self.height else { return }
         self.height = image.size.height
     }

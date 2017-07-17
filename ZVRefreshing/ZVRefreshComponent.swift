@@ -92,14 +92,14 @@ open class ZVRefreshComponent: UIView {
     }
     
     /// 检查RefreshState.newValue 是否和 RefreshState.oldState 相同
-    internal func checkState(_ state: ZVRefreshState) -> (result: Bool, oldState: ZVRefreshState) {
+    public func checkState(_ state: ZVRefreshState) -> (result: Bool, oldState: ZVRefreshState) {
         let oldState = self.state
         if oldState == state { return (true, oldState) }
         return (false, oldState)
     }
     
     /// 根据拖拽比例更改透明度
-    internal var isAutomaticallyChangeAlpha: Bool = true {
+    public var isAutomaticallyChangeAlpha: Bool = true {
         didSet {
             guard self.isRefreshing == false else { return }
             
@@ -112,7 +112,7 @@ open class ZVRefreshComponent: UIView {
     }
     
     /// 拖拽百分比
-    internal var pullingPercent: CGFloat = 0.0 {
+    open var pullingPercent: CGFloat = 0.0 {
         didSet {
             guard self.isRefreshing == false else { return }
             if self.isAutomaticallyChangeAlpha {
