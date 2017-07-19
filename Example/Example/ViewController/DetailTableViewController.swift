@@ -94,3 +94,11 @@ class DetailTableViewController: UITableViewController {
         self.navigationController?.popViewController(animated: true)
     }
 }
+
+extension DetailTableViewController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
+

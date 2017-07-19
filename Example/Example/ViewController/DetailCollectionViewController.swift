@@ -128,3 +128,10 @@ class DetailCollectionViewController: UICollectionViewController {
         self.navigationController?.popViewController(animated: true)
     }
 }
+
+extension DetailCollectionViewController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}

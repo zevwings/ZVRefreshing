@@ -142,7 +142,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                     return "最后更新时间：\(formatter.string(from: d))"
                 }
-                
                 return "暂无刷新纪录"
             }
             
@@ -233,4 +232,18 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+}
+
+extension MasterViewController {
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+}
+
+extension UINavigationController {
+    
+    open override var childViewControllerForStatusBarStyle: UIViewController? {
+        return self.topViewController
+    }
 }

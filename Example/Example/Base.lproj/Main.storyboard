@@ -42,7 +42,7 @@
         <scene sceneID="8x7-vD-y6y">
             <objects>
                 <collectionViewController id="bha-rs-7D8" customClass="DetailCollectionViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Co7-QQ-J4g">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Co7-QQ-J4g">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -93,7 +93,7 @@
             </objects>
             <point key="canvasLocation" x="-1479" y="302"/>
         </scene>
-        <!--Master View Controller-->
+        <!--ZVRefreshing-->
         <scene sceneID="fpl-AO-y8E">
             <objects>
                 <viewController id="qeA-OG-s5X" customClass="MasterViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
@@ -172,7 +172,7 @@
                             <constraint firstItem="1P3-C8-EGU" firstAttribute="leading" secondItem="KMp-zm-3Jh" secondAttribute="leading" id="gTh-LP-qw7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="44i-mk-2w4"/>
+                    <navigationItem key="navigationItem" title="ZVRefreshing" id="44i-mk-2w4"/>
                     <connections>
                         <outlet property="tableView" destination="1P3-C8-EGU" id="rht-ep-fhT"/>
                     </connections>
