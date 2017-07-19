@@ -270,5 +270,5 @@ open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 ```
 
 ## License
-`ZVProgressHUD` distributed under the terms and conditions of the [MIT License](https://github.com/zevwings/ZVRefreshing/blob/master/LICENSE)
+`ZVProgressHUD` distributed under the terms and conditions of the [MIT License](https://github.com/zevwings/ZVRefreshing/blob/master/LICENSE).
 
