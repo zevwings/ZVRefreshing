@@ -43,6 +43,7 @@ class DetailTableViewController: UITableViewController {
                 }
             })
         }
+        
         self.tableView.footer = footer
         
     }

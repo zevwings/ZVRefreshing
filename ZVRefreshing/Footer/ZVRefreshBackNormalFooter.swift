@@ -9,7 +9,7 @@ import UIKit
 
 public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     
-    fileprivate lazy var activityIndicator : ZVActivityIndicatorView = {
+    public fileprivate(set) lazy var activityIndicator : ZVActivityIndicatorView = {
         var activityIndicator = ZVActivityIndicatorView()
         activityIndicator.color = .lightGray
         return activityIndicator

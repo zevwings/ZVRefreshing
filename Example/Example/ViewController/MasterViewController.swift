@@ -71,7 +71,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return baseView
     }
     
-    //  swiftlint:disable function_body_length
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let indexPath = self.tableView.indexPathForSelectedRow
@@ -83,7 +82,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             segue.destination.title = self.rows[0]
             
             let header = ZVRefreshNormalHeader()
-            
             var footer: ZVRefreshFooter?
             if _isAutoFooter {
                 footer = ZVRefreshAutoNormalFooter()
@@ -111,7 +109,9 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         case 2:
             segue.destination.title = self.rows[2]
             
-            let header = ZVRefreshNormalHeader()
+            let header = ZVRefreshNormalHeader(refreshHandler: { 
+                
+            })
             header.stateLabel.isHidden = true
             header.lastUpdatedTimeLabel.isHidden = true
             

@@ -14,8 +14,6 @@ open class ZVRefreshFooter: ZVRefreshComponent {
     
     /// 是否自动隐藏
     public var isAutomaticallyHidden: Bool = true
-    public var pageSize: Int = 0
-    public var stateLabelHidden: Bool = false
 
     override open func willMove(toSuperview newSuperview: UIView?) {
         // 判断superview是否为nil

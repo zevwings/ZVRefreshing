@@ -340,9 +340,3 @@ extension ZVRefreshComponent {
     /// 子类实现
     open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 }
-
-fileprivate extension ZVRefreshComponent {
-    
-    func perform(selector aSelector: Selector, target: Any) {
-    }
-}
