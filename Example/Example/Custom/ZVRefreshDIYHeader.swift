@@ -31,7 +31,7 @@ class ZVRefreshDIYHeader: ZVRefreshStateHeader {
         }
     }
     
-    override var state: State {
+    override var state: ZVRefreshComponent.State {
         get {
             return super.state
         }

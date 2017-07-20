@@ -131,6 +131,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             // 设置 Header
             let header = ZVRefreshNormalHeader()
+            
             header.setTitle("下拉后更新...", forState: .idle)
             header.setTitle("释放立即更新...", forState: .pulling)
             header.setTitle("正在刷新数据...", forState: .refreshing)

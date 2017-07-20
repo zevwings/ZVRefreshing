@@ -1,6 +1,9 @@
 # ZVRefreshing
 
 ![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)[](https://github.com/Carthage/Carthage)
+![CocoaPods Compatible](https://img.shields.io/badge/pod-1.0.0-4BC51D.svg?style=flat)[](https://cocoapods.org)
+![Platform](https://img.shields.io/badge/platform-ios-9F9F9F.svg)[](http://cocoadocs.org/docsets/Alamofire)
+
 <br/>
 ZVRefreshing is a pure-swift and wieldy refresh component.
 
@@ -106,11 +109,13 @@ header?.refreshHandler = {
 header?.addTarget(Any?, action: Selector)
 ```
 
-### Header 
-#### Functions
+### Functions
+
+The functions is same for header and footer.
+
 1. beginRefreshing()
 
-The refresh header begin enter into refreshing status. 
+The widget begin enter into refreshing status. 
 
 ```
 self.tableView.header?.beginRefreshing()
@@ -118,14 +123,14 @@ self.tableView.header?.beginRefreshing()
 
 2. endRefreshing()
 
-The refresh header begin enter into idle status. 
+The widge begin enter into idle status. 
 
 ```
 self.tableView.header?.endRefreshing()
 ```
 
 3. setTitle(_:forState:)
-To custom the title for refresh header, this function in `ZVRefreshStateHeader`. 
+To custom the title for widget, this function in `ZVRefreshStateHeader`. 
 
 ```
 header.setTitle("pull to refresh...", forState: .idle)
@@ -133,8 +138,17 @@ header.setTitle("release to refresh...", forState: .pulling)
 header.setTitle("loading...", forState: .refreshing)
 ```
 
+or 
+
+```
+ footer.setTitle("pull to refresh...", forState: .idle)
+ footer.setTitle("release to refresh...", forState: .pulling)
+ footer.setTitle("loading...", forState: .refreshing)
+ footer.setTitle("no more data", forState: .noMoreData)
+```
+
 4. setImages(_:forState:)
-To custom the images for refresh header, this function in `ZVRefreshAnimationHeader`, you can use it as following code, also you can extend a subclass, like [Example](https://github.com/zevwings/ZVRefreshing/blob/master/Example/Example/Custom/ZVRefreshCustomAnimationHeader.swift)
+To custom the images for widget, this function in `ZVRefreshAnimationHeader`, you can use it as following code, also you can extend a subclass, like [Example](https://github.com/zevwings/ZVRefreshing/blob/master/Example/Example/Custom/ZVRefreshCustomAnimationHeader.swift)
 
 ```
 self.setImages(idleImages, forState: .idle)
@@ -142,81 +156,182 @@ self.setImages(refreshingImages, forState: .pulling)
 self.setImages(refreshingImages, forState: .refreshing)
 ```
 
-#### Properties
-
+### Properties
+#### Header
 1. lastUpdatedTimeKey
 To storage the last time using this widget, if it dose not set, all your widget will shared a key `com.zevwings.refreshing.lastUpdateTime`
 
+```
+header.lastUpdatedTimeKey = "custom last updated key"
+```
+
 2. ignoredScrollViewContentInsetTop
+
+when your table set `contentInset` property, you should set it, for example:
+
+```
+self.tableView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom:0, right: 0)
+header.ignoredScrollViewContentInsetTop = 30
+```
+
 3. lastUpdatedTimeLabel
+
+To custom the `UILabel` properties for `lastUpdatedTimeLabel`, for example:
+
+```
+// hide the lastUpdatedTimeLabel
+header.lastUpdatedTimeLabel.isHidden = true
+```
+or 
+
+```
+// set the font for lastUpdatedTimeLabel
+header.lastUpdatedTimeLabel.font = .systemFont(ofSize: 16.0)
+```
+
 4. lastUpdatedTimeLabelText
-5. labelInsetLeft
-6. activityIndicator
-7. tintColor
-8. stateLabel
-9. animationView
 
-
-### Footer
-1. beginRefreshing()
-The refresh footer begin enter into refreshing status. 
+To custom the format for showing last time.
 
 ```
-self.tableView.footer?.beginRefreshing()
-```
+header.lastUpdatedTimeLabelText = { date in
 
+    if let d = date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return "Last updated：\(formatter.string(from: d))"
+    }
+    return "There is no record"
+}
+```
+#### Footer 
 1. isAutomaticallyHidden
+To set the automatically hidden for widget, default is `true`
+
+```
+footer.isAutomaticallyHidden = false
+```
+
 2. ignoredScrollViewContentInsetBottom
+when your table set `contentInset` property, you should set it, for example:
+
+```
+self.tableView.contentInset = UIEdgeInsets(top:0, left: 0, bottom:30, right: 0)
+footer.ignoredScrollViewContentInsetBottom = 30
+```
+
 3. isAutomaticallyRefresh
+To set the automatically refresh for widget, default is `true`, this property in `ZVRefreshAutoFooter`
+
+```
+footer.isAutomaticallyRefresh = false
+```
 
 #### Common
+The following properties is same for header and footer.
+
 1. labelInsetLeft
+To set the empty width between activityIndicator an label.
+
+```
+header.labelInsetLeft = 32.0
+```
+
 2. activityIndicator
+To custom the properties for `activityIndicator`, the properties @see [ZActivityIndicatorView](https://github.com/zevwings/ZActivityIndicatorView.git)
+
 3. tintColor
+To custom the color for all sub-widget.
+
+```
+header.tintColor = .black
+```
+
 4. stateLabel
+To custom the `UILabel` properties for `stateLabel`, for example:
+
+```
+// hide the stateLabel
+header.stateLabel.isHidden = true
+```
+or 
+
+```
+// set the font for stateLabel
+header.stateLabel.font = .systemFont(ofSize: 16.0)
+```
+
 5. animationView
-	⁃	
-### 自定义方法
 
-当需要自定义刷新控件时，可以继承RefreshComponent或者其子类，支持重写的属性，方法如下
-1. 控件刷新状态 
+To custom the `UIImageView` properties for `stateLabel`, for example:
+
+## Custom Usage
+
+You can extend `ZVRefreshComponent` or it's sub-class to custom your own refresh widget.
+like [Example](https://github.com/zevwings/ZVRefreshing/tree/master/Example/Example/Custom).
+
+### Properties
+
+1. state
+
+To custom you needed when refresh state changed.
 
 ```
-open var state: RefreshState
+open var state: ZVRefreshComponent.State
 ```
 
-2. 控件色调    
+2. pullingPercent
+
+To custom you needed when widget position changed.
+
+```
+open var pullingPercent: CGFloat
+```
+
+3. tintColor
+
+To custom you own widget color.
 
 ```
 open override var tintColor: UIColor!
 ```
 
-3. 控件初始化
+### Functions
+
+1. prepare
+
+To define your own controls, call at `init(frame: CGRect)`.
    
 ```
 open func prepare() {}
 ```
    
-4. 控件位置
+2. placeSubViews
+
+To set your own constrols size and position, call at `layoutSubviews()`.
 
 ```
 open func placeSubViews() {}
 ```
 
-5. UIScrollView属性监听方法
+3. scrollViewContentOffsetDidChanged
 
-- 监听UIScrollView.contentOffset
+To observe the UIScrollView.contentOffset, call at `UIScrollView.contentOffset` value changed.
 
 ```
 open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 ``` 
 
-- 监听UIScrollView.contentSize
+4. scrollViewContentSizeDidChanged
+
+To observe the UIScrollView.contentSize, call at `UIScrollView.contentSize` value changed.
 
 ```
 open func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 ```    
-- 监听UIScrollView.panGestureRecognizer.state
+5. scrollViewPanStateDidChanged
+
+To observe the UIScrollView.panGestureRecognizer.state, call at `UIScrollView.panGestureRecognizer.state` value changed.
 
 ```
 open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
