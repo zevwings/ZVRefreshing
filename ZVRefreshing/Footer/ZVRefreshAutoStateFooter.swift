@@ -57,7 +57,7 @@ extension ZVRefreshAutoStateFooter {
         if self.stateLabel.superview == nil {
             self.addSubview(self.stateLabel)
         }
-        
+                
         self.setTitle(localized(string: Constants.Footer.Auto.idle) , forState: .idle)
         self.setTitle(localized(string: Constants.Footer.Auto.refreshing), forState: .refreshing)
         self.setTitle(localized(string: Constants.Footer.Auto.noMoreData), forState: .noMoreData)

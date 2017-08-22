@@ -15,7 +15,6 @@
 		4D0578F21F0B27DA00F6D5A5 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */; };
 		4DDFCE491F13505500B62435 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D04C69E1F11261B001B6B96 /* ZVRefreshing.framework */; };
 		4DDFCE4A1F13505500B62435 /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D04C69E1F11261B001B6B96 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4DDFCEA01F13AE7C00B62435 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4DDFCEA21F13AE7C00B62435 /* Localizable.strings */; };
 		4DDFCEAD1F13C10A00B62435 /* DetailCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFCEAC1F13C10A00B62435 /* DetailCollectionViewController.swift */; };
 		4DE4C8561F1C67280091B71A /* ZVRefreshDIYHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE4C8551F1C67280091B71A /* ZVRefreshDIYHeader.swift */; };
 		4DE4C8591F1C674A0091B71A /* ZVRefreshBackDIYFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE4C8581F1C674A0091B71A /* ZVRefreshBackDIYFooter.swift */; };
@@ -102,8 +101,6 @@
 		4D0578ED1F0B27DA00F6D5A5 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		4D0578F31F0B27DA00F6D5A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4DDFCEA11F13AE7C00B62435 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		4DDFCEA31F13AEC000B62435 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4DDFCEAC1F13C10A00B62435 /* DetailCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewController.swift; sourceTree = "<group>"; };
 		4DE4C8551F1C67280091B71A /* ZVRefreshDIYHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshDIYHeader.swift; sourceTree = "<group>"; };
 		4DE4C8581F1C674A0091B71A /* ZVRefreshBackDIYFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackDIYFooter.swift; sourceTree = "<group>"; };
@@ -181,7 +178,6 @@
 				4D0578D81F0B27D900F6D5A5 /* Assets.xcassets */,
 				4D0578DA1F0B27D900F6D5A5 /* LaunchScreen.storyboard */,
 				4D0578DD1F0B27D900F6D5A5 /* Info.plist */,
-				4DDFCEA21F13AE7C00B62435 /* Localizable.strings */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -365,7 +361,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D0578DC1F0B27D900F6D5A5 /* LaunchScreen.storyboard in Resources */,
-				4DDFCEA01F13AE7C00B62435 /* Localizable.strings in Resources */,
 				4D0578D91F0B27D900F6D5A5 /* Assets.xcassets in Resources */,
 				4D0578D71F0B27D900F6D5A5 /* Main.storyboard in Resources */,
 			);
@@ -456,15 +451,6 @@
 				4D0578DB1F0B27D900F6D5A5 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		4DDFCEA21F13AE7C00B62435 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4DDFCEA11F13AE7C00B62435 /* Base */,
-				4DDFCEA31F13AEC000B62435 /* zh-Hans */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

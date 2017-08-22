@@ -231,8 +231,29 @@ internal extension Bundle {
     class var current: Bundle {
         return Bundle(for: ZVRefreshComponent.self)
     }
+    
+    class var resource: Bundle? {
+        
+        guard let path = self.current.path(forResource: "Resource", ofType: "bundle") else {
+            return nil
+        }
+        
+        return Bundle(path: path)
+    }
 }
 
 func localized(string key: String, comment: String = "") -> String {
-    return NSLocalizedString(key, tableName: "ZVRefreshing", bundle: Bundle.current, value: "", comment: comment.isEmpty ? key: comment)
+    guard let bundle = Bundle.resource else { return "" }
+    return NSLocalizedString(key, tableName: language(), bundle: bundle, value: "", comment: comment.isEmpty ? key: comment)
+}
+
+func language() -> String {
+    guard let language = Locale.preferredLanguages.first else { return "en"}
+    if language.hasPrefix("zh-Hant") {
+        return "zh-Hant"
+    } else if language.hasPrefix("zh-Hans") {
+        return "zh-Hans"
+    } else {
+        return "en"
+    }
 }

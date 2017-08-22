@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "ZVRefreshing"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "A pure-swift and wieldy refresh component."
   s.description  = <<-DESC
   					ZRefreshing is a pure-swift and wieldy refresh component.
@@ -21,6 +21,8 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/zevwings/ZVRefreshing.git", :tag => "#{s.version}" }
   s.source_files = "ZVRefreshing/**/*.swift", "ZVRefreshing/ZVRefreshing.h"
+  s.resources    = "ZVRefreshing/Resource/*"
+
   s.requires_arc = true
 
 end
