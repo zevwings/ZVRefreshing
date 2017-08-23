@@ -48,7 +48,8 @@ open class ZVRefreshComponent: UIView {
     }
     
     /// 控件是否处于刷新状态
-    public var isRefreshing: Bool { return self.state == .refreshing || self.state == .willRefresh }
+    public private(set) var isRefreshing: Bool = false
+    //{ return self.state == .refreshing || self.state == .willRefresh }
 
     /// 回调对象和回调函数
     fileprivate var _target: Any?
@@ -116,6 +117,7 @@ open class ZVRefreshComponent: UIView {
         }
         set {
             if self.checkState(newValue).result { return }
+            self.isRefreshing = newValue == .refreshing
             objc_setAssociatedObject(self, &AssocaiationKey.state, newValue.rawValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
