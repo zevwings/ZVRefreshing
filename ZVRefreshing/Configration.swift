@@ -226,6 +226,19 @@ internal extension UILabel {
     }
 }
 
+internal extension UILabel {
+    
+    class var `default`: UILabel {
+        let label = UILabel(frame: .zero)
+        label.font = Component.font
+        label.textColor = Component.tintColor
+        label.autoresizingMask = .flexibleWidth
+        label.textAlignment = .center
+        label.backgroundColor = .clear
+        return label
+    }
+}
+
 internal extension Bundle {
     
     class var current: Bundle {

@@ -9,7 +9,7 @@ import UIKit
 
 open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     
-    public fileprivate(set) lazy var stateLabel: UILabel = ZVRefreshingLabel()
+    public fileprivate(set) lazy var stateLabel: UILabel = .default
     public var labelInsetLeft: CGFloat = 24.0
     fileprivate var _stateTitles:[State: String] = [:]
     

@@ -27,7 +27,6 @@
 		4D94FCCF1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBD1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift */; };
 		4D94FCD01F0DFFEC00677215 /* ZVRefreshStateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBE1F0DFFEC00677215 /* ZVRefreshStateHeader.swift */; };
 		4D94FCD11F0DFFEC00677215 /* ZVRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBF1F0DFFEC00677215 /* ZVRefreshComponent.swift */; };
-		4D94FCD21F0DFFEC00677215 /* ZVRefreshingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCC01F0DFFEC00677215 /* ZVRefreshingLabel.swift */; };
 		4DDFCE501F135E1F00B62435 /* ZVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFCE4F1F135E1F00B62435 /* ZVActivityIndicatorView.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +64,6 @@
 		4D94FCBD1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshNormalHeader.swift; sourceTree = "<group>"; };
 		4D94FCBE1F0DFFEC00677215 /* ZVRefreshStateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshStateHeader.swift; sourceTree = "<group>"; };
 		4D94FCBF1F0DFFEC00677215 /* ZVRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshComponent.swift; sourceTree = "<group>"; };
-		4D94FCC01F0DFFEC00677215 /* ZVRefreshingLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshingLabel.swift; sourceTree = "<group>"; };
 		4DDFCE4F1F135E1F00B62435 /* ZVActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVActivityIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -119,7 +117,6 @@
 			children = (
 				4D94FCAE1F0DFFEC00677215 /* Configration.swift */,
 				4D94FCAF1F0DFFEC00677215 /* Extensions.swift */,
-				4D94FCC01F0DFFEC00677215 /* ZVRefreshingLabel.swift */,
 				4DDFCE4F1F135E1F00B62435 /* ZVActivityIndicatorView.swift */,
 				4D94FCBF1F0DFFEC00677215 /* ZVRefreshComponent.swift */,
 				4D94FCBA1F0DFFEC00677215 /* Header */,
@@ -286,7 +283,6 @@
 				4D94FCC61F0DFFEC00677215 /* ZVRefreshFooter.swift in Sources */,
 				4D94FCCE1F0DFFEC00677215 /* ZVRefreshHeader.swift in Sources */,
 				4D94FCC21F0DFFEC00677215 /* Configration.swift in Sources */,
-				4D94FCD21F0DFFEC00677215 /* ZVRefreshingLabel.swift in Sources */,
 				4D94FCD11F0DFFEC00677215 /* ZVRefreshComponent.swift in Sources */,
 				4D94FCC81F0DFFEC00677215 /* ZVRefreshAutoFooter.swift in Sources */,
 				4D94FCCD1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift in Sources */,

@@ -10,8 +10,8 @@ import UIKit
 
 open class ZVRefreshStateHeader: ZVRefreshHeader {
 
-    public fileprivate(set) lazy var lastUpdatedTimeLabel: UILabel = ZVRefreshingLabel()
-    public fileprivate(set) lazy var stateLabel: UILabel = ZVRefreshingLabel()
+    public fileprivate(set) lazy var lastUpdatedTimeLabel: UILabel = .default
+    public fileprivate(set) lazy var stateLabel: UILabel = .default
     public var labelInsetLeft: CGFloat = 24.0
 
     fileprivate var stateTitles: [State : String] = [:]
