@@ -98,15 +98,24 @@ let header = RefreshHeader()
 self.tableView.header = header
 ```
 
-if you initialize the widget by none-parameters way,   you can add refresh handler block or target-action with following code:
+if you initialize the widget by none-parameters way, you can add refresh handler block or target-action with following code:
 
+1. add a refresh handler
 ```
 // add refresh handler
 header?.refreshHandler = {
     // your codes            
 }
+```
+2. add a Target-Action
+```
 // add refresh target-action
 header?.addTarget(Any?, action: Selector)
+```
+3. add a Target-Action-UIControlEvents.valueChanged
+```
+// The ZVRefreshComponent extend from UIControl, When isRefreshing properties changed will send a UIControlEvents.valueChanged event.
+header?.addTarget(Any, action: Selector, for: .valueChanged)
 ```
 
 ### Functions

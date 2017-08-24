@@ -72,22 +72,6 @@ extension ZVRefreshHeader {
         self.y = -self.height - self.ignoredScrollViewContentInsetTop
     }
 }
-/**
-extension ZVRefreshHeader {
-    
-    public override func endRefreshing() {
-        
-        guard let scrollView = self.scrollView else { return }
-        
-        if scrollView.isKind(of: UICollectionView.self) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01 / Double(NSEC_PER_SEC), execute: { 
-                super.endRefreshing()
-            })
-        } else {
-            super.endRefreshing()
-        }
-    }
-}*/
 
 extension ZVRefreshHeader {
     

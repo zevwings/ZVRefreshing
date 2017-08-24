@@ -20,16 +20,10 @@ class DetailTableViewController: UITableViewController {
 
         _addBarButton()
         
-        header?.refreshHandler = {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                self.tableView.footer?.isNoMoreData = false
-                self.rows = 16
-                self.tableView.reloadData()
-                self.tableView.header?.endRefreshing()
-
-            })
-        }
-
+        header?.addTarget(self, action: #selector(isRefreshingValueChange(_:)), for: .valueChanged)
+        
+//        header?.addTarget(self, action: #selector(refreshAction(_:)));
+        
         self.tableView.header = header
         
         footer?.refreshHandler = {
@@ -78,6 +72,20 @@ class DetailTableViewController: UITableViewController {
             self.tableView.header?.endRefreshing()
 
         })
+    }
+    
+    func isRefreshingValueChange(_ sender: ZVRefreshComponent) {
+        if sender.isRefreshing {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                self.tableView.footer?.isNoMoreData = false
+                self.rows = 16
+                self.tableView.reloadData()
+                self.tableView.header?.endRefreshing()
+                
+            })
+        } else {
+            
+        }
     }
     
     fileprivate func _addBarButton() {

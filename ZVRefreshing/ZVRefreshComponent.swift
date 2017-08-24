@@ -116,9 +116,14 @@ open class ZVRefreshComponent: UIControl {
             return State.mapState(with: value)
         }
         set {
+            
             if self.checkState(newValue).result { return }
+            
+            self.willChangeValue(forKey: "isRefreshing")
             self.isRefreshing = newValue == .refreshing
+            self.didChangeValue(forKey: "isRefreshing")
             self.sendActions(for: .valueChanged)
+            
             objc_setAssociatedObject(self, &AssocaiationKey.state, newValue.rawValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
