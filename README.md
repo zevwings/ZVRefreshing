@@ -367,7 +367,7 @@ self.tableView.footer?.rx.controlEvent(.valueChanged).asObservable()
 There is a [Simple Demo](https://github.com/zevwings/ZVRefreshing-Rx.git) for Rx.
 
 ## Issue or Suggestion
-You can issue me on [GitHub](https://github.com/zevwings/ZVRefreshing-Rx/issues) or send a email<zev.wings@gmail.com>.
+You can issue me on [GitHub](https://github.com/zevwings/ZVRefreshing/issues) or send a email<zev.wings@gmail.com>.
 If you have a good idea, tell me.
 thanks.
 
