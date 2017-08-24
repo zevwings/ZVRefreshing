@@ -25,13 +25,13 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
         }
     }
     
-    override public var state: State {
+    override public var refreshState: State {
         get {
-            return super.state
+            return super.refreshState
         }
         set {
             if self.checkState(newValue).result { return }
-            super.state = newValue
+            super.refreshState = newValue
             if newValue == .noMoreData || newValue == .idle {
                 self.activityIndicator.stopAnimating()
             } else if newValue == .refreshing {

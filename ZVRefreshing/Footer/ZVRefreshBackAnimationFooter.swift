@@ -21,7 +21,7 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     override open var pullingPercent: CGFloat {
         didSet {
             let imgs = self._stateImages[.idle] ?? []
-            if self.state != .idle || imgs.count == 0 { return }
+            if self.refreshState != .idle || imgs.count == 0 { return }
             self.animationView.stopAnimating()
             var index = Int(CGFloat(imgs.count) * pullingPercent)
             if index >= imgs.count {
@@ -31,14 +31,14 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    override open var state: State {
+    override open var refreshState: State {
         get {
-            return super.state
+            return super.refreshState
         }
         set {
             
             if self.checkState(newValue).0 { return }
-            super.state = newValue
+            super.refreshState = newValue
             
             if newValue == .pulling || newValue == .refreshing {
                 

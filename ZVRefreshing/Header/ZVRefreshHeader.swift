@@ -22,14 +22,14 @@ open class ZVRefreshHeader: ZVRefreshComponent {
 
     fileprivate var insetTop: CGFloat = 0.0
 
-    override open var state: State {
+    override open var refreshState: State {
         get {
-            return super.state
+            return super.refreshState
         }
         set {
             let checked = self.checkState(newValue)
             guard checked.result == false else { return }
-            super.state = newValue
+            super.refreshState = newValue
             
             if newValue == .idle {
                 guard checked.oldState == .refreshing else { return }
@@ -96,7 +96,7 @@ extension ZVRefreshHeader {
         
         guard let scrollView = self.scrollView else { return }
         
-        if self.state == .refreshing {
+        if self.refreshState == .refreshing {
             guard self.window != nil else { return }
             
             var insetT = -self.scrollView!.offsetY > self.scrollViewOriginalInset.top ? -self.scrollView!.offsetY : self.scrollViewOriginalInset.top
@@ -119,12 +119,12 @@ extension ZVRefreshHeader {
         
         if scrollView.isDragging {
             self.pullingPercent = pullingPercent
-            if self.state == .idle && offsetY < normal2pullingOffsetY {
-                self.state = .pulling
-            } else if self.state == .pulling && offsetY >= normal2pullingOffsetY {
-                self.state = .idle
+            if self.refreshState == .idle && offsetY < normal2pullingOffsetY {
+                self.refreshState = .pulling
+            } else if self.refreshState == .pulling && offsetY >= normal2pullingOffsetY {
+                self.refreshState = .idle
             }
-        } else if self.state == .pulling {
+        } else if self.refreshState == .pulling {
             self.beginRefreshing()
         }else if pullingPercent < 1 {
             self.pullingPercent = pullingPercent

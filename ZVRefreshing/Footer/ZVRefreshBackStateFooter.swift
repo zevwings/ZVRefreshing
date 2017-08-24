@@ -23,13 +23,13 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
         }
     }
     
-    override open var state: State {
+    override open var refreshState: State {
         get {
-            return super.state
+            return super.refreshState
         }
         set {
             if self.checkState(newValue).result { return }
-            super.state = newValue
+            super.refreshState = newValue
             self.stateLabel.text = self._stateTitles[newValue]
         }
     }
@@ -39,7 +39,7 @@ extension ZVRefreshBackStateFooter {
     
     public func setTitle(_ title: String, forState state: State) {
         self._stateTitles.updateValue(title, forKey: state)
-        self.stateLabel.text = self._stateTitles[self.state]
+        self.stateLabel.text = self._stateTitles[self.refreshState]
     }
 }
 

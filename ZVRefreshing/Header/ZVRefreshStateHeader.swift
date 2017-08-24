@@ -34,14 +34,14 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         }
     }
     
-    override open var state: State {
+    override open var refreshState: State {
         get {
-            return super.state
+            return super.refreshState
         }
         set {
             if self.checkState(newValue).result { return }
-            super.state = newValue
-            self.stateLabel.text = self.stateTitles[self.state]
+            super.refreshState = newValue
+            self.stateLabel.text = self.stateTitles[self.refreshState]
             
             let key = self.lastUpdatedTimeKey
             self.lastUpdatedTimeKey = key
@@ -91,7 +91,7 @@ public extension ZVRefreshStateHeader {
     /// 设置状态文本
     public func setTitle(_ title: String, forState state: State) {
         self.stateTitles.updateValue(title, forKey: state)
-        self.stateLabel.text = self.stateTitles[self.state]
+        self.stateLabel.text = self.stateTitles[self.refreshState]
     }
 }
 

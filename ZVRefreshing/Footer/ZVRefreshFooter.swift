@@ -34,9 +34,9 @@ open class ZVRefreshFooter: ZVRefreshComponent {
     public var isNoMoreData: Bool = false {
         didSet {
             if self.isNoMoreData {
-                self.state = .noMoreData
+                self.refreshState = .noMoreData
             } else {
-                self.state = .idle
+                self.refreshState = .idle
             }
         }
     }
@@ -45,11 +45,11 @@ open class ZVRefreshFooter: ZVRefreshComponent {
 extension ZVRefreshFooter {
 
     public func endRefreshingWithNoMoreData() {
-        self.state = .noMoreData
+        self.refreshState = .noMoreData
     }
     
     public func resetNoMoreData() {
-        self.state = .idle
+        self.refreshState = .idle
     }
 }
 

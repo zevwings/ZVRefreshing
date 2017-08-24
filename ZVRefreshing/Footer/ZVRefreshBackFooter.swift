@@ -12,16 +12,16 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
     fileprivate var lastBottomDelta: CGFloat = 0.0
     fileprivate var lastRefreshCount: Int = 0
     
-    override open var state: State {
+    override open var refreshState: State {
         get {
-            return super.state
+            return super.refreshState
         }
         set {
             guard let scrollView = self.scrollView else { return }
             
             let checked = self.checkState(newValue)
             if checked.result { return }
-            super.state = newValue
+            super.refreshState = newValue
             
             switch newValue {
             case .idle, .noMoreData:
@@ -94,7 +94,7 @@ extension ZVRefreshBackFooter {
         
         super.scrollViewContentOffsetDidChanged(change)
         
-        guard self.state != .refreshing else { return }
+        guard self.refreshState != .refreshing else { return }
         guard let scrollView = self.scrollView else { return }
         
         self.scrollViewOriginalInset = scrollView.contentInset
@@ -104,7 +104,7 @@ extension ZVRefreshBackFooter {
         
         let pullingPercent = (currentOffsetY - happenOffsetY) / self.height
         
-        if self.state == .noMoreData {
+        if self.refreshState == .noMoreData {
             self.pullingPercent = pullingPercent
             return
         }
@@ -112,12 +112,12 @@ extension ZVRefreshBackFooter {
         if scrollView.isDragging {
             self.pullingPercent = pullingPercent
             let normal2pullingOffsetY = happenOffsetY + self.height
-            if self.state == .idle && currentOffsetY > normal2pullingOffsetY {
-                self.state = .pulling
-            } else if self.state == .pulling && currentOffsetY <= normal2pullingOffsetY {
-                self.state = .idle
+            if self.refreshState == .idle && currentOffsetY > normal2pullingOffsetY {
+                self.refreshState = .pulling
+            } else if self.refreshState == .pulling && currentOffsetY <= normal2pullingOffsetY {
+                self.refreshState = .idle
             }
-        } else if self.state == .pulling {
+        } else if self.refreshState == .pulling {
             self.beginRefreshing()
         } else if pullingPercent < 1 {
             self.pullingPercent = pullingPercent

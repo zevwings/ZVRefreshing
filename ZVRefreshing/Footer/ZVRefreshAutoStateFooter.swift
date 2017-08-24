@@ -29,13 +29,13 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
         }
     }
     
-    override open var state: State {
+    override open var refreshState: State {
         get {
-            return super.state
+            return super.refreshState
         }
         set {
             if self.checkState(newValue).0 { return }
-            super.state = newValue
+            super.refreshState = newValue
             
             if self.stateLabel.isHidden && newValue == .refreshing {
                 self.stateLabel.text = nil
@@ -51,7 +51,7 @@ extension ZVRefreshAutoStateFooter {
     public func setTitle(_ title: String?, forState state: State) {
         if title == nil {return}
         self._stateTitles.updateValue(title!, forKey: state)
-        self.stateLabel.text = self._stateTitles[self.state]
+        self.stateLabel.text = self._stateTitles[self.refreshState]
     }
 }
 
@@ -77,6 +77,6 @@ extension ZVRefreshAutoStateFooter {
     }
     
     internal func stateLabelClicked() {
-        if self.state == .idle { self.beginRefreshing() }
+        if self.refreshState == .idle { self.beginRefreshing() }
     }
 }

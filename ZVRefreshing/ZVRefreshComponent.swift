@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class ZVRefreshComponent: UIView {
+open class ZVRefreshComponent: UIControl {
     
     public enum State: String {
         
@@ -110,7 +110,7 @@ open class ZVRefreshComponent: UIView {
     // MARK: - Getter & Setter
     
     /// 刷新状态
-    open var state: State {
+    open var refreshState: State {
         get {
             let value = objc_getAssociatedObject(self, &AssocaiationKey.state) as? String
             return State.mapState(with: value)
@@ -118,13 +118,14 @@ open class ZVRefreshComponent: UIView {
         set {
             if self.checkState(newValue).result { return }
             self.isRefreshing = newValue == .refreshing
+            self.sendActions(for: .valueChanged)
             objc_setAssociatedObject(self, &AssocaiationKey.state, newValue.rawValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
     /// 检查RefreshState.newValue 是否和 RefreshState.oldState 相同
     public func checkState(_ state: State) -> (result: Bool, oldState: State) {
-        let oldState = self.state
+        let oldState = self.refreshState
         if oldState == state { return (true, oldState) }
         return (false, oldState)
     }
@@ -200,7 +201,7 @@ open class ZVRefreshComponent: UIView {
     
     override open func draw(_ rect: CGRect) {
         super.draw(rect)
-        if self.state == .willRefresh { self.state = .refreshing }
+        if self.refreshState == .willRefresh { self.refreshState = .refreshing }
     }
 }
 
@@ -231,10 +232,10 @@ extension ZVRefreshComponent {
         self.pullingPercent = 1.0
         
         if self.window != nil {
-            self.state = .refreshing
+            self.refreshState = .refreshing
         } else {
-            if self.state != .refreshing {
-                self.state = .willRefresh
+            if self.refreshState != .refreshing {
+                self.refreshState = .willRefresh
                 self.setNeedsDisplay()
             }
         }
@@ -247,7 +248,7 @@ extension ZVRefreshComponent {
     
     /// 结束刷新状态
     public func endRefreshing() {
-        self.state = .idle
+        self.refreshState = .idle
     }
     
     public func endRefreshing(with completionHandler: @escaping () -> ()) {

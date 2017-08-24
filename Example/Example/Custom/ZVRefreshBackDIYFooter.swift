@@ -31,14 +31,14 @@ class ZVRefreshBackDIYFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    override var state: State {
+    override var refreshState: State {
         get {
-            return super.state
+            return super.refreshState
         }
         set {
             let checked = self.checkState(newValue)
             guard checked.result == false else { return }
-            super.state = newValue
+            super.refreshState = newValue
             
             switch newValue {
             case .idle:

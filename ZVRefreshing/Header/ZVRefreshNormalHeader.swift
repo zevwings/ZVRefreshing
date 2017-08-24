@@ -25,19 +25,19 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         }
     }
     
-    override open var state: State {
+    override open var refreshState: State {
         get {
-            return super.state
+            return super.refreshState
         }
         set {
             if self.checkState(newValue).result { return }
-            super.state = newValue
+            super.refreshState = newValue
             
             if newValue == .idle {
-                if self.state == .refreshing {
+                if self.refreshState == .refreshing {
                     UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
                         }, completion: { finished in
-                            guard self.state == .idle else { return }
+                            guard self.refreshState == .idle else { return }
                             self.activityIndicator.stopAnimating()
                     })
                 } else {

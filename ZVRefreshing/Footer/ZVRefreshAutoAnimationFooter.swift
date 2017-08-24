@@ -18,13 +18,13 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     fileprivate var _stateImages: [State: [UIImage]] = [:]
     fileprivate var _stateDurations: [State: TimeInterval] = [:]
     
-    override open var state: State {
+    override open var refreshState: State {
         get {
-            return super.state
+            return super.refreshState
         }
         set {
             guard self.checkState(newValue).result == false else { return }
-            super.state = newValue
+            super.refreshState = newValue
             
             switch newValue {
             case .refreshing:

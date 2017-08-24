@@ -31,21 +31,21 @@ class ZVRefreshDIYHeader: ZVRefreshStateHeader {
         }
     }
     
-    override var state: ZVRefreshComponent.State {
+    override var refreshState: ZVRefreshComponent.State {
         get {
-            return super.state
+            return super.refreshState
         }
         set {
             if self.checkState(newValue).result { return }
-            super.state = newValue
+            super.refreshState = newValue
             
             if newValue == .idle {
-                if self.state == .refreshing {
+                if self.refreshState == .refreshing {
                     self._arrowView.transform = CGAffineTransform.identity
                     UIView.animate(withDuration: 0.15, animations: {
                         self._activityIndicator.alpha = 0.0
                     }, completion: { _ in
-                        guard self.state == .idle else { return }
+                        guard self.refreshState == .idle else { return }
                         self._activityIndicator.alpha = 1.0
                         self._activityIndicator.stopAnimating()
                         self._arrowView.isHidden = false

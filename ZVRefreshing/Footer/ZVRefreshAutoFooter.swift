@@ -12,20 +12,20 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     public var isAutomaticallyRefresh: Bool = true
     fileprivate var _triggerAutomaticallyRefreshPercent: CGFloat = 1.0
     
-    override open var state: State {
+    override open var refreshState: State {
         get {
-            return super.state
+            return super.refreshState
         }
         set {
             let checked = self.checkState(newValue)
             guard checked.result == false else { return }
-            super.state = newValue
+            super.refreshState = newValue
             
             if newValue == .refreshing {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
                     self.executeRefreshCallback()
                 })
-            } else if state == .noMoreData || state == .idle {
+            } else if refreshState == .noMoreData || refreshState == .idle {
                 if checked.oldState == .refreshing {
                     self.endRefreshingCompletionHandler?()
                 }
@@ -48,7 +48,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
                 }
             } else {
                 if newValue {
-                    self.state = .idle
+                    self.refreshState = .idle
                     scrollView.insetBottom -= self.height
                 }
             }
@@ -84,7 +84,7 @@ extension ZVRefreshAutoFooter {
     override open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewContentOffsetDidChanged(change)
         
-        guard self.state == .idle, self.isAutomaticallyRefresh, self.y != 0 else { return }
+        guard self.refreshState == .idle, self.isAutomaticallyRefresh, self.y != 0 else { return }
         guard let scrollView = self.scrollView else { return }
     
         if scrollView.insetTop + scrollView.contentHeight > scrollView.height {
@@ -101,7 +101,7 @@ extension ZVRefreshAutoFooter {
     override open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
         super.scrollViewPanStateDidChanged(change)
         
-        guard self.state == .idle else { return }
+        guard self.refreshState == .idle else { return }
         guard let scrollView = self.scrollView else { return }
 
         if scrollView.panGestureRecognizer.state == .ended {
