@@ -33,7 +33,6 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
             self.stateLabel.text = self._stateTitles[newValue]
         }
     }
-    
 }
 
 extension ZVRefreshBackStateFooter {

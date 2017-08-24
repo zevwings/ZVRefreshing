@@ -11,7 +11,7 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
 
     fileprivate(set) lazy var  animationView: UIImageView = {
         let animationView = UIImageView()
-        animationView.backgroundColor = UIColor.clear
+        animationView.backgroundColor = .clear
         return animationView
     }()
     

@@ -122,7 +122,6 @@ extension ZVRefreshBackFooter {
         } else if pullingPercent < 1 {
             self.pullingPercent = pullingPercent
         }
-        
     }
     
     override open func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
@@ -150,5 +149,4 @@ extension ZVRefreshBackFooter {
             return -self.scrollViewOriginalInset.top
         }
     }
-
 }

@@ -72,7 +72,7 @@ extension ZVRefreshHeader {
         self.y = -self.height - self.ignoredScrollViewContentInsetTop
     }
 }
-
+/**
 extension ZVRefreshHeader {
     
     public override func endRefreshing() {
@@ -87,7 +87,7 @@ extension ZVRefreshHeader {
             super.endRefreshing()
         }
     }
-}
+}*/
 
 extension ZVRefreshHeader {
     

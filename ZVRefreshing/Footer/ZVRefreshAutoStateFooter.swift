@@ -9,7 +9,13 @@ import UIKit
 
 open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     
-    public fileprivate(set) lazy var stateLabel: UILabel = .default
+    public fileprivate(set) lazy var stateLabel: UILabel = { [unowned self] in
+        let label: UILabel = .default
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(.init(target: self,
+                                         action: #selector(ZVRefreshAutoStateFooter.stateLabelClicked)))
+        return label
+    }()
     public var labelInsetLeft: CGFloat = 24.0
     fileprivate var _stateTitles:[State: String] = [:]
     
@@ -61,9 +67,6 @@ extension ZVRefreshAutoStateFooter {
         self.setTitle(localized(string: Constants.Footer.Auto.idle) , forState: .idle)
         self.setTitle(localized(string: Constants.Footer.Auto.refreshing), forState: .refreshing)
         self.setTitle(localized(string: Constants.Footer.Auto.noMoreData), forState: .noMoreData)
-        
-        self.stateLabel.isUserInteractionEnabled = true
-        self.stateLabel.addGestureRecognizer(.init(target: self, action: #selector(ZVRefreshAutoStateFooter.stateLabelClicked)))
     }
     
     override open func placeSubViews() {

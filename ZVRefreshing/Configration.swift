@@ -257,10 +257,10 @@ internal extension Bundle {
 
 func localized(string key: String, comment: String = "") -> String {
     guard let bundle = Bundle.resource else { return "" }
-    return NSLocalizedString(key, tableName: language(), bundle: bundle, value: "", comment: comment.isEmpty ? key: comment)
+    return NSLocalizedString(key, tableName: tableName(), bundle: bundle, value: "", comment: comment.isEmpty ? key: comment)
 }
 
-func language() -> String {
+func tableName() -> String {
     guard let language = Locale.preferredLanguages.first else { return "en"}
     if language.hasPrefix("zh-Hant") {
         return "zh-Hant"

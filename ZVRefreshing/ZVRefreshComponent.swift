@@ -210,7 +210,7 @@ extension ZVRefreshComponent {
     /// 初始化控件
     open func prepare() {
         self.autoresizingMask = .flexibleWidth
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = .clear
     }
     
     /// 放置控件，设置控件位置

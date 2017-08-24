@@ -11,7 +11,7 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
 
     fileprivate(set) lazy var  activityIndicator : ZVActivityIndicatorView = {
         var activityIndicator = ZVActivityIndicatorView()
-        activityIndicator.color = UIColor.lightGray
+        activityIndicator.color = .lightGray
         return activityIndicator
     }()
     
