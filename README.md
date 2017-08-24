@@ -346,6 +346,31 @@ To observe the UIScrollView.panGestureRecognizer.state, call at `UIScrollView.pa
 open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 ```
 
+## Update Log
+#### V1.1 Why use UIControl?
+The ZVRefrhing v1.0 is base on UIView, but it is not support for RxSwift binding, if the control beginRefreshing, you can use `refreshHandler` or `addTarget(Any?, action: Selector)`, but it not a good idea for `Rx`.
+Now, you can use `ZVRefreshing` with `Rx`, like: 
+
+```
+self.tableView.footer?.rx.controlEvent(.valueChanged).asObservable()
+    .map { [unowned self] _ in
+        return self.tableView.footer?.isRefreshing ?? false
+    }.filter {
+        $0 == true
+    }.subscribe(onNext: { [unowned self] _ in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            self.tableView.footer?.endRefreshing()
+        }
+    }).disposed(by: _disposeBag);
+```
+
+There is a [Simple Demo](https://github.com/zevwings/ZVRefreshing-Rx.git) for Rx.
+
+## Issue or Suggestion
+You can issue me on [GitHub](https://github.com/zevwings/ZVRefreshing-Rx/issues) or send a email<zev.wings@gmail.com>.
+If you have a good idea, tell me.
+thanks.
+
 ## License
 `ZVRefreshing` distributed under the terms and conditions of the [MIT License](https://github.com/zevwings/ZVRefreshing/blob/master/LICENSE).
 
