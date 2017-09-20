@@ -76,7 +76,7 @@ extension ZVRefreshAutoStateFooter {
         self.stateLabel.frame = self.bounds
     }
     
-    internal func stateLabelClicked() {
+    @objc internal func stateLabelClicked() {
         if self.refreshState == .idle { self.beginRefreshing() }
     }
 }

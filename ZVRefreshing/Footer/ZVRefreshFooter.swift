@@ -44,7 +44,7 @@ open class ZVRefreshFooter: ZVRefreshComponent {
 
 extension ZVRefreshFooter {
 
-    public func endRefreshingWithNoMoreData() {
+    @objc public func endRefreshingWithNoMoreData() {
         self.refreshState = .noMoreData
     }
     

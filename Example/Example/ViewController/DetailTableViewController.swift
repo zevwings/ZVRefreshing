@@ -74,7 +74,7 @@ class DetailTableViewController: UITableViewController {
         })
     }
     
-    func isRefreshingValueChange(_ sender: ZVRefreshComponent) {
+    @objc func isRefreshingValueChange(_ sender: ZVRefreshComponent) {
         if sender.isRefreshing {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 self.tableView.footer?.isNoMoreData = false
@@ -99,7 +99,7 @@ class DetailTableViewController: UITableViewController {
 
     }
     
-    func backAction(_ sender: Any?) {
+    @objc func backAction(_ sender: Any?) {
         self.navigationController?.popViewController(animated: true)
     }
 }

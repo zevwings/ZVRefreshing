@@ -98,7 +98,7 @@ extension UITableView {
         }
     }
 
-    func _reloadData() {
+    @objc func _reloadData() {
         self._reloadData()
         self.executeReloadDataBlock()
     }
@@ -120,7 +120,7 @@ extension UICollectionView {
         }
     }
     
-    func _reloadData() {
+    @objc func _reloadData() {
         self._reloadData()
         self.executeReloadDataBlock()
     }
@@ -133,12 +133,12 @@ extension NSObject {
         let method1 = class_getInstanceMethod(self, m1)
         let method2 = class_getInstanceMethod(self, m2)
         
-        let didAddMethod = class_addMethod(self, m1, method_getImplementation(method2), method_getTypeEncoding(method2))
+        let didAddMethod = class_addMethod(self, m1, method_getImplementation(method2!), method_getTypeEncoding(method2!))
         
         if didAddMethod {
-            class_replaceMethod(self, m2, method_getImplementation(method1), method_getTypeEncoding(method1))
+            class_replaceMethod(self, m2, method_getImplementation(method1!), method_getTypeEncoding(method1!))
         } else {
-            method_exchangeImplementations(method1, method2)
+            method_exchangeImplementations(method1!, method2!)
         }
     }
 }

@@ -214,13 +214,13 @@ open class ZVRefreshComponent: UIControl {
 extension ZVRefreshComponent {
     
     /// 初始化控件
-    open func prepare() {
+    @objc open func prepare() {
         self.autoresizingMask = .flexibleWidth
         self.backgroundColor = .clear
     }
     
     /// 放置控件，设置控件位置
-    open func placeSubViews() {}
+    @objc open func placeSubViews() {}
 }
 
 // MARK: - 状态控制
@@ -252,7 +252,7 @@ extension ZVRefreshComponent {
     }
     
     /// 结束刷新状态
-    public func endRefreshing() {
+    @objc public func endRefreshing() {
         self.refreshState = .idle
     }
     
@@ -338,13 +338,13 @@ extension ZVRefreshComponent {
 
     /// 监听UIScrollView.contentOffset 变化时调用
     /// 子类实现
-    open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
+    @objc open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
     
     /// 监听UIScrollView.contentSize 变化时调用
     /// 子类实现
-    open func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
+    @objc open func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
     
     /// 监听UIScrollView.panGestureRecognizer.state 变化时调用
     /// 子类实现
-    open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
+    @objc open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 }

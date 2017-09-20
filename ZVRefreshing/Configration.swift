@@ -220,7 +220,7 @@ internal extension UILabel {
         guard let text = self.text else { return 0 }
         let textWidth = (text as NSString).boundingRect(with: size,
                                                         options: .usesLineFragmentOrigin,
-                                                        attributes: [NSFontAttributeName: self.font],
+                                                        attributes: [NSAttributedStringKey.font: self.font],
                                                         context: nil).size.width
         return textWidth
     }

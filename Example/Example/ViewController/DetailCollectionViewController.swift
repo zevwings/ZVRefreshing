@@ -124,7 +124,7 @@ class DetailCollectionViewController: UICollectionViewController {
         
     }
     
-    func backAction(_ sender: Any?) {
+    @objc func backAction(_ sender: Any?) {
         self.navigationController?.popViewController(animated: true)
     }
 }
