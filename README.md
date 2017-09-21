@@ -347,6 +347,10 @@ open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 ```
 
 ## Update Log
+
+#### V1.2 
+This version convert to swift 4.0, add @objc to the functions, The new swift 4.0 feature will update next version.
+
 #### V1.1 Why use UIControl?
 The ZVRefrhing v1.0 is base on UIView, but it is not support for RxSwift binding, if the control beginRefreshing, you can use `refreshHandler` or `addTarget(Any?, action: Selector)`, but it not a good idea for `Rx`.
 Now, you can use `ZVRefreshing` with `Rx`, like: 
