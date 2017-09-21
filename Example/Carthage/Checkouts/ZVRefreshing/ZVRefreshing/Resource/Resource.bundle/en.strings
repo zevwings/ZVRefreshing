@@ -1,0 +1,21 @@
+/* 
+  ZVRefreshing.strings
+  ZVRefreshing
+
+  Created by zevwings on 2017/7/10.
+  Copyright © 2017年 zevwings. All rights reserved.
+*/
+
+"pull down to refresh"          = "Pull down to refresh";
+"release to refresh"            = "Release to refresh";
+"loading..."                    = "Loading ...";
+
+"tap or pull up to load more"   = "Tap or pull up to load more";
+"no more data"                  = "There is no more data";
+
+"pull up to load more"          = "Pull up to load more data";
+"release to load more"          = "Release to load more data";
+
+"last update:"                  = "Last update: ";
+"today"                         = "Today";
+"no record"                     = "No Record";

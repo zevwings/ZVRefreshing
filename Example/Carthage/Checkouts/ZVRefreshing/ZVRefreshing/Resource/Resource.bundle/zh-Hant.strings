@@ -1,0 +1,21 @@
+/* 
+  ZVRefreshing.strings
+  ZVRefreshing
+
+  Created by zevwings on 2017/7/10.
+  Copyright © 2017年 zevwings. All rights reserved.
+*/
+
+"pull down to refresh"          = "下拉開始刷新數據";
+"release to refresh"            = "釋放開始刷新數據";
+"loading..."                    = "正在刷新數據";
+
+"tap or pull up to load more"   = "點擊或者上拉加載更多數據";
+"no more data"                  = "沒有更多數據";
+
+"pull up to load more"          = "上拉加載更多數據";
+"release to load more"          = "釋放開始加載數據";
+
+"last update:"                  = "上次更新時間: ";
+"today"                         = "今天";
+"no record"                     = "無記錄";
