@@ -25,28 +25,28 @@ class DetailCollectionViewController: UICollectionViewController {
         
         header?.refreshHandler = {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                self.collectionView?.footer?.isNoMoreData = false
+                self.collectionView?.refreshFooter?.isNoMoreData = false
                 self.rows = 16
                 self.collectionView?.reloadData()
-                self.collectionView?.header?.endRefreshing()
+                self.collectionView?.refreshHeader?.endRefreshing()
                 
             })
         }
         
-        self.collectionView?.header = header
+        self.collectionView?.refreshHeader = header
         
         footer?.refreshHandler = {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 self.rows += 16
                 self.collectionView?.reloadData()
                 if self.rows > 100 {
-                    self.collectionView?.footer?.endRefreshingWithNoMoreData()
+                    self.collectionView?.refreshFooter?.endRefreshingWithNoMoreData()
                 } else {
-                    self.collectionView?.footer?.endRefreshing()
+                    self.collectionView?.refreshFooter?.endRefreshing()
                 }
             })
         }
-        self.collectionView?.footer = footer
+        self.collectionView?.refreshFooter = footer
 
     }
 
@@ -72,43 +72,14 @@ class DetailCollectionViewController: UICollectionViewController {
     
         return cell
     }
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
     
     func refreshAction(_ sender: ZVRefreshComponent) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-            self.collectionView?.footer?.isNoMoreData = false
+            self.collectionView?.refreshFooter?.isNoMoreData = false
             self.rows = 16
             self.collectionView?.reloadData()
-            self.collectionView?.header?.endRefreshing()
+            self.collectionView?.refreshHeader?.endRefreshing()
             
         })
     }
@@ -117,7 +88,7 @@ class DetailCollectionViewController: UICollectionViewController {
         let backButton = UIButton(type: .custom)
         backButton.frame = CGRect(x: 0, y: 0, width: 64, height: 44)
         backButton.titleLabel?.font = .systemFont(ofSize: 14.0)
-        backButton.setTitle("返回", for: .normal)
+        backButton.setTitle("Back", for: .normal)
         backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -24, bottom: 0, right: 0)
         backButton.addTarget(self, action: #selector(backAction(_:)), for: .touchUpInside)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)

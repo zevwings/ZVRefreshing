@@ -37,7 +37,6 @@ open class ZVRefreshComponent: UIControl {
         }
     }
 
-    
     private struct AssocaiationKey {
         static var state = "com.zevwings.assocaiationkey.state"
     }
@@ -47,128 +46,63 @@ open class ZVRefreshComponent: UIControl {
         static var collectionView = "com.zevwings.once.collection.excute"
     }
     
-    /// 控件是否处于刷新状态
     public private(set) var isRefreshing: Bool = false
     //{ return self.state == .refreshing || self.state == .willRefresh }
 
-    /// 回调对象和回调函数
+    /// callback target object
     fileprivate var _target: Any?
+    
+    /// callback target selector
     fileprivate var _action: Selector?
     
-    /// 回调闭包
+    /// callback closure
     public var refreshHandler: ZVRefreshHandler?
     public var beginRefreshingCompletionHandler: ZVBeginRefreshingCompletionHandler?
     public var endRefreshingCompletionHandler: ZVEndRefreshingCompletionHandler?
 
-    /// 父视图
+    /// superview
     internal var scrollView: UIScrollView?
     
-    /// 初始ScrollView.UIEdgeInsets
     internal var scrollViewOriginalInset: UIEdgeInsets = UIEdgeInsets.zero
     
     /// ScrollView.UIPanGestureRecognizer
     fileprivate var _panGestureRecognizer: UIPanGestureRecognizer?
     
-    // MARK: - 初始化方法
+    // MARK: - Init
     
-    /// 初始化方法
+    /// Init
     public convenience init() {
         self.init(frame: .zero)
     }
     
-    /// 初始化方法
+    /// Init with callback closure
     ///
-    /// - Parameter refreshHandler: 回调闭包
+    /// - Parameter refreshHandler: callback closure
     public convenience init(refreshHandler: @escaping ZVRefreshHandler) {
         self.init(frame: .zero)
         self.refreshHandler = refreshHandler
     }
     
-    /// 初始化方法
+    /// Init with callback target and selector
     ///
     /// - Parameters:
-    ///   - target: 回调对象
-    ///   - action: 回调函数
+    ///   - target: callback target
+    ///   - action: callback selector
     public convenience init(target: Any, action: Selector) {
         self.init(frame: .zero)
         self._target = target
         self._action = action
     }
     
-    /// 初始化方法
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.prepare()
     }
     
-    /// 初始化方法
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.prepare()
     }
-    
-    // MARK: - Getter & Setter
-    
-    /// 刷新状态
-    open var refreshState: State {
-        get {
-            let value = objc_getAssociatedObject(self, &AssocaiationKey.state) as? String
-            return State.mapState(with: value)
-        }
-        set {
-            
-            if self.checkState(newValue).result { return }
-            
-            self.willChangeValue(forKey: "isRefreshing")
-            self.isRefreshing = newValue == .refreshing
-            self.didChangeValue(forKey: "isRefreshing")
-            self.sendActions(for: .valueChanged)
-            
-            objc_setAssociatedObject(self, &AssocaiationKey.state, newValue.rawValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-    
-    /// 检查RefreshState.newValue 是否和 RefreshState.oldState 相同
-    public func checkState(_ state: State) -> (result: Bool, oldState: State) {
-        let oldState = self.refreshState
-        if oldState == state { return (true, oldState) }
-        return (false, oldState)
-    }
-    
-    /// 根据拖拽比例更改透明度
-    public var isAutomaticallyChangeAlpha: Bool = true {
-        didSet {
-            guard self.isRefreshing == false else { return }
-            
-            if self.isAutomaticallyChangeAlpha {
-                self.alpha = self.pullingPercent
-            } else {
-                self.alpha = 1.0
-            }
-        }
-    }
-    
-    /// 拖拽百分比
-    open var pullingPercent: CGFloat = 0.0 {
-        didSet {
-            guard self.isRefreshing == false else { return }
-            if self.isAutomaticallyChangeAlpha {
-                self.alpha = pullingPercent
-            }
-        }
-    }
-    
-    /// 设置RefreshComponent子控件颜色
-    open override var tintColor: UIColor! {
-        get {
-            return super.tintColor
-        }
-        set {
-            super.tintColor = newValue
-        }
-    }
-
-    //MARK: - 重写类方法
     
     open override func layoutSubviews() {
         self.placeSubViews()
@@ -180,7 +114,6 @@ open class ZVRefreshComponent: UIControl {
         
         guard let superview = newSuperview as? UIScrollView else { return }
         
-        // 当添加到视图时
         if superview.isKind(of: UITableView.self) {
             DispatchQueue.once(token: OnceToken.collectionView, block: {
                 UITableView.once()
@@ -208,26 +141,86 @@ open class ZVRefreshComponent: UIControl {
         super.draw(rect)
         if self.refreshState == .willRefresh { self.refreshState = .refreshing }
     }
+    
+    // MARK: - Getter & Setter
+    
+    open var refreshState: State {
+        get {
+            let value = objc_getAssociatedObject(self, &AssocaiationKey.state) as? String
+            return State.mapState(with: value)
+        }
+        set {
+            
+            if self.checkState(newValue).result { return }
+            
+            self.willChangeValue(forKey: "isRefreshing")
+            self.isRefreshing = newValue == .refreshing
+            self.didChangeValue(forKey: "isRefreshing")
+            self.sendActions(for: .valueChanged)
+            
+            objc_setAssociatedObject(self, &AssocaiationKey.state, newValue.rawValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+    
+    /// check RefreshState.newValue is equal to RefreshState.oldState
+    /// if the two value is not equal, update state label value.
+    public func checkState(_ state: State) -> (result: Bool, oldState: State) {
+        let oldState = self.refreshState
+        if oldState == state { return (true, oldState) }
+        return (false, oldState)
+    }
+    
+    public var isAutomaticallyChangeAlpha: Bool = true {
+        didSet {
+            guard self.isRefreshing == false else { return }
+            
+            if self.isAutomaticallyChangeAlpha {
+                self.alpha = self.pullingPercent
+            } else {
+                self.alpha = 1.0
+            }
+        }
+    }
+    
+    open var pullingPercent: CGFloat = 0.0 {
+        didSet {
+            guard self.isRefreshing == false else { return }
+            if self.isAutomaticallyChangeAlpha {
+                self.alpha = pullingPercent
+            }
+        }
+    }
+    
+    open override var tintColor: UIColor! {
+        get {
+            return super.tintColor
+        }
+        set {
+            super.tintColor = newValue
+        }
+    }
 }
 
-// MARK: - 组件初始化
+// MARK: - SubViews
+
 extension ZVRefreshComponent {
     
-    /// 初始化控件
+    /// Add SubViews
     @objc open func prepare() {
         self.autoresizingMask = .flexibleWidth
         self.backgroundColor = .clear
     }
     
-    /// 放置控件，设置控件位置
+    /// Place SubViews
     @objc open func placeSubViews() {}
 }
 
-// MARK: - 状态控制
+// MARK: -
 
+// MARK: Update Refresh State
 extension ZVRefreshComponent {
     
-    /// 开始进入刷新状体
+    // MARK: Begin Refresh
     public func beginRefreshing() {
         
         UIView.animate(withDuration: Config.AnimationDuration.fast, animations: {
@@ -251,7 +244,7 @@ extension ZVRefreshComponent {
         self.beginRefreshing()
     }
     
-    /// 结束刷新状态
+    // MARK: End Refresh
     @objc public func endRefreshing() {
         self.refreshState = .idle
     }
@@ -261,18 +254,17 @@ extension ZVRefreshComponent {
         self.endRefreshing()
     }
 
-    /// 设置回调事件和回调函数
+    /// Add callback target and selector
     public func addTarget(_ target: Any?, action: Selector) {
         self._target = target
         self._action = action
     }
     
-    /// 触发刷新回调
     internal func executeRefreshCallback() {
         DispatchQueue.main.async {
-            // 执行刷新回调闭包
+        
             self.refreshHandler?()
-            // 执行刷新回调函数
+            
             if let target = self._target, let action = self._action {
                 if (target as AnyObject).responds(to: action) {
                     DispatchQueue.main.async(execute: {
@@ -280,17 +272,16 @@ extension ZVRefreshComponent {
                     })
                 }
             }
-            // 执行完成刷新回调闭包
+            
             self.beginRefreshingCompletionHandler?()
         }
     }
 }
 
-// MARK: - 属性监听
+// MARK: - Observers
 
 extension ZVRefreshComponent {
     
-    /// 添加属性监听
     fileprivate func _addObservers() {
         
         let options: NSKeyValueObservingOptions = [.new, .old]
@@ -307,7 +298,6 @@ extension ZVRefreshComponent {
                                                 options: options, context: nil)
     }
     
-    /// 移除属性监听
     fileprivate func _removeObservers() {
         
         self.scrollView?.removeObserver(self, forKeyPath: Config.KeyPath.contentOffset)
@@ -336,15 +326,12 @@ extension ZVRefreshComponent {
         }
     }
 
-    /// 监听UIScrollView.contentOffset 变化时调用
-    /// 子类实现
+    /// Call this selector when UIScrollView.contentOffset value changed
     @objc open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
     
-    /// 监听UIScrollView.contentSize 变化时调用
-    /// 子类实现
+    /// Call this selector when UIScrollView.contentSize value changed
     @objc open func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
     
-    /// 监听UIScrollView.panGestureRecognizer.state 变化时调用
-    /// 子类实现
+    /// Call this selector when UIScrollView.panGestureRecognizer.state value changed
     @objc open func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey: Any]?) {}
 }

@@ -19,32 +19,30 @@ class DetailTableViewController: UITableViewController {
         super.viewDidLoad()
 
         _addBarButton()
-        
+       
+        // selector, this way is equal to header?.refreshHandler = {}
         header?.addTarget(self, action: #selector(isRefreshingValueChange(_:)), for: .valueChanged)
+        self.tableView.refreshHeader = header
         
-//        header?.addTarget(self, action: #selector(refreshAction(_:)));
-        
-        self.tableView.header = header
-        
+        // callback
         footer?.refreshHandler = {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
                 self.rows += 16
                 self.tableView.reloadData()
                 if self.rows > 100 {
-                    self.tableView.footer?.endRefreshingWithNoMoreData()
+                    self.tableView.refreshFooter?.endRefreshingWithNoMoreData()
                 } else {
-                    self.tableView.footer?.endRefreshing()
+                    self.tableView.refreshFooter?.endRefreshing()
                 }
             })
         }
         
-        self.tableView.footer = footer
+        self.tableView.refreshFooter = footer
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -59,17 +57,17 @@ class DetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailCell", for: indexPath)
-        cell.textLabel?.text = "行数: \(indexPath.row + 1)　　　数据 : \(arc4random())"
+        cell.textLabel?.text = "Row: \(indexPath.row + 1)　　　Data : \(arc4random())"
         return cell
     }
     
     func refreshAction(_ sender: ZVRefreshComponent) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-            self.tableView.footer?.isNoMoreData = false
+            self.tableView.refreshFooter?.isNoMoreData = false
             self.rows = 16
             self.tableView.reloadData()
-            self.tableView.header?.endRefreshing()
+            self.tableView.refreshHeader?.endRefreshing()
 
         })
     }
@@ -77,10 +75,10 @@ class DetailTableViewController: UITableViewController {
     @objc func isRefreshingValueChange(_ sender: ZVRefreshComponent) {
         if sender.isRefreshing {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
-                self.tableView.footer?.isNoMoreData = false
+                self.tableView.refreshFooter?.isNoMoreData = false
                 self.rows = 16
                 self.tableView.reloadData()
-                self.tableView.header?.endRefreshing()
+                self.tableView.refreshHeader?.endRefreshing()
                 
             })
         } else {
@@ -92,7 +90,7 @@ class DetailTableViewController: UITableViewController {
         let backButton = UIButton(type: .custom)
         backButton.frame = CGRect(x: 0, y: 0, width: 64, height: 44)
         backButton.titleLabel?.font = .systemFont(ofSize: 14.0)
-        backButton.setTitle("返回", for: .normal)
+        backButton.setTitle("Back", for: .normal)
         backButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: -24, bottom: 0, right: 0)
         backButton.addTarget(self, action: #selector(backAction(_:)), for: .touchUpInside)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)

@@ -88,7 +88,7 @@ extension ZVRefreshBackNormalFooter {
         
         var centerX = self.width * 0.5
         if !self.stateLabel.isHidden {
-            centerX -= (self.stateLabel.textWidth * 0.5 + self.labelInsetLeft)
+            centerX -= (self.stateLabel.getTextWidth() * 0.5 + self.labelInsetLeft)
         }
         
         let centerY = self.height * 0.5

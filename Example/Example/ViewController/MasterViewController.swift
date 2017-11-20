@@ -20,7 +20,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     
     private var sections = ["UITableView", "UICollectionView"]
-    private var rows     = ["默认", "隐藏时间", "隐藏时间和状态", "自定义文字", "动画", "DIY 箭头"]
+    private var rows     = ["Default", "Hide Time Label", "Hide Time Label& State Label", "Custom Text", "Animation", "DIY"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,28 +132,28 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // 设置 Header
             let header = ZVRefreshNormalHeader()
             
-            header.setTitle("下拉后更新...", forState: .idle)
-            header.setTitle("释放立即更新...", forState: .pulling)
-            header.setTitle("正在刷新数据...", forState: .refreshing)
+            header.setTitle("custom pull down to load more label...", forState: .idle)
+            header.setTitle("custom release to load more label...", forState: .pulling)
+            header.setTitle("custom loading label...", forState: .refreshing)
             header.tintColor = .black
             header.lastUpdatedTimeLabelText = { date in
                 
                 if let d = date {
                     let formatter = DateFormatter()
                     formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-                    return "最后更新时间：\(formatter.string(from: d))"
+                    return "Last Updated ：\(formatter.string(from: d))"
                 }
-                return "暂无刷新纪录"
+                return "No Record"
             }
             
             // 设置 Footer
             if _isAutoFooter {
                 
                 let footer = ZVRefreshAutoNormalFooter()
-                footer.setTitle("上拉加载更多数据...", forState: .idle)
-                footer.setTitle("释放立即更新...", forState: .pulling)
-                footer.setTitle("正在刷新数据...", forState: .refreshing)
-                footer.setTitle("没有数据啦", forState: .noMoreData)
+                footer.setTitle("custom pull up to load more label...", forState: .idle)
+                footer.setTitle("custom release to load more label...", forState: .pulling)
+                footer.setTitle("custom loading label...", forState: .refreshing)
+                footer.setTitle("custom no more data label", forState: .noMoreData)
                 footer.tintColor = .black
                 
                 _set(for: section,
@@ -162,10 +162,10 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             } else {
                 
                 let footer = ZVRefreshBackNormalFooter()
-                footer.setTitle("上拉加载更多数据...", forState: .idle)
-                footer.setTitle("释放立即更新...", forState: .pulling)
-                footer.setTitle("正在刷新数据...", forState: .refreshing)
-                footer.setTitle("没有数据啦", forState: .noMoreData)
+                footer.setTitle("custom pull up to load more label...", forState: .idle)
+                footer.setTitle("custom release to load more label...", forState: .pulling)
+                footer.setTitle("custom loading label...", forState: .refreshing)
+                footer.setTitle("custom no more data label", forState: .noMoreData)
                 footer.tintColor = .black
                 
                 _set(for: section,
@@ -232,7 +232,6 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             break
         }
     }
-    
 }
 
 extension MasterViewController {

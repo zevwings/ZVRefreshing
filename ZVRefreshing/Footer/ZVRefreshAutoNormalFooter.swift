@@ -58,7 +58,7 @@ extension ZVRefreshAutoNormalFooter {
         
         var centerX = self.width * 0.5
         if !self.stateLabel.isHidden {
-            centerX -= (self.stateLabel.textWidth * 0.5 + self.labelInsetLeft)
+            centerX -= (self.stateLabel.getTextWidth() * 0.5 + self.labelInsetLeft)
         }
         
         self.activityIndicator.frame = CGRect(x: 0, y: 0, width: 24.0, height: 24.0)

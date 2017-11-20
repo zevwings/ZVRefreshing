@@ -79,9 +79,9 @@ extension ZVRefreshNormalHeader {
         if !self.stateLabel.isHidden {
             var labelWidth: CGFloat = 0.0
             if self.lastUpdatedTimeLabel.isHidden {
-                labelWidth = self.stateLabel.textWidth
+                labelWidth = self.stateLabel.getTextWidth()
             } else {
-                labelWidth = max(self.lastUpdatedTimeLabel.textWidth, self.stateLabel.textWidth)
+                labelWidth = max(self.lastUpdatedTimeLabel.getTextWidth(), self.stateLabel.getTextWidth())
             }
             centerX -= (labelWidth * 0.5 + self.labelInsetLeft)
         }

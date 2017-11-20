@@ -213,8 +213,7 @@ extension UIScrollView {
 
 internal extension UILabel {
     
-    /// 获取textWidth 的宽度
-    var textWidth: CGFloat {
+    func getTextWidth() -> CGFloat {
         
         let size = CGSize(width: Int.max, height: Int.max)
         guard let text = self.text else { return 0 }
