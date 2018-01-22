@@ -64,8 +64,6 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     public var lastUpdatedTimeLabelText:((_ date: Date?)->(String))? {
         didSet {
             _didSet(lastUpdatedTimeKey: lastUpdatedTimeKey)
-//            let key = lastUpdatedTimeKey
-//            lastUpdatedTimeKey = key
         }
     }
     

@@ -12,8 +12,7 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     public private(set) lazy var stateLabel: UILabel = { [unowned self] in
         let label: UILabel = .default
         label.isUserInteractionEnabled = true
-        label.addGestureRecognizer(.init(target: self,
-                                         action: #selector(ZVRefreshAutoStateFooter.stateLabelClicked)))
+        label.addGestureRecognizer(.init(target: self, action: #selector(stateLabelClicked)))
         return label
     }()
     

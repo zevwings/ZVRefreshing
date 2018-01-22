@@ -45,7 +45,6 @@ extension ZVRefreshFooter {
     
     open override func willMove(toSuperview newSuperview: UIView?) {
         
-        // 判断superview是否为nil
         guard let superview = newSuperview as? UIScrollView else { return }
         super.willMove(toSuperview: superview)
         
