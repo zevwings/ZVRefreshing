@@ -29,9 +29,9 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
             addSubview(stateLabel)
         }
         
-        setTitle(localized(string: Constants.Footer.Auto.idle) , forState: .idle)
-        setTitle(localized(string: Constants.Footer.Auto.refreshing), forState: .refreshing)
-        setTitle(localized(string: Constants.Footer.Auto.noMoreData), forState: .noMoreData)
+        setTitle(localized(string: LocalizedKey.Footer.Auto.idle) , forState: .idle)
+        setTitle(localized(string: LocalizedKey.Footer.Auto.refreshing), forState: .refreshing)
+        setTitle(localized(string: LocalizedKey.Footer.Auto.noMoreData), forState: .noMoreData)
     }
     
     open override func placeSubViews() {

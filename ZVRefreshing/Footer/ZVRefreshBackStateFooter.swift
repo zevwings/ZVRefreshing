@@ -41,10 +41,10 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
             addSubview(stateLabel)
         }
         
-        setTitle(localized(string: Constants.Footer.Back.idle), forState: .idle)
-        setTitle(localized(string: Constants.Footer.Back.pulling), forState: .pulling)
-        setTitle(localized(string: Constants.Footer.Back.refreshing), forState: .refreshing)
-        setTitle(localized(string: Constants.Footer.Back.noMoreData), forState: .noMoreData)
+        setTitle(localized(string: LocalizedKey.Footer.Back.idle), forState: .idle)
+        setTitle(localized(string: LocalizedKey.Footer.Back.pulling), forState: .pulling)
+        setTitle(localized(string: LocalizedKey.Footer.Back.refreshing), forState: .refreshing)
+        setTitle(localized(string: LocalizedKey.Footer.Back.noMoreData), forState: .noMoreData)
     }
     
     open override func placeSubViews() {

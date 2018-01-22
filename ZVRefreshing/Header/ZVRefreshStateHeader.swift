@@ -28,9 +28,9 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
             addSubview(lastUpdatedTimeLabel)
         }
         
-        setTitle(localized(string: Constants.Header.idle), forState: .idle)
-        setTitle(localized(string: Constants.Header.pulling), forState: .pulling)
-        setTitle(localized(string: Constants.Header.refreshing), forState: .refreshing)
+        setTitle(localized(string: LocalizedKey.Header.idle), forState: .idle)
+        setTitle(localized(string: LocalizedKey.Header.pulling), forState: .pulling)
+        setTitle(localized(string: LocalizedKey.Header.refreshing), forState: .refreshing)
     }
     
     open override func placeSubViews() {
@@ -150,13 +150,13 @@ private extension ZVRefreshStateHeader {
             let timeString = formatter.string(from: lastUpdatedTime)
             
             lastUpdatedTimeLabel.text = String(format: "%@ %@ %@",
-                                                    localized(string: Constants.State.lastUpdatedTime),
-                                                    isToday ? localized(string: Constants.State.dateToday) : "",
+                                                    localized(string: LocalizedKey.State.lastUpdatedTime),
+                                                    isToday ? localized(string: LocalizedKey.State.dateToday) : "",
                                                     timeString)
         } else {
             lastUpdatedTimeLabel.text = String(format: "%@ %@",
-                                                    localized(string: Constants.State.lastUpdatedTime),
-                                                    localized(string: Constants.State.noLastTime))
+                                                    localized(string: LocalizedKey.State.lastUpdatedTime),
+                                                    localized(string: LocalizedKey.State.noLastTime))
         }
     }
 }

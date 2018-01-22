@@ -95,7 +95,7 @@ private extension ZVRefreshBackFooter {
         switch newValue {
         case .idle, .noMoreData:
             if checked.oldState == .refreshing {
-                UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
+                UIView.animate(withDuration: AnimationDuration.slow, animations: {
                     scrollView.contentInset.bottom -= self.lastBottomDelta
                     if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
                 }, completion: { finished in
@@ -111,7 +111,7 @@ private extension ZVRefreshBackFooter {
             break
         case .refreshing:
             lastRefreshCount = scrollView.totalDataCount
-            UIView.animate(withDuration: Config.AnimationDuration.fast, animations: {
+            UIView.animate(withDuration: AnimationDuration.fast, animations: {
                 var bottom = self.frame.size.height + self.scrollViewOriginalInset.bottom
                 if self.heightForContentBreakView < 0 {
                     bottom -= self.heightForContentBreakView

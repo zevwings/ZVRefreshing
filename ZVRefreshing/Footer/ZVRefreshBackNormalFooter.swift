@@ -37,7 +37,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
             switch newValue {
             case .idle:
                 if checked.oldState == .refreshing {
-                    UIView.animate(withDuration: Config.AnimationDuration.fast, animations: {
+                    UIView.animate(withDuration: AnimationDuration.fast, animations: {
                         self.activityIndicator.alpha = 0.0
                     }, completion: { finished in
                         self.activityIndicator.alpha = 1.0

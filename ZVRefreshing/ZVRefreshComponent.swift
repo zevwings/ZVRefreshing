@@ -197,7 +197,7 @@ extension ZVRefreshComponent {
     // MARK: Begin Refresh
     public func beginRefreshing() {
         
-        UIView.animate(withDuration: Config.AnimationDuration.fast, animations: {
+        UIView.animate(withDuration: AnimationDuration.fast, animations: {
             self.alpha = 1.0
         })
         
@@ -233,27 +233,35 @@ extension ZVRefreshComponent {
 
 extension ZVRefreshComponent {
     
+    struct ObserversKeyPath {
+        static let contentOffset = "contentOffset"
+        static let contentInset  = "contentInset"
+        static let contentSize   = "contentSize"
+        static let panState      = "state"
+    }
+
+    
     private func _addObservers() {
         
         let options: NSKeyValueObservingOptions = [.new, .old]
         
         scrollView?.addObserver(self,
-                                     forKeyPath: Config.KeyPath.contentOffset,
+                                     forKeyPath: ObserversKeyPath.contentOffset,
                                      options: options, context: nil)
         scrollView?.addObserver(self,
-                                     forKeyPath: Config.KeyPath.contentSize,
+                                     forKeyPath: ObserversKeyPath.contentSize,
                                      options: options, context: nil)
         _panGestureRecognizer = scrollView?.panGestureRecognizer
         _panGestureRecognizer?.addObserver(self,
-                                                forKeyPath: Config.KeyPath.panState,
+                                                forKeyPath: ObserversKeyPath.panState,
                                                 options: options, context: nil)
     }
     
     private func _removeObservers() {
         
-        scrollView?.removeObserver(self, forKeyPath: Config.KeyPath.contentOffset)
-        scrollView?.removeObserver(self, forKeyPath: Config.KeyPath.contentSize)
-        scrollView?.removeObserver(self, forKeyPath: Config.KeyPath.panState)
+        scrollView?.removeObserver(self, forKeyPath: ObserversKeyPath.contentOffset)
+        scrollView?.removeObserver(self, forKeyPath: ObserversKeyPath.contentSize)
+        scrollView?.removeObserver(self, forKeyPath: ObserversKeyPath.panState)
         _panGestureRecognizer = nil
     }
     
@@ -266,15 +274,15 @@ extension ZVRefreshComponent {
 
         guard let superScrollView = scrollView else { return }
         
-        if keyPath == Config.KeyPath.contentSize {
+        if keyPath == ObserversKeyPath.contentSize {
             scrollView(superScrollView, contentSizeDidChanged: change)
         }
 
         guard isHidden == false else { return }
 
-        if keyPath == Config.KeyPath.contentOffset {
+        if keyPath == ObserversKeyPath.contentOffset {
             scrollView(superScrollView, contentOffsetDidChanged: change)
-        } else if keyPath == Config.KeyPath.panState {
+        } else if keyPath == ObserversKeyPath.panState {
             panGestureRecognizer(superScrollView.panGestureRecognizer, stateValueChanged: change)
         }
     }

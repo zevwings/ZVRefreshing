@@ -97,7 +97,7 @@ private extension ZVRefreshNormalHeader {
         
         if newValue == .idle {
             if refreshState == .refreshing {
-                UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
+                UIView.animate(withDuration: AnimationDuration.slow, animations: {
                 }, completion: { finished in
                     guard self.refreshState == .idle else { return }
                     self.activityIndicator.stopAnimating()

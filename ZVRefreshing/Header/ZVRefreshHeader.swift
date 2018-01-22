@@ -9,8 +9,12 @@ import UIKit
 
 open class ZVRefreshHeader: ZVRefreshComponent {
     
+    struct StorageKey {
+        static let lastUpdatedTime = "com.zevwings.refreshing.lastUpdateTime"
+    }
+    
     /// 用于存储上次更新时间
-    public var lastUpdatedTimeKey: String = Config.lastUpdatedTimeKey
+    public var lastUpdatedTimeKey: String = StorageKey.lastUpdatedTime
     
     /// 需要忽略的ScrollView.contentInset.top
     public var ignoredScrollViewContentInsetTop: CGFloat = 0.0
@@ -25,12 +29,12 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     // MARK: Subviews
     open override func prepare() {
         super.prepare()
-        lastUpdatedTimeKey = Config.lastUpdatedTimeKey
+        lastUpdatedTimeKey = StorageKey.lastUpdatedTime
     }
     
     open override func placeSubViews() {
         super.placeSubViews()
-        frame.size.height = Component.Header.height
+        frame.size.height = ComponentHeader.height
         frame.origin.y = -frame.size.height - ignoredScrollViewContentInsetTop
     }
 
@@ -100,7 +104,7 @@ private extension ZVRefreshHeader {
             UserDefaults.standard.set(Date(), forKey: lastUpdatedTimeKey)
             UserDefaults.standard.synchronize()
             
-            UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
+            UIView.animate(withDuration: AnimationDuration.slow, animations: {
                 self.scrollView?.contentInset.top += self.insetTop
                 if self.isAutomaticallyChangeAlpha {
                     self.alpha = 0.0
@@ -111,7 +115,7 @@ private extension ZVRefreshHeader {
             })
         } else if newValue == .refreshing {
             
-            UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
+            UIView.animate(withDuration: AnimationDuration.slow, animations: {
                 let top = self.scrollViewOriginalInset.top + self.frame.size.height
                 self.scrollView?.contentInset.top = top
                 self.scrollView?.contentOffset.y = -top
