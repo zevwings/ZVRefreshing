@@ -29,6 +29,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         super.placeSubViews()
         
         var centerX = frame.size.width * 0.5
+        
         if !stateLabel.isHidden {
             var labelWidth: CGFloat = 0.0
             if lastUpdatedTimeLabel.isHidden {
@@ -56,7 +57,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
             return super.refreshState
         }
         set {
-            set(refreshState: newValue)
+            _set(refreshState: newValue)
         }
     }
     
@@ -90,7 +91,7 @@ extension ZVRefreshNormalHeader {
 
 private extension ZVRefreshNormalHeader {
     
-    func set(refreshState newValue: State) {
+    func _set(refreshState newValue: State) {
         
         guard checkState(newValue).result == false else { return }
         super.refreshState = newValue

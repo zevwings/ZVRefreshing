@@ -48,7 +48,7 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
             return super.refreshState
         }
         set {
-            set(refreshState: newValue)
+            _set(refreshState: newValue)
         }
     }
 }
@@ -87,7 +87,7 @@ private extension ZVRefreshAutoStateFooter {
         if refreshState == .idle { beginRefreshing() }
     }
     
-    func set(refreshState newValue: State) {
+    func _set(refreshState newValue: State) {
 
         guard checkState(newValue).result == false else { return }
 

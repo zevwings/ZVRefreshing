@@ -47,7 +47,7 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
             return super.refreshState
         }
         set {
-            set(refreshState: newValue)
+            _set(refreshState: newValue)
         }
     }
 }
@@ -71,15 +71,18 @@ extension ZVRefreshAutoNormalFooter {
 
 private extension ZVRefreshAutoNormalFooter {
     
-    func set(refreshState newValue: State) {
+    func _set(refreshState newValue: State) {
         
         guard checkState(newValue).result == false else { return }
 
         super.refreshState = newValue
-        if newValue == .noMoreData || newValue == .idle {
+        switch newValue {
+        case .noMoreData, .idle:
             activityIndicator.stopAnimating()
-        } else if newValue == .refreshing {
+        case .refreshing:
             activityIndicator.startAnimating()
+        default: break
+            
         }
     }
 }

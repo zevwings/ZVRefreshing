@@ -15,62 +15,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         return activityIndicator
     }()
     
-    open override var tintColor: UIColor! {
-        get {
-            return super.tintColor
-        }
-        set {
-            super.tintColor = newValue
-            activityIndicator.color = newValue
-        }
-    }
-    
-    public override var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            let checked = checkState(newValue)
-            guard checked.result == false else { return }
-            super.refreshState = newValue
-            
-            switch newValue {
-            case .idle:
-                if checked.oldState == .refreshing {
-                    UIView.animate(withDuration: AnimationDuration.fast, animations: {
-                        self.activityIndicator.alpha = 0.0
-                    }, completion: { finished in
-                        self.activityIndicator.alpha = 1.0
-                        self.activityIndicator.stopAnimating()
-                    })
-                } else {
-                    activityIndicator.stopAnimating()
-                }
-                break
-            case .pulling:
-                activityIndicator.stopAnimating()
-                break
-            case .refreshing:
-                activityIndicator.startAnimating()
-                break
-            case .noMoreData:
-                activityIndicator.stopAnimating()
-                break
-            default:
-                break
-            }
-        }
-    }
-    
-    public override var pullingPercent: CGFloat {
-        get {
-            return super.pullingPercent
-        }
-        set {
-            super.pullingPercent = newValue
-            activityIndicator.percent = newValue
-        }
-    }
+    // MARK: Subviews
     
     public override func prepare() {
         super.prepare()
@@ -97,8 +42,79 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         }
     }
 
+    // MARK: Getter & Setter
+    
+    public override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            _set(refreshState: newValue)
+        }
+    }
+    
+    public override var pullingPercent: CGFloat {
+        get {
+            return super.pullingPercent
+        }
+        set {
+            _set(pullingPercent: newValue)
+        }
+    }
 }
 
+// MARK: - Override
+
 extension ZVRefreshBackNormalFooter {
+    open override var tintColor: UIColor! {
+        get {
+            return super.tintColor
+        }
+        set {
+            super.tintColor = newValue
+            activityIndicator.color = newValue
+        }
+    }
+}
+
+private extension ZVRefreshBackNormalFooter {
     
+    func _set(pullingPercent newValue: CGFloat) {
+        super.pullingPercent = newValue
+        activityIndicator.percent = newValue
+
+    }
+    
+    func _set(refreshState newValue: State) {
+        
+        let checked = checkState(newValue)
+        guard checked.result == false else { return }
+        super.refreshState = newValue
+        
+        switch newValue {
+        case .idle:
+            if checked.oldState == .refreshing {
+                UIView.animate(withDuration: AnimationDuration.fast, animations: {
+                    self.activityIndicator.alpha = 0.0
+                }, completion: { finished in
+                    self.activityIndicator.alpha = 1.0
+                    self.activityIndicator.stopAnimating()
+                })
+            } else {
+                activityIndicator.stopAnimating()
+            }
+            break
+        case .pulling:
+            activityIndicator.stopAnimating()
+            break
+        case .refreshing:
+            activityIndicator.startAnimating()
+            break
+        case .noMoreData:
+            activityIndicator.stopAnimating()
+            break
+        default:
+            break
+        }
+    }
 }

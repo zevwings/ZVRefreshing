@@ -107,19 +107,19 @@ open class ZVRefreshComponent: UIControl {
             return _refreshState
         }
         set {
-            set(refreshState: newValue)
+            _set(refreshState: newValue)
         }
     }
     
     public var isAutomaticallyChangeAlpha: Bool = true {
         didSet {
-            didSet(isAutomaticallyChangeAlpha: isAutomaticallyChangeAlpha)
+            _didSet(isAutomaticallyChangeAlpha: isAutomaticallyChangeAlpha)
         }
     }
     
     open var pullingPercent: CGFloat = 0.0 {
         didSet {
-            didSet(pullingPercent: pullingPercent)
+            _didSet(pullingPercent: pullingPercent)
         }
     }
     
@@ -153,7 +153,9 @@ extension ZVRefreshComponent {
     
     open override func draw(_ rect: CGRect) {
         super.draw(rect)
-        if refreshState == .willRefresh { refreshState = .refreshing }
+        if refreshState == .willRefresh {
+            refreshState = .refreshing
+        }
     }
     
     open override func willMove(toSuperview newSuperview: UIView?) {
@@ -231,21 +233,14 @@ extension ZVRefreshComponent {
         static let panState      = "state"
     }
 
-    
     private func _addObservers() {
         
         let options: NSKeyValueObservingOptions = [.new, .old]
         
-        scrollView?.addObserver(self,
-                                     forKeyPath: ObserversKeyPath.contentOffset,
-                                     options: options, context: nil)
-        scrollView?.addObserver(self,
-                                     forKeyPath: ObserversKeyPath.contentSize,
-                                     options: options, context: nil)
         _panGestureRecognizer = scrollView?.panGestureRecognizer
-        _panGestureRecognizer?.addObserver(self,
-                                                forKeyPath: ObserversKeyPath.panState,
-                                                options: options, context: nil)
+        _panGestureRecognizer?.addObserver(self, forKeyPath: ObserversKeyPath.panState, options: options, context: nil)
+        scrollView?.addObserver(self, forKeyPath: ObserversKeyPath.contentOffset, options: options, context: nil)
+        scrollView?.addObserver(self, forKeyPath: ObserversKeyPath.contentSize, options: options, context: nil)
     }
     
     private func _removeObservers() {
@@ -303,16 +298,14 @@ public extension ZVRefreshComponent {
 extension ZVRefreshComponent {
     
     internal func executeRefreshCallback() {
+        
         DispatchQueue.main.async {
-            
             self._refreshHandler?()
-            
             if let target = self._target, let action = self._action {
                 if (target as AnyObject).responds(to: action) {
                     Thread.detachNewThreadSelector(action, toTarget: target, with: self)
                 }
             }
-            
             self.beginRefreshingCompletionHandler?()
         }
     }
@@ -322,7 +315,7 @@ extension ZVRefreshComponent {
 
 private extension ZVRefreshComponent {
     
-    func set(refreshState newValue: State) {
+    func _set(refreshState newValue: State) {
         
         guard checkState(newValue).result == false else { return }
         
@@ -334,7 +327,7 @@ private extension ZVRefreshComponent {
         _refreshState = newValue
     }
     
-    func didSet(pullingPercent newValue: CGFloat) {
+    func _didSet(pullingPercent newValue: CGFloat) {
         
         guard isRefreshing == false else { return }
         
@@ -343,7 +336,7 @@ private extension ZVRefreshComponent {
         }
     }
     
-    func didSet(isAutomaticallyChangeAlpha newValue: Bool) {
+    func _didSet(isAutomaticallyChangeAlpha newValue: Bool) {
         
         guard isRefreshing == false else { return }
         

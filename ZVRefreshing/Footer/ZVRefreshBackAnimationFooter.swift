@@ -43,7 +43,7 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     
     open override var pullingPercent: CGFloat {
         didSet {
-            didSet(pullingPercent: pullingPercent)
+            _didSet(pullingPercent: pullingPercent)
         }
     }
     
@@ -52,7 +52,7 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
             return super.refreshState
         }
         set {
-            set(refreshState: newValue)
+            _set(refreshState: newValue)
         }
     }
 
@@ -83,7 +83,7 @@ extension ZVRefreshBackAnimationFooter {
 
 private extension ZVRefreshBackAnimationFooter {
     
-    func set(refreshState newValue: State) {
+    func _set(refreshState newValue: State) {
         
         guard checkState(newValue).result == false else { return }
 
@@ -106,7 +106,7 @@ private extension ZVRefreshBackAnimationFooter {
         }
     }
     
-    func didSet(pullingPercent newValue: CGFloat) {
+    func _didSet(pullingPercent newValue: CGFloat) {
         
         let imgs = _stateImages[.idle] ?? []
         if refreshState != .idle || imgs.count == 0 { return }

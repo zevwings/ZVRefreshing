@@ -10,6 +10,7 @@ import UIKit
 open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
 
     public private(set) lazy var animationView: UIImageView = {
+        
         let animationView = UIImageView()
         animationView.backgroundColor = .clear
         return animationView
@@ -22,6 +23,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
     
     open override func prepare() {
         super.prepare()
+        
         if animationView.superview == nil {
             addSubview(animationView)
         }
@@ -29,7 +31,9 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
     
     open override func placeSubViews() {
         super.placeSubViews()
-        if animationView.constraints.count > 0 { return }
+        
+        guard animationView.constraints.count == 0 else { return }
+        
         animationView.frame = bounds
         if stateLabel.isHidden && lastUpdatedTimeLabel.isHidden {
             animationView.contentMode = .center
@@ -43,7 +47,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
     
     open override var pullingPercent: CGFloat {
         didSet {
-            didSet(pullingPercent: pullingPercent)
+            _didSet(pullingPercent: pullingPercent)
         }
     }
     
@@ -52,7 +56,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
             return super.refreshState
         }
         set {
-            set(refreshState: newValue)
+            _set(refreshState: newValue)
         }
     }
 }
@@ -66,7 +70,8 @@ public extension ZVRefreshAnimationHeader {
     }
     
     public func setImages(_ images: [UIImage], duration: TimeInterval, forState state: State){
-        if images.count == 0 { return }
+        
+        guard images.count != 0 else { return }
         
         _stateImages.updateValue(images, forKey: state)
         _stateDurations.updateValue(duration, forKey: state)
@@ -82,7 +87,8 @@ public extension ZVRefreshAnimationHeader {
 
 private extension ZVRefreshAnimationHeader {
     
-    func set(refreshState newValue: State) {
+    func _set(refreshState newValue: State) {
+        
         guard checkState(newValue).result == false else { return }
         super.refreshState = newValue
         
@@ -102,7 +108,8 @@ private extension ZVRefreshAnimationHeader {
         }
     }
     
-    func didSet(pullingPercent: CGFloat) {
+    func _didSet(pullingPercent: CGFloat) {
+        
         let imgs = _stateImages[.idle] ?? []
         if refreshState != .idle || imgs.count == 0 { return }
         animationView.stopAnimating()

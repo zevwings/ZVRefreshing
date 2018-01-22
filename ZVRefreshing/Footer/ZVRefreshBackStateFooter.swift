@@ -13,26 +13,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     public var labelInsetLeft: CGFloat = 24.0
     private var _stateTitles:[State: String] = [:]
     
-    open override var tintColor: UIColor! {
-        get {
-            return super.tintColor
-        }
-        set {
-            super.tintColor = newValue
-            stateLabel.textColor = newValue
-        }
-    }
-    
-    open override var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            guard checkState(newValue).result == false else { return }
-            super.refreshState = newValue
-            stateLabel.text = _stateTitles[newValue]
-        }
-    }
+    // MARK: Subviews
     
     open override func prepare() {
         super.prepare()
@@ -52,8 +33,38 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
         if stateLabel.constraints.count > 0 { return }
         stateLabel.frame = bounds
     }
+    
+    // MARK: Getter & Setter
+    
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).result == false else { return }
+            super.refreshState = newValue
+            stateLabel.text = _stateTitles[newValue]
+        }
+    }
 
 }
+
+// MARK: - Override
+
+extension ZVRefreshBackStateFooter {
+    
+    open override var tintColor: UIColor! {
+        get {
+            return super.tintColor
+        }
+        set {
+            super.tintColor = newValue
+            stateLabel.textColor = newValue
+        }
+    }
+}
+
+// MARK: - Public
 
 extension ZVRefreshBackStateFooter {
     
@@ -61,8 +72,4 @@ extension ZVRefreshBackStateFooter {
         _stateTitles.updateValue(title, forKey: state)
         stateLabel.text = _stateTitles[refreshState]
     }
-}
-
-extension ZVRefreshBackStateFooter {
-    
 }

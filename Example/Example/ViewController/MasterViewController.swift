@@ -135,7 +135,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             header.setTitle("custom pull down to load more label...", forState: .idle)
             header.setTitle("custom release to load more label...", forState: .pulling)
             header.setTitle("custom loading label...", forState: .refreshing)
-            header.tintColor = .black
+//            header.tintColor = .black
             header.lastUpdatedTimeLabelText = { date in
                 
                 if let d = date {
@@ -154,7 +154,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 footer.setTitle("custom release to load more label...", forState: .pulling)
                 footer.setTitle("custom loading label...", forState: .refreshing)
                 footer.setTitle("custom no more data label", forState: .noMoreData)
-                footer.tintColor = .black
+//                footer.tintColor = .black
                 
                 _set(for: section,
                      viewController: segue.destination,
@@ -166,7 +166,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 footer.setTitle("custom release to load more label...", forState: .pulling)
                 footer.setTitle("custom loading label...", forState: .refreshing)
                 footer.setTitle("custom no more data label", forState: .noMoreData)
-                footer.tintColor = .black
+//                footer.tintColor = .black
                 
                 _set(for: section,
                      viewController: segue.destination,

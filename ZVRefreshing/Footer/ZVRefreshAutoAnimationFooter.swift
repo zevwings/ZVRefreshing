@@ -47,7 +47,7 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
             return super.refreshState
         }
         set {
-            set(refreshState: newValue)
+            _set(refreshState: newValue)
         }
     }
 }
@@ -77,7 +77,7 @@ extension ZVRefreshAutoAnimationFooter {
 
 private extension ZVRefreshAutoAnimationFooter {
     
-    func set(refreshState newValue: State) {
+    func _set(refreshState newValue: State) {
         
         guard checkState(newValue).result == false else { return }
         super.refreshState = newValue
@@ -99,6 +99,7 @@ private extension ZVRefreshAutoAnimationFooter {
             }
             break
         case .noMoreData, .idle:
+            
             animationView.stopAnimating()
             animationView.isHidden = false
             break

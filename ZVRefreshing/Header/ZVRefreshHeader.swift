@@ -29,11 +29,13 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     // MARK: Subviews
     open override func prepare() {
         super.prepare()
+        
         lastUpdatedTimeKey = StorageKey.lastUpdatedTime
     }
     
     open override func placeSubViews() {
         super.placeSubViews()
+        
         frame.size.height = ComponentHeader.height
         frame.origin.y = -frame.size.height - ignoredScrollViewContentInsetTop
     }
@@ -41,7 +43,8 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     // MARK: Observers
     open override func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
         
-        if refreshState == .refreshing {
+        guard refreshState != .refreshing else {
+            
             guard window != nil else { return }
             
             var insetT = -scrollView.contentOffset.y > scrollViewOriginalInset.top ? -scrollView.contentOffset.y : scrollViewOriginalInset.top
@@ -49,6 +52,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
             
             scrollView.contentInset.top = insetT
             insetTop = scrollViewOriginalInset.top - insetT
+            
             return
         }
         
@@ -82,7 +86,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
             return super.refreshState
         }
         set {
-            set(refreshState: newValue)
+            _set(refreshState: newValue)
         }
     }
 }
@@ -91,10 +95,11 @@ open class ZVRefreshHeader: ZVRefreshComponent {
 
 private extension ZVRefreshHeader {
     
-    func set(refreshState newValue: State) {
+    func _set(refreshState newValue: State) {
         
         let checked = checkState(newValue)
         guard checked.result == false else { return }
+        
         super.refreshState = newValue
         
         if newValue == .idle {
@@ -106,22 +111,24 @@ private extension ZVRefreshHeader {
             
             UIView.animate(withDuration: AnimationDuration.slow, animations: {
                 self.scrollView?.contentInset.top += self.insetTop
-                if self.isAutomaticallyChangeAlpha {
-                    self.alpha = 0.0
-                }
+                if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
             }, completion: { finished in
                 self.pullingPercent = 0.0
                 self.endRefreshingCompletionHandler?()
             })
         } else if newValue == .refreshing {
             
-            UIView.animate(withDuration: AnimationDuration.slow, animations: {
-                let top = self.scrollViewOriginalInset.top + self.frame.size.height
-                self.scrollView?.contentInset.top = top
-                self.scrollView?.contentOffset.y = -top
-            }, completion: { finished in
-                self.executeRefreshCallback()
-            })
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: AnimationDuration.fast, animations: {
+                    let top = self.scrollViewOriginalInset.top + self.frame.size.height
+                    self.scrollView?.contentInset.top = top
+                    var offset = self.scrollView!.contentOffset
+                    offset.y = -top
+                    self.scrollView?.setContentOffset(offset, animated: false)
+                }, completion: { finished in
+                    self.executeRefreshCallback()
+                })
+            }
         }
     }
 }

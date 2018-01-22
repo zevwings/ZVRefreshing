@@ -63,7 +63,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
             return super.refreshState
         }
         set {
-            set(refreshState: newValue)
+            _set(refreshState: newValue)
         }
     }
     
@@ -94,58 +94,15 @@ extension ZVRefreshAutoFooter {
             return super.isHidden
         }
         set {
-            set(isHidden: newValue)
+            _set(isHidden: newValue)
         }
     }
-
-
-//    open override func scrollViewContentSizeDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
-//        super.scrollViewContentSizeDidChanged(change)
-//        guard let scrollView = self.scrollView else { return }
-//        self.y = scrollView.contentHeight
-//    }
-    
-//    open override func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
-//        super.scrollViewContentOffsetDidChanged(change)
-//
-//        guard self.refreshState == .idle, self.isAutomaticallyRefresh, self.y != 0 else { return }
-//        guard let scrollView = self.scrollView else { return }
-//
-//        if scrollView.insetTop + scrollView.contentHeight > scrollView.height {
-//            if scrollView.offsetY >= (scrollView.contentHeight - scrollView.height + self.height * self._triggerAutomaticallyRefreshPercent + scrollView.insetBottom - self.height) {
-//                let old = (change?[.oldKey] as? NSValue)?.cgPointValue
-//                let new = (change?[.newKey] as? NSValue)?.cgPointValue
-//                if old != nil && new != nil && new!.y > old!.y {
-//                    self.beginRefreshing()
-//                }
-//            }
-//        }
-//    }
-    
-//    open override func scrollViewPanStateDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
-//        super.scrollViewPanStateDidChanged(change)
-//        
-//        guard self.refreshState == .idle else { return }
-//        guard let scrollView = self.scrollView else { return }
-//
-//        if scrollView.panGestureRecognizer.state == .ended {
-//            if scrollView.insetTop + scrollView.contentHeight <= scrollView.height {
-//                if scrollView.offsetY >= -scrollView.insetTop {
-//                    self.beginRefreshing()
-//                }
-//            } else {
-//                if scrollView.offsetY >= (scrollView.contentHeight + scrollView.insetBottom - scrollView.height) {
-//                    self.beginRefreshing()
-//                }
-//            }
-//        }
-//    }
 }
 
 
 private extension ZVRefreshAutoFooter {
     
-    func set(isHidden newValue: Bool) {
+    func _set(isHidden newValue: Bool) {
         guard let scrollView = scrollView else { return }
         let isHidden = self.isHidden
         super.isHidden = newValue
@@ -162,7 +119,7 @@ private extension ZVRefreshAutoFooter {
         }
     }
     
-    func set(refreshState newValue: State) {
+    func _set(refreshState newValue: State) {
         
         let checked = checkState(newValue)
         guard checked.result == false else { return }

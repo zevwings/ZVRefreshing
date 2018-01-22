@@ -63,8 +63,9 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     
     public var lastUpdatedTimeLabelText:((_ date: Date?)->(String))? {
         didSet {
-            let key = lastUpdatedTimeKey
-            lastUpdatedTimeKey = key
+            _didSet(lastUpdatedTimeKey: lastUpdatedTimeKey)
+//            let key = lastUpdatedTimeKey
+//            lastUpdatedTimeKey = key
         }
     }
     
@@ -73,14 +74,14 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
             return super.refreshState
         }
         set {
-            set(refreshState: newValue)
+            _set(refreshState: newValue)
         }
     }
     
     public override var lastUpdatedTimeKey: String {
         
         didSet {
-            didSet(lastUpdatedTimeKey: lastUpdatedTimeKey)
+            _didSet(lastUpdatedTimeKey: lastUpdatedTimeKey)
         }
     }
 }
@@ -115,7 +116,7 @@ public extension ZVRefreshStateHeader {
 // MARK: - Private
 private extension ZVRefreshStateHeader {
     
-    func set(refreshState newValue: State) {
+    func _set(refreshState newValue: State) {
         
         guard checkState(newValue).result == false else { return }
         super.refreshState = newValue
@@ -125,14 +126,15 @@ private extension ZVRefreshStateHeader {
         lastUpdatedTimeKey = key
     }
     
-    func didSet(lastUpdatedTimeKey newValue: String) {
+    func _didSet(lastUpdatedTimeKey newValue: String) {
         
-        if lastUpdatedTimeLabelText != nil {
+        guard lastUpdatedTimeLabelText == nil else {
             lastUpdatedTimeLabel.text = lastUpdatedTimeLabelText?(lastUpdatedTime)
             return
         }
         
         if let lastUpdatedTime = lastUpdatedTime {
+            
             let components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
             
             let cmp1 = calendar.dateComponents(components, from: lastUpdatedTime)
@@ -160,3 +162,4 @@ private extension ZVRefreshStateHeader {
         }
     }
 }
+
