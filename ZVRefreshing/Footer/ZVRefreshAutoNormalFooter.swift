@@ -79,8 +79,10 @@ private extension ZVRefreshAutoNormalFooter {
         switch newValue {
         case .noMoreData, .idle:
             activityIndicator.stopAnimating()
+            break
         case .refreshing:
             activityIndicator.startAnimating()
+            break
         default: break
             
         }

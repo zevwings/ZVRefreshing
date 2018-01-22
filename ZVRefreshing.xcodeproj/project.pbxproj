@@ -96,9 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				4D65A4B22015D8FA005F7833 /* ZVRefreshComponent.swift */,
-				4D65A4B32015D8FA005F7833 /* ZVActivityIndicatorView.swift */,
-				4D65A4B42015D8FA005F7833 /* UILabel+Addition.swift */,
-				4D65A4B52015D8FA005F7833 /* NSObject+Addition.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -135,6 +132,9 @@
 				4D94FCAE1F0DFFEC00677215 /* Configration.swift */,
 				4D94FCAF1F0DFFEC00677215 /* Extensions.swift */,
 				4D7BE29E2015C32D008447A6 /* Localization.swift */,
+				4D65A4B42015D8FA005F7833 /* UILabel+Addition.swift */,
+				4D65A4B52015D8FA005F7833 /* NSObject+Addition.swift */,
+				4D65A4B32015D8FA005F7833 /* ZVActivityIndicatorView.swift */,
 				4D65A4B12015D8FA005F7833 /* Base */,
 				4D94FCBA1F0DFFEC00677215 /* Header */,
 				4D94FCB01F0DFFEC00677215 /* Footer */,
