@@ -167,13 +167,9 @@ extension ZVRefreshComponent {
         guard let superview = newSuperview as? UIScrollView else { return }
         
         if superview.isKind(of: UITableView.self) {
-            DispatchQueue.once(token: OnceToken.collectionView, block: {
-                UITableView.once
-            })
+            UITableView.once
         } else if superview.isKind(of: UICollectionView.self) {
-            DispatchQueue.once(token: OnceToken.collectionView, block: {
-                UICollectionView.once
-            })
+            UICollectionView.once
         }
         
         _removeObservers()

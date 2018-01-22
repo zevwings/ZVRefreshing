@@ -91,7 +91,6 @@ public extension UIScrollView {
 extension UITableView {
     
     public static let once: Void = {
-
         UITableView.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
                                            m2: #selector(UITableView._reloadData))
     }()
@@ -105,7 +104,6 @@ extension UITableView {
 extension UICollectionView {
     
     public static let once: Void = {
-        
         UICollectionView.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
                                                 m2: #selector(UICollectionView._reloadData))
     }()
