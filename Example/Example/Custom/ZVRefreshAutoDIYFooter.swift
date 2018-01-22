@@ -30,7 +30,7 @@ class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
             return super.refreshState
         }
         set {
-            if self.checkState(newValue).result { return }
+            guard checkState(newValue).result == false else { return }
             super.refreshState = newValue
             if newValue == .noMoreData || newValue == .idle {
                 self._activityIndicator.stopAnimating()

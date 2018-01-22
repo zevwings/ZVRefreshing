@@ -36,7 +36,7 @@ class ZVRefreshDIYHeader: ZVRefreshStateHeader {
             return super.refreshState
         }
         set {
-            if self.checkState(newValue).result { return }
+            guard checkState(newValue).result == false else { return }
             super.refreshState = newValue
             
             if newValue == .idle {

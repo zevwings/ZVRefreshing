@@ -28,7 +28,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
             return super.refreshState
         }
         set {
-            if checkState(newValue).result { return }
+            guard checkState(newValue).result == false else { return }
             super.refreshState = newValue
             stateLabel.text = _stateTitles[newValue]
         }

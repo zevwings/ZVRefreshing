@@ -85,7 +85,8 @@ private extension ZVRefreshBackAnimationFooter {
     
     func set(refreshState newValue: State) {
         
-        if checkState(newValue).0 { return }
+        guard checkState(newValue).result == false else { return }
+
         super.refreshState = newValue
         
         if newValue == .pulling || newValue == .refreshing {

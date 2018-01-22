@@ -89,7 +89,7 @@ private extension ZVRefreshBackFooter {
         guard let scrollView = scrollView else { return }
         
         let checked = checkState(newValue)
-        if checked.result { return }
+        guard checked.result == false else { return }
         super.refreshState = newValue
         
         switch newValue {

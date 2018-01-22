@@ -72,7 +72,9 @@ extension ZVRefreshAutoNormalFooter {
 private extension ZVRefreshAutoNormalFooter {
     
     func set(refreshState newValue: State) {
-        if checkState(newValue).result { return }
+        
+        guard checkState(newValue).result == false else { return }
+
         super.refreshState = newValue
         if newValue == .noMoreData || newValue == .idle {
             activityIndicator.stopAnimating()

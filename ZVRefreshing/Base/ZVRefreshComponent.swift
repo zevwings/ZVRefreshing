@@ -16,11 +16,6 @@ open class ZVRefreshComponent: UIControl {
         case refreshing
         case noMoreData
     }
-
-    private struct OnceToken {
-        static var tableView = "com.zevwings.once.table.excute"
-        static var collectionView = "com.zevwings.once.collection.excute"
-    }
     
     public private(set) var isRefreshing: Bool = false
 
@@ -103,7 +98,7 @@ open class ZVRefreshComponent: UIControl {
     open func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey: Any]?) {}
     
     /// Call this selector when UIScrollView.panGestureRecognizer.state value changed
-    open func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey: Any]?) {}
+    open func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey: Any]?, for scrollView: UIScrollView) {}
     
     
     // MARK: Getter & Setter
@@ -279,7 +274,7 @@ extension ZVRefreshComponent {
         if keyPath == ObserversKeyPath.contentOffset {
             scrollView(superScrollView, contentOffsetDidChanged: change)
         } else if keyPath == ObserversKeyPath.panState {
-            panGestureRecognizer(superScrollView.panGestureRecognizer, stateValueChanged: change)
+            panGestureRecognizer(superScrollView.panGestureRecognizer, stateValueChanged: change, for: superScrollView)
         }
     }
 }
@@ -314,9 +309,7 @@ extension ZVRefreshComponent {
             
             if let target = self._target, let action = self._action {
                 if (target as AnyObject).responds(to: action) {
-                    DispatchQueue.main.async(execute: {
-                        Thread.detachNewThreadSelector(action, toTarget: target, with: self)
-                    })
+                    Thread.detachNewThreadSelector(action, toTarget: target, with: self)
                 }
             }
             
@@ -331,7 +324,7 @@ private extension ZVRefreshComponent {
     
     func set(refreshState newValue: State) {
         
-        if checkState(newValue).result { return }
+        guard checkState(newValue).result == false else { return }
         
         willChangeValue(forKey: "isRefreshing")
         isRefreshing = newValue == .refreshing
@@ -342,7 +335,9 @@ private extension ZVRefreshComponent {
     }
     
     func didSet(pullingPercent newValue: CGFloat) {
+        
         guard isRefreshing == false else { return }
+        
         if isAutomaticallyChangeAlpha {
             alpha = newValue
         }

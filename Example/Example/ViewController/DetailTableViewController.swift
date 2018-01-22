@@ -21,7 +21,8 @@ class DetailTableViewController: UITableViewController {
         _addBarButton()
        
         // selector, this way is equal to header?.refreshHandler = {}
-        header?.addTarget(self, action: #selector(isRefreshingValueChange(_:)), for: .valueChanged)
+//        header?.addTarget(self, action: #selector(isRefreshingValueChange(_:)), for: .valueChanged)
+        header?.addTarget(self, action: #selector(isRefreshingValueChange(_:)))
         self.tableView.refreshHeader = header
         
         // callback

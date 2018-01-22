@@ -117,7 +117,7 @@ private extension ZVRefreshStateHeader {
     
     func set(refreshState newValue: State) {
         
-        if checkState(newValue).result { return }
+        guard checkState(newValue).result == false else { return }
         super.refreshState = newValue
         stateLabel.text = stateTitles[refreshState]
         

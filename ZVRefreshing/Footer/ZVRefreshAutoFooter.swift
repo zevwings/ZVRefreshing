@@ -37,13 +37,11 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
         }
     }
     
-    open override func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey : Any]?) {
+    open override func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey : Any]?, for scrollView: UIScrollView) {
         
-        super.panGestureRecognizer(panGestureRecognizer, stateValueChanged: value)
+        super.panGestureRecognizer(panGestureRecognizer, stateValueChanged: value, for: scrollView)
         
         guard refreshState == .idle else { return }
-
-        guard let scrollView = scrollView else { return }
 
         if scrollView.panGestureRecognizer.state == .ended {
             if scrollView.contentInset.top + scrollView.contentSize.height <= scrollView.frame.size.height {
