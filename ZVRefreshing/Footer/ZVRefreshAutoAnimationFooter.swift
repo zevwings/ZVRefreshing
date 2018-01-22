@@ -36,7 +36,7 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
             animationView.contentMode = .scaleAspectFit
         } else {
             animationView.contentMode = .scaleAspectFit
-            animationView.width = width * 0.5 - 90
+            animationView.frame.size.width = frame.size.width * 0.5 - 90
         }
     }
 
@@ -68,8 +68,8 @@ extension ZVRefreshAutoAnimationFooter {
         
         _stateImages[state] = images
         _stateDurations[state] = duration
-        guard let image = images.first, image.size.height < height else { return }
-        height = image.size.height
+        guard let image = images.first, image.size.height < frame.size.height else { return }
+        frame.size.height = image.size.height
     }
 }
 

@@ -26,12 +26,12 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     open override func prepare() {
         super.prepare()
         lastUpdatedTimeKey = Config.lastUpdatedTimeKey
-        height = Component.Header.height
     }
     
     open override func placeSubViews() {
         super.placeSubViews()
-        y = -height - ignoredScrollViewContentInsetTop
+        frame.size.height = Component.Header.height
+        frame.origin.y = -frame.size.height - ignoredScrollViewContentInsetTop
     }
 
     // MARK: Observers
@@ -40,23 +40,23 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         if refreshState == .refreshing {
             guard window != nil else { return }
             
-            var insetT = -scrollView.offsetY > scrollViewOriginalInset.top ? -scrollView.offsetY : scrollViewOriginalInset.top
-            insetT = insetT > height + scrollViewOriginalInset.top ? height + scrollViewOriginalInset.top : insetT
+            var insetT = -scrollView.contentOffset.y > scrollViewOriginalInset.top ? -scrollView.contentOffset.y : scrollViewOriginalInset.top
+            insetT = insetT > frame.size.height + scrollViewOriginalInset.top ? frame.size.height + scrollViewOriginalInset.top : insetT
             
-            scrollView.insetTop = insetT
+            scrollView.contentInset.top = insetT
             insetTop = scrollViewOriginalInset.top - insetT
             return
         }
         
         scrollViewOriginalInset = scrollView.contentInset
         
-        let offsetY = scrollView.offsetY
+        let offsetY = scrollView.contentOffset.y
         let happenOffsetY = -scrollViewOriginalInset.top
         
         guard offsetY <= happenOffsetY else { return }
         
-        let normal2pullingOffsetY = happenOffsetY - height
-        let pullingPercent = (happenOffsetY - offsetY) / height
+        let normal2pullingOffsetY = happenOffsetY - frame.size.height
+        let pullingPercent = (happenOffsetY - offsetY) / frame.size.height
         
         if scrollView.isDragging {
             self.pullingPercent = pullingPercent
@@ -101,7 +101,7 @@ private extension ZVRefreshHeader {
             UserDefaults.standard.synchronize()
             
             UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
-                self.scrollView?.insetTop += self.insetTop
+                self.scrollView?.contentInset.top += self.insetTop
                 if self.isAutomaticallyChangeAlpha {
                     self.alpha = 0.0
                 }
@@ -112,9 +112,9 @@ private extension ZVRefreshHeader {
         } else if newValue == .refreshing {
             
             UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
-                let top = self.scrollViewOriginalInset.top + self.height
-                self.scrollView?.insetTop = top
-                self.scrollView?.offsetY = -top
+                let top = self.scrollViewOriginalInset.top + self.frame.size.height
+                self.scrollView?.contentInset.top = top
+                self.scrollView?.contentOffset.y = -top
             }, completion: { finished in
                 self.executeRefreshCallback()
             })

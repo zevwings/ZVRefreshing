@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4D5237241F4C24E8005080E1 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4D5237231F4C24E8005080E1 /* Resource.bundle */; };
 		4D7BE29B2015C1F8008447A6 /* UILabel+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7BE29A2015C1F8008447A6 /* UILabel+Addition.swift */; };
-		4D7BE29D2015C298008447A6 /* Frame+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7BE29C2015C298008447A6 /* Frame+Addition.swift */; };
 		4D7BE29F2015C32D008447A6 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7BE29E2015C32D008447A6 /* Resource.swift */; };
 		4D94FC9E1F0DFFC500677215 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; };
 		4D94FCA31F0DFFC500677215 /* ZVRefreshingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCA21F0DFFC500677215 /* ZVRefreshingTests.swift */; };
@@ -48,7 +47,6 @@
 /* Begin PBXFileReference section */
 		4D5237231F4C24E8005080E1 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		4D7BE29A2015C1F8008447A6 /* UILabel+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Addition.swift"; sourceTree = "<group>"; };
-		4D7BE29C2015C298008447A6 /* Frame+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Frame+Addition.swift"; sourceTree = "<group>"; };
 		4D7BE29E2015C32D008447A6 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZVRefreshing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D94FC971F0DFFC500677215 /* ZVRefreshing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZVRefreshing.h; sourceTree = "<group>"; };
@@ -137,7 +135,6 @@
 				4DAB6BEA2011D0D50016FE5A /* DispatchQueue+Addition.swift */,
 				4DAB6BEC2011D0F60016FE5A /* NSObject+Addition.swift */,
 				4D7BE29A2015C1F8008447A6 /* UILabel+Addition.swift */,
-				4D7BE29C2015C298008447A6 /* Frame+Addition.swift */,
 				4D7BE29E2015C32D008447A6 /* Resource.swift */,
 			);
 			path = ZVRefreshing;
@@ -302,7 +299,6 @@
 				4D7BE29F2015C32D008447A6 /* Resource.swift in Sources */,
 				4D94FCD11F0DFFEC00677215 /* ZVRefreshComponent.swift in Sources */,
 				4D94FCC81F0DFFEC00677215 /* ZVRefreshAutoFooter.swift in Sources */,
-				4D7BE29D2015C298008447A6 /* Frame+Addition.swift in Sources */,
 				4DAB6BEB2011D0D50016FE5A /* DispatchQueue+Addition.swift in Sources */,
 				4D7BE29B2015C1F8008447A6 /* UILabel+Addition.swift in Sources */,
 				4D94FCCD1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift in Sources */,

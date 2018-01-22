@@ -83,12 +83,12 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     public override func placeSubViews() {
         super.placeSubViews()
         
-        var centerX = width * 0.5
+        var centerX = frame.size.width * 0.5
         if !stateLabel.isHidden {
             centerX -= (stateLabel.getTextWidth() * 0.5 + labelInsetLeft)
         }
         
-        let centerY = height * 0.5
+        let centerY = frame.size.height * 0.5
         
         if activityIndicator.constraints.count == 0 {
             

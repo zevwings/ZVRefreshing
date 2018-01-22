@@ -35,7 +35,7 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
             animationView.contentMode = .center
         } else {
             animationView.contentMode = .right
-            animationView.width = width * 0.5 - 90
+            animationView.frame.size.width = frame.size.width * 0.5 - 90
         }
     }
     
@@ -72,8 +72,8 @@ extension ZVRefreshBackAnimationFooter {
         _stateImages.updateValue(images, forKey: state)
         _stateDurations.updateValue(duration, forKey: state)
         if let image = images.first {
-            if image.size.height > height {
-                height = image.size.height
+            if image.size.height > frame.size.height {
+                frame.size.height = image.size.height
             }
         }
     }

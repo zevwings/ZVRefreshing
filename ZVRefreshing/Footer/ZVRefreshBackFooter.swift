@@ -35,11 +35,11 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         guard refreshState != .refreshing else { return }
         
         scrollViewOriginalInset = scrollView.contentInset
-        let currentOffsetY = scrollView.offsetY
+        let currentOffsetY = scrollView.contentOffset.y
         
         guard currentOffsetY > happenOffsetY else { return }
         
-        let pullingPercent = (currentOffsetY - happenOffsetY) / height
+        let pullingPercent = (currentOffsetY - happenOffsetY) / frame.size.height
         
         if refreshState == .noMoreData {
             self.pullingPercent = pullingPercent
@@ -48,7 +48,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         
         if scrollView.isDragging {
             self.pullingPercent = pullingPercent
-            let normal2pullingOffsetY = happenOffsetY + height
+            let normal2pullingOffsetY = happenOffsetY + frame.size.height
             if refreshState == .idle && currentOffsetY > normal2pullingOffsetY {
                 refreshState = .pulling
             } else if refreshState == .pulling && currentOffsetY <= normal2pullingOffsetY {
@@ -65,9 +65,9 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         super.scrollView(scrollView, contentSizeDidChanged: value)
         
         let contentHeight = scrollView.contentSize.height + ignoredScrollViewContentInsetBottom
-        let scrollHeight = scrollView.height - scrollViewOriginalInset.top - scrollViewOriginalInset.bottom + ignoredScrollViewContentInsetBottom
+        let scrollHeight = scrollView.frame.size.height - scrollViewOriginalInset.top - scrollViewOriginalInset.bottom + ignoredScrollViewContentInsetBottom
         
-        y = max(contentHeight, scrollHeight)
+        frame.origin.y = max(contentHeight, scrollHeight)
     }
     
     // MARK: Getter & Setter
@@ -96,7 +96,7 @@ private extension ZVRefreshBackFooter {
         case .idle, .noMoreData:
             if checked.oldState == .refreshing {
                 UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
-                    scrollView.insetBottom -= self.lastBottomDelta
+                    scrollView.contentInset.bottom -= self.lastBottomDelta
                     if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
                 }, completion: { finished in
                     self.pullingPercent = 0.0
@@ -106,19 +106,19 @@ private extension ZVRefreshBackFooter {
             if .refreshing == checked.oldState &&
                 heightForContentBreakView > CGFloat(0.0)
                 && scrollView.totalDataCount != lastRefreshCount{
-                self.scrollView?.offsetY = scrollView.offsetY
+                self.scrollView?.contentOffset.y = scrollView.contentOffset.y
             }
             break
         case .refreshing:
             lastRefreshCount = scrollView.totalDataCount
             UIView.animate(withDuration: Config.AnimationDuration.fast, animations: {
-                var bottom = self.height + self.scrollViewOriginalInset.bottom
+                var bottom = self.frame.size.height + self.scrollViewOriginalInset.bottom
                 if self.heightForContentBreakView < 0 {
                     bottom -= self.heightForContentBreakView
                 }
                 self.lastBottomDelta = bottom - scrollView.contentInset.bottom
-                scrollView.insetBottom = bottom
-                scrollView.offsetY = self.happenOffsetY + self.height
+                scrollView.contentInset.bottom = bottom
+                scrollView.contentOffset.y = self.happenOffsetY + self.frame.size.height
             }, completion: { finished in
                 self.executeRefreshCallback()
             })
@@ -130,8 +130,8 @@ private extension ZVRefreshBackFooter {
     
     private var heightForContentBreakView: CGFloat {
         guard let scrollView = scrollView else { return 0.0 }
-        let h = scrollView.height - scrollViewOriginalInset.bottom - scrollViewOriginalInset.top
-        let height = scrollView.contentHeight - h
+        let h = scrollView.frame.size.height - scrollViewOriginalInset.bottom - scrollViewOriginalInset.top
+        let height = scrollView.contentSize.height - h
         return height
     }
     

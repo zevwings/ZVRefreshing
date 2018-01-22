@@ -44,17 +44,17 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         if lastUpdatedTimeLabel.isHidden {
             if noConstrainsOnStatusLabel { stateLabel.frame = bounds }
         } else {
-            let statusLabelH = height * 0.5
-            stateLabel.x = 0
-            stateLabel.y = 0
-            stateLabel.width = width
-            stateLabel.height = statusLabelH
+            let statusLabelH = frame.size.height * 0.5
+            stateLabel.frame.origin.x = 0
+            stateLabel.frame.origin.y = 0
+            stateLabel.frame.size.width = frame.size.width
+            stateLabel.frame.size.height = statusLabelH
             if lastUpdatedTimeLabel.constraints.count == 0 {
                 
-                lastUpdatedTimeLabel.x = 0
-                lastUpdatedTimeLabel.y = statusLabelH
-                lastUpdatedTimeLabel.width = width
-                lastUpdatedTimeLabel.height = height - lastUpdatedTimeLabel.y
+                lastUpdatedTimeLabel.frame.origin.x = 0
+                lastUpdatedTimeLabel.frame.origin.y = statusLabelH
+                lastUpdatedTimeLabel.frame.size.width = frame.size.width
+                lastUpdatedTimeLabel.frame.size.height = frame.size.height - lastUpdatedTimeLabel.frame.origin.y
             }
         }
     }

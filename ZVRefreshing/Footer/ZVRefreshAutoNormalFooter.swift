@@ -29,14 +29,14 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
         
         if activityIndicator.constraints.count > 0 { return }
         
-        var centerX = width * 0.5
+        var centerX = frame.size.width * 0.5
         if !stateLabel.isHidden {
             centerX -= (stateLabel.getTextWidth() * 0.5 + labelInsetLeft)
         }
         
         activityIndicator.frame = CGRect(x: 0, y: 0, width: 24.0, height: 24.0)
         
-        let centerY = height * 0.5
+        let centerY = frame.size.height * 0.5
         activityIndicator.center = CGPoint(x: centerX, y: centerY)
     }
 

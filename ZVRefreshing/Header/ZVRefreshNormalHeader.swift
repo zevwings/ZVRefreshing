@@ -28,7 +28,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
     open override func placeSubViews() {
         super.placeSubViews()
         
-        var centerX = width * 0.5
+        var centerX = frame.size.width * 0.5
         if !stateLabel.isHidden {
             var labelWidth: CGFloat = 0.0
             if lastUpdatedTimeLabel.isHidden {
@@ -39,7 +39,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
             centerX -= (labelWidth * 0.5 + labelInsetLeft)
         }
         
-        let centerY = height * 0.5
+        let centerY = frame.size.height * 0.5
         let center = CGPoint(x: centerX, y: centerY)
         
         if activityIndicator.constraints.count == 0 {

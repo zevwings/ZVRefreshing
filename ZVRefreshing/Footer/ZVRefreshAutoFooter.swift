@@ -17,17 +17,17 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     open override func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?) {
         super.scrollView(scrollView, contentSizeDidChanged: value)
         
-        y = scrollView.contentHeight
+        frame.origin.y = scrollView.contentSize.height
     }
     
     open override func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
         
-        guard refreshState == .idle, isAutomaticallyRefresh, y != 0 else { return }
+        guard refreshState == .idle, isAutomaticallyRefresh, frame.origin.y != 0 else { return }
         
         super.scrollView(scrollView, contentSizeDidChanged: value)
         
-        if scrollView.insetTop + scrollView.contentHeight > scrollView.height {
-            if scrollView.offsetY >= (scrollView.contentHeight - scrollView.height + height * _triggerAutomaticallyRefreshPercent + scrollView.insetBottom - height) {
+        if scrollView.contentInset.top + scrollView.contentSize.height > scrollView.frame.size.height {
+            if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.size.height + frame.size.height * _triggerAutomaticallyRefreshPercent + scrollView.contentInset.bottom - frame.size.height) {
                 let old = (value?[.oldKey] as? NSValue)?.cgPointValue
                 let new = (value?[.newKey] as? NSValue)?.cgPointValue
                 if old != nil && new != nil && new!.y > old!.y {
@@ -46,12 +46,12 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
         guard let scrollView = scrollView else { return }
 
         if scrollView.panGestureRecognizer.state == .ended {
-            if scrollView.insetTop + scrollView.contentHeight <= scrollView.height {
-                if scrollView.offsetY >= -scrollView.insetTop {
+            if scrollView.contentInset.top + scrollView.contentSize.height <= scrollView.frame.size.height {
+                if scrollView.contentOffset.y >= -scrollView.contentInset.top {
                     beginRefreshing()
                 }
             } else {
-                if scrollView.offsetY >= (scrollView.contentHeight + scrollView.insetBottom - scrollView.height) {
+                if scrollView.contentOffset.y >= (scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.frame.size.height) {
                     beginRefreshing()
                 }
             }
@@ -81,13 +81,13 @@ extension ZVRefreshAutoFooter {
         if scrollView == nil { return }
         if newSuperview == nil {
             if isHidden == false {
-                scrollView?.insetBottom -= height
+                scrollView?.contentInset.bottom -= frame.size.height
             }
         } else {
             if isHidden == false {
-                scrollView?.insetBottom += height
+                scrollView?.contentInset.bottom += frame.size.height
             }
-            y = scrollView!.contentHeight
+            frame.origin.y = scrollView!.contentSize.height
         }
     }
     
@@ -153,13 +153,13 @@ private extension ZVRefreshAutoFooter {
         super.isHidden = newValue
         if isHidden {
             if !newValue {
-                scrollView.insetBottom += height
-                y = scrollView.contentHeight
+                scrollView.contentInset.bottom += frame.size.height
+                frame.origin.y = scrollView.contentSize.height
             }
         } else {
             if newValue {
                 refreshState = .idle
-                scrollView.insetBottom -= height
+                scrollView.contentInset.bottom -= frame.size.height
             }
         }
     }

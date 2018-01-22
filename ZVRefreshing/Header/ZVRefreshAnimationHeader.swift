@@ -35,7 +35,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
             animationView.contentMode = .center
         } else {
             animationView.contentMode = .right
-            animationView.size.width = width * 0.5 - 90
+            animationView.frame.size.width = frame.size.width * 0.5 - 90
         }
     }
 
@@ -71,8 +71,8 @@ public extension ZVRefreshAnimationHeader {
         _stateImages.updateValue(images, forKey: state)
         _stateDurations.updateValue(duration, forKey: state)
         if let image = images.first {
-            if image.size.height > height {
-                size.height = image.size.height
+            if image.size.height > frame.size.height {
+                frame.size.height = image.size.height
             }
         }
     }
@@ -111,6 +111,5 @@ private extension ZVRefreshAnimationHeader {
             index = imgs.count - 1
         }
         animationView.image = imgs[index]
-
     }
 }
