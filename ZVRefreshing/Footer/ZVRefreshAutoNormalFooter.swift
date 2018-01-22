@@ -9,11 +9,52 @@ import UIKit
 
 public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
 
-    fileprivate(set) lazy var  activityIndicator : ZVActivityIndicatorView = {
+    private(set) lazy var activityIndicator : ZVActivityIndicatorView = {
         var activityIndicator = ZVActivityIndicatorView()
         activityIndicator.color = .lightGray
         return activityIndicator
     }()
+    
+    // MARK: Subviews
+    public override func prepare() {
+        super.prepare()
+        
+        if activityIndicator.superview == nil {
+            addSubview(activityIndicator)
+        }
+    }
+    
+    public override func placeSubViews() {
+        super.placeSubViews()
+        
+        if activityIndicator.constraints.count > 0 { return }
+        
+        var centerX = width * 0.5
+        if !stateLabel.isHidden {
+            centerX -= (stateLabel.getTextWidth() * 0.5 + labelInsetLeft)
+        }
+        
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 24.0, height: 24.0)
+        
+        let centerY = height * 0.5
+        activityIndicator.center = CGPoint(x: centerX, y: centerY)
+    }
+
+    // MARK: Getter & Setter
+    
+    public override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            set(refreshState: newValue)
+        }
+    }
+}
+
+// MARK: - Override
+
+extension ZVRefreshAutoNormalFooter {
     
     open override var tintColor: UIColor! {
         get {
@@ -21,49 +62,22 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
         }
         set {
             super.tintColor = newValue
-            self.activityIndicator.color = newValue
-        }
-    }
-    
-    override public var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            if self.checkState(newValue).result { return }
-            super.refreshState = newValue
-            if newValue == .noMoreData || newValue == .idle {
-                self.activityIndicator.stopAnimating()
-            } else if newValue == .refreshing {
-                self.activityIndicator.startAnimating()
-            }
+            activityIndicator.color = newValue
         }
     }
 }
 
-extension ZVRefreshAutoNormalFooter {
-    
-    override public func prepare() {
-        super.prepare()
-        
-        if self.activityIndicator.superview == nil {
-            self.addSubview(self.activityIndicator)
-        }
-    }
-    
-    override public func placeSubViews() {
-        super.placeSubViews()
-        
-        if self.activityIndicator.constraints.count > 0 { return }
-        
-        var centerX = self.width * 0.5
-        if !self.stateLabel.isHidden {
-            centerX -= (self.stateLabel.getTextWidth() * 0.5 + self.labelInsetLeft)
-        }
-        
-        self.activityIndicator.frame = CGRect(x: 0, y: 0, width: 24.0, height: 24.0)
+// MARK: - Private
 
-        let centerY = self.height * 0.5
-        self.activityIndicator.center = CGPoint(x: centerX, y: centerY)
+private extension ZVRefreshAutoNormalFooter {
+    
+    func set(refreshState newValue: State) {
+        if checkState(newValue).result { return }
+        super.refreshState = newValue
+        if newValue == .noMoreData || newValue == .idle {
+            activityIndicator.stopAnimating()
+        } else if newValue == .refreshing {
+            activityIndicator.startAnimating()
+        }
     }
 }

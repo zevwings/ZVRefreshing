@@ -9,9 +9,9 @@ import UIKit
 
 open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
-    public fileprivate(set) lazy var stateLabel: UILabel = .default
+    public private(set) lazy var stateLabel: UILabel = .default
     public var labelInsetLeft: CGFloat = 24.0
-    fileprivate var _stateTitles:[State: String] = [:]
+    private var _stateTitles:[State: String] = [:]
     
     open override var tintColor: UIColor! {
         get {
@@ -19,48 +19,50 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
         }
         set {
             super.tintColor = newValue
-            self.stateLabel.textColor = newValue
+            stateLabel.textColor = newValue
         }
     }
     
-    override open var refreshState: State {
+    open override var refreshState: State {
         get {
             return super.refreshState
         }
         set {
-            if self.checkState(newValue).result { return }
+            if checkState(newValue).result { return }
             super.refreshState = newValue
-            self.stateLabel.text = self._stateTitles[newValue]
+            stateLabel.text = _stateTitles[newValue]
         }
     }
+    
+    open override func prepare() {
+        super.prepare()
+        
+        if stateLabel.superview == nil {
+            addSubview(stateLabel)
+        }
+        
+        setTitle(localized(string: Constants.Footer.Back.idle), forState: .idle)
+        setTitle(localized(string: Constants.Footer.Back.pulling), forState: .pulling)
+        setTitle(localized(string: Constants.Footer.Back.refreshing), forState: .refreshing)
+        setTitle(localized(string: Constants.Footer.Back.noMoreData), forState: .noMoreData)
+    }
+    
+    open override func placeSubViews() {
+        super.placeSubViews()
+        if stateLabel.constraints.count > 0 { return }
+        stateLabel.frame = bounds
+    }
+
 }
 
 extension ZVRefreshBackStateFooter {
     
     public func setTitle(_ title: String, forState state: State) {
-        self._stateTitles.updateValue(title, forKey: state)
-        self.stateLabel.text = self._stateTitles[self.refreshState]
+        _stateTitles.updateValue(title, forKey: state)
+        stateLabel.text = _stateTitles[refreshState]
     }
 }
 
 extension ZVRefreshBackStateFooter {
     
-    override open func prepare() {
-        super.prepare()
-        
-        if self.stateLabel.superview == nil {
-            self.addSubview(self.stateLabel)
-        }
-        
-        self.setTitle(localized(string: Constants.Footer.Back.idle), forState: .idle)
-        self.setTitle(localized(string: Constants.Footer.Back.pulling), forState: .pulling)
-        self.setTitle(localized(string: Constants.Footer.Back.refreshing), forState: .refreshing)
-        self.setTitle(localized(string: Constants.Footer.Back.noMoreData), forState: .noMoreData)
-    }
-    
-    override open func placeSubViews() {
-        super.placeSubViews()
-        if self.stateLabel.constraints.count > 0 { return }
-        self.stateLabel.frame = self.bounds
-    }
 }

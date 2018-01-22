@@ -11,13 +11,13 @@ import ZVRefreshing
 
 class ZVRefreshDIYHeader: ZVRefreshStateHeader {
     
-    fileprivate lazy var _arrowView: UIImageView = {
+    private lazy var _arrowView: UIImageView = {
         let arrowView = UIImageView()
         arrowView.image = UIImage(named: "arrow.png")
         return arrowView
     }()
     
-    fileprivate lazy var _activityIndicator: UIActivityIndicatorView = {
+    private lazy var _activityIndicator: UIActivityIndicatorView = {
         var activityIndicator = UIActivityIndicatorView()
         activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
         activityIndicator.hidesWhenStopped = true
@@ -70,9 +70,6 @@ class ZVRefreshDIYHeader: ZVRefreshStateHeader {
             }
         }
     }
-}
-
-extension ZVRefreshDIYHeader {
     
     override func prepare() {
         super.prepare()
@@ -108,4 +105,9 @@ extension ZVRefreshDIYHeader {
             self._activityIndicator.center = center
         }
     }
+
+}
+
+extension ZVRefreshDIYHeader {
+    
 }

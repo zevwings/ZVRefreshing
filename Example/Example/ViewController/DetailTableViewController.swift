@@ -86,7 +86,7 @@ class DetailTableViewController: UITableViewController {
         }
     }
     
-    fileprivate func _addBarButton() {
+    private func _addBarButton() {
         let backButton = UIButton(type: .custom)
         backButton.frame = CGRect(x: 0, y: 0, width: 64, height: 44)
         backButton.titleLabel?.font = .systemFont(ofSize: 14.0)

@@ -9,11 +9,71 @@ import UIKit
 
 open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
     
-    public fileprivate(set) lazy var activityIndicator: ZVActivityIndicatorView = {
+    public private(set) lazy var activityIndicator: ZVActivityIndicatorView = {
         let indicator = ZVActivityIndicatorView()
         indicator.color = .lightGray
         return indicator
     }()
+    
+    // MARK: Subviews
+    
+    open override func prepare() {
+        super.prepare()
+        
+        if activityIndicator.superview == nil {
+            addSubview(activityIndicator)
+        }
+    }
+    
+    open override func placeSubViews() {
+        super.placeSubViews()
+        
+        var centerX = width * 0.5
+        if !stateLabel.isHidden {
+            var labelWidth: CGFloat = 0.0
+            if lastUpdatedTimeLabel.isHidden {
+                labelWidth = stateLabel.getTextWidth()
+            } else {
+                labelWidth = max(lastUpdatedTimeLabel.getTextWidth(), stateLabel.getTextWidth())
+            }
+            centerX -= (labelWidth * 0.5 + labelInsetLeft)
+        }
+        
+        let centerY = height * 0.5
+        let center = CGPoint(x: centerX, y: centerY)
+        
+        if activityIndicator.constraints.count == 0 {
+            
+            activityIndicator.frame = CGRect(x: 0, y: 0, width: 24.0, height: 24.0)
+            activityIndicator.center = center
+        }
+    }
+
+    // MARK: Getter & Setter
+    
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            set(refreshState: newValue)
+        }
+    }
+    
+    open override var pullingPercent: CGFloat {
+        get {
+            return super.pullingPercent
+        }
+        set {
+            super.pullingPercent = newValue
+            activityIndicator.percent = newValue
+        }
+    }
+}
+
+// MARK: - Override
+
+extension ZVRefreshNormalHeader {
     
     open override var tintColor: UIColor! {
         get {
@@ -21,78 +81,34 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         }
         set {
             super.tintColor = newValue
-            self.activityIndicator.color = newValue
-        }
-    }
-    
-    override open var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            if self.checkState(newValue).result { return }
-            super.refreshState = newValue
-            
-            if newValue == .idle {
-                if self.refreshState == .refreshing {
-                    UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
-                        }, completion: { finished in
-                            guard self.refreshState == .idle else { return }
-                            self.activityIndicator.stopAnimating()
-                    })
-                } else {
-                    self.activityIndicator.stopAnimating()
-                }
-            } else if newValue == .pulling {
-                self.activityIndicator.stopAnimating()
-            } else if newValue == .refreshing {
-                self.activityIndicator.startAnimating()
-            }
-        }
-    }
-    
-    override open var pullingPercent: CGFloat {
-        get {
-            return super.pullingPercent
-        }
-        set {
-            super.pullingPercent = newValue
-            self.activityIndicator.percent = newValue
+            activityIndicator.color = newValue
         }
     }
 }
 
-extension ZVRefreshNormalHeader {
+// MARK: - Private
+
+private extension ZVRefreshNormalHeader {
     
-    override open func prepare() {
-        super.prepare()
+    func set(refreshState newValue: State) {
         
-        if self.activityIndicator.superview == nil {
-            self.addSubview(self.activityIndicator)
-        }
-    }
-
-    open override func placeSubViews() {
-        super.placeSubViews()
+        if checkState(newValue).result { return }
+        super.refreshState = newValue
         
-        var centerX = self.width * 0.5
-        if !self.stateLabel.isHidden {
-            var labelWidth: CGFloat = 0.0
-            if self.lastUpdatedTimeLabel.isHidden {
-                labelWidth = self.stateLabel.getTextWidth()
+        if newValue == .idle {
+            if refreshState == .refreshing {
+                UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
+                }, completion: { finished in
+                    guard self.refreshState == .idle else { return }
+                    self.activityIndicator.stopAnimating()
+                })
             } else {
-                labelWidth = max(self.lastUpdatedTimeLabel.getTextWidth(), self.stateLabel.getTextWidth())
+                activityIndicator.stopAnimating()
             }
-            centerX -= (labelWidth * 0.5 + self.labelInsetLeft)
-        }
-
-        let centerY = self.height * 0.5
-        let center = CGPoint(x: centerX, y: centerY)
-
-        if self.activityIndicator.constraints.count == 0 {
-            
-            self.activityIndicator.frame = CGRect(x: 0, y: 0, width: 24.0, height: 24.0)
-            self.activityIndicator.center = center
+        } else if newValue == .pulling {
+            activityIndicator.stopAnimating()
+        } else if newValue == .refreshing {
+            activityIndicator.startAnimating()
         }
     }
 }

@@ -8,6 +8,13 @@
 
 import UIKit
 
+public protocol ZVRefreshComponentProtocol: class {
+    associatedtype T: ZVRefreshComponent
+    
+    var header: T? { get set }
+    
+}
+
 public extension UIScrollView {
     
     private struct AssociationKey {
@@ -83,20 +90,11 @@ public extension UIScrollView {
 
 extension UITableView {
     
+    public static let once: Void = {
 
-    class func once() {
-
-        struct OnceToken {
-            static var token = "com.zevwings.once.table.exchange"
-        }
-
-        if self !== UITableView.self { return }
-        
-        DispatchQueue.once(token: OnceToken.token) {
-            UITableView.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
-                                               m2: #selector(UITableView._reloadData))
-        }
-    }
+        UITableView.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
+                                           m2: #selector(UITableView._reloadData))
+    }()
 
     @objc func _reloadData() {
         self._reloadData()
@@ -106,55 +104,14 @@ extension UITableView {
 
 extension UICollectionView {
     
-    class func once() {
+    public static let once: Void = {
         
-        struct OnceToken {
-            static var token = "com.zevwings.once.collection.exchange"
-        }
-        
-        if self !== UICollectionView.self { return }
-        
-        DispatchQueue.once(token: OnceToken.token) {
-            UICollectionView.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
-                                                    m2: #selector(UICollectionView._reloadData))
-        }
-    }
+        UICollectionView.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
+                                                m2: #selector(UICollectionView._reloadData))
+    }()
     
     @objc func _reloadData() {
         self._reloadData()
         self.executeReloadDataBlock()
     }
 }
-
-extension NSObject {
-    
-    class func exchangeInstanceMethod(m1: Selector, m2: Selector) {
-        
-        let method1 = class_getInstanceMethod(self, m1)
-        let method2 = class_getInstanceMethod(self, m2)
-        
-        let didAddMethod = class_addMethod(self, m1, method_getImplementation(method2!), method_getTypeEncoding(method2!))
-        
-        if didAddMethod {
-            class_replaceMethod(self, m2, method_getImplementation(method1!), method_getTypeEncoding(method1!))
-        } else {
-            method_exchangeImplementations(method1!, method2!)
-        }
-    }
-}
-
-extension DispatchQueue {
-    
-    private static var _onceTracker = [String]()
-
-    class func once(token: String, block:() -> Void) {
-        
-        objc_sync_enter(self)
-        defer { objc_sync_exit(self) }
-        if _onceTracker.contains(token) { return }
-        _onceTracker.append(token)
-        block()
-    }
-}
-
-

@@ -11,7 +11,7 @@ import ZVRefreshing
 
 class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
     
-    fileprivate lazy var _activityIndicator: UIActivityIndicatorView = {
+    private lazy var _activityIndicator: UIActivityIndicatorView = {
         var activityIndicator = UIActivityIndicatorView()
         activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
         activityIndicator.hidesWhenStopped = true
@@ -39,9 +39,6 @@ class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
             }
         }
     }
-}
-
-extension ZVRefreshAutoDIYFooter {
     
     override func prepare() {
         super.prepare()
@@ -62,4 +59,9 @@ extension ZVRefreshAutoDIYFooter {
         let loadingCenterY = self.frame.height * 0.5
         self._activityIndicator.center = CGPoint(x: loadingCenterX, y: loadingCenterY)
     }
+
+}
+
+extension ZVRefreshAutoDIYFooter {
+    
 }

@@ -9,15 +9,53 @@ import UIKit
 
 open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     
-    public fileprivate(set) lazy var stateLabel: UILabel = { [unowned self] in
+    public private(set) lazy var stateLabel: UILabel = { [unowned self] in
         let label: UILabel = .default
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(.init(target: self,
                                          action: #selector(ZVRefreshAutoStateFooter.stateLabelClicked)))
         return label
     }()
+    
     public var labelInsetLeft: CGFloat = 24.0
-    fileprivate var _stateTitles:[State: String] = [:]
+    private var _stateTitles:[State: String] = [:]
+    
+    // MARK: Subviews
+    
+    open override func prepare() {
+        super.prepare()
+        
+        if stateLabel.superview == nil {
+            addSubview(stateLabel)
+        }
+        
+        setTitle(localized(string: Constants.Footer.Auto.idle) , forState: .idle)
+        setTitle(localized(string: Constants.Footer.Auto.refreshing), forState: .refreshing)
+        setTitle(localized(string: Constants.Footer.Auto.noMoreData), forState: .noMoreData)
+    }
+    
+    open override func placeSubViews() {
+        super.placeSubViews()
+        
+        if stateLabel.constraints.count > 0 { return }
+        stateLabel.frame = bounds
+    }
+    
+    // MARK: Getter & Setter
+
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            set(refreshState: newValue)
+        }
+    }
+}
+
+// MARK: - Override
+
+extension ZVRefreshAutoStateFooter {
     
     open override var tintColor: UIColor! {
         get {
@@ -25,58 +63,39 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
         }
         set {
             super.tintColor = newValue
-            self.stateLabel.textColor = newValue
-        }
-    }
-    
-    override open var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            if self.checkState(newValue).0 { return }
-            super.refreshState = newValue
-            
-            if self.stateLabel.isHidden && newValue == .refreshing {
-                self.stateLabel.text = nil
-            } else {
-                self.stateLabel.text = self._stateTitles[newValue]
-            }
+            stateLabel.textColor = newValue
         }
     }
 }
 
-extension ZVRefreshAutoStateFooter {
+// MARK: - Public
+
+public extension ZVRefreshAutoStateFooter {
     
-    public func setTitle(_ title: String?, forState state: State) {
+    func setTitle(_ title: String?, forState state: State) {
         if title == nil {return}
-        self._stateTitles.updateValue(title!, forKey: state)
-        self.stateLabel.text = self._stateTitles[self.refreshState]
+        _stateTitles.updateValue(title!, forKey: state)
+        stateLabel.text = _stateTitles[refreshState]
     }
 }
 
-extension ZVRefreshAutoStateFooter {
+// MARK: - Private
+
+private extension ZVRefreshAutoStateFooter {
     
-    override open func prepare() {
-        super.prepare()
+    @objc func stateLabelClicked() {
+        if refreshState == .idle { beginRefreshing() }
+    }
+    
+    func set(refreshState newValue: State) {
         
-        if self.stateLabel.superview == nil {
-            self.addSubview(self.stateLabel)
+        if checkState(newValue).0 { return }
+        super.refreshState = newValue
+        
+        if stateLabel.isHidden && newValue == .refreshing {
+            stateLabel.text = nil
+        } else {
+            stateLabel.text = _stateTitles[newValue]
         }
-                
-        self.setTitle(localized(string: Constants.Footer.Auto.idle) , forState: .idle)
-        self.setTitle(localized(string: Constants.Footer.Auto.refreshing), forState: .refreshing)
-        self.setTitle(localized(string: Constants.Footer.Auto.noMoreData), forState: .noMoreData)
-    }
-    
-    override open func placeSubViews() {
-        super.placeSubViews()
-        
-        if self.stateLabel.constraints.count > 0 { return }
-        self.stateLabel.frame = self.bounds
-    }
-    
-    @objc internal func stateLabelClicked() {
-        if self.refreshState == .idle { self.beginRefreshing() }
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 
 public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     
-    public fileprivate(set) lazy var activityIndicator : ZVActivityIndicatorView = {
+    public private(set) lazy var activityIndicator : ZVActivityIndicatorView = {
         var activityIndicator = ZVActivityIndicatorView()
         activityIndicator.color = .lightGray
         return activityIndicator
@@ -21,16 +21,16 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         }
         set {
             super.tintColor = newValue
-            self.activityIndicator.color = newValue
+            activityIndicator.color = newValue
         }
     }
     
-    override public var refreshState: State {
+    public override var refreshState: State {
         get {
             return super.refreshState
         }
         set {
-            let checked = self.checkState(newValue)
+            let checked = checkState(newValue)
             guard checked.result == false else { return }
             super.refreshState = newValue
             
@@ -44,17 +44,17 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
                         self.activityIndicator.stopAnimating()
                     })
                 } else {
-                    self.activityIndicator.stopAnimating()
+                    activityIndicator.stopAnimating()
                 }
                 break
             case .pulling:
-                self.activityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
                 break
             case .refreshing:
-                self.activityIndicator.startAnimating()
+                activityIndicator.startAnimating()
                 break
             case .noMoreData:
-                self.activityIndicator.stopAnimating()
+                activityIndicator.stopAnimating()
                 break
             default:
                 break
@@ -62,41 +62,43 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    override public var pullingPercent: CGFloat {
+    public override var pullingPercent: CGFloat {
         get {
             return super.pullingPercent
         }
         set {
             super.pullingPercent = newValue
-            self.activityIndicator.percent = newValue
+            activityIndicator.percent = newValue
         }
     }
+    
+    public override func prepare() {
+        super.prepare()
+        
+        if activityIndicator.superview == nil {
+            addSubview(activityIndicator)
+        }
+    }
+    
+    public override func placeSubViews() {
+        super.placeSubViews()
+        
+        var centerX = width * 0.5
+        if !stateLabel.isHidden {
+            centerX -= (stateLabel.getTextWidth() * 0.5 + labelInsetLeft)
+        }
+        
+        let centerY = height * 0.5
+        
+        if activityIndicator.constraints.count == 0 {
+            
+            activityIndicator.frame = CGRect(x: 0, y: 0, width: 24.0, height: 24.0)
+            activityIndicator.center = CGPoint(x: centerX, y: centerY)
+        }
+    }
+
 }
 
 extension ZVRefreshBackNormalFooter {
     
-    override public func prepare() {
-        super.prepare()
-        
-        if self.activityIndicator.superview == nil {
-            self.addSubview(self.activityIndicator)
-        }
-    }
-    
-    override public func placeSubViews() {
-        super.placeSubViews()
-        
-        var centerX = self.width * 0.5
-        if !self.stateLabel.isHidden {
-            centerX -= (self.stateLabel.getTextWidth() * 0.5 + self.labelInsetLeft)
-        }
-        
-        let centerY = self.height * 0.5
-
-        if self.activityIndicator.constraints.count == 0 {
-            
-            self.activityIndicator.frame = CGRect(x: 0, y: 0, width: 24.0, height: 24.0)
-            self.activityIndicator.center = CGPoint(x: centerX, y: centerY)
-        }
-    }
 }

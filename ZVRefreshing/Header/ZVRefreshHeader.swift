@@ -17,101 +17,107 @@ open class ZVRefreshHeader: ZVRefreshComponent {
 
     /// 上次更新时间
     internal var lastUpdatedTime: Date? {
-        return UserDefaults.standard.object(forKey: self.lastUpdatedTimeKey) as? Date
+        return UserDefaults.standard.object(forKey: lastUpdatedTimeKey) as? Date
     }
 
-    fileprivate var insetTop: CGFloat = 0.0
+    private var insetTop: CGFloat = 0.0
+    
+    // MARK: Subviews
+    open override func prepare() {
+        super.prepare()
+        lastUpdatedTimeKey = Config.lastUpdatedTimeKey
+        height = Component.Header.height
+    }
+    
+    open override func placeSubViews() {
+        super.placeSubViews()
+        y = -height - ignoredScrollViewContentInsetTop
+    }
 
-    override open var refreshState: State {
+    // MARK: Observers
+    open override func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
+        
+        if refreshState == .refreshing {
+            guard window != nil else { return }
+            
+            var insetT = -scrollView.offsetY > scrollViewOriginalInset.top ? -scrollView.offsetY : scrollViewOriginalInset.top
+            insetT = insetT > height + scrollViewOriginalInset.top ? height + scrollViewOriginalInset.top : insetT
+            
+            scrollView.insetTop = insetT
+            insetTop = scrollViewOriginalInset.top - insetT
+            return
+        }
+        
+        scrollViewOriginalInset = scrollView.contentInset
+        
+        let offsetY = scrollView.offsetY
+        let happenOffsetY = -scrollViewOriginalInset.top
+        
+        guard offsetY <= happenOffsetY else { return }
+        
+        let normal2pullingOffsetY = happenOffsetY - height
+        let pullingPercent = (happenOffsetY - offsetY) / height
+        
+        if scrollView.isDragging {
+            self.pullingPercent = pullingPercent
+            if refreshState == .idle && offsetY < normal2pullingOffsetY {
+                refreshState = .pulling
+            } else if refreshState == .pulling && offsetY >= normal2pullingOffsetY {
+                refreshState = .idle
+            }
+        } else if refreshState == .pulling {
+            beginRefreshing()
+        }else if pullingPercent < 1 {
+            self.pullingPercent = pullingPercent
+        }
+    }
+    
+    // MARK: Getter & Setter
+    open override var refreshState: State {
         get {
             return super.refreshState
         }
         set {
-            let checked = self.checkState(newValue)
-            guard checked.result == false else { return }
-            super.refreshState = newValue
-            
-            if newValue == .idle {
-                guard checked.oldState == .refreshing else { return }
-                
-                UserDefaults.standard.set(Date(), forKey: self.lastUpdatedTimeKey)
-                UserDefaults.standard.synchronize()
-                
-                UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
-                    self.scrollView?.insetTop += self.insetTop
-                    if self.isAutomaticallyChangeAlpha {
-                        self.alpha = 0.0
-                    }
-                    }, completion: { finished in
-                        self.pullingPercent = 0.0
-                        self.endRefreshingCompletionHandler?()
-                })
-            } else if newValue == .refreshing {
-                UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
-                    let top = self.scrollViewOriginalInset.top + self.height
-                    self.scrollView?.insetTop = top
-                    self.scrollView?.offsetY = -top
-                    }, completion: { finished in
-                        self.executeRefreshCallback()
-                })
-            }
+            set(refreshState: newValue)
         }
     }
 }
 
-extension ZVRefreshHeader {
-    
-    override open func prepare() {
-        super.prepare()
-        self.lastUpdatedTimeKey = Config.lastUpdatedTimeKey
-        self.height = Component.Header.height
-    }
-    
-    override open func placeSubViews() {
-        super.placeSubViews()
-        self.y = -self.height - self.ignoredScrollViewContentInsetTop
-    }
-}
+// MARK: - Private
 
-extension ZVRefreshHeader {
+private extension ZVRefreshHeader {
     
-     override open func scrollViewContentOffsetDidChanged(_ change: [NSKeyValueChangeKey : Any]?) {
-        super.scrollViewContentOffsetDidChanged(change)
+    func set(refreshState newValue: State) {
         
-        guard let scrollView = self.scrollView else { return }
+        let checked = checkState(newValue)
+        guard checked.result == false else { return }
+        super.refreshState = newValue
         
-        if self.refreshState == .refreshing {
-            guard self.window != nil else { return }
+        if newValue == .idle {
             
-            var insetT = -self.scrollView!.offsetY > self.scrollViewOriginalInset.top ? -self.scrollView!.offsetY : self.scrollViewOriginalInset.top
-            insetT = insetT > self.height + self.scrollViewOriginalInset.top ? self.height + self.scrollViewOriginalInset.top : insetT
+            guard checked.oldState == .refreshing else { return }
             
-            self.scrollView?.insetTop = insetT
-            self.insetTop = self.scrollViewOriginalInset.top - insetT
-            return
-        }
-        
-        self.scrollViewOriginalInset = scrollView.contentInset
-        
-        let offsetY = scrollView.offsetY
-        let happenOffsetY = -self.scrollViewOriginalInset.top
-        
-        guard offsetY <= happenOffsetY else { return }
-        
-        let normal2pullingOffsetY = happenOffsetY - self.height
-        let pullingPercent = (happenOffsetY - offsetY) / self.height
-        
-        if scrollView.isDragging {
-            self.pullingPercent = pullingPercent
-            if self.refreshState == .idle && offsetY < normal2pullingOffsetY {
-                self.refreshState = .pulling
-            } else if self.refreshState == .pulling && offsetY >= normal2pullingOffsetY {
-                self.refreshState = .idle
-            }
-        } else if self.refreshState == .pulling {
-            self.beginRefreshing()
-        }else if pullingPercent < 1 {
-            self.pullingPercent = pullingPercent
+            UserDefaults.standard.set(Date(), forKey: lastUpdatedTimeKey)
+            UserDefaults.standard.synchronize()
+            
+            UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
+                self.scrollView?.insetTop += self.insetTop
+                if self.isAutomaticallyChangeAlpha {
+                    self.alpha = 0.0
+                }
+            }, completion: { finished in
+                self.pullingPercent = 0.0
+                self.endRefreshingCompletionHandler?()
+            })
+        } else if newValue == .refreshing {
+            
+            UIView.animate(withDuration: Config.AnimationDuration.slow, animations: {
+                let top = self.scrollViewOriginalInset.top + self.height
+                self.scrollView?.insetTop = top
+                self.scrollView?.offsetY = -top
+            }, completion: { finished in
+                self.executeRefreshCallback()
+            })
         }
     }
 }

@@ -14,8 +14,40 @@ open class ZVRefreshFooter: ZVRefreshComponent {
     
     /// 是否自动隐藏
     public var isAutomaticallyHidden: Bool = true
+    
+    // MARK: State Control
+    public func endRefreshingWithNoMoreData() {
+        refreshState = .noMoreData
+    }
+    
+    public func resetNoMoreData() {
+        refreshState = .idle
+    }
+    
+    // MARK: Subviews
+    open override func prepare() {
+        height = Component.Footer.height
+    }
 
-    override open func willMove(toSuperview newSuperview: UIView?) {
+    // MARK: Getter & Setter
+    
+    /// 设置组件是否为RefreshState.noMoreData
+    public var isNoMoreData: Bool = false {
+        didSet {
+            if isNoMoreData {
+                refreshState = .noMoreData
+            } else {
+                refreshState = .idle
+            }
+        }
+    }
+}
+
+// MARK: - Override
+
+extension ZVRefreshFooter {
+    
+    open override func willMove(toSuperview newSuperview: UIView?) {
         // 判断superview是否为nil
         guard let superview = newSuperview as? UIScrollView else { return }
         super.willMove(toSuperview: superview)
@@ -28,34 +60,5 @@ open class ZVRefreshFooter: ZVRefreshComponent {
                 }
             }
         }
-    }
-    
-    /// 设置组件是否为RefreshState.noMoreData
-    public var isNoMoreData: Bool = false {
-        didSet {
-            if self.isNoMoreData {
-                self.refreshState = .noMoreData
-            } else {
-                self.refreshState = .idle
-            }
-        }
-    }
-}
-
-extension ZVRefreshFooter {
-
-    @objc public func endRefreshingWithNoMoreData() {
-        self.refreshState = .noMoreData
-    }
-    
-    public func resetNoMoreData() {
-        self.refreshState = .idle
-    }
-}
-
-extension ZVRefreshFooter {
-    
-    override open func prepare() {
-        self.height = Component.Footer.height
     }
 }

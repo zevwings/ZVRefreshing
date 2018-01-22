@@ -55,7 +55,7 @@ public class ZVActivityIndicatorView: UIView {
         }
     }
     
-    override public init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         self.layer.addSublayer(self.activityIndicatorLayer)
@@ -74,7 +74,7 @@ public class ZVActivityIndicatorView: UIView {
         super.init(coder: aDecoder)
     }
 
-    override public func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         self.activityIndicatorLayer.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
         self.prepare()

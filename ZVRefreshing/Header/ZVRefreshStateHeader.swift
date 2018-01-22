@@ -1,4 +1,3 @@
-
 //
 //  ZRefreshStateHeader.swift
 //
@@ -10,18 +9,84 @@ import UIKit
 
 open class ZVRefreshStateHeader: ZVRefreshHeader {
 
-    public fileprivate(set) lazy var lastUpdatedTimeLabel: UILabel = .default
-    public fileprivate(set) lazy var stateLabel: UILabel = .default
+    public private(set) lazy var lastUpdatedTimeLabel: UILabel = .default
+    public private(set) lazy var stateLabel: UILabel = .default
     public var labelInsetLeft: CGFloat = 24.0
 
-    fileprivate var stateTitles: [State : String] = [:]
-    fileprivate var calendar = Calendar(identifier: .gregorian)
-    public var lastUpdatedTimeLabelText:((_ date: Date?)->(String))? {
-        didSet {
-            let key = self.lastUpdatedTimeKey
-            self.lastUpdatedTimeKey = key
+    private var stateTitles: [State : String] = [:]
+    private var calendar = Calendar(identifier: .gregorian)
+
+    // MARK: Subviews
+    open override func prepare() {
+        super.prepare()
+        
+        if stateLabel.superview == nil {
+            addSubview(stateLabel)
+        }
+        
+        if lastUpdatedTimeLabel.superview == nil {
+            addSubview(lastUpdatedTimeLabel)
+        }
+        
+        setTitle(localized(string: Constants.Header.idle), forState: .idle)
+        setTitle(localized(string: Constants.Header.pulling), forState: .pulling)
+        setTitle(localized(string: Constants.Header.refreshing), forState: .refreshing)
+    }
+    
+    open override func placeSubViews() {
+        
+        super.placeSubViews()
+        
+        guard stateLabel.isHidden == false else { return }
+        
+        let noConstrainsOnStatusLabel = stateLabel.constraints.count == 0
+        
+        if lastUpdatedTimeLabel.isHidden {
+            if noConstrainsOnStatusLabel { stateLabel.frame = bounds }
+        } else {
+            let statusLabelH = height * 0.5
+            stateLabel.x = 0
+            stateLabel.y = 0
+            stateLabel.width = width
+            stateLabel.height = statusLabelH
+            if lastUpdatedTimeLabel.constraints.count == 0 {
+                
+                lastUpdatedTimeLabel.x = 0
+                lastUpdatedTimeLabel.y = statusLabelH
+                lastUpdatedTimeLabel.width = width
+                lastUpdatedTimeLabel.height = height - lastUpdatedTimeLabel.y
+            }
         }
     }
+    
+    // MARK: Getter & Setter
+    
+    public var lastUpdatedTimeLabelText:((_ date: Date?)->(String))? {
+        didSet {
+            let key = lastUpdatedTimeKey
+            lastUpdatedTimeKey = key
+        }
+    }
+    
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            set(refreshState: newValue)
+        }
+    }
+    
+    public override var lastUpdatedTimeKey: String {
+        
+        didSet {
+            didSet(lastUpdatedTimeKey: lastUpdatedTimeKey)
+        }
+    }
+}
+
+
+extension ZVRefreshStateHeader {
     
     open override var tintColor: UIColor! {
         get {
@@ -29,112 +94,69 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         }
         set {
             super.tintColor = newValue
-            self.lastUpdatedTimeLabel.textColor = newValue
-            self.stateLabel.textColor = newValue
-        }
-    }
-    
-    override open var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            if self.checkState(newValue).result { return }
-            super.refreshState = newValue
-            self.stateLabel.text = self.stateTitles[self.refreshState]
-            
-            let key = self.lastUpdatedTimeKey
-            self.lastUpdatedTimeKey = key
-        }
-    }
-    
-    public override var lastUpdatedTimeKey: String {
-        
-        didSet {
-            if self.lastUpdatedTimeLabelText != nil {
-                self.lastUpdatedTimeLabel.text = self.lastUpdatedTimeLabelText?(lastUpdatedTime)
-                return
-            }
-            
-            if let lastUpdatedTime = self.lastUpdatedTime {
-                let components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
-
-                let cmp1 = self.calendar.dateComponents(components, from: lastUpdatedTime)
-                let cmp2 = self.calendar.dateComponents(components, from: lastUpdatedTime)
-                let formatter = DateFormatter()
-                var isToday = false
-                if cmp1.day == cmp2.day {
-                    formatter.dateFormat = "HH:mm"
-                    isToday = true
-                } else if cmp1.year == cmp2.year {
-                    formatter.dateFormat = "MM-dd HH:mm"
-                } else {
-                    formatter.dateFormat = "yyyy-MM-dd HH:mm"
-                }
-                let timeString = formatter.string(from: lastUpdatedTime)
-                
-                self.lastUpdatedTimeLabel.text = String(format: "%@ %@ %@",
-                                                        localized(string: Constants.State.lastUpdatedTime),
-                                                        isToday ? localized(string: Constants.State.dateToday) : "",
-                                                        timeString)
-            } else {
-                self.lastUpdatedTimeLabel.text = String(format: "%@ %@",
-                                                        localized(string: Constants.State.lastUpdatedTime),
-                                                        localized(string: Constants.State.noLastTime))
-            }
+            lastUpdatedTimeLabel.textColor = newValue
+            stateLabel.textColor = newValue
         }
     }
 }
 
+
+// MARK: - Public
 public extension ZVRefreshStateHeader {
     
     /// 设置状态文本
     public func setTitle(_ title: String, forState state: State) {
-        self.stateTitles.updateValue(title, forKey: state)
-        self.stateLabel.text = self.stateTitles[self.refreshState]
+        stateTitles.updateValue(title, forKey: state)
+        stateLabel.text = stateTitles[refreshState]
     }
 }
 
-extension ZVRefreshStateHeader {
+
+// MARK: - Private
+private extension ZVRefreshStateHeader {
     
-    override open func prepare() {
-        super.prepare()
+    func set(refreshState newValue: State) {
         
-        if self.stateLabel.superview == nil {
-            self.addSubview(self.stateLabel)
-        }
+        if checkState(newValue).result { return }
+        super.refreshState = newValue
+        stateLabel.text = stateTitles[refreshState]
         
-        if self.lastUpdatedTimeLabel.superview == nil {
-            self.addSubview(lastUpdatedTimeLabel)
-        }
-        
-        self.setTitle(localized(string: Constants.Header.idle), forState: .idle)
-        self.setTitle(localized(string: Constants.Header.pulling), forState: .pulling)
-        self.setTitle(localized(string: Constants.Header.refreshing), forState: .refreshing)
+        let key = lastUpdatedTimeKey
+        lastUpdatedTimeKey = key
     }
     
-    override open func placeSubViews() {
-        super.placeSubViews()
+    func didSet(lastUpdatedTimeKey newValue: String) {
         
-        guard self.stateLabel.isHidden == false else { return }
+        if lastUpdatedTimeLabelText != nil {
+            lastUpdatedTimeLabel.text = lastUpdatedTimeLabelText?(lastUpdatedTime)
+            return
+        }
         
-        let noConstrainsOnStatusLabel = self.stateLabel.constraints.count == 0
-        
-        if self.lastUpdatedTimeLabel.isHidden {
-            if noConstrainsOnStatusLabel { self.stateLabel.frame = self.bounds }
-        } else {
-            let statusLabelH = self.height * 0.5
-            self.stateLabel.x = 0
-            self.stateLabel.y = 0
-            self.stateLabel.width = self.width
-            self.stateLabel.height = statusLabelH
-            if self.lastUpdatedTimeLabel.constraints.count == 0 {
-                
-                self.lastUpdatedTimeLabel.x = 0
-                self.lastUpdatedTimeLabel.y = statusLabelH
-                self.lastUpdatedTimeLabel.width = self.width
-                self.lastUpdatedTimeLabel.height = self.height - self.lastUpdatedTimeLabel.y
+        if let lastUpdatedTime = lastUpdatedTime {
+            let components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
+            
+            let cmp1 = calendar.dateComponents(components, from: lastUpdatedTime)
+            let cmp2 = calendar.dateComponents(components, from: lastUpdatedTime)
+            let formatter = DateFormatter()
+            var isToday = false
+            if cmp1.day == cmp2.day {
+                formatter.dateFormat = "HH:mm"
+                isToday = true
+            } else if cmp1.year == cmp2.year {
+                formatter.dateFormat = "MM-dd HH:mm"
+            } else {
+                formatter.dateFormat = "yyyy-MM-dd HH:mm"
             }
+            let timeString = formatter.string(from: lastUpdatedTime)
+            
+            lastUpdatedTimeLabel.text = String(format: "%@ %@ %@",
+                                                    localized(string: Constants.State.lastUpdatedTime),
+                                                    isToday ? localized(string: Constants.State.dateToday) : "",
+                                                    timeString)
+        } else {
+            lastUpdatedTimeLabel.text = String(format: "%@ %@",
+                                                    localized(string: Constants.State.lastUpdatedTime),
+                                                    localized(string: Constants.State.noLastTime))
         }
     }
 }
