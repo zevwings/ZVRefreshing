@@ -40,22 +40,23 @@ struct LocalizedKey {
 }
 
 func localized(string key: String, comment: String = "") -> String {
+    
     guard let bundle = Bundle.resource else { return "" }
-    return NSLocalizedString(key, tableName: tableName(), bundle: bundle, value: "", comment: comment.isEmpty ? key: comment)
-}
-
-func tableName() -> String {
+    
+    var tableName = ""
     guard let language = Locale.preferredLanguages.first else { return "en"}
     if language.hasPrefix("zh-Hant") {
-        return "zh-Hant"
+        tableName = "zh-Hant"
     } else if language.hasPrefix("zh-Hans") {
-        return "zh-Hans"
+        tableName = "zh-Hans"
     } else {
-        return "en"
+        tableName = "en"
     }
+
+    return NSLocalizedString(key, tableName: tableName, bundle: bundle, value: "", comment: comment.isEmpty ? key: comment)
 }
 
-internal extension Bundle {
+extension Bundle {
     
     class var current: Bundle {
         return Bundle(for: ZVRefreshComponent.self)

@@ -8,10 +8,19 @@
 
 import UIKit
 
-public protocol ZVRefreshComponentProtocol: class {
-    associatedtype T: ZVRefreshComponent
+public protocol ZVRefreshHeaderConfigration: class {
+    
+    associatedtype T: ZVRefreshHeader
     
     var header: T? { get set }
+    
+}
+
+public protocol ZVRefreshFooterConfigration: class {
+    
+    associatedtype T: ZVRefreshFooter
+    
+    var footer: T? { get set }
     
 }
 
@@ -56,7 +65,7 @@ public extension UIScrollView {
         }
     }
     
-    var totalDataCount: Int {
+    internal var totalDataCount: Int {
         
         var totalCount: Int = 0
         if self.isKind(of: UITableView.classForCoder()) {
@@ -83,14 +92,14 @@ public extension UIScrollView {
         }
     }
 
-    func executeReloadDataBlock() {
+    internal func executeReloadDataBlock() {
         self.reloadDataHandler?(self.totalDataCount)
     }
 }
 
 extension UITableView {
     
-    public static let once: Void = {
+    internal static let once: Void = {
         UITableView.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
                                            m2: #selector(UITableView._reloadData))
     }()
@@ -103,7 +112,7 @@ extension UITableView {
 
 extension UICollectionView {
     
-    public static let once: Void = {
+    internal static let once: Void = {
         UICollectionView.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
                                                 m2: #selector(UICollectionView._reloadData))
     }()
