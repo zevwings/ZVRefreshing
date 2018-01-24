@@ -1,0 +1,19 @@
+PODS:
+  - ZVActivityIndicatorView (0.0.3)
+  - ZVRefreshing (1.2):
+    - ZVActivityIndicatorView
+
+DEPENDENCIES:
+  - ZVRefreshing (from `../`)
+
+EXTERNAL SOURCES:
+  ZVRefreshing:
+    :path: ../
+
+SPEC CHECKSUMS:
+  ZVActivityIndicatorView: 4cafad0c9944e8f72b713686a6dea67a9860d8d3
+  ZVRefreshing: b359464b81e12e4d211e1933db68e1b2de134bf7
+
+PODFILE CHECKSUM: 1c03eebcf3a14995c5364a913a2865b4360fb01d
+
+COCOAPODS: 1.4.0
