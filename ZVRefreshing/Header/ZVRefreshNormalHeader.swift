@@ -11,9 +11,10 @@ import ZVActivityIndicatorView
 open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
     
     public private(set) lazy var activityIndicator: ZVActivityIndicatorView = {
-        let indicator = ZVActivityIndicatorView()
-        indicator.color = .lightGray
-        return indicator
+        let activityIndicator = ZVActivityIndicatorView()
+        activityIndicator.color = .lightGray
+        activityIndicator.hidesWhenStopped = false
+        return activityIndicator
     }()
     
     // MARK: Subviews

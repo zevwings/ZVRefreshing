@@ -13,6 +13,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     public private(set) lazy var activityIndicator : ZVActivityIndicatorView = {
         var activityIndicator = ZVActivityIndicatorView()
         activityIndicator.color = .lightGray
+        activityIndicator.hidesWhenStopped = false
         return activityIndicator
     }()
     
