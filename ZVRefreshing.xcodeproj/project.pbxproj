@@ -8,29 +8,29 @@
 
 /* Begin PBXBuildFile section */
 		0447D9E00E48038A5E857BC1 /* Pods_ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08021CECB90CE01335B96D3B /* Pods_ZVRefreshing.framework */; };
+		4D1A31CF2018932000E6F85F /* ZVRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31B72018932000E6F85F /* ZVRefreshNormalHeader.swift */; };
+		4D1A31D02018932000E6F85F /* ZVRefreshAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31B82018932000E6F85F /* ZVRefreshAnimationHeader.swift */; };
+		4D1A31D12018932000E6F85F /* ZVRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31B92018932000E6F85F /* ZVRefreshHeader.swift */; };
+		4D1A31D22018932000E6F85F /* ZVRefreshStateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31BA2018932000E6F85F /* ZVRefreshStateHeader.swift */; };
+		4D1A31D32018932000E6F85F /* ZVRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31BC2018932000E6F85F /* ZVRefreshComponent.swift */; };
+		4D1A31D42018932000E6F85F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31BD2018932000E6F85F /* Extensions.swift */; };
+		4D1A31D52018932000E6F85F /* ZVRefreshAutoNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C02018932000E6F85F /* ZVRefreshAutoNormalFooter.swift */; };
+		4D1A31D62018932000E6F85F /* ZVRefreshAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C12018932000E6F85F /* ZVRefreshAutoFooter.swift */; };
+		4D1A31D72018932000E6F85F /* ZVRefreshAutoStateFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C22018932000E6F85F /* ZVRefreshAutoStateFooter.swift */; };
+		4D1A31D82018932000E6F85F /* ZVRefreshAutoAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C32018932000E6F85F /* ZVRefreshAutoAnimationFooter.swift */; };
+		4D1A31D92018932000E6F85F /* ZVRefreshBackAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C52018932000E6F85F /* ZVRefreshBackAnimationFooter.swift */; };
+		4D1A31DA2018932000E6F85F /* ZVRefreshBackStateFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C62018932000E6F85F /* ZVRefreshBackStateFooter.swift */; };
+		4D1A31DB2018932000E6F85F /* ZVRefreshBackNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C72018932000E6F85F /* ZVRefreshBackNormalFooter.swift */; };
+		4D1A31DC2018932000E6F85F /* ZVRefreshBackFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C82018932000E6F85F /* ZVRefreshBackFooter.swift */; };
+		4D1A31DD2018932000E6F85F /* ZVRefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C92018932000E6F85F /* ZVRefreshFooter.swift */; };
+		4D1A31DE2018932000E6F85F /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CB2018932000E6F85F /* Localization.swift */; };
+		4D1A31DF2018932000E6F85F /* Configration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CC2018932000E6F85F /* Configration.swift */; };
+		4D1A31E02018932000E6F85F /* UILabel+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CD2018932000E6F85F /* UILabel+Addition.swift */; };
+		4D1A31E12018932000E6F85F /* NSObject+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CE2018932000E6F85F /* NSObject+Addition.swift */; };
 		4D5237241F4C24E8005080E1 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4D5237231F4C24E8005080E1 /* Resource.bundle */; };
-		4D65A4B62015D8FA005F7833 /* ZVRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65A4B22015D8FA005F7833 /* ZVRefreshComponent.swift */; };
-		4D75A4B3201776F300775C60 /* UILabel+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D75A4AF201776F200775C60 /* UILabel+Addition.swift */; };
-		4D75A4B4201776F300775C60 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D75A4B0201776F200775C60 /* Localization.swift */; };
-		4D75A4B6201776F300775C60 /* NSObject+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D75A4B2201776F300775C60 /* NSObject+Addition.swift */; };
 		4D94FC9E1F0DFFC500677215 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; };
 		4D94FCA31F0DFFC500677215 /* ZVRefreshingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCA21F0DFFC500677215 /* ZVRefreshingTests.swift */; };
 		4D94FCA51F0DFFC500677215 /* ZVRefreshing.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D94FC971F0DFFC500677215 /* ZVRefreshing.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4D94FCC21F0DFFEC00677215 /* Configration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCAE1F0DFFEC00677215 /* Configration.swift */; };
-		4D94FCC31F0DFFEC00677215 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCAF1F0DFFEC00677215 /* Extensions.swift */; };
-		4D94FCC41F0DFFEC00677215 /* ZVRefreshBackFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB11F0DFFEC00677215 /* ZVRefreshBackFooter.swift */; };
-		4D94FCC51F0DFFEC00677215 /* ZVRefreshBackStateFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB21F0DFFEC00677215 /* ZVRefreshBackStateFooter.swift */; };
-		4D94FCC61F0DFFEC00677215 /* ZVRefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB31F0DFFEC00677215 /* ZVRefreshFooter.swift */; };
-		4D94FCC71F0DFFEC00677215 /* ZVRefreshAutoAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB41F0DFFEC00677215 /* ZVRefreshAutoAnimationFooter.swift */; };
-		4D94FCC81F0DFFEC00677215 /* ZVRefreshAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB51F0DFFEC00677215 /* ZVRefreshAutoFooter.swift */; };
-		4D94FCC91F0DFFEC00677215 /* ZVRefreshAutoNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB61F0DFFEC00677215 /* ZVRefreshAutoNormalFooter.swift */; };
-		4D94FCCA1F0DFFEC00677215 /* ZVRefreshAutoStateFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB71F0DFFEC00677215 /* ZVRefreshAutoStateFooter.swift */; };
-		4D94FCCB1F0DFFEC00677215 /* ZVRefreshBackAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB81F0DFFEC00677215 /* ZVRefreshBackAnimationFooter.swift */; };
-		4D94FCCC1F0DFFEC00677215 /* ZVRefreshBackNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCB91F0DFFEC00677215 /* ZVRefreshBackNormalFooter.swift */; };
-		4D94FCCD1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBB1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift */; };
-		4D94FCCE1F0DFFEC00677215 /* ZVRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBC1F0DFFEC00677215 /* ZVRefreshHeader.swift */; };
-		4D94FCCF1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBD1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift */; };
-		4D94FCD01F0DFFEC00677215 /* ZVRefreshStateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBE1F0DFFEC00677215 /* ZVRefreshStateHeader.swift */; };
 		910CB44D64870EB88233EFF2 /* Pods_ZVRefreshingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72433DDADE78D1C8E8FD3623 /* Pods_ZVRefreshingTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,32 +48,32 @@
 		08021CECB90CE01335B96D3B /* Pods_ZVRefreshing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZVRefreshing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		135A3ABE8D39DB85FEB55526 /* Pods-ZVRefreshing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZVRefreshing.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZVRefreshing/Pods-ZVRefreshing.release.xcconfig"; sourceTree = "<group>"; };
 		48CE07207A240A83E97F0991 /* Pods-ZVRefreshingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZVRefreshingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZVRefreshingTests/Pods-ZVRefreshingTests.release.xcconfig"; sourceTree = "<group>"; };
+		4D1A31B72018932000E6F85F /* ZVRefreshNormalHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshNormalHeader.swift; sourceTree = "<group>"; };
+		4D1A31B82018932000E6F85F /* ZVRefreshAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAnimationHeader.swift; sourceTree = "<group>"; };
+		4D1A31B92018932000E6F85F /* ZVRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshHeader.swift; sourceTree = "<group>"; };
+		4D1A31BA2018932000E6F85F /* ZVRefreshStateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshStateHeader.swift; sourceTree = "<group>"; };
+		4D1A31BC2018932000E6F85F /* ZVRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshComponent.swift; sourceTree = "<group>"; };
+		4D1A31BD2018932000E6F85F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4D1A31C02018932000E6F85F /* ZVRefreshAutoNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoNormalFooter.swift; sourceTree = "<group>"; };
+		4D1A31C12018932000E6F85F /* ZVRefreshAutoFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoFooter.swift; sourceTree = "<group>"; };
+		4D1A31C22018932000E6F85F /* ZVRefreshAutoStateFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoStateFooter.swift; sourceTree = "<group>"; };
+		4D1A31C32018932000E6F85F /* ZVRefreshAutoAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoAnimationFooter.swift; sourceTree = "<group>"; };
+		4D1A31C52018932000E6F85F /* ZVRefreshBackAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackAnimationFooter.swift; sourceTree = "<group>"; };
+		4D1A31C62018932000E6F85F /* ZVRefreshBackStateFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackStateFooter.swift; sourceTree = "<group>"; };
+		4D1A31C72018932000E6F85F /* ZVRefreshBackNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackNormalFooter.swift; sourceTree = "<group>"; };
+		4D1A31C82018932000E6F85F /* ZVRefreshBackFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackFooter.swift; sourceTree = "<group>"; };
+		4D1A31C92018932000E6F85F /* ZVRefreshFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshFooter.swift; sourceTree = "<group>"; };
+		4D1A31CB2018932000E6F85F /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		4D1A31CC2018932000E6F85F /* Configration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configration.swift; sourceTree = "<group>"; };
+		4D1A31CD2018932000E6F85F /* UILabel+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Addition.swift"; sourceTree = "<group>"; };
+		4D1A31CE2018932000E6F85F /* NSObject+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Addition.swift"; sourceTree = "<group>"; };
 		4D5237231F4C24E8005080E1 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
-		4D65A4B22015D8FA005F7833 /* ZVRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshComponent.swift; sourceTree = "<group>"; };
-		4D75A4AF201776F200775C60 /* UILabel+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Addition.swift"; sourceTree = "<group>"; };
-		4D75A4B0201776F200775C60 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
-		4D75A4B2201776F300775C60 /* NSObject+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Addition.swift"; sourceTree = "<group>"; };
 		4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZVRefreshing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D94FC971F0DFFC500677215 /* ZVRefreshing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZVRefreshing.h; sourceTree = "<group>"; };
 		4D94FC981F0DFFC500677215 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4D94FC9D1F0DFFC500677215 /* ZVRefreshingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZVRefreshingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D94FCA21F0DFFC500677215 /* ZVRefreshingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZVRefreshingTests.swift; sourceTree = "<group>"; };
 		4D94FCA41F0DFFC500677215 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D94FCAE1F0DFFEC00677215 /* Configration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configration.swift; sourceTree = "<group>"; };
-		4D94FCAF1F0DFFEC00677215 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		4D94FCB11F0DFFEC00677215 /* ZVRefreshBackFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackFooter.swift; sourceTree = "<group>"; };
-		4D94FCB21F0DFFEC00677215 /* ZVRefreshBackStateFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackStateFooter.swift; sourceTree = "<group>"; };
-		4D94FCB31F0DFFEC00677215 /* ZVRefreshFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshFooter.swift; sourceTree = "<group>"; };
-		4D94FCB41F0DFFEC00677215 /* ZVRefreshAutoAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoAnimationFooter.swift; sourceTree = "<group>"; };
-		4D94FCB51F0DFFEC00677215 /* ZVRefreshAutoFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoFooter.swift; sourceTree = "<group>"; };
-		4D94FCB61F0DFFEC00677215 /* ZVRefreshAutoNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoNormalFooter.swift; sourceTree = "<group>"; };
-		4D94FCB71F0DFFEC00677215 /* ZVRefreshAutoStateFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoStateFooter.swift; sourceTree = "<group>"; };
-		4D94FCB81F0DFFEC00677215 /* ZVRefreshBackAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackAnimationFooter.swift; sourceTree = "<group>"; };
-		4D94FCB91F0DFFEC00677215 /* ZVRefreshBackNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackNormalFooter.swift; sourceTree = "<group>"; };
-		4D94FCBB1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAnimationHeader.swift; sourceTree = "<group>"; };
-		4D94FCBC1F0DFFEC00677215 /* ZVRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshHeader.swift; sourceTree = "<group>"; };
-		4D94FCBD1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshNormalHeader.swift; sourceTree = "<group>"; };
-		4D94FCBE1F0DFFEC00677215 /* ZVRefreshStateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshStateHeader.swift; sourceTree = "<group>"; };
 		63FB96F22A22977A5DADC032 /* Pods-ZVRefreshing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZVRefreshing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZVRefreshing/Pods-ZVRefreshing.debug.xcconfig"; sourceTree = "<group>"; };
 		72433DDADE78D1C8E8FD3623 /* Pods_ZVRefreshingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZVRefreshingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1E9F91EA96CD1CEDAD44611 /* Pods-ZVRefreshingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZVRefreshingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZVRefreshingTests/Pods-ZVRefreshingTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -100,12 +100,66 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4D65A4B12015D8FA005F7833 /* Base */ = {
+		4D1A31B62018932000E6F85F /* Header */ = {
 			isa = PBXGroup;
 			children = (
-				4D65A4B22015D8FA005F7833 /* ZVRefreshComponent.swift */,
+				4D1A31B92018932000E6F85F /* ZVRefreshHeader.swift */,
+				4D1A31BA2018932000E6F85F /* ZVRefreshStateHeader.swift */,
+				4D1A31B72018932000E6F85F /* ZVRefreshNormalHeader.swift */,
+				4D1A31B82018932000E6F85F /* ZVRefreshAnimationHeader.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		4D1A31BB2018932000E6F85F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				4D1A31BC2018932000E6F85F /* ZVRefreshComponent.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		4D1A31BE2018932000E6F85F /* Footer */ = {
+			isa = PBXGroup;
+			children = (
+				4D1A31C92018932000E6F85F /* ZVRefreshFooter.swift */,
+				4D1A31BF2018932000E6F85F /* AutoFooter */,
+				4D1A31C42018932000E6F85F /* BackFooter */,
+			);
+			path = Footer;
+			sourceTree = "<group>";
+		};
+		4D1A31BF2018932000E6F85F /* AutoFooter */ = {
+			isa = PBXGroup;
+			children = (
+				4D1A31C12018932000E6F85F /* ZVRefreshAutoFooter.swift */,
+				4D1A31C22018932000E6F85F /* ZVRefreshAutoStateFooter.swift */,
+				4D1A31C02018932000E6F85F /* ZVRefreshAutoNormalFooter.swift */,
+				4D1A31C32018932000E6F85F /* ZVRefreshAutoAnimationFooter.swift */,
+			);
+			path = AutoFooter;
+			sourceTree = "<group>";
+		};
+		4D1A31C42018932000E6F85F /* BackFooter */ = {
+			isa = PBXGroup;
+			children = (
+				4D1A31C82018932000E6F85F /* ZVRefreshBackFooter.swift */,
+				4D1A31C62018932000E6F85F /* ZVRefreshBackStateFooter.swift */,
+				4D1A31C72018932000E6F85F /* ZVRefreshBackNormalFooter.swift */,
+				4D1A31C52018932000E6F85F /* ZVRefreshBackAnimationFooter.swift */,
+			);
+			path = BackFooter;
+			sourceTree = "<group>";
+		};
+		4D1A31CA2018932000E6F85F /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				4D1A31CB2018932000E6F85F /* Localization.swift */,
+				4D1A31CC2018932000E6F85F /* Configration.swift */,
+				4D1A31CD2018932000E6F85F /* UILabel+Addition.swift */,
+				4D1A31CE2018932000E6F85F /* NSObject+Addition.swift */,
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 		4D9110121F224D8C001B05D4 /* Resource */ = {
@@ -139,14 +193,11 @@
 		4D94FC961F0DFFC500677215 /* ZVRefreshing */ = {
 			isa = PBXGroup;
 			children = (
-				4D75A4B0201776F200775C60 /* Localization.swift */,
-				4D75A4B2201776F300775C60 /* NSObject+Addition.swift */,
-				4D75A4AF201776F200775C60 /* UILabel+Addition.swift */,
-				4D94FCAE1F0DFFEC00677215 /* Configration.swift */,
-				4D94FCAF1F0DFFEC00677215 /* Extensions.swift */,
-				4D65A4B12015D8FA005F7833 /* Base */,
-				4D94FCBA1F0DFFEC00677215 /* Header */,
-				4D94FCB01F0DFFEC00677215 /* Footer */,
+				4D1A31BD2018932000E6F85F /* Extensions.swift */,
+				4D1A31BB2018932000E6F85F /* Base */,
+				4D1A31BE2018932000E6F85F /* Footer */,
+				4D1A31B62018932000E6F85F /* Header */,
+				4D1A31CA2018932000E6F85F /* Support */,
 				4D9110121F224D8C001B05D4 /* Resource */,
 				4D94FC971F0DFFC500677215 /* ZVRefreshing.h */,
 				4D94FC981F0DFFC500677215 /* Info.plist */,
@@ -161,33 +212,6 @@
 				4D94FCA41F0DFFC500677215 /* Info.plist */,
 			);
 			path = ZVRefreshingTests;
-			sourceTree = "<group>";
-		};
-		4D94FCB01F0DFFEC00677215 /* Footer */ = {
-			isa = PBXGroup;
-			children = (
-				4D94FCB31F0DFFEC00677215 /* ZVRefreshFooter.swift */,
-				4D94FCB11F0DFFEC00677215 /* ZVRefreshBackFooter.swift */,
-				4D94FCB21F0DFFEC00677215 /* ZVRefreshBackStateFooter.swift */,
-				4D94FCB91F0DFFEC00677215 /* ZVRefreshBackNormalFooter.swift */,
-				4D94FCB81F0DFFEC00677215 /* ZVRefreshBackAnimationFooter.swift */,
-				4D94FCB51F0DFFEC00677215 /* ZVRefreshAutoFooter.swift */,
-				4D94FCB71F0DFFEC00677215 /* ZVRefreshAutoStateFooter.swift */,
-				4D94FCB61F0DFFEC00677215 /* ZVRefreshAutoNormalFooter.swift */,
-				4D94FCB41F0DFFEC00677215 /* ZVRefreshAutoAnimationFooter.swift */,
-			);
-			path = Footer;
-			sourceTree = "<group>";
-		};
-		4D94FCBA1F0DFFEC00677215 /* Header */ = {
-			isa = PBXGroup;
-			children = (
-				4D94FCBC1F0DFFEC00677215 /* ZVRefreshHeader.swift */,
-				4D94FCBE1F0DFFEC00677215 /* ZVRefreshStateHeader.swift */,
-				4D94FCBD1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift */,
-				4D94FCBB1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift */,
-			);
-			path = Header;
 			sourceTree = "<group>";
 		};
 		84B931247051647F248A67EE /* Pods */ = {
@@ -278,7 +302,7 @@
 					4D94FC931F0DFFC500677215 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 4D95EGYA4V;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					4D94FC9C1F0DFFC500677215 = {
@@ -419,25 +443,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D94FCC61F0DFFEC00677215 /* ZVRefreshFooter.swift in Sources */,
-				4D75A4B3201776F300775C60 /* UILabel+Addition.swift in Sources */,
-				4D94FCCE1F0DFFEC00677215 /* ZVRefreshHeader.swift in Sources */,
-				4D94FCC21F0DFFEC00677215 /* Configration.swift in Sources */,
-				4D94FCC81F0DFFEC00677215 /* ZVRefreshAutoFooter.swift in Sources */,
-				4D94FCCD1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift in Sources */,
-				4D94FCCF1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift in Sources */,
-				4D94FCC91F0DFFEC00677215 /* ZVRefreshAutoNormalFooter.swift in Sources */,
-				4D94FCCC1F0DFFEC00677215 /* ZVRefreshBackNormalFooter.swift in Sources */,
-				4D75A4B6201776F300775C60 /* NSObject+Addition.swift in Sources */,
-				4D94FCD01F0DFFEC00677215 /* ZVRefreshStateHeader.swift in Sources */,
-				4D94FCC41F0DFFEC00677215 /* ZVRefreshBackFooter.swift in Sources */,
-				4D94FCCB1F0DFFEC00677215 /* ZVRefreshBackAnimationFooter.swift in Sources */,
-				4D94FCC71F0DFFEC00677215 /* ZVRefreshAutoAnimationFooter.swift in Sources */,
-				4D65A4B62015D8FA005F7833 /* ZVRefreshComponent.swift in Sources */,
-				4D75A4B4201776F300775C60 /* Localization.swift in Sources */,
-				4D94FCCA1F0DFFEC00677215 /* ZVRefreshAutoStateFooter.swift in Sources */,
-				4D94FCC31F0DFFEC00677215 /* Extensions.swift in Sources */,
-				4D94FCC51F0DFFEC00677215 /* ZVRefreshBackStateFooter.swift in Sources */,
+				4D1A31D82018932000E6F85F /* ZVRefreshAutoAnimationFooter.swift in Sources */,
+				4D1A31DC2018932000E6F85F /* ZVRefreshBackFooter.swift in Sources */,
+				4D1A31D12018932000E6F85F /* ZVRefreshHeader.swift in Sources */,
+				4D1A31D42018932000E6F85F /* Extensions.swift in Sources */,
+				4D1A31D92018932000E6F85F /* ZVRefreshBackAnimationFooter.swift in Sources */,
+				4D1A31CF2018932000E6F85F /* ZVRefreshNormalHeader.swift in Sources */,
+				4D1A31DE2018932000E6F85F /* Localization.swift in Sources */,
+				4D1A31DA2018932000E6F85F /* ZVRefreshBackStateFooter.swift in Sources */,
+				4D1A31D62018932000E6F85F /* ZVRefreshAutoFooter.swift in Sources */,
+				4D1A31DD2018932000E6F85F /* ZVRefreshFooter.swift in Sources */,
+				4D1A31D52018932000E6F85F /* ZVRefreshAutoNormalFooter.swift in Sources */,
+				4D1A31DF2018932000E6F85F /* Configration.swift in Sources */,
+				4D1A31DB2018932000E6F85F /* ZVRefreshBackNormalFooter.swift in Sources */,
+				4D1A31D32018932000E6F85F /* ZVRefreshComponent.swift in Sources */,
+				4D1A31E02018932000E6F85F /* UILabel+Addition.swift in Sources */,
+				4D1A31D22018932000E6F85F /* ZVRefreshStateHeader.swift in Sources */,
+				4D1A31D72018932000E6F85F /* ZVRefreshAutoStateFooter.swift in Sources */,
+				4D1A31E12018932000E6F85F /* NSObject+Addition.swift in Sources */,
+				4D1A31D02018932000E6F85F /* ZVRefreshAnimationHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -628,7 +652,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F1E9F91EA96CD1CEDAD44611 /* Pods-ZVRefreshingTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 4D95EGYA4V;
 				INFOPLIST_FILE = ZVRefreshingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -643,7 +667,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 48CE07207A240A83E97F0991 /* Pods-ZVRefreshingTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 4D95EGYA4V;
 				INFOPLIST_FILE = ZVRefreshingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

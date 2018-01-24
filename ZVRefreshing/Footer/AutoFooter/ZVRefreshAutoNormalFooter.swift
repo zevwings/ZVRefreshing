@@ -10,7 +10,7 @@ import ZVActivityIndicatorView
 
 public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
 
-    private(set) lazy var activityIndicator : ZVActivityIndicatorView = {
+    public private(set) lazy var activityIndicator : ZVActivityIndicatorView = {
         var activityIndicator = ZVActivityIndicatorView()
         activityIndicator.color = .lightGray
         activityIndicator.hidesWhenStopped = false
