@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ZVActivityIndicatorView
 
 open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
     
@@ -67,7 +68,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         }
         set {
             super.pullingPercent = newValue
-            activityIndicator.percent = newValue
+            activityIndicator.progress = newValue
         }
     }
 }

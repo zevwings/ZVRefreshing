@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ZVActivityIndicatorView
 
 public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     
@@ -81,7 +82,7 @@ private extension ZVRefreshBackNormalFooter {
     
     func _set(pullingPercent newValue: CGFloat) {
         super.pullingPercent = newValue
-        activityIndicator.percent = newValue
+        activityIndicator.progress = newValue
 
     }
     

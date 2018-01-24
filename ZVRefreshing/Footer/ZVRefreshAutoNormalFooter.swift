@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ZVActivityIndicatorView
 
 public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
 

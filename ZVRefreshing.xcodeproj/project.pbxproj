@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0447D9E00E48038A5E857BC1 /* Pods_ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08021CECB90CE01335B96D3B /* Pods_ZVRefreshing.framework */; };
 		4D5237241F4C24E8005080E1 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4D5237231F4C24E8005080E1 /* Resource.bundle */; };
 		4D65A4B62015D8FA005F7833 /* ZVRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65A4B22015D8FA005F7833 /* ZVRefreshComponent.swift */; };
-		4D65A4B72015D8FA005F7833 /* ZVActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65A4B32015D8FA005F7833 /* ZVActivityIndicatorView.swift */; };
-		4D65A4B82015D8FA005F7833 /* UILabel+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65A4B42015D8FA005F7833 /* UILabel+Addition.swift */; };
-		4D65A4B92015D8FA005F7833 /* NSObject+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D65A4B52015D8FA005F7833 /* NSObject+Addition.swift */; };
-		4D7BE29F2015C32D008447A6 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D7BE29E2015C32D008447A6 /* Localization.swift */; };
+		4D75A4B3201776F300775C60 /* UILabel+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D75A4AF201776F200775C60 /* UILabel+Addition.swift */; };
+		4D75A4B4201776F300775C60 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D75A4B0201776F200775C60 /* Localization.swift */; };
+		4D75A4B6201776F300775C60 /* NSObject+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D75A4B2201776F300775C60 /* NSObject+Addition.swift */; };
 		4D94FC9E1F0DFFC500677215 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; };
 		4D94FCA31F0DFFC500677215 /* ZVRefreshingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCA21F0DFFC500677215 /* ZVRefreshingTests.swift */; };
 		4D94FCA51F0DFFC500677215 /* ZVRefreshing.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D94FC971F0DFFC500677215 /* ZVRefreshing.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -31,6 +31,7 @@
 		4D94FCCE1F0DFFEC00677215 /* ZVRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBC1F0DFFEC00677215 /* ZVRefreshHeader.swift */; };
 		4D94FCCF1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBD1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift */; };
 		4D94FCD01F0DFFEC00677215 /* ZVRefreshStateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCBE1F0DFFEC00677215 /* ZVRefreshStateHeader.swift */; };
+		910CB44D64870EB88233EFF2 /* Pods_ZVRefreshingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72433DDADE78D1C8E8FD3623 /* Pods_ZVRefreshingTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,12 +45,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		08021CECB90CE01335B96D3B /* Pods_ZVRefreshing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZVRefreshing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		135A3ABE8D39DB85FEB55526 /* Pods-ZVRefreshing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZVRefreshing.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZVRefreshing/Pods-ZVRefreshing.release.xcconfig"; sourceTree = "<group>"; };
+		48CE07207A240A83E97F0991 /* Pods-ZVRefreshingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZVRefreshingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZVRefreshingTests/Pods-ZVRefreshingTests.release.xcconfig"; sourceTree = "<group>"; };
 		4D5237231F4C24E8005080E1 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		4D65A4B22015D8FA005F7833 /* ZVRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshComponent.swift; sourceTree = "<group>"; };
-		4D65A4B32015D8FA005F7833 /* ZVActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVActivityIndicatorView.swift; sourceTree = "<group>"; };
-		4D65A4B42015D8FA005F7833 /* UILabel+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Addition.swift"; sourceTree = "<group>"; };
-		4D65A4B52015D8FA005F7833 /* NSObject+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Addition.swift"; sourceTree = "<group>"; };
-		4D7BE29E2015C32D008447A6 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		4D75A4AF201776F200775C60 /* UILabel+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Addition.swift"; sourceTree = "<group>"; };
+		4D75A4B0201776F200775C60 /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
+		4D75A4B2201776F300775C60 /* NSObject+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Addition.swift"; sourceTree = "<group>"; };
 		4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZVRefreshing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D94FC971F0DFFC500677215 /* ZVRefreshing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZVRefreshing.h; sourceTree = "<group>"; };
 		4D94FC981F0DFFC500677215 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -71,6 +74,9 @@
 		4D94FCBC1F0DFFEC00677215 /* ZVRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshHeader.swift; sourceTree = "<group>"; };
 		4D94FCBD1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshNormalHeader.swift; sourceTree = "<group>"; };
 		4D94FCBE1F0DFFEC00677215 /* ZVRefreshStateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshStateHeader.swift; sourceTree = "<group>"; };
+		63FB96F22A22977A5DADC032 /* Pods-ZVRefreshing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZVRefreshing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZVRefreshing/Pods-ZVRefreshing.debug.xcconfig"; sourceTree = "<group>"; };
+		72433DDADE78D1C8E8FD3623 /* Pods_ZVRefreshingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ZVRefreshingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1E9F91EA96CD1CEDAD44611 /* Pods-ZVRefreshingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZVRefreshingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZVRefreshingTests/Pods-ZVRefreshingTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0447D9E00E48038A5E857BC1 /* Pods_ZVRefreshing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +93,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D94FC9E1F0DFFC500677215 /* ZVRefreshing.framework in Frameworks */,
+				910CB44D64870EB88233EFF2 /* Pods_ZVRefreshingTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +122,8 @@
 				4D94FC961F0DFFC500677215 /* ZVRefreshing */,
 				4D94FCA11F0DFFC500677215 /* ZVRefreshingTests */,
 				4D94FC951F0DFFC500677215 /* Products */,
+				84B931247051647F248A67EE /* Pods */,
+				AAFCFC7E5AAEB52107E75E6A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -129,12 +139,11 @@
 		4D94FC961F0DFFC500677215 /* ZVRefreshing */ = {
 			isa = PBXGroup;
 			children = (
+				4D75A4B0201776F200775C60 /* Localization.swift */,
+				4D75A4B2201776F300775C60 /* NSObject+Addition.swift */,
+				4D75A4AF201776F200775C60 /* UILabel+Addition.swift */,
 				4D94FCAE1F0DFFEC00677215 /* Configration.swift */,
 				4D94FCAF1F0DFFEC00677215 /* Extensions.swift */,
-				4D7BE29E2015C32D008447A6 /* Localization.swift */,
-				4D65A4B42015D8FA005F7833 /* UILabel+Addition.swift */,
-				4D65A4B52015D8FA005F7833 /* NSObject+Addition.swift */,
-				4D65A4B32015D8FA005F7833 /* ZVActivityIndicatorView.swift */,
 				4D65A4B12015D8FA005F7833 /* Base */,
 				4D94FCBA1F0DFFEC00677215 /* Header */,
 				4D94FCB01F0DFFEC00677215 /* Footer */,
@@ -181,6 +190,26 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		84B931247051647F248A67EE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				63FB96F22A22977A5DADC032 /* Pods-ZVRefreshing.debug.xcconfig */,
+				135A3ABE8D39DB85FEB55526 /* Pods-ZVRefreshing.release.xcconfig */,
+				F1E9F91EA96CD1CEDAD44611 /* Pods-ZVRefreshingTests.debug.xcconfig */,
+				48CE07207A240A83E97F0991 /* Pods-ZVRefreshingTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		AAFCFC7E5AAEB52107E75E6A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08021CECB90CE01335B96D3B /* Pods_ZVRefreshing.framework */,
+				72433DDADE78D1C8E8FD3623 /* Pods_ZVRefreshingTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -199,10 +228,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D94FCA81F0DFFC500677215 /* Build configuration list for PBXNativeTarget "ZVRefreshing" */;
 			buildPhases = (
+				C7BD7BB72F10091730883598 /* [CP] Check Pods Manifest.lock */,
 				4D94FC8F1F0DFFC500677215 /* Sources */,
 				4D94FC901F0DFFC500677215 /* Frameworks */,
 				4D94FC911F0DFFC500677215 /* Headers */,
 				4D94FC921F0DFFC500677215 /* Resources */,
+				621BCB74FC96CD0FAE35E5C1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -217,9 +248,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D94FCAB1F0DFFC500677215 /* Build configuration list for PBXNativeTarget "ZVRefreshingTests" */;
 			buildPhases = (
+				965A0AB884FD476D107F0929 /* [CP] Check Pods Manifest.lock */,
 				4D94FC991F0DFFC500677215 /* Sources */,
 				4D94FC9A1F0DFFC500677215 /* Frameworks */,
 				4D94FC9B1F0DFFC500677215 /* Resources */,
+				BCC2105F55B88C7976A47BD1 /* [CP] Embed Pods Frameworks */,
+				564D60B38B0C2E072EC2ED4E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -293,28 +327,114 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		564D60B38B0C2E072EC2ED4E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZVRefreshingTests/Pods-ZVRefreshingTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		621BCB74FC96CD0FAE35E5C1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZVRefreshing/Pods-ZVRefreshing-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		965A0AB884FD476D107F0929 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZVRefreshingTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BCC2105F55B88C7976A47BD1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ZVRefreshingTests/Pods-ZVRefreshingTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/ZVActivityIndicatorView/ZVActivityIndicatorView.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZVActivityIndicatorView.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZVRefreshingTests/Pods-ZVRefreshingTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7BD7BB72F10091730883598 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ZVRefreshing-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4D94FC8F1F0DFFC500677215 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D65A4B82015D8FA005F7833 /* UILabel+Addition.swift in Sources */,
 				4D94FCC61F0DFFEC00677215 /* ZVRefreshFooter.swift in Sources */,
+				4D75A4B3201776F300775C60 /* UILabel+Addition.swift in Sources */,
 				4D94FCCE1F0DFFEC00677215 /* ZVRefreshHeader.swift in Sources */,
 				4D94FCC21F0DFFEC00677215 /* Configration.swift in Sources */,
-				4D7BE29F2015C32D008447A6 /* Localization.swift in Sources */,
 				4D94FCC81F0DFFEC00677215 /* ZVRefreshAutoFooter.swift in Sources */,
 				4D94FCCD1F0DFFEC00677215 /* ZVRefreshAnimationHeader.swift in Sources */,
 				4D94FCCF1F0DFFEC00677215 /* ZVRefreshNormalHeader.swift in Sources */,
 				4D94FCC91F0DFFEC00677215 /* ZVRefreshAutoNormalFooter.swift in Sources */,
-				4D65A4B92015D8FA005F7833 /* NSObject+Addition.swift in Sources */,
 				4D94FCCC1F0DFFEC00677215 /* ZVRefreshBackNormalFooter.swift in Sources */,
+				4D75A4B6201776F300775C60 /* NSObject+Addition.swift in Sources */,
 				4D94FCD01F0DFFEC00677215 /* ZVRefreshStateHeader.swift in Sources */,
 				4D94FCC41F0DFFEC00677215 /* ZVRefreshBackFooter.swift in Sources */,
-				4D65A4B72015D8FA005F7833 /* ZVActivityIndicatorView.swift in Sources */,
 				4D94FCCB1F0DFFEC00677215 /* ZVRefreshBackAnimationFooter.swift in Sources */,
 				4D94FCC71F0DFFEC00677215 /* ZVRefreshAutoAnimationFooter.swift in Sources */,
 				4D65A4B62015D8FA005F7833 /* ZVRefreshComponent.swift in Sources */,
+				4D75A4B4201776F300775C60 /* Localization.swift in Sources */,
 				4D94FCCA1F0DFFEC00677215 /* ZVRefreshAutoStateFooter.swift in Sources */,
 				4D94FCC31F0DFFEC00677215 /* Extensions.swift in Sources */,
 				4D94FCC51F0DFFEC00677215 /* ZVRefreshBackStateFooter.swift in Sources */,
@@ -457,7 +577,9 @@
 		};
 		4D94FCA91F0DFFC500677215 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63FB96F22A22977A5DADC032 /* Pods-ZVRefreshing.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -480,7 +602,9 @@
 		};
 		4D94FCAA1F0DFFC500677215 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 135A3ABE8D39DB85FEB55526 /* Pods-ZVRefreshing.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -502,8 +626,9 @@
 		};
 		4D94FCAC1F0DFFC500677215 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1E9F91EA96CD1CEDAD44611 /* Pods-ZVRefreshingTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = 4D95EGYA4V;
 				INFOPLIST_FILE = ZVRefreshingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -516,8 +641,9 @@
 		};
 		4D94FCAD1F0DFFC500677215 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48CE07207A240A83E97F0991 /* Pods-ZVRefreshingTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				DEVELOPMENT_TEAM = 4D95EGYA4V;
 				INFOPLIST_FILE = ZVRefreshingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
