@@ -63,7 +63,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
             return super.refreshState
         }
         set {
-            _set(refreshState: newValue)
+            setRefreshState(newValue)
         }
     }
     
@@ -94,7 +94,7 @@ extension ZVRefreshAutoFooter {
             return super.isHidden
         }
         set {
-            _set(isHidden: newValue)
+            setIsHidden(newValue)
         }
     }
 }
@@ -102,7 +102,7 @@ extension ZVRefreshAutoFooter {
 
 private extension ZVRefreshAutoFooter {
     
-    func _set(isHidden newValue: Bool) {
+    func setIsHidden(_ newValue: Bool) {
         guard let scrollView = scrollView else { return }
         let isHidden = self.isHidden
         super.isHidden = newValue
@@ -119,7 +119,7 @@ private extension ZVRefreshAutoFooter {
         }
     }
     
-    func _set(refreshState newValue: State) {
+    func setRefreshState(_ newValue: State) {
         
         let checked = checkState(newValue)
         guard checked.result == false else { return }

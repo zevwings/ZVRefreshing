@@ -19,15 +19,15 @@ class ZVRefreshDIYHeader: ZVRefreshStateHeader {
     
     private lazy var _activityIndicator: UIActivityIndicatorView = {
         var activityIndicator = UIActivityIndicatorView()
-        activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
+        activityIndicator.activityIndicatorViewStyle = activityIndicatorViewStyle
         activityIndicator.hidesWhenStopped = true
         return activityIndicator
     }()
     
     public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
         didSet {
-            self._activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
-            self.setNeedsLayout()
+            _activityIndicator.activityIndicatorViewStyle = activityIndicatorViewStyle
+            setNeedsLayout()
         }
     }
     
@@ -106,8 +106,4 @@ class ZVRefreshDIYHeader: ZVRefreshStateHeader {
         }
     }
 
-}
-
-extension ZVRefreshDIYHeader {
-    
 }

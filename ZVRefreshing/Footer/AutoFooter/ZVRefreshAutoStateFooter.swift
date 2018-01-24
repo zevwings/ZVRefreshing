@@ -47,7 +47,7 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
             return super.refreshState
         }
         set {
-            _set(refreshState: newValue)
+            setRefreshState(newValue)
         }
     }
 }
@@ -57,12 +57,8 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
 extension ZVRefreshAutoStateFooter {
     
     open override var tintColor: UIColor! {
-        get {
-            return super.tintColor
-        }
-        set {
-            super.tintColor = newValue
-            stateLabel.textColor = newValue
+        didSet {
+            stateLabel.textColor = tintColor
         }
     }
 }
@@ -86,7 +82,7 @@ private extension ZVRefreshAutoStateFooter {
         if refreshState == .idle { beginRefreshing() }
     }
     
-    func _set(refreshState newValue: State) {
+    func setRefreshState(_ newValue: State) {
 
         guard checkState(newValue).result == false else { return }
 

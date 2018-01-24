@@ -47,7 +47,15 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
     
     open override var pullingPercent: CGFloat {
         didSet {
-            _didSet(pullingPercent: pullingPercent)
+            let images = _stateImages[.idle] ?? []
+            if refreshState != .idle || images.count == 0 { return }
+            animationView.stopAnimating()
+            var index = Int(CGFloat(images.count) * pullingPercent)
+            if index >= images.count {
+                index = images.count - 1
+            }
+            animationView.image = images[index]
+
         }
     }
     
@@ -56,7 +64,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
             return super.refreshState
         }
         set {
-            _set(refreshState: newValue)
+            setRefreshState(newValue)
         }
     }
 }
@@ -87,7 +95,7 @@ public extension ZVRefreshAnimationHeader {
 
 private extension ZVRefreshAnimationHeader {
     
-    func _set(refreshState newValue: State) {
+    func setRefreshState(_ newValue: State) {
         
         guard checkState(newValue).result == false else { return }
         super.refreshState = newValue
@@ -106,17 +114,5 @@ private extension ZVRefreshAnimationHeader {
         } else if newValue == .idle {
             animationView.stopAnimating()
         }
-    }
-    
-    func _didSet(pullingPercent: CGFloat) {
-        
-        let imgs = _stateImages[.idle] ?? []
-        if refreshState != .idle || imgs.count == 0 { return }
-        animationView.stopAnimating()
-        var index = Int(CGFloat(imgs.count) * pullingPercent)
-        if index >= imgs.count {
-            index = imgs.count - 1
-        }
-        animationView.image = imgs[index]
     }
 }

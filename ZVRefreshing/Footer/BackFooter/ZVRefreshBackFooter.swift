@@ -62,7 +62,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
             return super.refreshState
         }
         set {
-            _set(refreshState: newValue)
+            setRefreshState(newValue)
         }
     }
 }
@@ -71,7 +71,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
 
 private extension ZVRefreshBackFooter {
     
-    func _set(refreshState newValue: State) {
+    func setRefreshState(_ newValue: State) {
         
         guard let scrollView = scrollView else { return }
         

@@ -20,7 +20,7 @@ class ZVRefreshBackCustomAnimationFooter: ZVRefreshBackAnimationFooter {
             let img = UIImage(named: name)
             idleImages.append(img!)
         }
-        self.setImages(idleImages, state: .idle)
+        setImages(idleImages, state: .idle)
 
         // 设置正在刷新状态的动画图片
         var refreshingImages: [UIImage] = []
@@ -30,7 +30,7 @@ class ZVRefreshBackCustomAnimationFooter: ZVRefreshBackAnimationFooter {
             let img = UIImage(named: name)
             refreshingImages.append(img!)
         }
-        self.setImages(refreshingImages, state: .pulling)
-        self.setImages(refreshingImages, state: .refreshing)
+        setImages(refreshingImages, state: .pulling)
+        setImages(refreshingImages, state: .refreshing)
     }
 }

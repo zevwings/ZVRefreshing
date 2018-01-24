@@ -34,7 +34,11 @@ open class ZVRefreshFooter: ZVRefreshComponent {
     /// 设置组件是否为RefreshState.noMoreData
     public var isNoMoreData: Bool = false {
         didSet {
-            _didSet(isNoMoreData: isNoMoreData)
+            if isNoMoreData {
+                refreshState = .noMoreData
+            } else {
+                refreshState = .idle
+            }
         }
     }
 }
@@ -55,17 +59,6 @@ extension ZVRefreshFooter {
                     self.isHidden = (totalCount == 0)
                 }
             }
-        }
-    }
-}
-
-private extension ZVRefreshFooter {
-    
-    func _didSet(isNoMoreData newValue: Bool) {
-        if newValue {
-            refreshState = .noMoreData
-        } else {
-            refreshState = .idle
         }
     }
 }

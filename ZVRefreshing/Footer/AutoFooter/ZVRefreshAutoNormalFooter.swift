@@ -49,7 +49,7 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
             return super.refreshState
         }
         set {
-            _set(refreshState: newValue)
+            setRefreshState(newValue)
         }
     }
 }
@@ -59,12 +59,8 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
 extension ZVRefreshAutoNormalFooter {
     
     open override var tintColor: UIColor! {
-        get {
-            return super.tintColor
-        }
-        set {
-            super.tintColor = newValue
-            activityIndicator.color = newValue
+        didSet {
+            activityIndicator.color = tintColor
         }
     }
 }
@@ -73,7 +69,7 @@ extension ZVRefreshAutoNormalFooter {
 
 private extension ZVRefreshAutoNormalFooter {
     
-    func _set(refreshState newValue: State) {
+    func setRefreshState(_ newValue: State) {
         
         guard checkState(newValue).result == false else { return }
 

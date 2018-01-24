@@ -20,7 +20,7 @@ class ZVRefreshCustomAnimationHeader: ZVRefreshAnimationHeader {
             let img = UIImage(named: name)
             idleImages.append(img!)
         }
-        self.setImages(idleImages, forState: .idle)
+        setImages(idleImages, forState: .idle)
         
         // 设置正在刷新状态的动画图片
         var refreshingImages: [UIImage] = []
@@ -29,7 +29,7 @@ class ZVRefreshCustomAnimationHeader: ZVRefreshAnimationHeader {
             let img = UIImage(named: name)
             refreshingImages.append(img!)
         }
-        self.setImages(refreshingImages, forState: .pulling)
-        self.setImages(refreshingImages, forState: .refreshing)
+        setImages(refreshingImages, forState: .pulling)
+        setImages(refreshingImages, forState: .refreshing)
     }
 }

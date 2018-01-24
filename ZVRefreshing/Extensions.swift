@@ -31,21 +31,17 @@ public extension UIScrollView {
         static var footer  = "com.zevwings.assocaiationkey.footer"
     }
     
-    private struct Storage {
-        static var handler: ZVReloadDataHandler?
-    }
-    
     public var refreshHeader: ZVRefreshHeader? {
         get {
             return objc_getAssociatedObject(self, &AssociationKey.header) as? ZVRefreshHeader
         }
         set {
-            if (self.refreshHeader != newValue) {
-                self.refreshHeader?.removeFromSuperview()
-                if newValue != nil { self.insertSubview(newValue!, at: 0) }
-                self.willChangeValue(forKey: "refreshHeader")
+            if (refreshHeader != newValue) {
+                refreshHeader?.removeFromSuperview()
+                if newValue != nil { insertSubview(newValue!, at: 0) }
+                willChangeValue(forKey: "refreshHeader")
                 objc_setAssociatedObject(self, &AssociationKey.header, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                self.didChangeValue(forKey: "refreshHeader")
+                didChangeValue(forKey: "refreshHeader")
             }
         }
     }
@@ -55,45 +51,14 @@ public extension UIScrollView {
             return objc_getAssociatedObject(self, &AssociationKey.footer) as? ZVRefreshFooter
         }
         set {
-            if (self.refreshFooter != newValue) {
-                self.refreshFooter?.removeFromSuperview()
-                if newValue != nil { self.insertSubview(newValue!, at: 0) }
-                self.willChangeValue(forKey: "refreshFooter")
+            if (refreshFooter != newValue) {
+                refreshFooter?.removeFromSuperview()
+                if newValue != nil { insertSubview(newValue!, at: 0) }
+                willChangeValue(forKey: "refreshFooter")
                 objc_setAssociatedObject(self, &AssociationKey.footer, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                self.didChangeValue(forKey: "refreshFooter")
+                didChangeValue(forKey: "refreshFooter")
             }
         }
-    }
-    
-    internal var totalDataCount: Int {
-        
-        var totalCount: Int = 0
-        if self.isKind(of: UITableView.classForCoder()) {
-            let tableView = self as? UITableView
-            for section in 0 ..< tableView!.numberOfSections {
-                totalCount += tableView!.numberOfRows(inSection: section)
-            }
-        } else if self.isKind(of: UICollectionView.classForCoder()) {
-            let collectionView = self as? UICollectionView
-            
-            for section in 0 ..< collectionView!.numberOfSections  {
-                totalCount += collectionView!.numberOfItems(inSection: section)
-            }
-        }
-        return totalCount
-    }
-    
-    internal var reloadDataHandler: ZVReloadDataHandler? {
-        get {
-            return Storage.handler
-        }
-        set {
-            Storage.handler = newValue
-        }
-    }
-
-    internal func executeReloadDataBlock() {
-        self.reloadDataHandler?(self.totalDataCount)
     }
 }
 
@@ -105,8 +70,8 @@ extension UITableView {
     }()
 
     @objc func _reloadData() {
-        self._reloadData()
-        self.executeReloadDataBlock()
+        _reloadData()
+        executeReloadDataBlock()
     }
 }
 
@@ -118,7 +83,45 @@ extension UICollectionView {
     }()
     
     @objc func _reloadData() {
-        self._reloadData()
-        self.executeReloadDataBlock()
+        _reloadData()
+        executeReloadDataBlock()
+    }
+}
+
+extension UIScrollView {
+    
+    private struct Storage {
+        static var handler: ZVReloadDataHandler?
+    }
+    
+    internal var reloadDataHandler: ZVReloadDataHandler? {
+        get {
+            return Storage.handler
+        }
+        set {
+            Storage.handler = newValue
+        }
+    }
+    
+    var totalDataCount: Int {
+        
+        var totalCount: Int = 0
+        if isKind(of: UITableView.classForCoder()) {
+            let tableView = self as? UITableView
+            for section in 0 ..< tableView!.numberOfSections {
+                totalCount += tableView!.numberOfRows(inSection: section)
+            }
+        } else if isKind(of: UICollectionView.classForCoder()) {
+            let collectionView = self as? UICollectionView
+            
+            for section in 0 ..< collectionView!.numberOfSections  {
+                totalCount += collectionView!.numberOfItems(inSection: section)
+            }
+        }
+        return totalCount
+    }
+    
+    func executeReloadDataBlock() {
+        reloadDataHandler?(totalDataCount)
     }
 }

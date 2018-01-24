@@ -43,7 +43,15 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     
     open override var pullingPercent: CGFloat {
         didSet {
-            _didSet(pullingPercent: pullingPercent)
+            let images = _stateImages[.idle] ?? []
+            if refreshState != .idle || images.count == 0 { return }
+            animationView.stopAnimating()
+            var index = Int(CGFloat(images.count) * pullingPercent)
+            if index >= images.count {
+                index = images.count - 1
+            }
+            animationView.image = images[index]
+
         }
     }
     
@@ -52,7 +60,7 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
             return super.refreshState
         }
         set {
-            _set(refreshState: newValue)
+            setRefreshState(newValue)
         }
     }
 
@@ -83,7 +91,7 @@ extension ZVRefreshBackAnimationFooter {
 
 private extension ZVRefreshBackAnimationFooter {
     
-    func _set(refreshState newValue: State) {
+    func setRefreshState(_ newValue: State) {
         
         guard checkState(newValue).result == false else { return }
 
@@ -104,17 +112,5 @@ private extension ZVRefreshBackAnimationFooter {
         } else if newValue == .idle {
             animationView.stopAnimating()
         }
-    }
-    
-    func _didSet(pullingPercent newValue: CGFloat) {
-        
-        let imgs = _stateImages[.idle] ?? []
-        if refreshState != .idle || imgs.count == 0 { return }
-        animationView.stopAnimating()
-        var index = Int(CGFloat(imgs.count) * newValue)
-        if index >= imgs.count {
-            index = imgs.count - 1
-        }
-        animationView.image = imgs[index]
     }
 }

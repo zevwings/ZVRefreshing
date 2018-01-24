@@ -59,17 +59,13 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
             return super.refreshState
         }
         set {
-            _set(refreshState: newValue)
+            setRefreshState(newValue)
         }
     }
     
     open override var pullingPercent: CGFloat {
-        get {
-            return super.pullingPercent
-        }
-        set {
-            super.pullingPercent = newValue
-            activityIndicator.progress = newValue
+        didSet {
+            activityIndicator.progress = pullingPercent
         }
     }
 }
@@ -79,12 +75,9 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
 extension ZVRefreshNormalHeader {
     
     open override var tintColor: UIColor! {
-        get {
-            return super.tintColor
-        }
-        set {
-            super.tintColor = newValue
-            activityIndicator.color = newValue
+        didSet {
+            super.tintColor = tintColor
+            activityIndicator.color = tintColor
         }
     }
 }
@@ -93,7 +86,7 @@ extension ZVRefreshNormalHeader {
 
 private extension ZVRefreshNormalHeader {
     
-    func _set(refreshState newValue: State) {
+    func setRefreshState(_ newValue: State) {
         
         guard checkState(newValue).result == false else { return }
         super.refreshState = newValue
@@ -101,6 +94,7 @@ private extension ZVRefreshNormalHeader {
         if newValue == .idle {
             if refreshState == .refreshing {
                 UIView.animate(withDuration: AnimationDuration.slow, animations: {
+                    self.activityIndicator.alpha = 0.0
                 }, completion: { finished in
                     guard self.refreshState == .idle else { return }
                     self.activityIndicator.stopAnimating()

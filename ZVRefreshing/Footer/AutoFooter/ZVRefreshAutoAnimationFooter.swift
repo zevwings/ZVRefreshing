@@ -47,7 +47,7 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
             return super.refreshState
         }
         set {
-            _set(refreshState: newValue)
+            setRefreshState(newValue)
         }
     }
 }
@@ -77,7 +77,7 @@ extension ZVRefreshAutoAnimationFooter {
 
 private extension ZVRefreshAutoAnimationFooter {
     
-    func _set(refreshState newValue: State) {
+    func setRefreshState(_ newValue: State) {
         
         guard checkState(newValue).result == false else { return }
         super.refreshState = newValue

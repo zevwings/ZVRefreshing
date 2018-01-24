@@ -107,19 +107,25 @@ open class ZVRefreshComponent: UIControl {
             return _refreshState
         }
         set {
-            _set(refreshState: newValue)
+            setRefreshState(newValue)
         }
     }
     
     public var isAutomaticallyChangeAlpha: Bool = true {
         didSet {
-            _didSet(isAutomaticallyChangeAlpha: isAutomaticallyChangeAlpha)
+            guard isRefreshing == false else { return }
+            if isAutomaticallyChangeAlpha {
+                alpha = pullingPercent
+            } else {
+                alpha = 1.0
+            }
         }
     }
     
     open var pullingPercent: CGFloat = 0.0 {
         didSet {
-            _didSet(pullingPercent: pullingPercent)
+            guard isRefreshing == false else { return }
+            if isAutomaticallyChangeAlpha { alpha = pullingPercent }
         }
     }
     
@@ -136,15 +142,6 @@ open class ZVRefreshComponent: UIControl {
 // MARK: - Override
 
 extension ZVRefreshComponent {
-    
-    open override var tintColor: UIColor! {
-        get {
-            return super.tintColor
-        }
-        set {
-            super.tintColor = newValue
-        }
-    }
     
     open override func layoutSubviews() {
         placeSubViews()
@@ -315,7 +312,7 @@ extension ZVRefreshComponent {
 
 private extension ZVRefreshComponent {
     
-    func _set(refreshState newValue: State) {
+    func setRefreshState(_ newValue: State) {
         
         guard checkState(newValue).result == false else { return }
         
@@ -325,25 +322,5 @@ private extension ZVRefreshComponent {
         sendActions(for: .valueChanged)
         
         _refreshState = newValue
-    }
-    
-    func _didSet(pullingPercent newValue: CGFloat) {
-        
-        guard isRefreshing == false else { return }
-        
-        if isAutomaticallyChangeAlpha {
-            alpha = newValue
-        }
-    }
-    
-    func _didSet(isAutomaticallyChangeAlpha newValue: Bool) {
-        
-        guard isRefreshing == false else { return }
-        
-        if isAutomaticallyChangeAlpha {
-            alpha = pullingPercent
-        } else {
-            alpha = 1.0
-        }
     }
 }

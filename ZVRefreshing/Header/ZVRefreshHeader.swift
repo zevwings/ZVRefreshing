@@ -86,7 +86,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
             return super.refreshState
         }
         set {
-            _set(refreshState: newValue)
+            setRefreshState(newValue)
         }
     }
 }
@@ -95,7 +95,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
 
 private extension ZVRefreshHeader {
     
-    func _set(refreshState newValue: State) {
+    func setRefreshState(_ newValue: State) {
         
         let checked = checkState(newValue)
         guard checked.result == false else { return }

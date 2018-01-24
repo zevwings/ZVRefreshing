@@ -41,9 +41,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
             return super.refreshState
         }
         set {
-            guard checkState(newValue).result == false else { return }
-            super.refreshState = newValue
-            stateLabel.text = _stateTitles[newValue]
+            setRefreshState(newValue)
         }
     }
 
@@ -54,12 +52,8 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
 extension ZVRefreshBackStateFooter {
     
     open override var tintColor: UIColor! {
-        get {
-            return super.tintColor
-        }
-        set {
-            super.tintColor = newValue
-            stateLabel.textColor = newValue
+        didSet {
+            stateLabel.textColor = tintColor
         }
     }
 }
@@ -71,5 +65,14 @@ extension ZVRefreshBackStateFooter {
     public func setTitle(_ title: String, forState state: State) {
         _stateTitles.updateValue(title, forKey: state)
         stateLabel.text = _stateTitles[refreshState]
+    }
+}
+
+private extension ZVRefreshBackStateFooter {
+    
+    func setRefreshState(_ newValue: State) {
+        guard checkState(newValue).result == false else { return }
+        super.refreshState = newValue
+        stateLabel.text = _stateTitles[newValue]
     }
 }

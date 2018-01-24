@@ -63,7 +63,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     
     public var lastUpdatedTimeLabelText:((_ date: Date?)->(String))? {
         didSet {
-            _didSet(lastUpdatedTimeKey: lastUpdatedTimeKey)
+            didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
         }
     }
     
@@ -72,14 +72,14 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
             return super.refreshState
         }
         set {
-            _set(refreshState: newValue)
+            setRefreshState(newValue)
         }
     }
     
     public override var lastUpdatedTimeKey: String {
         
         didSet {
-            _didSet(lastUpdatedTimeKey: lastUpdatedTimeKey)
+            didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
         }
     }
 }
@@ -88,13 +88,9 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
 extension ZVRefreshStateHeader {
     
     open override var tintColor: UIColor! {
-        get {
-            return super.tintColor
-        }
-        set {
-            super.tintColor = newValue
-            lastUpdatedTimeLabel.textColor = newValue
-            stateLabel.textColor = newValue
+        didSet {
+            lastUpdatedTimeLabel.textColor = tintColor
+            stateLabel.textColor = tintColor
         }
     }
 }
@@ -114,7 +110,7 @@ public extension ZVRefreshStateHeader {
 // MARK: - Private
 private extension ZVRefreshStateHeader {
     
-    func _set(refreshState newValue: State) {
+    func setRefreshState(_ newValue: State) {
         
         guard checkState(newValue).result == false else { return }
         super.refreshState = newValue
@@ -124,7 +120,7 @@ private extension ZVRefreshStateHeader {
         lastUpdatedTimeKey = key
     }
     
-    func _didSet(lastUpdatedTimeKey newValue: String) {
+    func didSetLastUpdatedTimeKey(_ newValue: String) {
         
         guard lastUpdatedTimeLabelText == nil else {
             lastUpdatedTimeLabel.text = lastUpdatedTimeLabelText?(lastUpdatedTime)

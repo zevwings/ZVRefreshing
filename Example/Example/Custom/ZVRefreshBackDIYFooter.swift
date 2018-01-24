@@ -26,8 +26,8 @@ class ZVRefreshBackDIYFooter: ZVRefreshBackStateFooter {
     
     public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
         didSet {
-            self._activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
-            self.setNeedsLayout()
+            _activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
+            setNeedsLayout()
         }
     }
     
