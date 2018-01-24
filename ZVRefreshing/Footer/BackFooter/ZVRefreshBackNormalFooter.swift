@@ -32,7 +32,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         
         var centerX = frame.size.width * 0.5
         if !stateLabel.isHidden {
-            centerX -= (stateLabel.getTextWidth() * 0.5 + labelInsetLeft)
+            centerX -= (stateLabel.textWidth * 0.5 + labelInsetLeft)
         }
         
         let centerY = frame.size.height * 0.5

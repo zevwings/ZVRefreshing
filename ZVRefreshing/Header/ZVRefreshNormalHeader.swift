@@ -35,9 +35,9 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         if !stateLabel.isHidden {
             var labelWidth: CGFloat = 0.0
             if lastUpdatedTimeLabel.isHidden {
-                labelWidth = stateLabel.getTextWidth()
+                labelWidth = stateLabel.textWidth
             } else {
-                labelWidth = max(lastUpdatedTimeLabel.getTextWidth(), stateLabel.getTextWidth())
+                labelWidth = max(lastUpdatedTimeLabel.textWidth, stateLabel.textWidth)
             }
             centerX -= (labelWidth * 0.5 + labelInsetLeft)
         }
