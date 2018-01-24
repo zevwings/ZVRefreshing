@@ -5,7 +5,7 @@ target 'ZVRefreshing' do
 
   use_frameworks!
 
-  pod 'ZVActivityIndicatorView', :git => 'https://github.com/zevwings/ZVActivityIndicatorView.git'
+  pod 'ZVActivityIndicatorView'
 
   target 'ZVRefreshingTests' do
     inherit! :search_paths

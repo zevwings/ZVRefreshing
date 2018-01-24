@@ -1,21 +1,12 @@
 PODS:
-  - ZVActivityIndicatorView (0.0.3)
+  - ZVActivityIndicatorView (0.0.4)
 
 DEPENDENCIES:
-  - ZVActivityIndicatorView (from `https://github.com/zevwings/ZVActivityIndicatorView.git`)
-
-EXTERNAL SOURCES:
-  ZVActivityIndicatorView:
-    :git: https://github.com/zevwings/ZVActivityIndicatorView.git
-
-CHECKOUT OPTIONS:
-  ZVActivityIndicatorView:
-    :commit: 375b121af135803dfde48a9fd66f70a5ce0e0aee
-    :git: https://github.com/zevwings/ZVActivityIndicatorView.git
+  - ZVActivityIndicatorView
 
 SPEC CHECKSUMS:
-  ZVActivityIndicatorView: 4aab9e4893c9f5017da06463ec893c04d977d946
+  ZVActivityIndicatorView: 9b715eaa909eee5a27a079a10a8084aa6d577931
 
-PODFILE CHECKSUM: 3fd677b3b28060316fd1f73248336b625c0b3ab1
+PODFILE CHECKSUM: 5d17d0e87dea18377e96d4cf3e2b467107576d98
 
 COCOAPODS: 1.4.0
