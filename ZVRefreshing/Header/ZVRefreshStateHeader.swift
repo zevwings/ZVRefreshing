@@ -79,13 +79,12 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     
     override open func update(refreshState newValue: State) {
         
-        guard checkState(newValue).result == false else { return }
+        guard checkState(newValue).isIdenticalState == false else { return }
         super.update(refreshState: newValue)
         
         stateLabel.text = stateTitles[refreshState]
         
-        let key = lastUpdatedTimeKey
-        lastUpdatedTimeKey = key
+        didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
     }
 }
 

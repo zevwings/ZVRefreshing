@@ -86,36 +86,40 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     
     override open func update(refreshState newValue: State) {
         let checked = checkState(newValue)
-        guard checked.result == false else { return }
+        guard checked.isIdenticalState == false else { return }
         super.update(refreshState: newValue)
+    }
+    
+    override func doOn(idle oldState: ZVRefreshComponent.State) {
+        super.doOn(idle: oldState)
         
-        if newValue == .idle {
-            
-            guard checked.oldState == .refreshing else { return }
-            
-            UserDefaults.standard.set(Date(), forKey: lastUpdatedTimeKey)
-            UserDefaults.standard.synchronize()
-            
-            UIView.animate(withDuration: AnimationDuration.slow, animations: {
-                self.scrollView?.contentInset.top += self.insetTop
-                if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
+        guard oldState == .refreshing else { return }
+        
+        UserDefaults.standard.set(Date(), forKey: lastUpdatedTimeKey)
+        UserDefaults.standard.synchronize()
+        
+        UIView.animate(withDuration: AnimationDuration.slow, animations: {
+            self.scrollView?.contentInset.top += self.insetTop
+            if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
+        }, completion: { finished in
+            self.pullingPercent = 0.0
+            self.endRefreshingCompletionHandler?()
+        })
+    }
+    
+    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+        super.doOn(refreshing: oldState)
+        
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: AnimationDuration.fast, animations: {
+                let top = self.scrollViewOriginalInset.top + self.frame.size.height
+                self.scrollView?.contentInset.top = top
+                var offset = self.scrollView!.contentOffset
+                offset.y = -top
+                self.scrollView?.setContentOffset(offset, animated: false)
             }, completion: { finished in
-                self.pullingPercent = 0.0
-                self.endRefreshingCompletionHandler?()
+                self.executeRefreshCallback()
             })
-        } else if newValue == .refreshing {
-            
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: AnimationDuration.fast, animations: {
-                    let top = self.scrollViewOriginalInset.top + self.frame.size.height
-                    self.scrollView?.contentInset.top = top
-                    var offset = self.scrollView!.contentOffset
-                    offset.y = -top
-                    self.scrollView?.setContentOffset(offset, animated: false)
-                }, completion: { finished in
-                    self.executeRefreshCallback()
-                })
-            }
         }
     }
 }

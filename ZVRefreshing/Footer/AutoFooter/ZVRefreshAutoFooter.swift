@@ -16,18 +16,28 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     
     open override func update(refreshState newValue: State) {
         let checked = checkState(newValue)
-        guard checked.result == false else { return }
+        guard checked.isIdenticalState == false else { return }
         super.update(refreshState: newValue)
+    }
+    
+    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+        super.doOn(refreshing: oldState)
         
-        if newValue == .refreshing {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
-                self.executeRefreshCallback()
-            })
-        } else if refreshState == .noMoreData || refreshState == .idle {
-            if checked.oldState == .refreshing {
-                endRefreshingCompletionHandler?()
-            }
-        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+            self.executeRefreshCallback()
+        })
+    }
+    
+    override func doOn(idle oldState: ZVRefreshComponent.State) {
+        super.doOn(idle: oldState)
+        
+        if oldState == .refreshing { endRefreshingCompletionHandler?() }
+    }
+    
+    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
+        super.doOn(noMoreData: oldState)
+        
+        if oldState == .refreshing { endRefreshingCompletionHandler?() }
     }
     
     // MARK: Observers

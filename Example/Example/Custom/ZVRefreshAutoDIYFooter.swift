@@ -26,7 +26,7 @@ class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
     }
     
     override func update(refreshState newValue: ZVRefreshComponent.State) {
-        guard checkState(newValue).result == false else { return }
+        guard checkState(newValue).isIdenticalState == false else { return }
         super.update(refreshState: newValue)
         
         if newValue == .noMoreData || newValue == .idle {

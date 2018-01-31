@@ -64,25 +64,35 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
     
     override open func update(refreshState newValue: State) {
         
-        guard checkState(newValue).result == false else { return }
+        guard checkState(newValue).isIdenticalState == false else { return }
         super.update(refreshState: newValue)
+    }
+    
+    override func doOn(idle oldState: ZVRefreshComponent.State) {
+        super.doOn(idle: oldState)
         
-        if newValue == .idle {
-            if refreshState == .refreshing {
-                UIView.animate(withDuration: AnimationDuration.slow, animations: {
-                    self.activityIndicator.alpha = 0.0
-                }, completion: { finished in
-                    guard self.refreshState == .idle else { return }
-                    self.activityIndicator.stopAnimating()
-                })
-            } else {
-                activityIndicator.stopAnimating()
-            }
-        } else if newValue == .pulling {
+        if refreshState == .refreshing {
+            UIView.animate(withDuration: AnimationDuration.slow, animations: {
+                self.activityIndicator.alpha = 0.0
+            }, completion: { finished in
+                guard self.refreshState == .idle else { return }
+                self.activityIndicator.stopAnimating()
+            })
+        } else {
             activityIndicator.stopAnimating()
-        } else if newValue == .refreshing {
-            activityIndicator.startAnimating()
         }
+    }
+    
+    override func doOn(pulling oldState: ZVRefreshComponent.State) {
+        super.doOn(pulling: oldState)
+        
+        activityIndicator.stopAnimating()
+    }
+    
+    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+        super.doOn(refreshing: oldState)
+        
+        activityIndicator.startAnimating()
     }
 }
 

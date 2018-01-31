@@ -59,24 +59,44 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     
     open override func update(refreshState newValue: State) {
         
-        guard checkState(newValue).result == false else { return }
+        guard checkState(newValue).isIdenticalState == false else { return }
         super.update(refreshState: newValue)
+    }
+    
+    override func doOn(pulling oldState: ZVRefreshComponent.State) {
+        super.doOn(pulling: oldState)
         
-        if newValue == .pulling || newValue == .refreshing {
-            
-            guard let images = _stateImages[newValue], images.count > 0 else { return }
-            animationView.stopAnimating()
-            
-            if images.count == 1 {
-                animationView.image = images.last
-            } else {
-                animationView.animationImages = images
-                animationView.animationDuration = _stateDurations[newValue] ?? 0
-                animationView.startAnimating()
-            }
-        } else if newValue == .idle {
-            animationView.stopAnimating()
+        guard let images = _stateImages[.pulling], images.count > 0 else { return }
+        animationView.stopAnimating()
+        
+        if images.count == 1 {
+            animationView.image = images.last
+        } else {
+            animationView.animationImages = images
+            animationView.animationDuration = _stateDurations[.pulling] ?? 0
+            animationView.startAnimating()
         }
+    }
+    
+    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+        super.doOn(refreshing: oldState)
+        
+        guard let images = _stateImages[.refreshing], images.count > 0 else { return }
+        animationView.stopAnimating()
+        
+        if images.count == 1 {
+            animationView.image = images.last
+        } else {
+            animationView.animationImages = images
+            animationView.animationDuration = _stateDurations[.refreshing] ?? 0
+            animationView.startAnimating()
+        }
+    }
+    
+    override func doOn(idle oldState: ZVRefreshComponent.State) {
+        super.doOn(idle: oldState)
+        
+        animationView.stopAnimating()
     }
 }
 

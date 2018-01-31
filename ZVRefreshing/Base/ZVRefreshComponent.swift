@@ -130,7 +130,8 @@ open class ZVRefreshComponent: UIControl {
     /// - Parameter newValue: new referesh state
     open func update(refreshState newValue: State) {
         
-        guard checkState(newValue).result == false else { return }
+        let result = checkState(newValue)
+        guard result.isIdenticalState == false else { return }
         
         willChangeValue(forKey: "isRefreshing")
         isRefreshing = newValue == .refreshing
@@ -138,7 +139,35 @@ open class ZVRefreshComponent: UIControl {
         sendActions(for: .valueChanged)
         
         _refreshState = newValue
+        
+        switch _refreshState {
+        case .idle:
+            doOn(idle: result.oldState)
+            break
+        case .pulling:
+            doOn(pulling: result.oldState)
+            break
+        case .willRefresh:
+            doOn(willRefresh: result.oldState)
+            break
+        case .refreshing:
+            doOn(refreshing: result.oldState)
+            break
+        case .noMoreData:
+            doOn(noMoreData: result.oldState)
+            break
+        }
     }
+
+    func doOn(idle oldState: State) {}
+    
+    func doOn(pulling oldState: State) {}
+    
+    func doOn(willRefresh oldState: State) {}
+    
+    func doOn(refreshing oldState: State) {}
+    
+    func doOn(noMoreData oldState: State) {}
     
     // MARK: Superview Observers
     
@@ -289,7 +318,7 @@ public extension ZVRefreshComponent {
     
     /// check RefreshState.newValue is equal to RefreshState.oldState
     /// if the two value is not equal, update state label value.
-    public func checkState(_ state: State) -> (result: Bool, oldState: State) {
+    public func checkState(_ state: State) -> (isIdenticalState: Bool, oldState: State) {
         let oldState = refreshState
         if oldState == state { return (true, oldState) }
         return (false, oldState)

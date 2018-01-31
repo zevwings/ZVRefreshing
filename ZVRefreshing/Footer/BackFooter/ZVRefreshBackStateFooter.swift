@@ -37,7 +37,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     // MARK: Update State
     
     open override func update(refreshState newValue: State) {
-        guard checkState(newValue).result == false else { return }
+        guard checkState(newValue).isIdenticalState == false else { return }
         super.update(refreshState: newValue)
         
         stateLabel.text = _stateTitles[newValue]

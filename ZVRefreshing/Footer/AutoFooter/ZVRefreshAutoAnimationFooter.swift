@@ -44,32 +44,39 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     
     open override func update(refreshState newValue: State) {
         
-        guard checkState(newValue).result == false else { return }
+        guard checkState(newValue).isIdenticalState == false else { return }
         super.update(refreshState: newValue)
+    }
+    
+    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+        super.doOn(refreshing: oldState)
         
-        switch newValue {
-        case .refreshing:
-            
-            guard let images = _stateImages[newValue], images.count > 0 else { return }
-            
-            animationView.stopAnimating()
-            animationView.isHidden = false
-            
-            if images.count == 1 {
-                animationView.image = images.last
-            } else {
-                animationView.animationImages = images
-                animationView.animationDuration = _stateDurations[newValue] ?? 0.0
-                animationView.startAnimating()
-            }
-            break
-        case .noMoreData, .idle:
-            
-            animationView.stopAnimating()
-            animationView.isHidden = false
-            break
-        default: break
+        guard let images = _stateImages[.refreshing], images.count > 0 else { return }
+        
+        animationView.stopAnimating()
+        animationView.isHidden = false
+        
+        if images.count == 1 {
+            animationView.image = images.last
+        } else {
+            animationView.animationImages = images
+            animationView.animationDuration = _stateDurations[.refreshing] ?? 0.0
+            animationView.startAnimating()
         }
+    }
+    
+    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
+        super.doOn(noMoreData: oldState)
+        
+        animationView.stopAnimating()
+        animationView.isHidden = false
+    }
+    
+    override func doOn(idle oldState: ZVRefreshComponent.State) {
+        super.doOn(idle: oldState)
+        
+        animationView.stopAnimating()
+        animationView.isHidden = false
     }
 }
 

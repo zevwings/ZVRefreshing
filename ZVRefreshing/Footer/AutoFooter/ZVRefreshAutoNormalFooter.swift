@@ -46,19 +46,26 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
     // MARK: Update State
     
     open override func update(refreshState newValue: State) {
-        guard checkState(newValue).result == false else { return }
+        guard checkState(newValue).isIdenticalState == false else { return }
         super.update(refreshState: newValue)
+    }
+    
+    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+        super.doOn(refreshing: oldState)
         
-        switch newValue {
-        case .noMoreData, .idle:
-            activityIndicator.stopAnimating()
-            break
-        case .refreshing:
-            activityIndicator.startAnimating()
-            break
-        default: break
-            
-        }
+        activityIndicator.startAnimating()
+    }
+    
+    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
+        super.doOn(noMoreData: oldState)
+        
+        activityIndicator.stopAnimating()
+    }
+    
+    override func doOn(idle oldState: ZVRefreshComponent.State) {
+        super.doOn(idle: oldState)
+        
+        activityIndicator.stopAnimating()
     }
 }
 

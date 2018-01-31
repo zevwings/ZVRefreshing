@@ -34,7 +34,7 @@ class ZVRefreshBackDIYFooter: ZVRefreshBackStateFooter {
     override func update(refreshState newValue: ZVRefreshComponent.State) {
 
         let checked = self.checkState(newValue)
-        guard checked.result == false else { return }
+        guard checked.isIdenticalState == false else { return }
         super.update(refreshState: newValue)
         
         switch newValue {

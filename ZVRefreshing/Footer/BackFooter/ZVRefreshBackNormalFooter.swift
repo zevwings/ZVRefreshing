@@ -56,33 +56,41 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     
     open override func update(refreshState newValue: State) {
         let checked = checkState(newValue)
-        guard checked.result == false else { return }
+        guard checked.isIdenticalState == false else { return }
         super.update(refreshState: newValue)
+
+    }
+    
+    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
+        super.doOn(noMoreData: oldState)
         
-        switch newValue {
-        case .idle:
-            if checked.oldState == .refreshing {
-                UIView.animate(withDuration: AnimationDuration.fast, animations: {
-                    self.activityIndicator.alpha = 0.0
-                }, completion: { finished in
-                    self.activityIndicator.alpha = 1.0
-                    self.activityIndicator.stopAnimating()
-                })
-            } else {
-                activityIndicator.stopAnimating()
-            }
-            break
-        case .pulling:
+        activityIndicator.stopAnimating()
+    }
+    
+    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+        super.doOn(refreshing: oldState)
+        
+        activityIndicator.startAnimating()
+    }
+    
+    override func doOn(pulling oldState: ZVRefreshComponent.State) {
+        super.doOn(pulling: oldState)
+        
+        activityIndicator.stopAnimating()
+    }
+    
+    override func doOn(idle oldState: ZVRefreshComponent.State) {
+        super.doOn(idle: oldState)
+        
+        if oldState == .refreshing {
+            UIView.animate(withDuration: AnimationDuration.fast, animations: {
+                self.activityIndicator.alpha = 0.0
+            }, completion: { finished in
+                self.activityIndicator.alpha = 1.0
+                self.activityIndicator.stopAnimating()
+            })
+        } else {
             activityIndicator.stopAnimating()
-            break
-        case .refreshing:
-            activityIndicator.startAnimating()
-            break
-        case .noMoreData:
-            activityIndicator.stopAnimating()
-            break
-        default:
-            break
         }
     }
 }
