@@ -20,14 +20,14 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     
     // MARK: Subviews
     
-    open override func prepare() {
+    override open func prepare() {
         super.prepare()
         if animationView.superview == nil {
             addSubview(animationView)
         }
     }
     
-    open override func placeSubViews() {
+    override open func placeSubViews() {
         super.placeSubViews()
         
         if animationView.constraints.count > 0 { return }
@@ -42,7 +42,7 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
 
     // MARK: Getter & Setter
     
-    open override var refreshState: State {
+    override open var refreshState: State {
         get {
             return super.refreshState
         }

@@ -14,13 +14,13 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     
     // MARK: Observers
 
-    open override func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?) {
         super.scrollView(scrollView, contentSizeDidChanged: value)
         
         frame.origin.y = scrollView.contentSize.height
     }
     
-    open override func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
         
         guard refreshState == .idle, isAutomaticallyRefresh, frame.origin.y != 0 else { return }
         
@@ -37,7 +37,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
         }
     }
     
-    open override func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey : Any]?, for scrollView: UIScrollView) {
+    override open func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey : Any]?, for scrollView: UIScrollView) {
         
         super.panGestureRecognizer(panGestureRecognizer, stateValueChanged: value, for: scrollView)
         
@@ -58,7 +58,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     
     // MARK: Getter & Setter
     
-    open override var refreshState: State {
+    override open var refreshState: State {
         get {
             return super.refreshState
         }
@@ -73,7 +73,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
 
 extension ZVRefreshAutoFooter {
     
-    open override func willMove(toSuperview newSuperview: UIView?) {
+    override open func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
         if scrollView == nil { return }
@@ -89,7 +89,7 @@ extension ZVRefreshAutoFooter {
         }
     }
     
-    open override var isHidden: Bool {
+    override open var isHidden: Bool {
         get {
             return super.isHidden
         }

@@ -21,7 +21,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
 
     // MARK: Subviews
     
-    open override func prepare() {
+    override open func prepare() {
         super.prepare()
         
         if animationView.superview == nil {
@@ -29,7 +29,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
         }
     }
     
-    open override func placeSubViews() {
+    override open func placeSubViews() {
         super.placeSubViews()
         
         guard animationView.constraints.count == 0 else { return }
@@ -45,7 +45,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
 
     // MARK: Getter & Setter
     
-    open override var pullingPercent: CGFloat {
+    override open var pullingPercent: CGFloat {
         didSet {
             let images = _stateImages[.idle] ?? []
             if refreshState != .idle || images.count == 0 { return }
@@ -59,7 +59,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
         }
     }
     
-    open override var refreshState: State {
+    override open var refreshState: State {
         get {
             return super.refreshState
         }

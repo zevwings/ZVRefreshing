@@ -19,7 +19,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
     
     // MARK: Subviews
     
-    open override func prepare() {
+    override open func prepare() {
         super.prepare()
         
         if activityIndicator.superview == nil {
@@ -27,7 +27,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         }
     }
     
-    open override func placeSubViews() {
+    override open func placeSubViews() {
         super.placeSubViews()
         
         var centerX = frame.size.width * 0.5
@@ -54,7 +54,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
 
     // MARK: Getter & Setter
     
-    open override var refreshState: State {
+    override open var refreshState: State {
         get {
             return super.refreshState
         }
@@ -63,7 +63,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         }
     }
     
-    open override var pullingPercent: CGFloat {
+    override open var pullingPercent: CGFloat {
         didSet {
             activityIndicator.progress = pullingPercent
         }
@@ -74,7 +74,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
 
 extension ZVRefreshNormalHeader {
     
-    open override var tintColor: UIColor! {
+    override open var tintColor: UIColor! {
         didSet {
             super.tintColor = tintColor
             activityIndicator.color = tintColor

@@ -18,7 +18,7 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
     }()
     
     // MARK: Subviews
-    public override func prepare() {
+    override public func prepare() {
         super.prepare()
         
         if activityIndicator.superview == nil {
@@ -26,7 +26,7 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
         }
     }
     
-    public override func placeSubViews() {
+    override public func placeSubViews() {
         super.placeSubViews()
         
         if activityIndicator.constraints.count > 0 { return }
@@ -44,7 +44,7 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
 
     // MARK: Getter & Setter
     
-    public override var refreshState: State {
+    override public var refreshState: State {
         get {
             return super.refreshState
         }
@@ -58,7 +58,7 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
 
 extension ZVRefreshAutoNormalFooter {
     
-    open override var tintColor: UIColor! {
+    override open var tintColor: UIColor! {
         didSet {
             activityIndicator.color = tintColor
         }

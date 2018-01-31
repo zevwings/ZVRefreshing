@@ -15,7 +15,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
     // MARK: Subviews
     
-    open override func prepare() {
+    override open func prepare() {
         super.prepare()
         
         if stateLabel.superview == nil {
@@ -28,7 +28,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
         setTitle(localized(string: LocalizedKey.Footer.Back.noMoreData), forState: .noMoreData)
     }
     
-    open override func placeSubViews() {
+    override open func placeSubViews() {
         super.placeSubViews()
         if stateLabel.constraints.count > 0 { return }
         stateLabel.frame = bounds
@@ -36,7 +36,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
     // MARK: Getter & Setter
     
-    open override var refreshState: State {
+    override open var refreshState: State {
         get {
             return super.refreshState
         }
@@ -51,7 +51,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
 
 extension ZVRefreshBackStateFooter {
     
-    open override var tintColor: UIColor! {
+    override open var tintColor: UIColor! {
         didSet {
             stateLabel.textColor = tintColor
         }

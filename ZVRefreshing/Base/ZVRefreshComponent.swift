@@ -69,7 +69,7 @@ open class ZVRefreshComponent: UIControl {
         _action = action
     }
     
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         prepare()
     }
@@ -143,19 +143,19 @@ open class ZVRefreshComponent: UIControl {
 
 extension ZVRefreshComponent {
     
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         placeSubViews()
         super.layoutSubviews()
     }
     
-    open override func draw(_ rect: CGRect) {
+    override open func draw(_ rect: CGRect) {
         super.draw(rect)
         if refreshState == .willRefresh {
             refreshState = .refreshing
         }
     }
     
-    open override func willMove(toSuperview newSuperview: UIView?) {
+    override open func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
         guard let superview = newSuperview as? UIScrollView else { return }
@@ -223,7 +223,7 @@ extension ZVRefreshComponent {
 
 extension ZVRefreshComponent {
     
-    struct ObserversKeyPath {
+    private struct ObserversKeyPath {
         static let contentOffset = "contentOffset"
         static let contentInset  = "contentInset"
         static let contentSize   = "contentSize"
@@ -248,7 +248,7 @@ extension ZVRefreshComponent {
         _panGestureRecognizer = nil
     }
     
-    open override func observeValue(forKeyPath keyPath: String?,
+    override open func observeValue(forKeyPath keyPath: String?,
                                     of object: Any?,
                                     change: [NSKeyValueChangeKey : Any]?,
                                     context: UnsafeMutableRawPointer?) {

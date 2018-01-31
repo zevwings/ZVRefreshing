@@ -17,7 +17,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     private var calendar = Calendar(identifier: .gregorian)
 
     // MARK: Subviews
-    open override func prepare() {
+    override open func prepare() {
         super.prepare()
         
         if stateLabel.superview == nil {
@@ -33,7 +33,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         setTitle(localized(string: LocalizedKey.Header.refreshing), forState: .refreshing)
     }
     
-    open override func placeSubViews() {
+    override open func placeSubViews() {
         
         super.placeSubViews()
         
@@ -67,7 +67,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         }
     }
     
-    open override var refreshState: State {
+    override open var refreshState: State {
         get {
             return super.refreshState
         }
@@ -76,7 +76,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         }
     }
     
-    public override var lastUpdatedTimeKey: String {
+    override public var lastUpdatedTimeKey: String {
         
         didSet {
             didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
@@ -87,7 +87,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
 
 extension ZVRefreshStateHeader {
     
-    open override var tintColor: UIColor! {
+    override open var tintColor: UIColor! {
         didSet {
             lastUpdatedTimeLabel.textColor = tintColor
             stateLabel.textColor = tintColor

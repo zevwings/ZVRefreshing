@@ -27,13 +27,13 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     private var insetTop: CGFloat = 0.0
     
     // MARK: Subviews
-    open override func prepare() {
+    override open func prepare() {
         super.prepare()
         
         lastUpdatedTimeKey = StorageKey.lastUpdatedTime
     }
     
-    open override func placeSubViews() {
+    override open func placeSubViews() {
         super.placeSubViews()
         
         frame.size.height = ComponentHeader.height
@@ -41,7 +41,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     }
 
     // MARK: Observers
-    open override func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
         
         guard refreshState != .refreshing else {
             
@@ -81,7 +81,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     }
     
     // MARK: Getter & Setter
-    open override var refreshState: State {
+    override open var refreshState: State {
         get {
             return super.refreshState
         }

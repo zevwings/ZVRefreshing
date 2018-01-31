@@ -19,7 +19,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     
     // MARK: Subviews
     
-    public override func prepare() {
+    override public func prepare() {
         super.prepare()
         
         if activityIndicator.superview == nil {
@@ -27,7 +27,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    public override func placeSubViews() {
+    override public func placeSubViews() {
         super.placeSubViews()
         
         var centerX = frame.size.width * 0.5
@@ -46,7 +46,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
 
     // MARK: Getter & Setter
     
-    public override var refreshState: State {
+    override public var refreshState: State {
         get {
             return super.refreshState
         }
@@ -55,7 +55,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    public override var pullingPercent: CGFloat {
+    override public var pullingPercent: CGFloat {
         didSet {
             activityIndicator.progress = pullingPercent
         }
@@ -65,7 +65,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
 // MARK: - Override
 
 extension ZVRefreshBackNormalFooter {
-    open override var tintColor: UIColor! {
+    override open var tintColor: UIColor! {
         didSet {
             activityIndicator.color = tintColor
         }

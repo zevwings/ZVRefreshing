@@ -25,7 +25,7 @@ open class ZVRefreshFooter: ZVRefreshComponent {
     }
     
     // MARK: Subviews
-    open override func prepare() {
+    override open func prepare() {
         frame.size.height = ComponentFooter.height
     }
 
@@ -47,7 +47,7 @@ open class ZVRefreshFooter: ZVRefreshComponent {
 
 extension ZVRefreshFooter {
     
-    open override func willMove(toSuperview newSuperview: UIView?) {
+    override open func willMove(toSuperview newSuperview: UIView?) {
         
         guard let superview = newSuperview as? UIScrollView else { return }
         super.willMove(toSuperview: superview)

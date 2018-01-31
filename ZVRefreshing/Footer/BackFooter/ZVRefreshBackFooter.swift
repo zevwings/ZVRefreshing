@@ -14,7 +14,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
     
     // MARK: Observers
 
-    open override func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
         
         super.scrollView(scrollView, contentSizeDidChanged: value)
         
@@ -47,7 +47,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         }
     }
     
-    open override func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?) {
         super.scrollView(scrollView, contentSizeDidChanged: value)
         
         let contentHeight = scrollView.contentSize.height + ignoredScrollViewContentInsetBottom
@@ -57,7 +57,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
     }
     
     // MARK: Getter & Setter
-    open override var refreshState: State {
+    override open var refreshState: State {
         get {
             return super.refreshState
         }
