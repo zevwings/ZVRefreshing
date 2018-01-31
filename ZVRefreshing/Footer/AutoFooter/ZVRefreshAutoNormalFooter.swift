@@ -18,6 +18,7 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
     }()
     
     // MARK: Subviews
+    
     override public func prepare() {
         super.prepare()
         
@@ -42,7 +43,7 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
         activityIndicator.center = CGPoint(x: centerX, y: centerY)
     }
 
-    // MARK: Getter & Setter
+    // MARK: Update State
     
     open override func update(refreshState newValue: State) {
         guard checkState(newValue).result == false else { return }

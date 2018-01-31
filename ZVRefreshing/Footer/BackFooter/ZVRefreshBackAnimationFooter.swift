@@ -18,6 +18,22 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     private var _stateImages: [State: [UIImage]] = [:]
     private var _stateDurations: [State: TimeInterval] = [:]
     
+    // MARK: Getter & Setter
+    
+    override open var pullingPercent: CGFloat {
+        didSet {
+            let images = _stateImages[.idle] ?? []
+            if refreshState != .idle || images.count == 0 { return }
+            animationView.stopAnimating()
+            var index = Int(CGFloat(images.count) * pullingPercent)
+            if index >= images.count {
+                index = images.count - 1
+            }
+            animationView.image = images[index]
+            
+        }
+    }
+    
     // MARK: Subviews
     
     override open func prepare() {
@@ -39,21 +55,7 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    // MARK: Getter & Setter
-    
-    override open var pullingPercent: CGFloat {
-        didSet {
-            let images = _stateImages[.idle] ?? []
-            if refreshState != .idle || images.count == 0 { return }
-            animationView.stopAnimating()
-            var index = Int(CGFloat(images.count) * pullingPercent)
-            if index >= images.count {
-                index = images.count - 1
-            }
-            animationView.image = images[index]
-
-        }
-    }
+    // MARK: Update State
     
     open override func update(refreshState newValue: State) {
         

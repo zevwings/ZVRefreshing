@@ -17,6 +17,14 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         return activityIndicator
     }()
     
+    // MARK: Getter & Setter
+    
+    override open var pullingPercent: CGFloat {
+        didSet {
+            activityIndicator.progress = pullingPercent
+        }
+    }
+    
     // MARK: Subviews
     
     override open func prepare() {
@@ -51,14 +59,8 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
             activityIndicator.center = center
         }
     }
-
-    // MARK: Getter & Setter
     
-    override open var pullingPercent: CGFloat {
-        didSet {
-            activityIndicator.progress = pullingPercent
-        }
-    }
+    // MARK: Update State
     
     override open func update(refreshState newValue: State) {
         

@@ -40,7 +40,7 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
         }
     }
 
-    // MARK: Getter & Setter
+    // MARK: Update State
     
     open override func update(refreshState newValue: State) {
         

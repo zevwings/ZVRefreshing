@@ -12,6 +12,24 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     public var isAutomaticallyRefresh: Bool = true
     private var _triggerAutomaticallyRefreshPercent: CGFloat = 1.0
     
+    // MARK: Update State
+    
+    open override func update(refreshState newValue: State) {
+        let checked = checkState(newValue)
+        guard checked.result == false else { return }
+        super.update(refreshState: newValue)
+        
+        if newValue == .refreshing {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+                self.executeRefreshCallback()
+            })
+        } else if refreshState == .noMoreData || refreshState == .idle {
+            if checked.oldState == .refreshing {
+                endRefreshingCompletionHandler?()
+            }
+        }
+    }
+    
     // MARK: Observers
 
     override open func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?) {
@@ -55,25 +73,6 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
             }
         }
     }
-    
-    // MARK: Getter & Setter
-    
-    open override func update(refreshState newValue: State) {
-        let checked = checkState(newValue)
-        guard checked.result == false else { return }
-        super.update(refreshState: newValue)
-        
-        if newValue == .refreshing {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
-                self.executeRefreshCallback()
-            })
-        } else if refreshState == .noMoreData || refreshState == .idle {
-            if checked.oldState == .refreshing {
-                endRefreshingCompletionHandler?()
-            }
-        }
-    }
-    
 }
 
 // MARK: - Override

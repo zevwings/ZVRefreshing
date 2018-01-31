@@ -26,9 +26,6 @@ open class ZVRefreshComponent: UIControl {
     private var _action: Selector?
     
     /// callback closure
-    
-    private var _refreshHandler: ZVRefreshHandler?
-    
     public var beginRefreshingCompletionHandler: ZVBeginRefreshingCompletionHandler?
     public var endRefreshingCompletionHandler: ZVEndRefreshingCompletionHandler?
 
@@ -40,8 +37,44 @@ open class ZVRefreshComponent: UIControl {
     /// ScrollView.UIPanGestureRecognizer
     private var _panGestureRecognizer: UIPanGestureRecognizer?
     
-    /// 刷新状态
+    // MARK: Getter & Setter
     private var _refreshState: State = .idle
+    open var refreshState: State {
+        get {
+            return _refreshState
+        }
+        set {
+            update(refreshState: newValue)
+        }
+    }
+
+    private var _refreshHandler: ZVRefreshHandler?
+    public var refreshHandler: ZVRefreshHandler? {
+        get {
+            return _refreshHandler
+        }
+        set {
+            _refreshHandler = newValue
+        }
+    }
+    
+    public var isAutomaticallyChangeAlpha: Bool = true {
+        didSet {
+            guard isRefreshing == false else { return }
+            if isAutomaticallyChangeAlpha {
+                alpha = pullingPercent
+            } else {
+                alpha = 1.0
+            }
+        }
+    }
+    
+    open var pullingPercent: CGFloat = 0.0 {
+        didSet {
+            guard isRefreshing == false else { return }
+            if isAutomaticallyChangeAlpha { alpha = pullingPercent }
+        }
+    }
     
     // MARK: - Init
     
@@ -90,17 +123,7 @@ open class ZVRefreshComponent: UIControl {
     /// Place SubViews
     open func placeSubViews() {}
     
-    // MARK: Superview Observers
-    
-    /// Call this selector when UIScrollView.contentOffset value changed
-    open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey: Any]?) {}
-    
-    /// Call this selector when UIScrollView.contentSize value changed
-    open func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey: Any]?) {}
-    
-    /// Call this selector when UIScrollView.panGestureRecognizer.state value changed
-    open func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey: Any]?, for scrollView: UIScrollView) {}
-    
+    // MARK: Update State
     
     /// update refresh state
     ///
@@ -117,42 +140,17 @@ open class ZVRefreshComponent: UIControl {
         _refreshState = newValue
     }
     
-    // MARK: Getter & Setter
-    open var refreshState: State {
-        get {
-            return _refreshState
-        }
-        set {
-            update(refreshState: newValue)
-        }
-    }
+    // MARK: Superview Observers
     
-    public var isAutomaticallyChangeAlpha: Bool = true {
-        didSet {
-            guard isRefreshing == false else { return }
-            if isAutomaticallyChangeAlpha {
-                alpha = pullingPercent
-            } else {
-                alpha = 1.0
-            }
-        }
-    }
+    /// Call this selector when UIScrollView.contentOffset value changed
+    open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey: Any]?) {}
     
-    open var pullingPercent: CGFloat = 0.0 {
-        didSet {
-            guard isRefreshing == false else { return }
-            if isAutomaticallyChangeAlpha { alpha = pullingPercent }
-        }
-    }
+    /// Call this selector when UIScrollView.contentSize value changed
+    open func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey: Any]?) {}
     
-    public var refreshHandler: ZVRefreshHandler? {
-        get {
-            return _refreshHandler
-        }
-        set {
-            _refreshHandler = newValue
-        }
-    }
+    /// Call this selector when UIScrollView.panGestureRecognizer.state value changed
+    open func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey: Any]?, for scrollView: UIScrollView) {}
+
 }
 
 // MARK: - Override
@@ -200,7 +198,6 @@ extension ZVRefreshComponent {
 
 extension ZVRefreshComponent {
     
-    // MARK: Begin Refresh
     public func beginRefreshing() {
         
         UIView.animate(withDuration: AnimationDuration.fast, animations: {
@@ -224,7 +221,6 @@ extension ZVRefreshComponent {
         beginRefreshing()
     }
     
-    // MARK: End Refresh
     public func endRefreshing() {
         refreshState = .idle
     }
@@ -310,7 +306,7 @@ public extension ZVRefreshComponent {
 
 extension ZVRefreshComponent {
     
-    internal func executeRefreshCallback() {
+    func executeRefreshCallback() {
         
         DispatchQueue.main.async {
             self._refreshHandler?()

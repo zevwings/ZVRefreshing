@@ -15,6 +15,19 @@ open class ZVRefreshFooter: ZVRefreshComponent {
     /// 是否自动隐藏
     public var isAutomaticallyHidden: Bool = true
     
+    // MARK: Getter & Setter
+    
+    /// 设置组件是否为RefreshState.noMoreData
+    public var isNoMoreData: Bool = false {
+        didSet {
+            if isNoMoreData {
+                refreshState = .noMoreData
+            } else {
+                refreshState = .idle
+            }
+        }
+    }
+    
     // MARK: State Control
     public func endRefreshingWithNoMoreData() {
         refreshState = .noMoreData
@@ -27,19 +40,6 @@ open class ZVRefreshFooter: ZVRefreshComponent {
     // MARK: Subviews
     override open func prepare() {
         frame.size.height = ComponentFooter.height
-    }
-
-    // MARK: Getter & Setter
-    
-    /// 设置组件是否为RefreshState.noMoreData
-    public var isNoMoreData: Bool = false {
-        didSet {
-            if isNoMoreData {
-                refreshState = .noMoreData
-            } else {
-                refreshState = .idle
-            }
-        }
     }
 }
 

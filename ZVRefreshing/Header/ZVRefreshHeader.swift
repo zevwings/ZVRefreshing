@@ -27,6 +27,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     private var insetTop: CGFloat = 0.0
     
     // MARK: Subviews
+    
     override open func prepare() {
         super.prepare()
         
@@ -41,6 +42,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     }
 
     // MARK: Observers
+    
     override open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
         
         guard refreshState != .refreshing else {
@@ -80,7 +82,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         }
     }
     
-    // MARK: Getter & Setter
+    // MARK: Update State
     
     override open func update(refreshState newValue: State) {
         let checked = checkState(newValue)

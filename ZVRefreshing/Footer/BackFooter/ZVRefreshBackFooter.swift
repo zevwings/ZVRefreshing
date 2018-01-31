@@ -56,7 +56,8 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         frame.origin.y = max(contentHeight, scrollHeight)
     }
     
-    // MARK: Getter & Setter
+    // MARK: Update State
+    
     open override func update(refreshState newValue: State) {
         guard let scrollView = scrollView else { return }
         

@@ -40,7 +40,7 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
         stateLabel.frame = bounds
     }
     
-    // MARK: Getter & Setter
+    // MARK: Update State
 
     open override func update(refreshState newValue: State) {
         guard checkState(newValue).result == false else { return }

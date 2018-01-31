@@ -16,7 +16,23 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     private var stateTitles: [State : String] = [:]
     private var calendar = Calendar(identifier: .gregorian)
 
+    // MARK: Getter & Setter
+    
+    public var lastUpdatedTimeLabelText:((_ date: Date?)->(String))? {
+        didSet {
+            didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
+        }
+    }
+    
+    override public var lastUpdatedTimeKey: String {
+        
+        didSet {
+            didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
+        }
+    }
+    
     // MARK: Subviews
+    
     override open func prepare() {
         super.prepare()
         
@@ -59,20 +75,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         }
     }
     
-    // MARK: Getter & Setter
-    
-    public var lastUpdatedTimeLabelText:((_ date: Date?)->(String))? {
-        didSet {
-            didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
-        }
-    }
-    
-    override public var lastUpdatedTimeKey: String {
-        
-        didSet {
-            didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
-        }
-    }
+    // MARK: Update State
     
     override open func update(refreshState newValue: State) {
         
@@ -86,6 +89,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     }
 }
 
+// MARK: - Override
 
 extension ZVRefreshStateHeader {
     
@@ -99,6 +103,7 @@ extension ZVRefreshStateHeader {
 
 
 // MARK: - Public
+
 public extension ZVRefreshStateHeader {
     
     /// 设置状态文本
@@ -110,6 +115,7 @@ public extension ZVRefreshStateHeader {
 
 
 // MARK: - Private
+
 private extension ZVRefreshStateHeader {
     
     func didSetLastUpdatedTimeKey(_ newValue: String) {

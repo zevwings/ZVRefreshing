@@ -17,6 +17,14 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         return activityIndicator
     }()
     
+    // MARK: Getter & Setter
+    
+    override public var pullingPercent: CGFloat {
+        didSet {
+            activityIndicator.progress = pullingPercent
+        }
+    }
+    
     // MARK: Subviews
     
     override public func prepare() {
@@ -43,14 +51,8 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
             activityIndicator.center = CGPoint(x: centerX, y: centerY)
         }
     }
-
-    // MARK: Getter & Setter
     
-    override public var pullingPercent: CGFloat {
-        didSet {
-            activityIndicator.progress = pullingPercent
-        }
-    }
+    // MARK: Update State
     
     open override func update(refreshState newValue: State) {
         let checked = checkState(newValue)
