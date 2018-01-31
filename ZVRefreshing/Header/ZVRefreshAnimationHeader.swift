@@ -59,12 +59,23 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
         }
     }
     
-    override open var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            setRefreshState(newValue)
+    open override func update(refreshState newValue: State) {
+        guard checkState(newValue).result == false else { return }
+        super.update(refreshState: newValue)
+        
+        if newValue == .pulling || newValue == .refreshing {
+            let images = _stateImages[newValue]
+            if images?.count == 0 { return }
+            animationView.stopAnimating()
+            if images?.count == 1{
+                animationView.image = images?.last
+            } else {
+                animationView.animationImages = images
+                animationView.animationDuration = _stateDurations[newValue] ?? 0.0
+                animationView.startAnimating()
+            }
+        } else if newValue == .idle {
+            animationView.stopAnimating()
         }
     }
 }
@@ -87,32 +98,6 @@ public extension ZVRefreshAnimationHeader {
             if image.size.height > frame.size.height {
                 frame.size.height = image.size.height
             }
-        }
-    }
-}
-
-// MARK: - Private
-
-private extension ZVRefreshAnimationHeader {
-    
-    func setRefreshState(_ newValue: State) {
-        
-        guard checkState(newValue).result == false else { return }
-        super.refreshState = newValue
-        
-        if newValue == .pulling || newValue == .refreshing {
-            let images = _stateImages[newValue]
-            if images?.count == 0 { return }
-            animationView.stopAnimating()
-            if images?.count == 1{
-                animationView.image = images?.last
-            } else {
-                animationView.animationImages = images
-                animationView.animationDuration = _stateDurations[newValue] ?? 0.0
-                animationView.startAnimating()
-            }
-        } else if newValue == .idle {
-            animationView.stopAnimating()
         }
     }
 }

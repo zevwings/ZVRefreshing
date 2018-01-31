@@ -55,15 +55,27 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    override open var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            setRefreshState(newValue)
+    open override func update(refreshState newValue: State) {
+        
+        guard checkState(newValue).result == false else { return }
+        super.update(refreshState: newValue)
+        
+        if newValue == .pulling || newValue == .refreshing {
+            
+            guard let images = _stateImages[newValue], images.count > 0 else { return }
+            animationView.stopAnimating()
+            
+            if images.count == 1 {
+                animationView.image = images.last
+            } else {
+                animationView.animationImages = images
+                animationView.animationDuration = _stateDurations[newValue] ?? 0
+                animationView.startAnimating()
+            }
+        } else if newValue == .idle {
+            animationView.stopAnimating()
         }
     }
-
 }
 
 // MARK: - Public
@@ -87,30 +99,3 @@ extension ZVRefreshBackAnimationFooter {
     }
 }
 
-// MARK: - Private
-
-private extension ZVRefreshBackAnimationFooter {
-    
-    func setRefreshState(_ newValue: State) {
-        
-        guard checkState(newValue).result == false else { return }
-
-        super.refreshState = newValue
-        
-        if newValue == .pulling || newValue == .refreshing {
-            
-            guard let images = _stateImages[newValue], images.count > 0 else { return }
-            animationView.stopAnimating()
-            
-            if images.count == 1 {
-                animationView.image = images.last
-            } else {
-                animationView.animationImages = images
-                animationView.animationDuration = _stateDurations[newValue] ?? 0
-                animationView.startAnimating()
-            }
-        } else if newValue == .idle {
-            animationView.stopAnimating()
-        }
-    }
-}

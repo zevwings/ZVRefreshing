@@ -46,39 +46,16 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
 
     // MARK: Getter & Setter
     
-    override public var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            setRefreshState(newValue)
-        }
-    }
-    
     override public var pullingPercent: CGFloat {
         didSet {
             activityIndicator.progress = pullingPercent
         }
     }
-}
-
-// MARK: - Override
-
-extension ZVRefreshBackNormalFooter {
-    override open var tintColor: UIColor! {
-        didSet {
-            activityIndicator.color = tintColor
-        }
-    }
-}
-
-private extension ZVRefreshBackNormalFooter {
     
-    func setRefreshState(_ newValue: State) {
-        
+    open override func update(refreshState newValue: State) {
         let checked = checkState(newValue)
         guard checked.result == false else { return }
-        super.refreshState = newValue
+        super.update(refreshState: newValue)
         
         switch newValue {
         case .idle:
@@ -107,3 +84,14 @@ private extension ZVRefreshBackNormalFooter {
         }
     }
 }
+
+// MARK: - Override
+
+extension ZVRefreshBackNormalFooter {
+    override open var tintColor: UIColor! {
+        didSet {
+            activityIndicator.color = tintColor
+        }
+    }
+}
+

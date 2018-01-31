@@ -67,20 +67,22 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         }
     }
     
-    override open var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            setRefreshState(newValue)
-        }
-    }
-    
     override public var lastUpdatedTimeKey: String {
         
         didSet {
             didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
         }
+    }
+    
+    override open func update(refreshState newValue: State) {
+        
+        guard checkState(newValue).result == false else { return }
+        super.update(refreshState: newValue)
+        
+        stateLabel.text = stateTitles[refreshState]
+        
+        let key = lastUpdatedTimeKey
+        lastUpdatedTimeKey = key
     }
 }
 
@@ -109,16 +111,6 @@ public extension ZVRefreshStateHeader {
 
 // MARK: - Private
 private extension ZVRefreshStateHeader {
-    
-    func setRefreshState(_ newValue: State) {
-        
-        guard checkState(newValue).result == false else { return }
-        super.refreshState = newValue
-        stateLabel.text = stateTitles[refreshState]
-        
-        let key = lastUpdatedTimeKey
-        lastUpdatedTimeKey = key
-    }
     
     func didSetLastUpdatedTimeKey(_ newValue: String) {
         

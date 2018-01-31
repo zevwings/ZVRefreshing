@@ -31,54 +31,51 @@ class ZVRefreshBackDIYFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    override var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            let checked = self.checkState(newValue)
-            guard checked.result == false else { return }
-            super.refreshState = newValue
-            
-            switch newValue {
-            case .idle:
-                if checked.oldState == .refreshing {
-                    self._arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
-                    UIView.animate(withDuration: 0.15, animations: {
-                        self._activityIndicator.alpha = 0.0
-                    }, completion: { _ in
-                        self._activityIndicator.alpha = 1.0
-                        self._activityIndicator.stopAnimating()
-                        self._arrowView.isHidden = false
-                    })
-                } else {
-                    self._arrowView.isHidden = false
+    override func update(refreshState newValue: ZVRefreshComponent.State) {
+
+        let checked = self.checkState(newValue)
+        guard checked.result == false else { return }
+        super.update(refreshState: newValue)
+        
+        switch newValue {
+        case .idle:
+            if checked.oldState == .refreshing {
+                self._arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
+                UIView.animate(withDuration: 0.15, animations: {
+                    self._activityIndicator.alpha = 0.0
+                }, completion: { _ in
+                    self._activityIndicator.alpha = 1.0
                     self._activityIndicator.stopAnimating()
-                    UIView.animate(withDuration: 0.15, animations: {
-                        self._arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
-                    }, completion: { _ in
-                    })
-                }
-                break
-            case .pulling:
+                    self._arrowView.isHidden = false
+                })
+            } else {
                 self._arrowView.isHidden = false
                 self._activityIndicator.stopAnimating()
                 UIView.animate(withDuration: 0.15, animations: {
-                    self._arrowView.transform = CGAffineTransform.identity
+                    self._arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
+                }, completion: { _ in
                 })
-                break
-            case .refreshing:
-                self._arrowView.isHidden = true
-                self._activityIndicator.startAnimating()
-                break
-            case .noMoreData:
-                self._arrowView.isHidden = true
-                self._activityIndicator.stopAnimating()
-                break
-            default:
-                break
             }
+            break
+        case .pulling:
+            self._arrowView.isHidden = false
+            self._activityIndicator.stopAnimating()
+            UIView.animate(withDuration: 0.15, animations: {
+                self._arrowView.transform = CGAffineTransform.identity
+            })
+            break
+        case .refreshing:
+            self._arrowView.isHidden = true
+            self._activityIndicator.startAnimating()
+            break
+        case .noMoreData:
+            self._arrowView.isHidden = true
+            self._activityIndicator.stopAnimating()
+            break
+        default:
+            break
         }
+    
     }
     
     

@@ -42,45 +42,10 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
 
     // MARK: Getter & Setter
     
-    override open var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            setRefreshState(newValue)
-        }
-    }
-}
-
-// MARK: - Public
-
-extension ZVRefreshAutoAnimationFooter {
-    
-    /// 为相应状态设置图片
-    public func setImages(_ images: [UIImage], state: State) {
-        setImages(images, duration: Double(images.count) * 0.1, state: state)
-    }
-    
-    /// 为相应状态设置图片
-    public func setImages(_ images: [UIImage], duration: TimeInterval, state: State){
-        
-        guard images.count > 0 else { return }
-        
-        _stateImages[state] = images
-        _stateDurations[state] = duration
-        guard let image = images.first, image.size.height < frame.size.height else { return }
-        frame.size.height = image.size.height
-    }
-}
-
-// MARK: - Private
-
-private extension ZVRefreshAutoAnimationFooter {
-    
-    func setRefreshState(_ newValue: State) {
+    open override func update(refreshState newValue: State) {
         
         guard checkState(newValue).result == false else { return }
-        super.refreshState = newValue
+        super.update(refreshState: newValue)
         
         switch newValue {
         case .refreshing:
@@ -107,3 +72,25 @@ private extension ZVRefreshAutoAnimationFooter {
         }
     }
 }
+
+// MARK: - Public
+
+extension ZVRefreshAutoAnimationFooter {
+    
+    /// 为相应状态设置图片
+    public func setImages(_ images: [UIImage], state: State) {
+        setImages(images, duration: Double(images.count) * 0.1, state: state)
+    }
+    
+    /// 为相应状态设置图片
+    public func setImages(_ images: [UIImage], duration: TimeInterval, state: State){
+        
+        guard images.count > 0 else { return }
+        
+        _stateImages[state] = images
+        _stateDurations[state] = duration
+        guard let image = images.first, image.size.height < frame.size.height else { return }
+        frame.size.height = image.size.height
+    }
+}
+

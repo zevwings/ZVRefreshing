@@ -31,44 +31,41 @@ class ZVRefreshDIYHeader: ZVRefreshStateHeader {
         }
     }
     
-    override var refreshState: ZVRefreshComponent.State {
-        get {
-            return super.refreshState
-        }
-        set {
-            guard checkState(newValue).result == false else { return }
-            super.refreshState = newValue
-            
-            if newValue == .idle {
-                if self.refreshState == .refreshing {
-                    self._arrowView.transform = CGAffineTransform.identity
-                    UIView.animate(withDuration: 0.15, animations: {
-                        self._activityIndicator.alpha = 0.0
-                    }, completion: { _ in
-                        guard self.refreshState == .idle else { return }
-                        self._activityIndicator.alpha = 1.0
-                        self._activityIndicator.stopAnimating()
-                        self._arrowView.isHidden = false
-                    })
-                } else {
+    override func update(refreshState newValue: ZVRefreshComponent.State) {
+
+        guard checkState(newValue).result == false else { return }
+        super.update(refreshState: newValue)
+        
+        if newValue == .idle {
+            if self.refreshState == .refreshing {
+                self._arrowView.transform = CGAffineTransform.identity
+                UIView.animate(withDuration: 0.15, animations: {
+                    self._activityIndicator.alpha = 0.0
+                }, completion: { _ in
+                    guard self.refreshState == .idle else { return }
+                    self._activityIndicator.alpha = 1.0
                     self._activityIndicator.stopAnimating()
                     self._arrowView.isHidden = false
-                    UIView.animate(withDuration: 0.15, animations: {
-                        self._arrowView.transform = CGAffineTransform.identity
-                    })
-                }
-            } else if newValue == .pulling {
+                })
+            } else {
                 self._activityIndicator.stopAnimating()
                 self._arrowView.isHidden = false
                 UIView.animate(withDuration: 0.15, animations: {
-                    self._arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
+                    self._arrowView.transform = CGAffineTransform.identity
                 })
-            } else if newValue == .refreshing {
-                self._activityIndicator.alpha = 1.0
-                self._activityIndicator.startAnimating()
-                self._arrowView.isHidden = true
             }
+        } else if newValue == .pulling {
+            self._activityIndicator.stopAnimating()
+            self._arrowView.isHidden = false
+            UIView.animate(withDuration: 0.15, animations: {
+                self._arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
+            })
+        } else if newValue == .refreshing {
+            self._activityIndicator.alpha = 1.0
+            self._activityIndicator.startAnimating()
+            self._arrowView.isHidden = true
         }
+    
     }
     
     override func prepare() {

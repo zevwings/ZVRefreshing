@@ -44,12 +44,19 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
 
     // MARK: Getter & Setter
     
-    override public var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            setRefreshState(newValue)
+    open override func update(refreshState newValue: State) {
+        guard checkState(newValue).result == false else { return }
+        super.update(refreshState: newValue)
+        
+        switch newValue {
+        case .noMoreData, .idle:
+            activityIndicator.stopAnimating()
+            break
+        case .refreshing:
+            activityIndicator.startAnimating()
+            break
+        default: break
+            
         }
     }
 }
@@ -65,24 +72,3 @@ extension ZVRefreshAutoNormalFooter {
     }
 }
 
-// MARK: - Private
-
-private extension ZVRefreshAutoNormalFooter {
-    
-    func setRefreshState(_ newValue: State) {
-        
-        guard checkState(newValue).result == false else { return }
-
-        super.refreshState = newValue
-        switch newValue {
-        case .noMoreData, .idle:
-            activityIndicator.stopAnimating()
-            break
-        case .refreshing:
-            activityIndicator.startAnimating()
-            break
-        default: break
-            
-        }
-    }
-}

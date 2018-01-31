@@ -57,27 +57,12 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
     }
     
     // MARK: Getter & Setter
-    override open var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            setRefreshState(newValue)
-        }
-    }
-}
-
-// MARK: - Private
-
-private extension ZVRefreshBackFooter {
-    
-    func setRefreshState(_ newValue: State) {
-        
+    open override func update(refreshState newValue: State) {
         guard let scrollView = scrollView else { return }
         
         let checked = checkState(newValue)
         guard checked.result == false else { return }
-        super.refreshState = newValue
+        super.update(refreshState: newValue)
         
         switch newValue {
         case .idle, .noMoreData:
@@ -115,6 +100,11 @@ private extension ZVRefreshBackFooter {
             break
         }
     }
+}
+
+// MARK: - Private
+
+private extension ZVRefreshBackFooter {
     
     private func _heightForContentBreakView() -> CGFloat {
         
@@ -135,3 +125,4 @@ private extension ZVRefreshBackFooter {
         }
     }
 }
+

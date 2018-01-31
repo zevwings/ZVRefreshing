@@ -91,6 +91,7 @@ open class ZVRefreshComponent: UIControl {
     open func placeSubViews() {}
     
     // MARK: Superview Observers
+    
     /// Call this selector when UIScrollView.contentOffset value changed
     open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey: Any]?) {}
     
@@ -101,13 +102,28 @@ open class ZVRefreshComponent: UIControl {
     open func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey: Any]?, for scrollView: UIScrollView) {}
     
     
+    /// update refresh state
+    ///
+    /// - Parameter newValue: new referesh state
+    open func update(refreshState newValue: State) {
+        
+        guard checkState(newValue).result == false else { return }
+        
+        willChangeValue(forKey: "isRefreshing")
+        isRefreshing = newValue == .refreshing
+        didChangeValue(forKey: "isRefreshing")
+        sendActions(for: .valueChanged)
+        
+        _refreshState = newValue
+    }
+    
     // MARK: Getter & Setter
     open var refreshState: State {
         get {
             return _refreshState
         }
         set {
-            setRefreshState(newValue)
+            update(refreshState: newValue)
         }
     }
     
@@ -308,19 +324,3 @@ extension ZVRefreshComponent {
     }
 }
 
-// MARK: - Private
-
-private extension ZVRefreshComponent {
-    
-    func setRefreshState(_ newValue: State) {
-        
-        guard checkState(newValue).result == false else { return }
-        
-        willChangeValue(forKey: "isRefreshing")
-        isRefreshing = newValue == .refreshing
-        didChangeValue(forKey: "isRefreshing")
-        sendActions(for: .valueChanged)
-        
-        _refreshState = newValue
-    }
-}

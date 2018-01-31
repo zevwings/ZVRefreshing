@@ -42,12 +42,14 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     
     // MARK: Getter & Setter
 
-    override open var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            setRefreshState(newValue)
+    open override func update(refreshState newValue: State) {
+        guard checkState(newValue).result == false else { return }
+        super.update(refreshState: newValue)
+        
+        if stateLabel.isHidden && newValue == .refreshing {
+            stateLabel.text = nil
+        } else {
+            stateLabel.text = _stateTitles[newValue]
         }
     }
 }
@@ -80,18 +82,5 @@ private extension ZVRefreshAutoStateFooter {
     
     @objc func stateLabelClicked() {
         if refreshState == .idle { beginRefreshing() }
-    }
-    
-    func setRefreshState(_ newValue: State) {
-
-        guard checkState(newValue).result == false else { return }
-
-        super.refreshState = newValue
-        
-        if stateLabel.isHidden && newValue == .refreshing {
-            stateLabel.text = nil
-        } else {
-            stateLabel.text = _stateTitles[newValue]
-        }
     }
 }

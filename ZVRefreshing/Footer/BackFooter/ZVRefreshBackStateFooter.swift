@@ -36,15 +36,12 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
     // MARK: Getter & Setter
     
-    override open var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            setRefreshState(newValue)
-        }
+    open override func update(refreshState newValue: State) {
+        guard checkState(newValue).result == false else { return }
+        super.update(refreshState: newValue)
+        
+        stateLabel.text = _stateTitles[newValue]
     }
-
 }
 
 // MARK: - Override
@@ -68,11 +65,3 @@ extension ZVRefreshBackStateFooter {
     }
 }
 
-private extension ZVRefreshBackStateFooter {
-    
-    func setRefreshState(_ newValue: State) {
-        guard checkState(newValue).result == false else { return }
-        super.refreshState = newValue
-        stateLabel.text = _stateTitles[newValue]
-    }
-}

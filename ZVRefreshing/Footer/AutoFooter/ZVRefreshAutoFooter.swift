@@ -58,12 +58,19 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     
     // MARK: Getter & Setter
     
-    override open var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            setRefreshState(newValue)
+    open override func update(refreshState newValue: State) {
+        let checked = checkState(newValue)
+        guard checked.result == false else { return }
+        super.update(refreshState: newValue)
+        
+        if newValue == .refreshing {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
+                self.executeRefreshCallback()
+            })
+        } else if refreshState == .noMoreData || refreshState == .idle {
+            if checked.oldState == .refreshing {
+                endRefreshingCompletionHandler?()
+            }
         }
     }
     
@@ -115,23 +122,6 @@ private extension ZVRefreshAutoFooter {
             if newValue {
                 refreshState = .idle
                 scrollView.contentInset.bottom -= frame.size.height
-            }
-        }
-    }
-    
-    func setRefreshState(_ newValue: State) {
-        
-        let checked = checkState(newValue)
-        guard checked.result == false else { return }
-        super.refreshState = newValue
-        
-        if newValue == .refreshing {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
-                self.executeRefreshCallback()
-            })
-        } else if refreshState == .noMoreData || refreshState == .idle {
-            if checked.oldState == .refreshing {
-                endRefreshingCompletionHandler?()
             }
         }
     }
