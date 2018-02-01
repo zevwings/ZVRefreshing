@@ -63,21 +63,21 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
 
     // MARK: - Do On
     
-    override open func doOn(pulling oldState: State) {
-        super.doOn(pulling: oldState)
-        
+    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+        super.doOnIdle(with: oldState)
+        animationView.stopAnimating()
+    }
+    
+    open override func doOnPulling(with oldState: ZVRefreshComponent.State) {
+        super.doOnPulling(with: oldState)
+
         _doOn(pullingOrRefreshing: .pulling)
     }
-    
-    override open func doOn(refreshing oldState: State) {
-        super.doOn(refreshing: oldState)
+
+    open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+        super.doOnRefreshing(with: oldState)
         
         _doOn(pullingOrRefreshing: .refreshing)
-    }
-    
-    override open func doOn(idle oldState: State) {
-        super.doOn(idle: oldState)
-        animationView.stopAnimating()
     }
     
     private func _doOn(pullingOrRefreshing state: State) {

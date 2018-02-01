@@ -44,8 +44,8 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
 
     // MARK: - Do On
     
-    override open func doOn(refreshing oldState: State) {
-        super.doOn(refreshing: oldState)
+    open override func doOnAnyState(with oldState: ZVRefreshComponent.State) {
+        super.doOnAnyState(with: oldState)
         
         guard let images = _stateImages[.refreshing], images.count > 0 else { return }
         
@@ -61,15 +61,15 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
         }
     }
     
-    override open func doOn(noMoreData oldState: State) {
-        super.doOn(noMoreData: oldState)
+    open override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
+        super.doOnNoMoreData(with: oldState)
         
         animationView.stopAnimating()
         animationView.isHidden = false
     }
     
-    override open func doOn(idle oldState: State) {
-        super.doOn(idle: oldState)
+    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+        super.doOnIdle(with: oldState)
         
         animationView.stopAnimating()
         animationView.isHidden = false

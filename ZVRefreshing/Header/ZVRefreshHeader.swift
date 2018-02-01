@@ -9,14 +9,14 @@ import UIKit
 
 open class ZVRefreshHeader: ZVRefreshComponent {
     
-    struct StorageKey {
-        static let lastUpdatedTime = "com.zevwings.refreshing.lastUpdateTime"
+    struct LastUpdatedTimeKey {
+        static var `default`: String { return "com.zevwings.refreshing.lastUpdateTime" }
     }
     
     // MARK: - Property
     
     /// 用于存储上次更新时间
-    public var lastUpdatedTimeKey: String = StorageKey.lastUpdatedTime
+    public var lastUpdatedTimeKey: String = LastUpdatedTimeKey.default
     
     /// 需要忽略的ScrollView.contentInset.top
     public var ignoredScrollViewContentInsetTop: CGFloat = 0.0
@@ -33,7 +33,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     override open func prepare() {
         super.prepare()
         
-        lastUpdatedTimeKey = StorageKey.lastUpdatedTime
+        lastUpdatedTimeKey = LastUpdatedTimeKey.default
     }
     
     override open func placeSubViews() {
@@ -86,8 +86,8 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     
     // MARK: - Do On
     
-    override open func doOn(idle oldState: State) {
-        super.doOn(idle: oldState)
+    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+        super.doOnIdle(with: oldState)
         
         guard oldState == .refreshing else { return }
         
@@ -103,8 +103,8 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         })
     }
     
-    override open func doOn(refreshing oldState: State) {
-        super.doOn(refreshing: oldState)
+    open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+        super.doOnRefreshing(with: oldState)
         
         DispatchQueue.main.async {
             UIView.animate(withDuration: AnimationDuration.fast, animations: {

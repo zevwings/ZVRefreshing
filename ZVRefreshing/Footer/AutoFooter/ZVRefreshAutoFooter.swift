@@ -16,22 +16,22 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     
     // MARK: - Do On
     
-    override open func doOn(refreshing oldState: State) {
-        super.doOn(refreshing: oldState)
+    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+        super.doOnIdle(with: oldState)
+        
+        if oldState == .refreshing { endRefreshingCompletionHandler?() }
+    }
+
+    open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+        super.doOnRefreshing(with: oldState)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
             self.executeRefreshCallback()
         })
     }
     
-    override open func doOn(idle oldState: State) {
-        super.doOn(idle: oldState)
-        
-        if oldState == .refreshing { endRefreshingCompletionHandler?() }
-    }
-    
-    override open func doOn(noMoreData oldState: State) {
-        super.doOn(noMoreData: oldState)
+    open override func doOnNoMoreData(with oldState: State) {
+        super.doOnNoMoreData(with: oldState)
         
         if oldState == .refreshing { endRefreshingCompletionHandler?() }
     }

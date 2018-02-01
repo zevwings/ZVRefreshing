@@ -64,8 +64,8 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
     
     // MARK: - Do On
     
-    override open func doOn(idle oldState: State) {
-        super.doOn(idle: oldState)
+    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+        super.doOnIdle(with: oldState)
         
         if refreshState == .refreshing {
             UIView.animate(withDuration: AnimationDuration.slow, animations: {
@@ -79,15 +79,13 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         }
     }
     
-    override open func doOn(pulling oldState: State) {
-        super.doOn(pulling: oldState)
-        
+    open override func doOnPulling(with oldState: ZVRefreshComponent.State) {
+        super.doOnPulling(with: oldState)
         activityIndicator.stopAnimating()
     }
     
-    override open func doOn(refreshing oldState: State) {
-        super.doOn(refreshing: oldState)
-        
+    open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+        super.doOnRefreshing(with: oldState)
         activityIndicator.startAnimating()
     }
 }

@@ -47,8 +47,8 @@ class ZVRefreshBackDIYFooter: ZVRefreshBackStateFooter {
     
     // MARK: - Do On
     
-    override func doOn(idle oldState: ZVRefreshComponent.State) {
-        super.doOn(idle: oldState)
+    override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+        super.doOnIdle(with: oldState)
         
         if oldState == .refreshing {
             _arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
@@ -69,8 +69,8 @@ class ZVRefreshBackDIYFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    override func doOn(pulling oldState: ZVRefreshComponent.State) {
-        super.doOn(pulling: oldState)
+    override func doOnPulling(with oldState: ZVRefreshComponent.State) {
+        super.doOnPulling(with: oldState)
         
         _arrowView.isHidden = false
         _activityIndicator.stopAnimating()
@@ -78,15 +78,16 @@ class ZVRefreshBackDIYFooter: ZVRefreshBackStateFooter {
             self._arrowView.transform = CGAffineTransform.identity
         })
     }
-    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
-        super.doOn(refreshing: oldState)
+    
+    override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+        super.doOnRefreshing(with: oldState)
         
         _arrowView.isHidden = true
         _activityIndicator.startAnimating()
     }
     
-    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
-        super.doOn(noMoreData: oldState)
+    override func doOnNoMoreData(with oldState: State) {
+        super.doOnNoMoreData(with: oldState)
         
         _arrowView.isHidden = true
         _activityIndicator.stopAnimating()

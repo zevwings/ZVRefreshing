@@ -49,8 +49,8 @@ class ZVRefreshDIYHeader: ZVRefreshStateHeader {
     
     // MARK: - Do On
     
-    override func doOn(idle oldState: ZVRefreshComponent.State) {
-        super.doOn(idle: oldState)
+    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+        super.doOnIdle(with: oldState)
         
         if refreshState == .refreshing {
             _arrowView.transform = CGAffineTransform.identity
@@ -71,8 +71,8 @@ class ZVRefreshDIYHeader: ZVRefreshStateHeader {
         }
     }
 
-    override func doOn(pulling oldState: ZVRefreshComponent.State) {
-        super.doOn(pulling: oldState)
+    override func doOnPulling(with oldState: ZVRefreshComponent.State) {
+        super.doOnPulling(with: oldState)
         
         _activityIndicator.stopAnimating()
         _arrowView.isHidden = false
@@ -81,8 +81,8 @@ class ZVRefreshDIYHeader: ZVRefreshStateHeader {
         })
     }
     
-    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
-        super.doOn(refreshing: oldState)
+    override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+        super.doOnRefreshing(with: oldState)
 
         _activityIndicator.alpha = 1.0
         _activityIndicator.startAnimating()

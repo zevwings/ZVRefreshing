@@ -63,23 +63,23 @@ open class ZVRefreshComponent: UIControl {
             
             sendActions(for: .valueChanged)
             
-            doOn(anyState: result.oldState)
+            doOnAnyState(with: result.oldState)
             
             switch newValue {
             case .idle:
-                doOn(idle: result.oldState)
+                doOnIdle(with: result.oldState)
                 break
             case .pulling:
-                doOn(pulling: result.oldState)
+                doOnPulling(with: result.oldState)
                 break
             case .willRefresh:
-                doOn(willRefresh: result.oldState)
+                doOnWillRefresh(with: result.oldState)
                 break
             case .refreshing:
-                doOn(refreshing: result.oldState)
+                doOnRefreshing(with: result.oldState)
                 break
             case .noMoreData:
-                doOn(noMoreData: result.oldState)
+                doOnNoMoreData(with: result.oldState)
                 break
             }
         }
@@ -154,17 +154,17 @@ open class ZVRefreshComponent: UIControl {
     
     // MARK: - doOn
 
-    open func doOn(anyState oldState: State) {}
+    open func doOnAnyState(with oldState: State) {}
     
-    open func doOn(idle oldState: State) {}
+    open func doOnIdle(with oldState: State) {}
     
-    open func doOn(pulling oldState: State) {}
+    open func doOnPulling(with oldState: State) {}
     
-    open func doOn(willRefresh oldState: State) {}
+    open func doOnWillRefresh(with oldState: State) {}
     
-    open func doOn(refreshing oldState: State) {}
+    open func doOnRefreshing(with oldState: State) {}
     
-    open func doOn(noMoreData oldState: State) {}
+    open func doOnNoMoreData(with oldState: State) {}
     
     // MARK: - Observers
     

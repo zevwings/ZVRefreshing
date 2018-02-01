@@ -44,8 +44,8 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     
     // MARK: - Do On
     
-    open override func doOn(anyState oldState: ZVRefreshComponent.State) {
-        super.doOn(anyState: oldState)
+    open override func doOnAnyState(with oldState: ZVRefreshComponent.State) {
+        super.doOnAnyState(with: oldState)
         
         if stateLabel.isHidden && refreshState == .refreshing {
             stateLabel.text = nil

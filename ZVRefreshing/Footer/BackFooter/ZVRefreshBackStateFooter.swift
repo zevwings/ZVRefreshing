@@ -38,9 +38,8 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
     // MARK: - Do On
     
-    open override func doOn(anyState oldState: State) {
-        super.doOn(anyState: oldState)
-        
+    open override func doOnAnyState(with oldState: ZVRefreshComponent.State) {
+        super.doOnAnyState(with: oldState)
         stateLabel.text = _stateTitles[refreshState]
     }
 }

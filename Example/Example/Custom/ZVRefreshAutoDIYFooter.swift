@@ -35,20 +35,19 @@ class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
         }
     }
 
-    override func doOn(idle oldState: ZVRefreshComponent.State) {
-        super.doOn(idle: oldState)
+    override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+        super.doOnIdle(with: oldState)
+        _activityIndicator.stopAnimating()
+    }
+    
+    override func doOnNoMoreData(with oldState: State) {
+        super.doOnNoMoreData(with: oldState)
         
         _activityIndicator.stopAnimating()
     }
     
-    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
-        super.doOn(noMoreData: oldState)
-        
-        _activityIndicator.stopAnimating()
-    }
-    
-    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
-        super.doOn(refreshing: oldState)
+    override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+        super.doOnRefreshing(with: oldState)
         _activityIndicator.startAnimating()
     }
     

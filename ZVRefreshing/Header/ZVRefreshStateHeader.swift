@@ -34,8 +34,8 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     
     // MARK: - Do On
     
-    open override func doOn(anyState oldState: ZVRefreshComponent.State) {
-        super.doOn(anyState: oldState)
+    open override func doOnAnyState(with oldState: ZVRefreshComponent.State) {
+        super.doOnAnyState(with: oldState)
         
         stateLabel.text = stateTitles[refreshState]
         didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
