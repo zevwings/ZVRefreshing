@@ -132,9 +132,9 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             // 设置 Header
             let header = ZVRefreshNormalHeader()
             
-            header.setTitle("custom pull down to load more label...", forState: .idle)
-            header.setTitle("custom release to load more label...", forState: .pulling)
-            header.setTitle("custom loading label...", forState: .refreshing)
+            header.setTitle("custom pull down to load more label...", for: .idle)
+            header.setTitle("custom release to load more label...", for: .pulling)
+            header.setTitle("custom loading label...", for: .refreshing)
 //            header.tintColor = .black
             header.lastUpdatedTimeLabelText = { date in
                 
@@ -150,10 +150,10 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             if _isAutoFooter {
                 
                 let footer = ZVRefreshAutoNormalFooter()
-                footer.setTitle("custom pull up to load more label...", forState: .idle)
-                footer.setTitle("custom release to load more label...", forState: .pulling)
-                footer.setTitle("custom loading label...", forState: .refreshing)
-                footer.setTitle("custom no more data label", forState: .noMoreData)
+                footer.setTitle("custom pull up to load more label...", for: .idle)
+                footer.setTitle("custom release to load more label...", for: .pulling)
+                footer.setTitle("custom loading label...", for: .refreshing)
+                footer.setTitle("custom no more data label", for: .noMoreData)
 //                footer.tintColor = .black
                 
                 _set(for: section,
@@ -162,10 +162,10 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             } else {
                 
                 let footer = ZVRefreshBackNormalFooter()
-                footer.setTitle("custom pull up to load more label...", forState: .idle)
-                footer.setTitle("custom release to load more label...", forState: .pulling)
-                footer.setTitle("custom loading label...", forState: .refreshing)
-                footer.setTitle("custom no more data label", forState: .noMoreData)
+                footer.setTitle("custom pull up to load more label...", for: .idle)
+                footer.setTitle("custom release to load more label...", for: .pulling)
+                footer.setTitle("custom loading label...", for: .refreshing)
+                footer.setTitle("custom no more data label", for: .noMoreData)
 //                footer.tintColor = .black
                 
                 _set(for: section,

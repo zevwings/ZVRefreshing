@@ -20,6 +20,7 @@ class ZVRefreshCustomAnimationHeader: ZVRefreshAnimationHeader {
             let img = UIImage(named: name)
             idleImages.append(img!)
         }
+        
         setImages(idleImages, for: .idle)
         
         // 设置正在刷新状态的动画图片

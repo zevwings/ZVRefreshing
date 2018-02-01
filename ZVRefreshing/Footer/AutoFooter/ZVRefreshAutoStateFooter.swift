@@ -12,7 +12,7 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     // MARK: - Property
     
     public var labelInsetLeft: CGFloat = 24.0
-    private var _stateTitles:[State: String] = [:]
+    public var stateTitles:[State: String] = [:]
 
     public private(set) lazy var stateLabel: UILabel = { [unowned self] in
         let label: UILabel = .default
@@ -30,9 +30,9 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
             addSubview(stateLabel)
         }
         
-        setTitle(localized(string: LocalizedKey.Footer.Auto.idle) , forState: .idle)
-        setTitle(localized(string: LocalizedKey.Footer.Auto.refreshing), forState: .refreshing)
-        setTitle(localized(string: LocalizedKey.Footer.Auto.noMoreData), forState: .noMoreData)
+        setTitle(localized(string: LocalizedKey.Footer.Auto.idle) , for: .idle)
+        setTitle(localized(string: LocalizedKey.Footer.Auto.refreshing), for: .refreshing)
+        setTitle(localized(string: LocalizedKey.Footer.Auto.noMoreData), for: .noMoreData)
     }
     
     override open func placeSubViews() {
@@ -50,7 +50,7 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
         if stateLabel.isHidden && refreshState == .refreshing {
             stateLabel.text = nil
         } else {
-            stateLabel.text = _stateTitles[refreshState]
+            stateLabel.text = stateTitles[refreshState]
         }
     }
 }
@@ -66,17 +66,6 @@ extension ZVRefreshAutoStateFooter {
     }
 }
 
-// MARK: - Public
-
-public extension ZVRefreshAutoStateFooter {
-    
-    func setTitle(_ title: String?, forState state: State) {
-        if title == nil {return}
-        _stateTitles.updateValue(title!, forKey: state)
-        stateLabel.text = _stateTitles[refreshState]
-    }
-}
-
 // MARK: - Private
 
 private extension ZVRefreshAutoStateFooter {
@@ -85,3 +74,8 @@ private extension ZVRefreshAutoStateFooter {
         if refreshState == .idle { beginRefreshing() }
     }
 }
+
+// MARK: - ZVRefreshStateComponent
+
+extension ZVRefreshAutoStateFooter: ZVRefreshStateComponent {}
+

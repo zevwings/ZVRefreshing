@@ -13,7 +13,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
     public private(set) lazy var stateLabel: UILabel = .default
     public var labelInsetLeft: CGFloat = 24.0
-    private var _stateTitles:[State: String] = [:]
+    public var stateTitles:[State: String] = [:]
     
     // MARK: - Subviews
     
@@ -24,10 +24,10 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
             addSubview(stateLabel)
         }
         
-        setTitle(localized(string: LocalizedKey.Footer.Back.idle), forState: .idle)
-        setTitle(localized(string: LocalizedKey.Footer.Back.pulling), forState: .pulling)
-        setTitle(localized(string: LocalizedKey.Footer.Back.refreshing), forState: .refreshing)
-        setTitle(localized(string: LocalizedKey.Footer.Back.noMoreData), forState: .noMoreData)
+        setTitle(localized(string: LocalizedKey.Footer.Back.idle), for: .idle)
+        setTitle(localized(string: LocalizedKey.Footer.Back.pulling), for: .pulling)
+        setTitle(localized(string: LocalizedKey.Footer.Back.refreshing), for: .refreshing)
+        setTitle(localized(string: LocalizedKey.Footer.Back.noMoreData), for: .noMoreData)
     }
     
     override open func placeSubViews() {
@@ -40,7 +40,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
     open override func doOnAnyState(with oldState: ZVRefreshComponent.State) {
         super.doOnAnyState(with: oldState)
-        stateLabel.text = _stateTitles[refreshState]
+        stateLabel.text = stateTitles[refreshState]
     }
 }
 
@@ -55,13 +55,7 @@ extension ZVRefreshBackStateFooter {
     }
 }
 
-// MARK: - Public
+// MARK: - ZVRefreshStateComponent
 
-extension ZVRefreshBackStateFooter {
-    
-    public func setTitle(_ title: String, forState state: State) {
-        _stateTitles.updateValue(title, forKey: state)
-        stateLabel.text = _stateTitles[refreshState]
-    }
-}
+extension ZVRefreshBackStateFooter: ZVRefreshStateComponent {}
 

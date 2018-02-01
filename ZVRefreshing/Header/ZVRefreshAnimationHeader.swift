@@ -96,3 +96,4 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
 // MARK: - Public
 
 extension ZVRefreshAnimationHeader: ZVRefreshAnimationComponent {}
+

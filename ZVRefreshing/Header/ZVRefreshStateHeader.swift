@@ -12,10 +12,13 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     // MARK: - Property
     
     public private(set) lazy var lastUpdatedTimeLabel: UILabel = .default
-    public private(set) lazy var stateLabel: UILabel = .default
+    public private(set) lazy var stateLabel: UILabel = {
+        return .default
+    }()
+    
     public var labelInsetLeft: CGFloat = 24.0
 
-    private var stateTitles: [State : String] = [:]
+    public var stateTitles: [State : String] = [:]
     private var calendar = Calendar(identifier: .gregorian)
     
     // MARK: didSet
@@ -54,9 +57,9 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
             addSubview(lastUpdatedTimeLabel)
         }
         
-        setTitle(localized(string: LocalizedKey.Header.idle), forState: .idle)
-        setTitle(localized(string: LocalizedKey.Header.pulling), forState: .pulling)
-        setTitle(localized(string: LocalizedKey.Header.refreshing), forState: .refreshing)
+        setTitle(localized(string: LocalizedKey.Header.idle), for: .idle)
+        setTitle(localized(string: LocalizedKey.Header.pulling), for: .pulling)
+        setTitle(localized(string: LocalizedKey.Header.refreshing), for: .refreshing)
     }
     
     override open func placeSubViews() {
@@ -94,17 +97,6 @@ extension ZVRefreshStateHeader {
             lastUpdatedTimeLabel.textColor = tintColor
             stateLabel.textColor = tintColor
         }
-    }
-}
-
-// MARK: - Public
-
-public extension ZVRefreshStateHeader {
-    
-    /// 设置状态文本
-    public func setTitle(_ title: String, forState state: State) {
-        stateTitles.updateValue(title, forKey: state)
-        stateLabel.text = stateTitles[refreshState]
     }
 }
 
@@ -149,3 +141,6 @@ private extension ZVRefreshStateHeader {
     }
 }
 
+// MARK: - ZVRefreshStateComponent
+
+extension ZVRefreshStateHeader: ZVRefreshStateComponent {}

@@ -14,15 +14,18 @@ public protocol ZVRefreshAnimationComponent: class {
     var stateDurations: [ZVRefreshComponent.State: TimeInterval] { get set }
     
     var animationView: UIImageView { get }
+    
+    func setImages(_ images: [UIImage], for state: ZVRefreshComponent.State)
+    func setImages(_ images: [UIImage], duration: TimeInterval, for state: ZVRefreshComponent.State)
 }
 
 public extension ZVRefreshAnimationComponent where Self: ZVRefreshComponent {
     
-    func setImages(_ images: [UIImage], for state: ZVRefreshComponent.State){
+    func setImages(_ images: [UIImage], for state: ZVRefreshComponent.State) {
         setImages(images, duration: Double(images.count) * 0.1, for: state)
     }
     
-    func setImages(_ images: [UIImage], duration: TimeInterval, for state: ZVRefreshComponent.State){
+    func setImages(_ images: [UIImage], duration: TimeInterval, for state: ZVRefreshComponent.State) {
         
         guard images.count != 0 else { return }
         
