@@ -9,6 +9,8 @@ import UIKit
 
 open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
 
+    // MARK: - Property
+    
     private(set) lazy var  animationView: UIImageView = {
         let animationView = UIImageView()
         animationView.backgroundColor = .clear
@@ -18,7 +20,19 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     private var _stateImages: [State: [UIImage]] = [:]
     private var _stateDurations: [State: TimeInterval] = [:]
     
-    // MARK: Getter & Setter
+    // MARK: getter & setter
+    
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+        }
+    }
+    
+    // MARK: didSet
     
     override open var pullingPercent: CGFloat {
         didSet {
@@ -30,11 +44,10 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
                 index = images.count - 1
             }
             animationView.image = images[index]
-            
         }
     }
     
-    // MARK: Subviews
+    // MARK: - Subviews
     
     override open func prepare() {
         super.prepare()
@@ -55,48 +68,37 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    // MARK: Update State
+    // MARK: - Do On
     
-    open override func update(refreshState newValue: State) {
-        
-        guard checkState(newValue).isIdenticalState == false else { return }
-        super.update(refreshState: newValue)
-    }
-    
-    override func doOn(pulling oldState: ZVRefreshComponent.State) {
+    override open func doOn(pulling oldState: State) {
         super.doOn(pulling: oldState)
         
-        guard let images = _stateImages[.pulling], images.count > 0 else { return }
-        animationView.stopAnimating()
-        
-        if images.count == 1 {
-            animationView.image = images.last
-        } else {
-            animationView.animationImages = images
-            animationView.animationDuration = _stateDurations[.pulling] ?? 0
-            animationView.startAnimating()
-        }
+        _doOn(pullingOrRefreshing: .pulling)
     }
     
-    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+    override open func doOn(refreshing oldState: State) {
         super.doOn(refreshing: oldState)
         
-        guard let images = _stateImages[.refreshing], images.count > 0 else { return }
-        animationView.stopAnimating()
-        
-        if images.count == 1 {
-            animationView.image = images.last
-        } else {
-            animationView.animationImages = images
-            animationView.animationDuration = _stateDurations[.refreshing] ?? 0
-            animationView.startAnimating()
-        }
+        _doOn(pullingOrRefreshing: .refreshing)
     }
     
-    override func doOn(idle oldState: ZVRefreshComponent.State) {
+    override open func doOn(idle oldState: State) {
         super.doOn(idle: oldState)
         
         animationView.stopAnimating()
+    }
+    
+    private func _doOn(pullingOrRefreshing state: State) {
+        let images = _stateImages[state]
+        if images?.count == 0 { return }
+        animationView.stopAnimating()
+        if images?.count == 1 {
+            animationView.image = images?.last
+        } else {
+            animationView.animationImages = images
+            animationView.animationDuration = _stateDurations[state] ?? 0.0
+            animationView.startAnimating()
+        }
     }
 }
 

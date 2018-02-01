@@ -9,6 +9,8 @@ import UIKit
 
 open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     
+    // MARK: - Property
+    
     private(set) lazy var animationView: UIImageView = {
         let animationView = UIImageView()
         animationView.backgroundColor = .clear
@@ -18,7 +20,19 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     private var _stateImages: [State: [UIImage]] = [:]
     private var _stateDurations: [State: TimeInterval] = [:]
     
-    // MARK: Subviews
+    // MARK: getter & setter
+    
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+        }
+    }
+    
+    // MARK: - Subviews
     
     override open func prepare() {
         super.prepare()
@@ -40,15 +54,9 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
         }
     }
 
-    // MARK: Update State
+    // MARK: - Do On
     
-    open override func update(refreshState newValue: State) {
-        
-        guard checkState(newValue).isIdenticalState == false else { return }
-        super.update(refreshState: newValue)
-    }
-    
-    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+    override open func doOn(refreshing oldState: State) {
         super.doOn(refreshing: oldState)
         
         guard let images = _stateImages[.refreshing], images.count > 0 else { return }
@@ -65,14 +73,14 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
         }
     }
     
-    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
+    override open func doOn(noMoreData oldState: State) {
         super.doOn(noMoreData: oldState)
         
         animationView.stopAnimating()
         animationView.isHidden = false
     }
     
-    override func doOn(idle oldState: ZVRefreshComponent.State) {
+    override open func doOn(idle oldState: State) {
         super.doOn(idle: oldState)
         
         animationView.stopAnimating()

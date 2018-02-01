@@ -13,6 +13,8 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         static let lastUpdatedTime = "com.zevwings.refreshing.lastUpdateTime"
     }
     
+    // MARK: - Property
+    
     /// 用于存储上次更新时间
     public var lastUpdatedTimeKey: String = StorageKey.lastUpdatedTime
     
@@ -26,7 +28,19 @@ open class ZVRefreshHeader: ZVRefreshComponent {
 
     private var insetTop: CGFloat = 0.0
     
-    // MARK: Subviews
+    // MARK: getter & setter
+    
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+        }
+    }
+    
+    // MARK: - Subviews
     
     override open func prepare() {
         super.prepare()
@@ -41,7 +55,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         frame.origin.y = -frame.size.height - ignoredScrollViewContentInsetTop
     }
 
-    // MARK: Observers
+    // MARK: - Observers
     
     override open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
         
@@ -82,15 +96,9 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         }
     }
     
-    // MARK: Update State
+    // MARK: - Do On
     
-    override open func update(refreshState newValue: State) {
-        let checked = checkState(newValue)
-        guard checked.isIdenticalState == false else { return }
-        super.update(refreshState: newValue)
-    }
-    
-    override func doOn(idle oldState: ZVRefreshComponent.State) {
+    override open func doOn(idle oldState: State) {
         super.doOn(idle: oldState)
         
         guard oldState == .refreshing else { return }
@@ -107,7 +115,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         })
     }
     
-    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+    override open func doOn(refreshing oldState: State) {
         super.doOn(refreshing: oldState)
         
         DispatchQueue.main.async {
@@ -123,3 +131,4 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         }
     }
 }
+

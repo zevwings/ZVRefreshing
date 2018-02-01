@@ -31,42 +31,51 @@ class ZVRefreshDIYHeader: ZVRefreshStateHeader {
         }
     }
     
-    override func update(refreshState newValue: ZVRefreshComponent.State) {
-
-        guard checkState(newValue).isIdenticalState == false else { return }
-        super.update(refreshState: newValue)
-        
-        if newValue == .idle {
-            if self.refreshState == .refreshing {
-                self._arrowView.transform = CGAffineTransform.identity
-                UIView.animate(withDuration: 0.15, animations: {
-                    self._activityIndicator.alpha = 0.0
-                }, completion: { _ in
-                    guard self.refreshState == .idle else { return }
-                    self._activityIndicator.alpha = 1.0
-                    self._activityIndicator.stopAnimating()
-                    self._arrowView.isHidden = false
-                })
-            } else {
-                self._activityIndicator.stopAnimating()
-                self._arrowView.isHidden = false
-                UIView.animate(withDuration: 0.15, animations: {
-                    self._arrowView.transform = CGAffineTransform.identity
-                })
-            }
-        } else if newValue == .pulling {
-            self._activityIndicator.stopAnimating()
-            self._arrowView.isHidden = false
-            UIView.animate(withDuration: 0.15, animations: {
-                self._arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
-            })
-        } else if newValue == .refreshing {
-            self._activityIndicator.alpha = 1.0
-            self._activityIndicator.startAnimating()
-            self._arrowView.isHidden = true
+    open override var refreshState: State {
+        get {
+            return super.refreshState
         }
-    
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+        }
     }
+//    override func update(refreshState newValue: ZVRefreshComponent.State) {
+//
+//        guard checkState(newValue).isIdenticalState == false else { return }
+//        super.update(refreshState: newValue)
+//        
+//        if newValue == .idle {
+//            if self.refreshState == .refreshing {
+//                self._arrowView.transform = CGAffineTransform.identity
+//                UIView.animate(withDuration: 0.15, animations: {
+//                    self._activityIndicator.alpha = 0.0
+//                }, completion: { _ in
+//                    guard self.refreshState == .idle else { return }
+//                    self._activityIndicator.alpha = 1.0
+//                    self._activityIndicator.stopAnimating()
+//                    self._arrowView.isHidden = false
+//                })
+//            } else {
+//                self._activityIndicator.stopAnimating()
+//                self._arrowView.isHidden = false
+//                UIView.animate(withDuration: 0.15, animations: {
+//                    self._arrowView.transform = CGAffineTransform.identity
+//                })
+//            }
+//        } else if newValue == .pulling {
+//            self._activityIndicator.stopAnimating()
+//            self._arrowView.isHidden = false
+//            UIView.animate(withDuration: 0.15, animations: {
+//                self._arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
+//            })
+//        } else if newValue == .refreshing {
+//            self._activityIndicator.alpha = 1.0
+//            self._activityIndicator.startAnimating()
+//            self._arrowView.isHidden = true
+//        }
+//    
+//    }
     
     override func prepare() {
         super.prepare()

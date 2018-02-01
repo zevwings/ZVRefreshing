@@ -9,17 +9,37 @@ import UIKit
 
 open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     
+    // MARK: - Property
+    
+    public var labelInsetLeft: CGFloat = 24.0
+    private var _stateTitles:[State: String] = [:]
+
     public private(set) lazy var stateLabel: UILabel = { [unowned self] in
         let label: UILabel = .default
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(.init(target: self, action: #selector(stateLabelClicked)))
         return label
-    }()
+    }()    
     
-    public var labelInsetLeft: CGFloat = 24.0
-    private var _stateTitles:[State: String] = [:]
+    // MARK: getter & setter
     
-    // MARK: Subviews
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+            
+            if stateLabel.isHidden && newValue == .refreshing {
+                stateLabel.text = nil
+            } else {
+                stateLabel.text = _stateTitles[newValue]
+            }
+        }
+    }
+
+    // MARK: - Subviews
     
     override open func prepare() {
         super.prepare()
@@ -39,22 +59,9 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
         if stateLabel.constraints.count > 0 { return }
         stateLabel.frame = bounds
     }
-    
-    // MARK: Update State
-
-    open override func update(refreshState newValue: State) {
-        guard checkState(newValue).isIdenticalState == false else { return }
-        super.update(refreshState: newValue)
-        
-        if stateLabel.isHidden && newValue == .refreshing {
-            stateLabel.text = nil
-        } else {
-            stateLabel.text = _stateTitles[newValue]
-        }
-    }
 }
 
-// MARK: - Override
+// MARK: - System Override
 
 extension ZVRefreshAutoStateFooter {
     

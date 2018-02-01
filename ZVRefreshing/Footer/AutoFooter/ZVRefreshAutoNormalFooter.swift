@@ -10,6 +10,8 @@ import ZVActivityIndicatorView
 
 public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
 
+    // MARK: - Property
+    
     public private(set) lazy var activityIndicator : ZVActivityIndicatorView = {
         var activityIndicator = ZVActivityIndicatorView()
         activityIndicator.color = .lightGray
@@ -17,7 +19,19 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
         return activityIndicator
     }()
     
-    // MARK: Subviews
+    // MARK: getter & setter
+    
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+        }
+    }
+    
+    // MARK: - Subviews
     
     override public func prepare() {
         super.prepare()
@@ -42,27 +56,22 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
         let centerY = frame.size.height * 0.5
         activityIndicator.center = CGPoint(x: centerX, y: centerY)
     }
-
-    // MARK: Update State
     
-    open override func update(refreshState newValue: State) {
-        guard checkState(newValue).isIdenticalState == false else { return }
-        super.update(refreshState: newValue)
-    }
+    // MARK: - Do On
     
-    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+    override open func doOn(refreshing oldState: State) {
         super.doOn(refreshing: oldState)
         
         activityIndicator.startAnimating()
     }
     
-    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
+    override open func doOn(noMoreData oldState: State) {
         super.doOn(noMoreData: oldState)
         
         activityIndicator.stopAnimating()
     }
     
-    override func doOn(idle oldState: ZVRefreshComponent.State) {
+    override open func doOn(idle oldState: State) {
         super.doOn(idle: oldState)
         
         activityIndicator.stopAnimating()

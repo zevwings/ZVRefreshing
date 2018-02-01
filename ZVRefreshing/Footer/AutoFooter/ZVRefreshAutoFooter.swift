@@ -9,18 +9,26 @@ import UIKit
 
 open class ZVRefreshAutoFooter: ZVRefreshFooter {
 
+    // MARK: - Property
+    
     public var isAutomaticallyRefresh: Bool = true
     private var _triggerAutomaticallyRefreshPercent: CGFloat = 1.0
     
-    // MARK: Update State
+    // MARK: getter & setter
     
-    open override func update(refreshState newValue: State) {
-        let checked = checkState(newValue)
-        guard checked.isIdenticalState == false else { return }
-        super.update(refreshState: newValue)
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+        }
     }
     
-    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+    // MARK: - Do On
+    
+    override open func doOn(refreshing oldState: State) {
         super.doOn(refreshing: oldState)
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(0.5 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: {
@@ -28,19 +36,19 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
         })
     }
     
-    override func doOn(idle oldState: ZVRefreshComponent.State) {
+    override open func doOn(idle oldState: State) {
         super.doOn(idle: oldState)
         
         if oldState == .refreshing { endRefreshingCompletionHandler?() }
     }
     
-    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
+    override open func doOn(noMoreData oldState: State) {
         super.doOn(noMoreData: oldState)
         
         if oldState == .refreshing { endRefreshingCompletionHandler?() }
     }
     
-    // MARK: Observers
+    // MARK: - Observers
 
     override open func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?) {
         super.scrollView(scrollView, contentSizeDidChanged: value)
@@ -85,7 +93,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     }
 }
 
-// MARK: - Override
+// MARK: - System Override
 
 extension ZVRefreshAutoFooter {
     
@@ -110,28 +118,22 @@ extension ZVRefreshAutoFooter {
             return super.isHidden
         }
         set {
-            setIsHidden(newValue)
-        }
-    }
-}
-
-
-private extension ZVRefreshAutoFooter {
-    
-    func setIsHidden(_ newValue: Bool) {
-        guard let scrollView = scrollView else { return }
-        let isHidden = self.isHidden
-        super.isHidden = newValue
-        if isHidden {
-            if !newValue {
-                scrollView.contentInset.bottom += frame.size.height
-                frame.origin.y = scrollView.contentSize.height
-            }
-        } else {
-            if newValue {
-                refreshState = .idle
-                scrollView.contentInset.bottom -= frame.size.height
+            guard let scrollView = scrollView else { return }
+            
+            let isHidden = self.isHidden
+            super.isHidden = newValue
+            if isHidden {
+                if !newValue {
+                    scrollView.contentInset.bottom += frame.size.height
+                    frame.origin.y = scrollView.contentSize.height
+                }
+            } else {
+                if newValue {
+                    refreshState = .idle
+                    scrollView.contentInset.bottom -= frame.size.height
+                }
             }
         }
     }
 }
+

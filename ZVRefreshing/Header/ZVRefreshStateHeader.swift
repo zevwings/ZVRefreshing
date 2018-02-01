@@ -9,6 +9,8 @@ import UIKit
 
 open class ZVRefreshStateHeader: ZVRefreshHeader {
 
+    // MARK: - Property
+    
     public private(set) lazy var lastUpdatedTimeLabel: UILabel = .default
     public private(set) lazy var stateLabel: UILabel = .default
     public var labelInsetLeft: CGFloat = 24.0
@@ -16,7 +18,22 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     private var stateTitles: [State : String] = [:]
     private var calendar = Calendar(identifier: .gregorian)
 
-    // MARK: Getter & Setter
+    // MARK: getter & setter
+    
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+            
+            stateLabel.text = stateTitles[refreshState]
+            didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
+        }
+    }
+    
+    // MARK: didSet
     
     public var lastUpdatedTimeLabelText:((_ date: Date?)->(String))? {
         didSet {
@@ -25,13 +42,12 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     }
     
     override public var lastUpdatedTimeKey: String {
-        
         didSet {
             didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
         }
     }
     
-    // MARK: Subviews
+    // MARK: - Subviews
     
     override open func prepare() {
         super.prepare()
@@ -50,7 +66,6 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     }
     
     override open func placeSubViews() {
-        
         super.placeSubViews()
         
         guard stateLabel.isHidden == false else { return }
@@ -74,18 +89,6 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
             }
         }
     }
-    
-    // MARK: Update State
-    
-    override open func update(refreshState newValue: State) {
-        
-        guard checkState(newValue).isIdenticalState == false else { return }
-        super.update(refreshState: newValue)
-        
-        stateLabel.text = stateTitles[refreshState]
-        
-        didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
-    }
 }
 
 // MARK: - Override
@@ -100,7 +103,6 @@ extension ZVRefreshStateHeader {
     }
 }
 
-
 // MARK: - Public
 
 public extension ZVRefreshStateHeader {
@@ -111,7 +113,6 @@ public extension ZVRefreshStateHeader {
         stateLabel.text = stateTitles[refreshState]
     }
 }
-
 
 // MARK: - Private
 

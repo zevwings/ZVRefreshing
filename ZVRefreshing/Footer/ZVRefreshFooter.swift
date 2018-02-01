@@ -9,13 +9,15 @@ import UIKit
 
 open class ZVRefreshFooter: ZVRefreshComponent {
 
+    // MARK: - Property
+    
     /// 忽略的UIScrollView.contentInset.bottom
     public var ignoredScrollViewContentInsetBottom: CGFloat = 0.0
     
     /// 是否自动隐藏
     public var isAutomaticallyHidden: Bool = true
     
-    // MARK: Getter & Setter
+    // MARK: getter & setter
     
     /// 设置组件是否为RefreshState.noMoreData
     public var isNoMoreData: Bool = false {
@@ -28,7 +30,8 @@ open class ZVRefreshFooter: ZVRefreshComponent {
         }
     }
     
-    // MARK: State Control
+    // MARK: - State Control
+    
     public func endRefreshingWithNoMoreData() {
         refreshState = .noMoreData
     }
@@ -37,13 +40,14 @@ open class ZVRefreshFooter: ZVRefreshComponent {
         refreshState = .idle
     }
     
-    // MARK: Subviews
+    // MARK: - Subviews
+    
     override open func prepare() {
         frame.size.height = ComponentFooter.height
     }
 }
 
-// MARK: - Override
+// MARK: - System Override
 
 extension ZVRefreshFooter {
     

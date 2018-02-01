@@ -10,6 +10,8 @@ import ZVActivityIndicatorView
 
 public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     
+    // MARK: - Property
+    
     public private(set) lazy var activityIndicator : ZVActivityIndicatorView = {
         var activityIndicator = ZVActivityIndicatorView()
         activityIndicator.color = .lightGray
@@ -17,7 +19,18 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         return activityIndicator
     }()
     
-    // MARK: Getter & Setter
+    // MARK: getter & setter
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+        }
+    }
+    
+    // MARK: didSet
     
     override public var pullingPercent: CGFloat {
         didSet {
@@ -25,7 +38,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    // MARK: Subviews
+    // MARK: - Subviews
     
     override public func prepare() {
         super.prepare()
@@ -52,34 +65,27 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    // MARK: Update State
+    // MARK: - Do On
     
-    open override func update(refreshState newValue: State) {
-        let checked = checkState(newValue)
-        guard checked.isIdenticalState == false else { return }
-        super.update(refreshState: newValue)
-
-    }
-    
-    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
+    override open func doOn(noMoreData oldState: State) {
         super.doOn(noMoreData: oldState)
         
         activityIndicator.stopAnimating()
     }
     
-    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+    override open func doOn(refreshing oldState: State) {
         super.doOn(refreshing: oldState)
         
         activityIndicator.startAnimating()
     }
     
-    override func doOn(pulling oldState: ZVRefreshComponent.State) {
+    override open func doOn(pulling oldState: State) {
         super.doOn(pulling: oldState)
         
         activityIndicator.stopAnimating()
     }
     
-    override func doOn(idle oldState: ZVRefreshComponent.State) {
+    override open func doOn(idle oldState: State) {
         super.doOn(idle: oldState)
         
         if oldState == .refreshing {
@@ -95,7 +101,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     }
 }
 
-// MARK: - Override
+// MARK: - System Override
 
 extension ZVRefreshBackNormalFooter {
     override open var tintColor: UIColor! {

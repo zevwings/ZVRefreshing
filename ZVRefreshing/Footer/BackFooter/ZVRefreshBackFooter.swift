@@ -9,10 +9,24 @@ import UIKit
 
 open class ZVRefreshBackFooter: ZVRefreshFooter {
     
+    // MARK: - Property
+    
     private var lastBottomDelta: CGFloat = 0.0
     private var lastRefreshCount: Int = 0
     
-    // MARK: Observers
+    // MARK: getter & setter
+    
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+        }
+    }
+    
+    // MARK: - Observers
 
     override open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
         
@@ -56,15 +70,9 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         frame.origin.y = max(contentHeight, scrollHeight)
     }
     
-    // MARK: Update State
+    // MARK: - Do On
     
-    open override func update(refreshState newValue: State) {
-        let checked = checkState(newValue)
-        guard checked.isIdenticalState == false else { return }
-        super.update(refreshState: newValue)
-    }
-    
-    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+    override open func doOn(refreshing oldState: State) {
         super.doOn(refreshing: oldState)
         
         guard let scrollView = scrollView else { return }
@@ -83,28 +91,19 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         })
     }
     
-    override func doOn(idle oldState: ZVRefreshComponent.State) {
+    override open func doOn(idle oldState: State) {
         super.doOn(idle: oldState)
         
-        guard let scrollView = scrollView else { return }
-        
-        if oldState == .refreshing {
-            UIView.animate(withDuration: AnimationDuration.slow, animations: {
-                scrollView.contentInset.bottom -= self.lastBottomDelta
-                if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
-            }, completion: { finished in
-                self.pullingPercent = 0.0
-                self.endRefreshingCompletionHandler?()
-            })
-        }
-        if .refreshing == oldState && _heightForContentBreakView() > CGFloat(0.0)
-            && scrollView.totalDataCount != lastRefreshCount{
-            self.scrollView?.contentOffset.y = scrollView.contentOffset.y
-        }
+        _doOn(idleOrNoMoreData: .idle, with: oldState)
     }
     
-    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
+    override open func doOn(noMoreData oldState: State) {
         super.doOn(noMoreData: oldState)
+        
+        _doOn(idleOrNoMoreData: .noMoreData, with: oldState)
+    }
+    
+    private func _doOn(idleOrNoMoreData state: State, with oldState: State) {
         
         guard let scrollView = scrollView else { return }
         

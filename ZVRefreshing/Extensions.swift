@@ -22,6 +22,8 @@ public protocol ZVRefreshFooterConfigration: class {
     
     var footer: T? { get set }
     
+    func refreshFooter(_ refreshFooter: T)
+    
 }
 
 public extension UIScrollView {
@@ -124,4 +126,5 @@ extension UIScrollView {
     func executeReloadDataBlock() {
         reloadDataHandler?(totalDataCount)
     }
+    
 }

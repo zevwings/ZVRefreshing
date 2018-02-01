@@ -17,37 +17,23 @@ open class ZVRefreshComponent: UIControl {
         case noMoreData
     }
     
+    // MARK: - Property
+    
     public private(set) var isRefreshing: Bool = false
 
-    /// callback target object
     private var _target: Any?
-    
-    /// callback target selector
     private var _action: Selector?
     
-    /// callback closure
     public var beginRefreshingCompletionHandler: ZVBeginRefreshingCompletionHandler?
     public var endRefreshingCompletionHandler: ZVEndRefreshingCompletionHandler?
 
-    /// superview
-    internal var scrollView: UIScrollView?
-    
     internal var scrollViewOriginalInset: UIEdgeInsets = UIEdgeInsets.zero
-    
-    /// ScrollView.UIPanGestureRecognizer
+
+    internal var scrollView: UIScrollView?
     private var _panGestureRecognizer: UIPanGestureRecognizer?
     
-    // MARK: Getter & Setter
-    private var _refreshState: State = .idle
-    open var refreshState: State {
-        get {
-            return _refreshState
-        }
-        set {
-            update(refreshState: newValue)
-        }
-    }
-
+    // MARK: getter & setter
+    
     private var _refreshHandler: ZVRefreshHandler?
     public var refreshHandler: ZVRefreshHandler? {
         get {
@@ -57,6 +43,47 @@ open class ZVRefreshComponent: UIControl {
             _refreshHandler = newValue
         }
     }
+    
+    private var _refreshState: State = .idle
+    open var refreshState: State {
+        get {
+            return _refreshState
+        }
+        set {
+            let result = checkState(newValue)
+            guard result.isIdenticalState == false else { return }
+            
+            willChangeValue(forKey: "isRefreshing")
+            isRefreshing = newValue == .refreshing
+            didChangeValue(forKey: "isRefreshing")
+            
+            willChangeValue(forKey: "refreshState")
+            _refreshState = newValue
+            didChangeValue(forKey: "refreshState")
+            
+            sendActions(for: .valueChanged)
+            
+            switch newValue {
+            case .idle:
+                doOn(idle: result.oldState)
+                break
+            case .pulling:
+                doOn(pulling: result.oldState)
+                break
+            case .willRefresh:
+                doOn(willRefresh: result.oldState)
+                break
+            case .refreshing:
+                doOn(refreshing: result.oldState)
+                break
+            case .noMoreData:
+                doOn(noMoreData: result.oldState)
+                break
+            }
+        }
+    }
+    
+    // MARK: didSet
     
     public var isAutomaticallyChangeAlpha: Bool = true {
         didSet {
@@ -112,7 +139,7 @@ open class ZVRefreshComponent: UIControl {
         prepare()
     }
     
-    // MARK: Subviews
+    // MARK: - Subviews
     
     /// Add SubViews
     open func prepare() {
@@ -123,53 +150,19 @@ open class ZVRefreshComponent: UIControl {
     /// Place SubViews
     open func placeSubViews() {}
     
-    // MARK: Update State
-    
-    /// update refresh state
-    ///
-    /// - Parameter newValue: new referesh state
-    open func update(refreshState newValue: State) {
-        
-        let result = checkState(newValue)
-        guard result.isIdenticalState == false else { return }
-        
-        willChangeValue(forKey: "isRefreshing")
-        isRefreshing = newValue == .refreshing
-        didChangeValue(forKey: "isRefreshing")
-        sendActions(for: .valueChanged)
-        
-        _refreshState = newValue
-        
-        switch _refreshState {
-        case .idle:
-            doOn(idle: result.oldState)
-            break
-        case .pulling:
-            doOn(pulling: result.oldState)
-            break
-        case .willRefresh:
-            doOn(willRefresh: result.oldState)
-            break
-        case .refreshing:
-            doOn(refreshing: result.oldState)
-            break
-        case .noMoreData:
-            doOn(noMoreData: result.oldState)
-            break
-        }
-    }
+    // MARK: - doOn
 
-    func doOn(idle oldState: State) {}
+    open func doOn(idle oldState: State) {}
     
-    func doOn(pulling oldState: State) {}
+    open func doOn(pulling oldState: State) {}
     
-    func doOn(willRefresh oldState: State) {}
+    open func doOn(willRefresh oldState: State) {}
     
-    func doOn(refreshing oldState: State) {}
+    open func doOn(refreshing oldState: State) {}
     
-    func doOn(noMoreData oldState: State) {}
+    open func doOn(noMoreData oldState: State) {}
     
-    // MARK: Superview Observers
+    // MARK: - Observers
     
     /// Call this selector when UIScrollView.contentOffset value changed
     open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey: Any]?) {}
@@ -182,7 +175,7 @@ open class ZVRefreshComponent: UIControl {
 
 }
 
-// MARK: - Override
+// MARK: - System Override
 
 extension ZVRefreshComponent {
     
@@ -193,9 +186,7 @@ extension ZVRefreshComponent {
     
     override open func draw(_ rect: CGRect) {
         super.draw(rect)
-        if refreshState == .willRefresh {
-            refreshState = .refreshing
-        }
+        if refreshState == .willRefresh { refreshState = .refreshing }
     }
     
     override open func willMove(toSuperview newSuperview: UIView?) {
@@ -223,7 +214,7 @@ extension ZVRefreshComponent {
     }
 }
 
-// MARK: - Update Refresh State
+// MARK: - State Control
 
 extension ZVRefreshComponent {
     

@@ -10,6 +10,8 @@ import ZVActivityIndicatorView
 
 open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
     
+    // MARK: - Property
+    
     public private(set) lazy var activityIndicator: ZVActivityIndicatorView = {
         let activityIndicator = ZVActivityIndicatorView()
         activityIndicator.color = .lightGray
@@ -17,7 +19,19 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         return activityIndicator
     }()
     
-    // MARK: Getter & Setter
+    // MARK: getter & setter
+    
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+        }
+    }
+    
+    // MARK: didSet
     
     override open var pullingPercent: CGFloat {
         didSet {
@@ -25,7 +39,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         }
     }
     
-    // MARK: Subviews
+    // MARK: - Subviews
     
     override open func prepare() {
         super.prepare()
@@ -60,15 +74,9 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         }
     }
     
-    // MARK: Update State
+    // MARK: - Do On
     
-    override open func update(refreshState newValue: State) {
-        
-        guard checkState(newValue).isIdenticalState == false else { return }
-        super.update(refreshState: newValue)
-    }
-    
-    override func doOn(idle oldState: ZVRefreshComponent.State) {
+    override open func doOn(idle oldState: State) {
         super.doOn(idle: oldState)
         
         if refreshState == .refreshing {
@@ -83,20 +91,20 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         }
     }
     
-    override func doOn(pulling oldState: ZVRefreshComponent.State) {
+    override open func doOn(pulling oldState: State) {
         super.doOn(pulling: oldState)
         
         activityIndicator.stopAnimating()
     }
     
-    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+    override open func doOn(refreshing oldState: State) {
         super.doOn(refreshing: oldState)
         
         activityIndicator.startAnimating()
     }
 }
 
-// MARK: - Override
+// MARK: - System Override
 
 extension ZVRefreshNormalHeader {
     
