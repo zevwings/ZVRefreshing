@@ -58,6 +58,12 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     
     // MARK: - Do On State
     
+    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+        super.doOnIdle(with: oldState)
+        
+        animationView.stopAnimating()
+    }
+
     open override func doOnPulling(with oldState: ZVRefreshComponent.State) {
         super.doOnPulling(with: oldState)
         
@@ -68,12 +74,6 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
         super.doOnRefreshing(with: oldState)
         
         _doOn(pullingOrRefreshing: .refreshing)
-    }
-    
-    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
-        super.doOnIdle(with: oldState)
-        
-        animationView.stopAnimating()
     }
     
     private func _doOn(pullingOrRefreshing state: State) {

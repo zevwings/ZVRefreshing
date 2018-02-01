@@ -11,15 +11,12 @@ open class ZVRefreshFooter: ZVRefreshComponent {
 
     // MARK: - Property
     
-    /// 忽略的UIScrollView.contentInset.bottom
     public var ignoredScrollViewContentInsetBottom: CGFloat = 0.0
     
-    /// 是否自动隐藏
     public var isAutomaticallyHidden: Bool = true
     
     // MARK: getter & setter
     
-    /// 设置组件是否为RefreshState.noMoreData
     public var isNoMoreData: Bool = false {
         didSet {
             if isNoMoreData {

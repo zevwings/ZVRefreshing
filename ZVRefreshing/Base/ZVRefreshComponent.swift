@@ -69,6 +69,9 @@ open class ZVRefreshComponent: UIControl {
             case .idle:
                 doOnIdle(with: result.oldState)
                 break
+            case .noMoreData:
+                doOnNoMoreData(with: result.oldState)
+                break
             case .pulling:
                 doOnPulling(with: result.oldState)
                 break
@@ -77,9 +80,6 @@ open class ZVRefreshComponent: UIControl {
                 break
             case .refreshing:
                 doOnRefreshing(with: result.oldState)
-                break
-            case .noMoreData:
-                doOnNoMoreData(with: result.oldState)
                 break
             }
         }
@@ -143,13 +143,11 @@ open class ZVRefreshComponent: UIControl {
     
     // MARK: - Subviews
     
-    /// Add SubViews
     open func prepare() {
         autoresizingMask = .flexibleWidth
         backgroundColor = .clear
     }
     
-    /// Place SubViews
     open func placeSubViews() {}
     
     // MARK: - doOn
@@ -158,23 +156,20 @@ open class ZVRefreshComponent: UIControl {
     
     open func doOnIdle(with oldState: State) {}
     
+    open func doOnNoMoreData(with oldState: State) {}
+
     open func doOnPulling(with oldState: State) {}
     
     open func doOnWillRefresh(with oldState: State) {}
     
     open func doOnRefreshing(with oldState: State) {}
     
-    open func doOnNoMoreData(with oldState: State) {}
-    
     // MARK: - Observers
     
-    /// Call this selector when UIScrollView.contentOffset value changed
     open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey: Any]?) {}
     
-    /// Call this selector when UIScrollView.contentSize value changed
     open func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey: Any]?) {}
     
-    /// Call this selector when UIScrollView.panGestureRecognizer.state value changed
     open func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey: Any]?, for scrollView: UIScrollView) {}
 
 }
@@ -319,7 +314,6 @@ public extension ZVRefreshComponent {
         return (false, oldState)
     }
     
-    /// Add callback target and selector
     public func addTarget(_ target: Any?, action: Selector) {
         _target = target
         _action = action

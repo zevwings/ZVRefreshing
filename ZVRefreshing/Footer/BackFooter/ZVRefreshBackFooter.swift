@@ -60,6 +60,18 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
     
     // MARK: - Do On State
     
+    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+        super.doOnIdle(with: oldState)
+        
+        _doOn(idleOrNoMoreData: .idle, with: oldState)
+    }
+    
+    open override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
+        super.doOnNoMoreData(with: oldState)
+        
+        _doOn(idleOrNoMoreData: .noMoreData, with: oldState)
+    }
+
     open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
         super.doOnRefreshing(with: oldState)
         
@@ -77,18 +89,6 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         }, completion: { finished in
             self.executeRefreshCallback()
         })
-    }
-    
-    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
-        super.doOnIdle(with: oldState)
-        
-        _doOn(idleOrNoMoreData: .idle, with: oldState)
-    }
-    
-    open override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
-        super.doOnNoMoreData(with: oldState)
-
-        _doOn(idleOrNoMoreData: .noMoreData, with: oldState)
     }
     
     private func _doOn(idleOrNoMoreData state: State, with oldState: State) {

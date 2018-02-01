@@ -61,15 +61,15 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
         }
     }
     
-    open override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
-        super.doOnNoMoreData(with: oldState)
+    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+        super.doOnIdle(with: oldState)
         
         animationView.stopAnimating()
         animationView.isHidden = false
     }
-    
-    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
-        super.doOnIdle(with: oldState)
+
+    open override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
+        super.doOnNoMoreData(with: oldState)
         
         animationView.stopAnimating()
         animationView.isHidden = false

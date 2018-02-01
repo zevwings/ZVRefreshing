@@ -56,24 +56,6 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     
     // MARK: - Do On State
     
-    public override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
-        super.doOnNoMoreData(with: oldState)
-
-        activityIndicator.stopAnimating()
-    }
-    
-    open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
-        super.doOnRefreshing(with: oldState)
-        
-        activityIndicator.startAnimating()
-    }
-    
-    open override func doOnPulling(with oldState: ZVRefreshComponent.State) {
-        super.doOnPulling(with: oldState)
-        
-        activityIndicator.stopAnimating()
-    }
-    
     open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
         super.doOnIdle(with: oldState)
         
@@ -87,6 +69,24 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         } else {
             activityIndicator.stopAnimating()
         }
+    }
+
+    public override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
+        super.doOnNoMoreData(with: oldState)
+
+        activityIndicator.stopAnimating()
+    }
+    
+    open override func doOnPulling(with oldState: ZVRefreshComponent.State) {
+        super.doOnPulling(with: oldState)
+        
+        activityIndicator.stopAnimating()
+    }
+    
+    open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+        super.doOnRefreshing(with: oldState)
+        
+        activityIndicator.startAnimating()
     }
 }
 
