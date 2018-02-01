@@ -113,7 +113,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
                 var offset = self.scrollView!.contentOffset
                 offset.y = -top
                 self.scrollView?.setContentOffset(offset, animated: false)
-            }, completion: { finished in
+            }, completion: { isFinished in
                 self.executeRefreshCallback()
             })
         }

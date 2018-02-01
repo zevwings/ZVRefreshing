@@ -50,8 +50,8 @@ open class ZVRefreshComponent: UIControl {
             return _refreshState
         }
         set {
-            let result = checkState(newValue)
-            guard result.isIdenticalState == false else { return }
+            let oldState = refreshState
+            guard oldState != newValue else { return }
             
             willChangeValue(forKey: "isRefreshing")
             isRefreshing = newValue == .refreshing
@@ -63,23 +63,23 @@ open class ZVRefreshComponent: UIControl {
             
             sendActions(for: .valueChanged)
             
-            doOnAnyState(with: result.oldState)
+            doOnAnyState(with: oldState)
             
             switch newValue {
             case .idle:
-                doOnIdle(with: result.oldState)
+                doOnIdle(with: oldState)
                 break
             case .noMoreData:
-                doOnNoMoreData(with: result.oldState)
+                doOnNoMoreData(with: oldState)
                 break
             case .pulling:
-                doOnPulling(with: result.oldState)
+                doOnPulling(with: oldState)
                 break
             case .willRefresh:
-                doOnWillRefresh(with: result.oldState)
+                doOnWillRefresh(with: oldState)
                 break
             case .refreshing:
-                doOnRefreshing(with: result.oldState)
+                doOnRefreshing(with: oldState)
                 break
             }
         }
@@ -305,14 +305,6 @@ extension ZVRefreshComponent {
 // MARK: - Public
 
 public extension ZVRefreshComponent {
-    
-    /// check RefreshState.newValue is equal to RefreshState.oldState
-    /// if the two value is not equal, update state label value.
-    public func checkState(_ state: State) -> (isIdenticalState: Bool, oldState: State) {
-        let oldState = refreshState
-        if oldState == state { return (true, oldState) }
-        return (false, oldState)
-    }
     
     public func addTarget(_ target: Any?, action: Selector) {
         _target = target
