@@ -23,71 +23,70 @@ public protocol ZVRefreshFooterConfigration: class {
     var footer: T? { get set }
     
     func refreshFooter(_ refreshFooter: T)
-    
 }
 
 public extension UIScrollView {
     
-    private struct AssociationKey {
-        static var header  = "com.zevwings.assocaiationkey.header"
-        static var footer  = "com.zevwings.assocaiationkey.footer"
-    }
-    
-    public var refreshHeader: ZVRefreshHeader? {
-        get {
-            return objc_getAssociatedObject(self, &AssociationKey.header) as? ZVRefreshHeader
-        }
-        set {
-            if (refreshHeader != newValue) {
-                refreshHeader?.removeFromSuperview()
-                if newValue != nil { insertSubview(newValue!, at: 0) }
-                willChangeValue(forKey: "refreshHeader")
-                objc_setAssociatedObject(self, &AssociationKey.header, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                didChangeValue(forKey: "refreshHeader")
-            }
-        }
-    }
-    
-    public var refreshFooter: ZVRefreshFooter? {
-        get {
-            return objc_getAssociatedObject(self, &AssociationKey.footer) as? ZVRefreshFooter
-        }
-        set {
-            if (refreshFooter != newValue) {
-                refreshFooter?.removeFromSuperview()
-                if newValue != nil { insertSubview(newValue!, at: 0) }
-                willChangeValue(forKey: "refreshFooter")
-                objc_setAssociatedObject(self, &AssociationKey.footer, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                didChangeValue(forKey: "refreshFooter")
-            }
-        }
-    }
+//    private struct AssociationKey {
+//        static var header  = "com.zevwings.assocaiationkey.header"
+//        static var footer  = "com.zevwings.assocaiationkey.footer"
+//    }
+//
+//    public var refreshHeader: ZVRefreshHeader? {
+//        get {
+//            return objc_getAssociatedObject(self, &AssociationKey.header) as? ZVRefreshHeader
+//        }
+//        set {
+//            if (refreshHeader != newValue) {
+//                refreshHeader?.removeFromSuperview()
+//                if newValue != nil { insertSubview(newValue!, at: 0) }
+//                willChangeValue(forKey: "refreshHeader")
+//                objc_setAssociatedObject(self, &AssociationKey.header, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//                didChangeValue(forKey: "refreshHeader")
+//            }
+//        }
+//    }
+//
+//    public var refreshFooter: ZVRefreshFooter? {
+//        get {
+//            return objc_getAssociatedObject(self, &AssociationKey.footer) as? ZVRefreshFooter
+//        }
+//        set {
+//            if (refreshFooter != newValue) {
+//                refreshFooter?.removeFromSuperview()
+//                if newValue != nil { insertSubview(newValue!, at: 0) }
+//                willChangeValue(forKey: "refreshFooter")
+//                objc_setAssociatedObject(self, &AssociationKey.footer, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//                didChangeValue(forKey: "refreshFooter")
+//            }
+//        }
+//    }
 }
 
 extension UITableView {
     
-    internal static let once: Void = {
-        UITableView.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
-                                           m2: #selector(UITableView._reloadData))
-    }()
-
-    @objc func _reloadData() {
-        _reloadData()
-        executeReloadDataBlock()
-    }
+//    internal static let once: Void = {
+//        UITableView.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
+//                                           m2: #selector(UITableView._reloadData))
+//    }()
+//
+//    @objc func _reloadData() {
+//        _reloadData()
+//        executeReloadDataBlock()
+//    }
 }
 
 extension UICollectionView {
     
-    internal static let once: Void = {
-        UICollectionView.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
-                                                m2: #selector(UICollectionView._reloadData))
-    }()
-    
-    @objc func _reloadData() {
-        _reloadData()
-        executeReloadDataBlock()
-    }
+//    internal static let once: Void = {
+//        UICollectionView.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
+//                                                m2: #selector(UICollectionView._reloadData))
+//    }()
+//
+//    @objc func _reloadData() {
+//        _reloadData()
+//        executeReloadDataBlock()
+//    }
 }
 
 extension UIScrollView {
@@ -128,3 +127,14 @@ extension UIScrollView {
     }
     
 }
+
+//public protocol Reloadable {
+//    func reloadData()
+//}
+//
+//extension UITableView: Reloadable {
+//    public func reloadData() {
+//
+//    }
+//}
+

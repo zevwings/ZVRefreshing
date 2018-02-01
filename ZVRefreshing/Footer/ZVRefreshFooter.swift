@@ -15,6 +15,8 @@ open class ZVRefreshFooter: ZVRefreshComponent {
     
     public var isAutomaticallyHidden: Bool = true
     
+    public var minimumRowsForAutomaticallyHidden: Int = 0
+    
     // MARK: getter & setter
     
     public var isNoMoreData: Bool = false {
@@ -57,7 +59,7 @@ extension ZVRefreshFooter {
             superview.isKind(of: UICollectionView.classForCoder()) {
             superview.reloadDataHandler = { totalCount in
                 if self.isAutomaticallyHidden {
-                    self.isHidden = (totalCount == 0)
+                    self.isHidden = (totalCount <= self.minimumRowsForAutomaticallyHidden)
                 }
             }
         }
