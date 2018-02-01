@@ -9,7 +9,7 @@ import UIKit
 
 open class ZVRefreshHeader: ZVRefreshComponent {
     
-    struct LastUpdatedTimeKey {
+    public struct LastUpdatedTimeKey {
         static var `default`: String { return "com.zevwings.refreshing.lastUpdateTime" }
     }
     

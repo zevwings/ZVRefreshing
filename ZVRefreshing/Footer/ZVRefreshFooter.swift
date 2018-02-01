@@ -42,6 +42,7 @@ open class ZVRefreshFooter: ZVRefreshComponent {
     // MARK: - Subviews
     
     override open func prepare() {
+        super.prepare()
         frame.size.height = ComponentFooter.height
     }
 }
