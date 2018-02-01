@@ -11,6 +11,8 @@ import ZVRefreshing
 
 class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
     
+    // MARK: - Property
+    
     private lazy var _activityIndicator: UIActivityIndicatorView = {
         var activityIndicator = UIActivityIndicatorView()
         activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
@@ -25,31 +27,7 @@ class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
         }
     }
     
-    open override var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            guard checkState(newValue).isIdenticalState == false else { return }
-            super.refreshState = newValue
-        }
-    }
-
-    override func doOnIdle(with oldState: ZVRefreshComponent.State) {
-        super.doOnIdle(with: oldState)
-        _activityIndicator.stopAnimating()
-    }
-    
-    override func doOnNoMoreData(with oldState: State) {
-        super.doOnNoMoreData(with: oldState)
-        
-        _activityIndicator.stopAnimating()
-    }
-    
-    override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
-        super.doOnRefreshing(with: oldState)
-        _activityIndicator.startAnimating()
-    }
+    // MARK: - Subviews
     
     override func prepare() {
         super.prepare()
@@ -70,6 +48,25 @@ class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
         let loadingCenterY = self.frame.height * 0.5
         self._activityIndicator.center = CGPoint(x: loadingCenterX, y: loadingCenterY)
     }
+
+    // MARK: - Do On State
+    
+    override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+        super.doOnIdle(with: oldState)
+        _activityIndicator.stopAnimating()
+    }
+    
+    override func doOnNoMoreData(with oldState: State) {
+        super.doOnNoMoreData(with: oldState)
+        
+        _activityIndicator.stopAnimating()
+    }
+    
+    override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+        super.doOnRefreshing(with: oldState)
+        _activityIndicator.startAnimating()
+    }
+    
 
 }
 

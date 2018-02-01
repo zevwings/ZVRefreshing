@@ -45,6 +45,43 @@ class ZVRefreshBackDIYFooter: ZVRefreshBackStateFooter {
         }
     }
     
+    // MARK: - Subviews
+    
+    override func prepare() {
+        super.prepare()
+        
+        if self._arrowView.superview == nil {
+            self.addSubview(self._arrowView)
+        }
+        
+        if self._activityIndicator.superview == nil {
+            self.addSubview(self._activityIndicator)
+        }
+    }
+    
+    override func placeSubViews() {
+        super.placeSubViews()
+        
+        var arrowCenterX = self.frame.width * 0.5
+        if !self.stateLabel.isHidden {
+            arrowCenterX -= 100
+        }
+        let arrowCenterY = self.frame.height * 0.5
+        let arrowCenter = CGPoint(x: arrowCenterX, y: arrowCenterY)
+        
+        if self._arrowView.constraints.count == 0 && self._arrowView.image != nil {
+            self._arrowView.isHidden = false
+            self._arrowView.frame.size = self._arrowView.image!.size
+            self._arrowView.center = arrowCenter
+        } else {
+            self._arrowView.isHidden = true
+        }
+        
+        if self._activityIndicator.constraints.count == 0 {
+            self._activityIndicator.center = arrowCenter
+        }
+    }
+
     // MARK: - Do On State
     
     override func doOnIdle(with oldState: ZVRefreshComponent.State) {
@@ -92,42 +129,4 @@ class ZVRefreshBackDIYFooter: ZVRefreshBackStateFooter {
         _arrowView.isHidden = true
         _activityIndicator.stopAnimating()
     }
-    
-    // MARK: - Subviews
-    
-    override func prepare() {
-        super.prepare()
-        
-        if self._arrowView.superview == nil {
-            self.addSubview(self._arrowView)
-        }
-        
-        if self._activityIndicator.superview == nil {
-            self.addSubview(self._activityIndicator)
-        }
-    }
-    
-    override func placeSubViews() {
-        super.placeSubViews()
-        
-        var arrowCenterX = self.frame.width * 0.5
-        if !self.stateLabel.isHidden {
-            arrowCenterX -= 100
-        }
-        let arrowCenterY = self.frame.height * 0.5
-        let arrowCenter = CGPoint(x: arrowCenterX, y: arrowCenterY)
-        
-        if self._arrowView.constraints.count == 0 && self._arrowView.image != nil {
-            self._arrowView.isHidden = false
-            self._arrowView.frame.size = self._arrowView.image!.size
-            self._arrowView.center = arrowCenter
-        } else {
-            self._arrowView.isHidden = true
-        }
-        
-        if self._activityIndicator.constraints.count == 0 {
-            self._activityIndicator.center = arrowCenter
-        }
-    }
-
 }
