@@ -22,7 +22,7 @@ class ZVRefreshAutoCustomAnimationFooter: ZVRefreshAutoAnimationFooter {
             refreshingImages.append(img!)
         }
 
-        setImages(refreshingImages, state: .refreshing)
+        setImages(refreshingImages, for: .refreshing)
         
     }
 }

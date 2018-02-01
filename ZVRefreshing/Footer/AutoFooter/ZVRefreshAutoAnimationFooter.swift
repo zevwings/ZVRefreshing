@@ -7,23 +7,25 @@
 
 import UIKit
 
+
 open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     
     // MARK: - Property
     
-    private(set) lazy var animationView: UIImageView = {
+    public private(set) lazy var animationView: UIImageView = {
         let animationView = UIImageView()
         animationView.backgroundColor = .clear
         return animationView
     }()
     
-    private var _stateImages: [State: [UIImage]] = [:]
-    private var _stateDurations: [State: TimeInterval] = [:]
+    public var stateImages: [State: [UIImage]] = [:]
+    public var stateDurations: [State: TimeInterval] = [:]
     
     // MARK: - Subviews
     
     override open func prepare() {
         super.prepare()
+
         if animationView.superview == nil {
             addSubview(animationView)
         }
@@ -47,7 +49,7 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     open override func doOnAnyState(with oldState: ZVRefreshComponent.State) {
         super.doOnAnyState(with: oldState)
         
-        guard let images = _stateImages[.refreshing], images.count > 0 else { return }
+        guard let images = stateImages[.refreshing], images.count > 0 else { return }
         
         animationView.stopAnimating()
         animationView.isHidden = false
@@ -56,7 +58,7 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
             animationView.image = images.last
         } else {
             animationView.animationImages = images
-            animationView.animationDuration = _stateDurations[.refreshing] ?? 0.0
+            animationView.animationDuration = stateDurations[.refreshing] ?? 0.0
             animationView.startAnimating()
         }
     }
@@ -76,24 +78,5 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     }
 }
 
-// MARK: - Public
-
-extension ZVRefreshAutoAnimationFooter {
-    
-    /// 为相应状态设置图片
-    public func setImages(_ images: [UIImage], state: State) {
-        setImages(images, duration: Double(images.count) * 0.1, state: state)
-    }
-    
-    /// 为相应状态设置图片
-    public func setImages(_ images: [UIImage], duration: TimeInterval, state: State){
-        
-        guard images.count > 0 else { return }
-        
-        _stateImages[state] = images
-        _stateDurations[state] = duration
-        guard let image = images.first, image.size.height < frame.size.height else { return }
-        frame.size.height = image.size.height
-    }
-}
+extension ZVRefreshAutoAnimationFooter: ZVRefreshAnimationComponent {}
 

@@ -12,20 +12,19 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
     // MARK: - Property
     
     public private(set) lazy var animationView: UIImageView = {
-        
         let animationView = UIImageView()
         animationView.backgroundColor = .clear
         return animationView
     }()
     
-    private var _stateImages: [State: [UIImage]] = [:]
-    private var _stateDurations: [State: TimeInterval] = [:]
+    public var stateImages: [State: [UIImage]] = [:]
+    public var stateDurations: [State: TimeInterval] = [:]
 
     // MARK: didSet
     
     override open var pullingPercent: CGFloat {
         didSet {
-            let images = _stateImages[.idle] ?? []
+            let images = stateImages[.idle] ?? []
             if refreshState != .idle || images.count == 0 { return }
             animationView.stopAnimating()
             var index = Int(CGFloat(images.count) * pullingPercent)
@@ -41,7 +40,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
     
     override open func prepare() {
         super.prepare()
-        
+    
         if animationView.superview == nil {
             addSubview(animationView)
         }
@@ -81,14 +80,14 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
     }
     
     private func _doOn(pullingOrRefreshing state: State) {
-        let images = _stateImages[state]
+        let images = stateImages[state]
         if images?.count == 0 { return }
         animationView.stopAnimating()
         if images?.count == 1 {
             animationView.image = images?.last
         } else {
             animationView.animationImages = images
-            animationView.animationDuration = _stateDurations[state] ?? 0.0
+            animationView.animationDuration = stateDurations[state] ?? 0.0
             animationView.startAnimating()
         }
     }
@@ -96,22 +95,4 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
 
 // MARK: - Public
 
-public extension ZVRefreshAnimationHeader {
-    
-    public func setImages(_ images: [UIImage], forState state: State){
-        setImages(images, duration: Double(images.count) * 0.1, forState: state)
-    }
-    
-    public func setImages(_ images: [UIImage], duration: TimeInterval, forState state: State){
-        
-        guard images.count != 0 else { return }
-        
-        _stateImages.updateValue(images, forKey: state)
-        _stateDurations.updateValue(duration, forKey: state)
-        if let image = images.first {
-            if image.size.height > frame.size.height {
-                frame.size.height = image.size.height
-            }
-        }
-    }
-}
+extension ZVRefreshAnimationHeader: ZVRefreshAnimationComponent {}
