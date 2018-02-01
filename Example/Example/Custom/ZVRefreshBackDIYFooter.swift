@@ -11,6 +11,8 @@ import ZVRefreshing
 
 class ZVRefreshBackDIYFooter: ZVRefreshBackStateFooter {
     
+    // MARK: - Property
+    
     private lazy var _arrowView: UIImageView = {
         let arrowView = UIImageView()
         arrowView.image = UIImage(named: "arrow.png")
@@ -31,53 +33,66 @@ class ZVRefreshBackDIYFooter: ZVRefreshBackStateFooter {
         }
     }
     
-//    override func update(refreshState newValue: ZVRefreshComponent.State) {
-//
-//        let checked = self.checkState(newValue)
-//        guard checked.isIdenticalState == false else { return }
-//        super.update(refreshState: newValue)
-//        
-//        switch newValue {
-//        case .idle:
-//            if checked.oldState == .refreshing {
-//                self._arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
-//                UIView.animate(withDuration: 0.15, animations: {
-//                    self._activityIndicator.alpha = 0.0
-//                }, completion: { _ in
-//                    self._activityIndicator.alpha = 1.0
-//                    self._activityIndicator.stopAnimating()
-//                    self._arrowView.isHidden = false
-//                })
-//            } else {
-//                self._arrowView.isHidden = false
-//                self._activityIndicator.stopAnimating()
-//                UIView.animate(withDuration: 0.15, animations: {
-//                    self._arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
-//                }, completion: { _ in
-//                })
-//            }
-//            break
-//        case .pulling:
-//            self._arrowView.isHidden = false
-//            self._activityIndicator.stopAnimating()
-//            UIView.animate(withDuration: 0.15, animations: {
-//                self._arrowView.transform = CGAffineTransform.identity
-//            })
-//            break
-//        case .refreshing:
-//            self._arrowView.isHidden = true
-//            self._activityIndicator.startAnimating()
-//            break
-//        case .noMoreData:
-//            self._arrowView.isHidden = true
-//            self._activityIndicator.stopAnimating()
-//            break
-//        default:
-//            break
-//        }
-//    
-//    }
+    // MARK: getter & setter
     
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+        }
+    }
+    
+    // MARK: - Do On
+    
+    override func doOn(idle oldState: ZVRefreshComponent.State) {
+        super.doOn(idle: oldState)
+        
+        if oldState == .refreshing {
+            _arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
+            UIView.animate(withDuration: 0.15, animations: {
+                self._activityIndicator.alpha = 0.0
+            }, completion: { _ in
+                self._activityIndicator.alpha = 1.0
+                self._activityIndicator.stopAnimating()
+                self._arrowView.isHidden = false
+            })
+        } else {
+            _arrowView.isHidden = false
+            _activityIndicator.stopAnimating()
+            UIView.animate(withDuration: 0.15, animations: {
+                self._arrowView.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
+            }, completion: { _ in
+            })
+        }
+    }
+    
+    override func doOn(pulling oldState: ZVRefreshComponent.State) {
+        super.doOn(pulling: oldState)
+        
+        _arrowView.isHidden = false
+        _activityIndicator.stopAnimating()
+        UIView.animate(withDuration: 0.15, animations: {
+            self._arrowView.transform = CGAffineTransform.identity
+        })
+    }
+    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+        super.doOn(refreshing: oldState)
+        
+        _arrowView.isHidden = true
+        _activityIndicator.startAnimating()
+    }
+    
+    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
+        super.doOn(noMoreData: oldState)
+        
+        _arrowView.isHidden = true
+        _activityIndicator.stopAnimating()
+    }
+    
+    // MARK: - Subviews
     
     override func prepare() {
         super.prepare()

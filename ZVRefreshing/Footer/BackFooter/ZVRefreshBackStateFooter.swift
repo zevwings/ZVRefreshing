@@ -15,20 +15,6 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     public var labelInsetLeft: CGFloat = 24.0
     private var _stateTitles:[State: String] = [:]
     
-    // MARK: getter & setter
-    
-    open override var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            guard checkState(newValue).isIdenticalState == false else { return }
-            super.refreshState = newValue
-            
-            stateLabel.text = _stateTitles[newValue]
-        }
-    }
-    
     // MARK: - Subviews
     
     override open func prepare() {
@@ -48,6 +34,14 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
         super.placeSubViews()
         if stateLabel.constraints.count > 0 { return }
         stateLabel.frame = bounds
+    }
+    
+    // MARK: - Do On
+    
+    open override func doOn(anyState oldState: State) {
+        super.doOn(anyState: oldState)
+        
+        stateLabel.text = _stateTitles[refreshState]
     }
 }
 

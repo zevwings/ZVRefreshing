@@ -19,25 +19,7 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(.init(target: self, action: #selector(stateLabelClicked)))
         return label
-    }()    
-    
-    // MARK: getter & setter
-    
-    open override var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            guard checkState(newValue).isIdenticalState == false else { return }
-            super.refreshState = newValue
-            
-            if stateLabel.isHidden && newValue == .refreshing {
-                stateLabel.text = nil
-            } else {
-                stateLabel.text = _stateTitles[newValue]
-            }
-        }
-    }
+    }()
 
     // MARK: - Subviews
     
@@ -58,6 +40,18 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
         
         if stateLabel.constraints.count > 0 { return }
         stateLabel.frame = bounds
+    }
+    
+    // MARK: - Do On
+    
+    open override func doOn(anyState oldState: ZVRefreshComponent.State) {
+        super.doOn(anyState: oldState)
+        
+        if stateLabel.isHidden && refreshState == .refreshing {
+            stateLabel.text = nil
+        } else {
+            stateLabel.text = _stateTitles[refreshState]
+        }
     }
 }
 

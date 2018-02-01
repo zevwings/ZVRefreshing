@@ -17,21 +17,6 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
 
     private var stateTitles: [State : String] = [:]
     private var calendar = Calendar(identifier: .gregorian)
-
-    // MARK: getter & setter
-    
-    open override var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            guard checkState(newValue).isIdenticalState == false else { return }
-            super.refreshState = newValue
-            
-            stateLabel.text = stateTitles[refreshState]
-            didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
-        }
-    }
     
     // MARK: didSet
     
@@ -45,6 +30,15 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         didSet {
             didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
         }
+    }
+    
+    // MARK: - Do On
+    
+    open override func doOn(anyState oldState: ZVRefreshComponent.State) {
+        super.doOn(anyState: oldState)
+        
+        stateLabel.text = stateTitles[refreshState]
+        didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
     }
     
     // MARK: - Subviews

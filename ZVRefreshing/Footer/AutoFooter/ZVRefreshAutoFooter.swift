@@ -14,18 +14,6 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     public var isAutomaticallyRefresh: Bool = true
     private var _triggerAutomaticallyRefreshPercent: CGFloat = 1.0
     
-    // MARK: getter & setter
-    
-    open override var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            guard checkState(newValue).isIdenticalState == false else { return }
-            super.refreshState = newValue
-        }
-    }
-    
     // MARK: - Do On
     
     override open func doOn(refreshing oldState: State) {

@@ -19,17 +19,6 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         return activityIndicator
     }()
     
-    // MARK: getter & setter
-    open override var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            guard checkState(newValue).isIdenticalState == false else { return }
-            super.refreshState = newValue
-        }
-    }
-    
     // MARK: didSet
     
     override public var pullingPercent: CGFloat {

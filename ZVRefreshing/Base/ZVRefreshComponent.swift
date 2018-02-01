@@ -63,6 +63,8 @@ open class ZVRefreshComponent: UIControl {
             
             sendActions(for: .valueChanged)
             
+            doOn(anyState: result.oldState)
+            
             switch newValue {
             case .idle:
                 doOn(idle: result.oldState)
@@ -152,6 +154,8 @@ open class ZVRefreshComponent: UIControl {
     
     // MARK: - doOn
 
+    open func doOn(anyState oldState: State) {}
+    
     open func doOn(idle oldState: State) {}
     
     open func doOn(pulling oldState: State) {}

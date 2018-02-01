@@ -25,26 +25,32 @@ class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
         }
     }
     
-//    open override var refreshState: State {
-//        get {
-//            return super.refreshState
-//        }
-//        set {
-//            guard checkState(newValue).isIdenticalState == false else { return }
-//            super.refreshState = newValue
-//        }
-//    }
+    open override var refreshState: State {
+        get {
+            return super.refreshState
+        }
+        set {
+            guard checkState(newValue).isIdenticalState == false else { return }
+            super.refreshState = newValue
+        }
+    }
 
-//    override func update(refreshState newValue: ZVRefreshComponent.State) {
-//        guard checkState(newValue).isIdenticalState == false else { return }
-//        super.update(refreshState: newValue)
-//        
-//        if newValue == .noMoreData || newValue == .idle {
-//            self._activityIndicator.stopAnimating()
-//        } else if newValue == .refreshing {
-//            self._activityIndicator.startAnimating()
-//        }
-//    }
+    override func doOn(idle oldState: ZVRefreshComponent.State) {
+        super.doOn(idle: oldState)
+        
+        _activityIndicator.stopAnimating()
+    }
+    
+    override func doOn(noMoreData oldState: ZVRefreshComponent.State) {
+        super.doOn(noMoreData: oldState)
+        
+        _activityIndicator.stopAnimating()
+    }
+    
+    override func doOn(refreshing oldState: ZVRefreshComponent.State) {
+        super.doOn(refreshing: oldState)
+        _activityIndicator.startAnimating()
+    }
     
     override func prepare() {
         super.prepare()

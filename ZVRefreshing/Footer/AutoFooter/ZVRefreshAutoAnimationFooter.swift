@@ -20,18 +20,6 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     private var _stateImages: [State: [UIImage]] = [:]
     private var _stateDurations: [State: TimeInterval] = [:]
     
-    // MARK: getter & setter
-    
-    open override var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            guard checkState(newValue).isIdenticalState == false else { return }
-            super.refreshState = newValue
-        }
-    }
-    
     // MARK: - Subviews
     
     override open func prepare() {

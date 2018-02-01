@@ -14,18 +14,6 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
     private var lastBottomDelta: CGFloat = 0.0
     private var lastRefreshCount: Int = 0
     
-    // MARK: getter & setter
-    
-    open override var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            guard checkState(newValue).isIdenticalState == false else { return }
-            super.refreshState = newValue
-        }
-    }
-    
     // MARK: - Observers
 
     override open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {

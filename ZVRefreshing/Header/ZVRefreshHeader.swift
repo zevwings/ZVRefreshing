@@ -28,18 +28,6 @@ open class ZVRefreshHeader: ZVRefreshComponent {
 
     private var insetTop: CGFloat = 0.0
     
-    // MARK: getter & setter
-    
-    open override var refreshState: State {
-        get {
-            return super.refreshState
-        }
-        set {
-            guard checkState(newValue).isIdenticalState == false else { return }
-            super.refreshState = newValue
-        }
-    }
-    
     // MARK: - Subviews
     
     override open func prepare() {
