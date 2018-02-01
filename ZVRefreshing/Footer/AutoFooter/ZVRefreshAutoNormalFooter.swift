@@ -45,7 +45,7 @@ public class ZVRefreshAutoNormalFooter: ZVRefreshAutoStateFooter {
         activityIndicator.center = CGPoint(x: centerX, y: centerY)
     }
     
-    // MARK: - Do On
+    // MARK: - Do On State
     
     open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
         super.doOnRefreshing(with: oldState)

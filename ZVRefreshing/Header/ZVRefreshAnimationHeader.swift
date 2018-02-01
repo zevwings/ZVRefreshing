@@ -61,7 +61,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
         }
     }
 
-    // MARK: - Do On
+    // MARK: - Do On State
     
     open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
         super.doOnIdle(with: oldState)

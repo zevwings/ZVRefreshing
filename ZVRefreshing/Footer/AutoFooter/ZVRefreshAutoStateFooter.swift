@@ -42,7 +42,7 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
         stateLabel.frame = bounds
     }
     
-    // MARK: - Do On
+    // MARK: - Do On State
     
     open override func doOnAnyState(with oldState: ZVRefreshComponent.State) {
         super.doOnAnyState(with: oldState)

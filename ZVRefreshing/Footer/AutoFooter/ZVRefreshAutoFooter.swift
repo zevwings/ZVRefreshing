@@ -14,7 +14,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     public var isAutomaticallyRefresh: Bool = true
     private var _triggerAutomaticallyRefreshPercent: CGFloat = 1.0
     
-    // MARK: - Do On
+    // MARK: - Do On State
     
     open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
         super.doOnIdle(with: oldState)

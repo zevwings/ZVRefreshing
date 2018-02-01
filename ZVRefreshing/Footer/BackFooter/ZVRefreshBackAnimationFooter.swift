@@ -56,7 +56,7 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    // MARK: - Do On
+    // MARK: - Do On State
     
     open override func doOnPulling(with oldState: ZVRefreshComponent.State) {
         super.doOnPulling(with: oldState)

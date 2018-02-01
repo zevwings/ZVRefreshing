@@ -58,7 +58,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         frame.origin.y = max(contentHeight, scrollHeight)
     }
     
-    // MARK: - Do On
+    // MARK: - Do On State
     
     open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
         super.doOnRefreshing(with: oldState)

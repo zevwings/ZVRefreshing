@@ -54,7 +54,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    // MARK: - Do On
+    // MARK: - Do On State
     
     public override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
         super.doOnNoMoreData(with: oldState)

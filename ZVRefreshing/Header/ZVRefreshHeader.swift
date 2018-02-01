@@ -84,7 +84,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         }
     }
     
-    // MARK: - Do On
+    // MARK: - Do On State
     
     open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
         super.doOnIdle(with: oldState)
