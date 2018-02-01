@@ -91,5 +91,6 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     }
 }
 
+// MARK: - ZVRefreshAnimationComponent
 extension ZVRefreshBackAnimationFooter: ZVRefreshAnimationComponent {}
 

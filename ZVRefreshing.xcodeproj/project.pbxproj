@@ -27,6 +27,8 @@
 		4D1A31DF2018932000E6F85F /* Configration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CC2018932000E6F85F /* Configration.swift */; };
 		4D1A31E02018932000E6F85F /* UILabel+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CD2018932000E6F85F /* UILabel+Addition.swift */; };
 		4D1A31E12018932000E6F85F /* NSObject+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CE2018932000E6F85F /* NSObject+Addition.swift */; };
+		4D3E8B9520234EC90087B485 /* ZVRefreshStateComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3E8B9320234EC90087B485 /* ZVRefreshStateComponent.swift */; };
+		4D3E8B9620234EC90087B485 /* ZVRefreshAnimationComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D3E8B9420234EC90087B485 /* ZVRefreshAnimationComponent.swift */; };
 		4D5237241F4C24E8005080E1 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4D5237231F4C24E8005080E1 /* Resource.bundle */; };
 		4D94FC9E1F0DFFC500677215 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; };
 		4D94FCA31F0DFFC500677215 /* ZVRefreshingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCA21F0DFFC500677215 /* ZVRefreshingTests.swift */; };
@@ -67,6 +69,8 @@
 		4D1A31CC2018932000E6F85F /* Configration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configration.swift; sourceTree = "<group>"; };
 		4D1A31CD2018932000E6F85F /* UILabel+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Addition.swift"; sourceTree = "<group>"; };
 		4D1A31CE2018932000E6F85F /* NSObject+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Addition.swift"; sourceTree = "<group>"; };
+		4D3E8B9320234EC90087B485 /* ZVRefreshStateComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshStateComponent.swift; sourceTree = "<group>"; };
+		4D3E8B9420234EC90087B485 /* ZVRefreshAnimationComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAnimationComponent.swift; sourceTree = "<group>"; };
 		4D5237231F4C24E8005080E1 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZVRefreshing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D94FC971F0DFFC500677215 /* ZVRefreshing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZVRefreshing.h; sourceTree = "<group>"; };
@@ -115,6 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				4D1A31BC2018932000E6F85F /* ZVRefreshComponent.swift */,
+				4D3E8B9320234EC90087B485 /* ZVRefreshStateComponent.swift */,
+				4D3E8B9420234EC90087B485 /* ZVRefreshAnimationComponent.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -446,6 +452,7 @@
 				4D1A31D82018932000E6F85F /* ZVRefreshAutoAnimationFooter.swift in Sources */,
 				4D1A31DC2018932000E6F85F /* ZVRefreshBackFooter.swift in Sources */,
 				4D1A31D12018932000E6F85F /* ZVRefreshHeader.swift in Sources */,
+				4D3E8B9620234EC90087B485 /* ZVRefreshAnimationComponent.swift in Sources */,
 				4D1A31D42018932000E6F85F /* Extensions.swift in Sources */,
 				4D1A31D92018932000E6F85F /* ZVRefreshBackAnimationFooter.swift in Sources */,
 				4D1A31CF2018932000E6F85F /* ZVRefreshNormalHeader.swift in Sources */,
@@ -454,6 +461,7 @@
 				4D1A31D62018932000E6F85F /* ZVRefreshAutoFooter.swift in Sources */,
 				4D1A31DD2018932000E6F85F /* ZVRefreshFooter.swift in Sources */,
 				4D1A31D52018932000E6F85F /* ZVRefreshAutoNormalFooter.swift in Sources */,
+				4D3E8B9520234EC90087B485 /* ZVRefreshStateComponent.swift in Sources */,
 				4D1A31DF2018932000E6F85F /* Configration.swift in Sources */,
 				4D1A31DB2018932000E6F85F /* ZVRefreshBackNormalFooter.swift in Sources */,
 				4D1A31D32018932000E6F85F /* ZVRefreshComponent.swift in Sources */,
