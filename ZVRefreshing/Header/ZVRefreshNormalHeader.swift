@@ -28,7 +28,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         super.prepare()
         
         if activityIndicator == nil {
-            activityIndicator = ZVActivityIndicatorView()
+            activityIndicator = ZVActivityIndicatorView(frame: .init(x: 0, y: 0, width: 24, height: 24))
             activityIndicator?.color = .lightGray
             activityIndicator?.hidesWhenStopped = false
             addSubview(activityIndicator!)
@@ -48,12 +48,11 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
                 } else {
                     maxLabelWidth = stateLabel.textWidth
                 }
-                activityIndicatorCenterX -= (maxLabelWidth * 0.5 + labelInsetLeft)
+                activityIndicatorCenterX -= (maxLabelWidth * 0.5 + labelInsetLeft + activityIndicator.frame.width * 0.5)
             }
             
             let activityIndicatorCenterY = frame.height * 0.5
             let activityIndicatorCenter = CGPoint(x: activityIndicatorCenterX, y: activityIndicatorCenterY)
-            activityIndicator.frame = CGRect(x: 0, y: 0, width: 24.0, height: 24.0)
             activityIndicator.center = activityIndicatorCenter
         }
     }

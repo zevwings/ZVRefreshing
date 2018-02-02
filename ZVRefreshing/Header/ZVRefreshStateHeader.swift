@@ -15,7 +15,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     
     // MARK: - Property
     
-    public var labelInsetLeft: CGFloat = 24.0
+    public var labelInsetLeft: CGFloat = 12.0
     public var stateTitles: [State : String]?
     public private(set) var stateLabel: UILabel?
     public private(set) var lastUpdatedTimeLabel: UILabel?

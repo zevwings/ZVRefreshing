@@ -26,3 +26,7 @@ struct ComponentHeader {
 struct ComponentFooter {
     static let height: CGFloat = 44.0
 }
+
+struct ActivityIndicator {
+    static let width = 24.0
+}

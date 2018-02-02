@@ -32,8 +32,6 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     override open func placeSubViews() {
         super.placeSubViews()
         
-        labelInsetLeft = 12
-        
         if let animationView = animationView, animationView.constraints.count == 0 {
             if let stateLabel = stateLabel, !stateLabel.isHidden {
                 let width = (frame.width - stateLabel.textWidth) * 0.5 - labelInsetLeft

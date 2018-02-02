@@ -43,8 +43,6 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
     override open func placeSubViews() {
         super.placeSubViews()
         
-        labelInsetLeft = 12
-        
         if let animationView = animationView, animationView.constraints.count == 0 {
             if let stateLabel = stateLabel, !stateLabel.isHidden {
                 var animationViewWith: CGFloat = 0
