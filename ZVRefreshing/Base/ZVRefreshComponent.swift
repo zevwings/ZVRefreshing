@@ -116,7 +116,7 @@ open class ZVRefreshComponent: UIControl {
     ///
     /// - Parameter refreshHandler: callback closure
     public convenience init(refreshHandler: @escaping ZVRefreshHandler) {
-        self.init(frame: .zero)
+        self.init()
         _refreshHandler = refreshHandler
     }
     
@@ -126,7 +126,7 @@ open class ZVRefreshComponent: UIControl {
     ///   - target: callback target
     ///   - action: callback selector
     public convenience init(target: Any, action: Selector) {
-        self.init(frame: .zero)
+        self.init()
         _target = target
         _action = action
     }
@@ -192,12 +192,6 @@ extension ZVRefreshComponent {
         super.willMove(toSuperview: newSuperview)
         
         guard let superview = newSuperview as? UIScrollView else { return }
-        
-//        if superview.isKind(of: UITableView.self) {
-//            UITableView.once
-//        } else if superview.isKind(of: UICollectionView.self) {
-//            UICollectionView.once
-//        }
         
         _removeObservers()
         
@@ -306,7 +300,7 @@ extension ZVRefreshComponent {
 
 public extension ZVRefreshComponent {
     
-    public func addTarget(_ target: Any?, action: Selector) {
+    public func addTarget(_ target: Any, action: Selector) {
         _target = target
         _action = action
     }

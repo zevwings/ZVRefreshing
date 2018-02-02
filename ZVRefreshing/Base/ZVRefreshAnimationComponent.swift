@@ -10,8 +10,8 @@ import UIKit
 
 public protocol ZVRefreshAnimationComponent: class {
     
-    var stateImages: [ZVRefreshComponent.State: [UIImage]] { get set }
-    var stateDurations: [ZVRefreshComponent.State: TimeInterval] { get set }
+    var stateImages: [ZVRefreshComponent.State: [UIImage]]? { get set }
+    var stateDurations: [ZVRefreshComponent.State: TimeInterval]? { get set }
     
     var animationView: UIImageView? { get }
     
@@ -27,10 +27,13 @@ public extension ZVRefreshAnimationComponent where Self: ZVRefreshComponent {
     
     func setImages(_ images: [UIImage], duration: TimeInterval, for state: ZVRefreshComponent.State) {
         
-        guard images.count != 0 else { return }
+        guard images.count > 0 else { return }
         
-        stateImages[state] = images
-        stateDurations[state] = duration
+        if stateImages == nil { stateImages = [:] }
+        if stateDurations == nil { stateDurations = [:] }
+        
+        stateImages?[state] = images
+        stateDurations?[state] = duration
         if let image = images.first, image.size.height > frame.height {
             frame.size.height = image.size.height
         }
@@ -38,7 +41,7 @@ public extension ZVRefreshAnimationComponent where Self: ZVRefreshComponent {
     
     func pullAnimation(with pullPercent: CGFloat) {
         
-        guard let images = stateImages[.idle], images.count > 0, refreshState == .idle else { return }
+        guard let images = stateImages?[.idle], images.count > 0, refreshState == .idle else { return }
         
         animationView?.stopAnimating()
         
@@ -53,7 +56,7 @@ public extension ZVRefreshAnimationComponent where Self: ZVRefreshComponent {
     
     func startAnimating() {
         
-        guard let images = stateImages[.refreshing], images.count > 0 else { return }
+        guard let images = stateImages?[.refreshing], images.count > 0 else { return }
         
         animationView?.stopAnimating()
         
@@ -61,7 +64,7 @@ public extension ZVRefreshAnimationComponent where Self: ZVRefreshComponent {
             animationView?.image = images.last
         } else {
             animationView?.animationImages = images
-            animationView?.animationDuration = stateDurations[.refreshing] ?? 0.0
+            animationView?.animationDuration = stateDurations?[.refreshing] ?? 0.0
             animationView?.startAnimating()
         }
     }

@@ -12,7 +12,7 @@ public typealias ZVRefreshHandler = () -> ()
 public typealias ZVBeginRefreshingCompletionHandler = () -> ()
 public typealias ZVEndRefreshingCompletionHandler = () -> ()
 
-internal typealias ZVReloadDataHandler = @convention(block) (_ totalCount: Int) -> ()
+typealias ZVReloadDataHandler = (_ totalCount: Int) -> ()
 
 struct AnimationDuration {
     static let fast = 0.25

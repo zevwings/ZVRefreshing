@@ -34,6 +34,7 @@ public extension UIScrollView {
     private struct AssociationKey {
         static var header  = "com.zevwings.assocaiationkey.header"
         static var footer  = "com.zevwings.assocaiationkey.footer"
+        static var handler  = "com.zevwings.assocaiationkey.handler"
     }
 
     public var refreshHeader: ZVRefreshHeader? {
@@ -67,44 +68,33 @@ public extension UIScrollView {
     }
 }
 
-extension UITableView {
-    
-//    internal static let once: Void = {
-//        UITableView.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
-//                                           m2: #selector(UITableView._reloadData))
-//    }()
-//
-//    @objc func _reloadData() {
-//        _reloadData()
-//        executeReloadDataBlock()
-//    }
-}
 
-extension UICollectionView {
+
+class ClosureWrapper {
+    var closure: ZVReloadDataHandler?
     
-//    internal static let once: Void = {
-//        UICollectionView.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
-//                                                m2: #selector(UICollectionView._reloadData))
-//    }()
-//
-//    @objc func _reloadData() {
-//        _reloadData()
-//        executeReloadDataBlock()
-//    }
+    init(_ closure: ZVReloadDataHandler?) {
+        self.closure = closure
+    }
+    
+    deinit {
+        print("ClosureWrapper deinit.")
+    }
 }
 
 extension UIScrollView {
     
-    private struct Storage {
-        static var handler: ZVReloadDataHandler?
-    }
-    
-    internal var reloadDataHandler: ZVReloadDataHandler? {
+    var reloadDataHandler: ZVReloadDataHandler? {
         get {
-            return Storage.handler
+            let cl = objc_getAssociatedObject(self, &AssociationKey.handler)
+//
+            return (cl as? ClosureWrapper)?.closure
         }
         set {
-            Storage.handler = newValue
+//            print("reloadDataHandler set new value")
+//            let cl = ClosureWrapper(newValue)
+//            print("cl \(cl)")
+//            objc_setAssociatedObject(self, &AssociationKey.handler, cl, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
@@ -112,15 +102,16 @@ extension UIScrollView {
         
         var totalCount: Int = 0
         if isKind(of: UITableView.classForCoder()) {
+            
             let tableView = self as? UITableView
             for section in 0 ..< tableView!.numberOfSections {
                 totalCount += tableView!.numberOfRows(inSection: section)
             }
         } else if isKind(of: UICollectionView.classForCoder()) {
-            let collectionView = self as? UICollectionView
             
-            for section in 0 ..< collectionView!.numberOfSections  {
-                totalCount += collectionView!.numberOfItems(inSection: section)
+            let collectionView = self as! UICollectionView
+            for section in 0 ..< collectionView.numberOfSections  {
+                totalCount += collectionView.numberOfItems(inSection: section)
             }
         }
         return totalCount
@@ -129,6 +120,40 @@ extension UIScrollView {
     func executeReloadDataBlock() {
         reloadDataHandler?(totalDataCount)
     }
-    
 }
 
+
+extension UIApplication {
+    
+    override open var next: UIResponder? {
+        UITableView.once
+        UICollectionView.once
+        return super.next
+    }
+}
+
+extension UITableView {
+    
+    static let once: Void = {
+        UITableView.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
+                                           m2: #selector(UITableView._reloadData))
+    }()
+    
+    @objc func _reloadData() {
+        _reloadData()
+        executeReloadDataBlock()
+    }
+}
+
+extension UICollectionView {
+    
+    static let once: Void = {
+        UICollectionView.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
+                                                m2: #selector(UICollectionView._reloadData))
+    }()
+    
+    @objc func _reloadData() {
+        _reloadData()
+        executeReloadDataBlock()
+    }
+}

@@ -15,7 +15,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
     public var stateTitles: [State : String]?
     public private(set) var stateLabel: UILabel?
-
+    
     // MARK: - Subviews
     
     override open func prepare() {

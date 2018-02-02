@@ -58,6 +58,7 @@ extension ZVRefreshFooter {
         
         if  superview.isKind(of: UITableView.classForCoder()) ||
             superview.isKind(of: UICollectionView.classForCoder()) {
+            
             superview.reloadDataHandler = { totalCount in
                 if self.isAutomaticallyHidden {
                     self.isHidden = (totalCount <= self.minimumRowsForAutomaticallyHidden)

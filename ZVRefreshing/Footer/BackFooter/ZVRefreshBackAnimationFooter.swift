@@ -13,8 +13,8 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     
     public private(set) var animationView: UIImageView?
     
-    public var stateImages: [State: [UIImage]] = [:]
-    public var stateDurations: [State: TimeInterval] = [:]
+    public var stateImages: [State: [UIImage]]?
+    public var stateDurations: [State: TimeInterval]?
     
     // MARK: didSet
     

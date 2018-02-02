@@ -14,8 +14,8 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     
     public private(set) var animationView: UIImageView?
     
-    public var stateImages: [State: [UIImage]] = [:]
-    public var stateDurations: [State: TimeInterval] = [:]
+    public var stateImages: [State: [UIImage]]?
+    public var stateDurations: [State: TimeInterval]?
     
     // MARK: - Subviews
     
