@@ -9,21 +9,16 @@
 import UIKit
 import ZVRefreshing
 
-class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
+class ZVRefreshAutoArrowIndicatorFooter: ZVRefreshAutoStateFooter {
     
     // MARK: - Property
     
-    private lazy var _activityIndicator: UIActivityIndicatorView = {
-        var activityIndicator = UIActivityIndicatorView()
-        activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
-        activityIndicator.hidesWhenStopped = true
-        return activityIndicator
-    }()
+    private var activityIndicator: UIActivityIndicatorView?
     
     public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
         didSet {
-            self._activityIndicator.activityIndicatorViewStyle = self.activityIndicatorViewStyle
-            self.setNeedsLayout()
+            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
+            setNeedsLayout()
         }
     }
     
@@ -32,44 +27,45 @@ class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
     override func prepare() {
         super.prepare()
         
-        if self._activityIndicator.superview == nil {
-            self.addSubview(self._activityIndicator)
+        if activityIndicator == nil {
+            activityIndicator = UIActivityIndicatorView()
+            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
+            activityIndicator?.hidesWhenStopped = true
+            addSubview(activityIndicator!)
         }
     }
     
     override func placeSubViews() {
         super.placeSubViews()
-        if self._activityIndicator.constraints.count > 0 { return }
         
-        var loadingCenterX = self.frame.width * 0.5
+        guard let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 else { return }
+        
+        var loadingCenterX = frame.width * 0.5
         if let stateLabel = stateLabel, !stateLabel.isHidden {
             loadingCenterX -= 100
         }
-        let loadingCenterY = self.frame.height * 0.5
-        self._activityIndicator.center = CGPoint(x: loadingCenterX, y: loadingCenterY)
+        let loadingCenterY = frame.height * 0.5
+        activityIndicator.center = CGPoint(x: loadingCenterX, y: loadingCenterY)
     }
 
     // MARK: - Do On State
     
     override func doOnIdle(with oldState: ZVRefreshComponent.State) {
         super.doOnIdle(with: oldState)
-        _activityIndicator.stopAnimating()
+        
+        activityIndicator?.stopAnimating()
     }
     
     override func doOnNoMoreData(with oldState: State) {
         super.doOnNoMoreData(with: oldState)
         
-        _activityIndicator.stopAnimating()
+        activityIndicator?.stopAnimating()
     }
     
     override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
         super.doOnRefreshing(with: oldState)
-        _activityIndicator.startAnimating()
+        
+        activityIndicator?.startAnimating()
     }
-    
-
 }
 
-extension ZVRefreshAutoDIYFooter {
-    
-}

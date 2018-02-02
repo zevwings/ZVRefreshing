@@ -189,13 +189,13 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         case 5:
             segue.destination.title = self.rows[5]
             
-            let header = ZVRefreshDIYHeader()
+            let header = ZVRefreshArrowIndicatorHeader()
             let footer: ZVRefreshFooter?
                 
             if _isAutoFooter {
-                footer = ZVRefreshAutoDIYFooter()
+                footer = ZVRefreshAutoArrowIndicatorFooter()
             } else {
-                footer = ZVRefreshBackDIYFooter()
+                footer = ZVRefreshBackArrowIndicatorFooter()
             }
             
             _set(for: section, viewController: segue.destination, header: header, footer: footer)

@@ -18,7 +18,6 @@ public protocol ZVRefreshStateComponent: class {
 
 public extension ZVRefreshStateComponent where Self: ZVRefreshComponent {
     
-    
     func setTitle(_ title: String, for state: ZVRefreshComponent.State) {
         if stateTitles == nil { stateTitles = [:] }
         stateTitles?[state] = title

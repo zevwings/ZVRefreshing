@@ -16,8 +16,10 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     // MARK: - Property
     
     public var labelInsetLeft: CGFloat = 12.0
+    
     public var stateTitles: [State : String]?
     public private(set) var stateLabel: UILabel?
+    
     public private(set) var lastUpdatedTimeLabel: UILabel?
 
     // MARK: LastUpdateTime
@@ -92,7 +94,6 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         super.doOnAnyState(with: oldState)
         
         setCurrentStateTitle()
-        _didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
     }
     
     open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
@@ -102,6 +103,8 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         
         UserDefaults.standard.set(Date(), forKey: lastUpdatedTimeKey)
         UserDefaults.standard.synchronize()
+        
+        _didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
     }
 }
 
