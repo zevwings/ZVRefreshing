@@ -12,11 +12,7 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     
     // MARK: - Property
     
-    public private(set) lazy var animationView: UIImageView = {
-        let animationView = UIImageView()
-        animationView.backgroundColor = .clear
-        return animationView
-    }()
+    public private(set) var animationView: UIImageView?
     
     public var stateImages: [State: [UIImage]] = [:]
     public var stateDurations: [State: TimeInterval] = [:]
@@ -26,21 +22,25 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     override open func prepare() {
         super.prepare()
 
-        if animationView.superview == nil {
-            addSubview(animationView)
+        if animationView == nil {
+            animationView = UIImageView()
+            animationView?.backgroundColor = .clear
+            addSubview(animationView!)
         }
     }
     
     override open func placeSubViews() {
         super.placeSubViews()
         
-        if animationView.constraints.count > 0 { return }
-        animationView.frame = bounds
-        if stateLabel.isHidden {
-            animationView.contentMode = .scaleAspectFit
-        } else {
-            animationView.contentMode = .scaleAspectFit
-            animationView.frame.size.width = frame.size.width * 0.5 - 90
+        if let animationView = animationView, animationView.constraints.count == 0 {
+            if let stateLabel = stateLabel, !stateLabel.isHidden {
+                let width = (frame.width - stateLabel.textWidth) * 0.5 - self.labelInsetLeft
+                animationView.frame = .init(x: 0, y: 0, width: width, height: frame.height)
+                animationView.contentMode = .right
+            } else {
+                animationView.contentMode = .center
+                animationView.frame = bounds
+            }
         }
     }
 
@@ -51,30 +51,27 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
         
         guard let images = stateImages[.refreshing], images.count > 0 else { return }
         
-        animationView.stopAnimating()
-        animationView.isHidden = false
+        animationView?.stopAnimating()
         
         if images.count == 1 {
-            animationView.image = images.last
+            animationView?.image = images.last
         } else {
-            animationView.animationImages = images
-            animationView.animationDuration = stateDurations[.refreshing] ?? 0.0
-            animationView.startAnimating()
+            animationView?.animationImages = images
+            animationView?.animationDuration = stateDurations[.refreshing] ?? 0.0
+            animationView?.startAnimating()
         }
     }
     
     open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
         super.doOnIdle(with: oldState)
         
-        animationView.stopAnimating()
-        animationView.isHidden = false
+        animationView?.stopAnimating()
     }
 
     open override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
         super.doOnNoMoreData(with: oldState)
         
-        animationView.stopAnimating()
-        animationView.isHidden = false
+        animationView?.stopAnimating()
     }
 }
 

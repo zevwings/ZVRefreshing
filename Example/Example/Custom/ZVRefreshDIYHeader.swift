@@ -53,7 +53,7 @@ class ZVRefreshDIYHeader: ZVRefreshStateHeader {
         super.placeSubViews()
         
         var centerX = self.frame.width * 0.5
-        if !self.stateLabel.isHidden {
+        if let stateLabel = stateLabel, !stateLabel.isHidden {
             centerX -= 100
         }
         let centerY = self.frame.height * 0.5

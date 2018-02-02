@@ -9,22 +9,9 @@ import UIKit
 
 open class ZVRefreshHeader: ZVRefreshComponent {
     
-    public struct LastUpdatedTimeKey {
-        static var `default`: String { return "com.zevwings.refreshing.lastUpdateTime" }
-    }
-    
     // MARK: - Property
     
-    /// 用于存储上次更新时间
-    public var lastUpdatedTimeKey: String = LastUpdatedTimeKey.default
-    
-    /// 需要忽略的ScrollView.contentInset.top
     public var ignoredScrollViewContentInsetTop: CGFloat = 0.0
-
-    /// 上次更新时间
-    internal var lastUpdatedTime: Date? {
-        return UserDefaults.standard.object(forKey: lastUpdatedTimeKey) as? Date
-    }
 
     private var insetTop: CGFloat = 0.0
     
@@ -32,15 +19,13 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     
     override open func prepare() {
         super.prepare()
-        
-        lastUpdatedTimeKey = LastUpdatedTimeKey.default
     }
     
     override open func placeSubViews() {
         super.placeSubViews()
         
         frame.size.height = ComponentHeader.height
-        frame.origin.y = -frame.size.height - ignoredScrollViewContentInsetTop
+        frame.origin.y = -frame.height - ignoredScrollViewContentInsetTop
     }
 
     // MARK: - Observers
@@ -52,7 +37,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
             guard window != nil else { return }
             
             var insetT = -scrollView.contentOffset.y > scrollViewOriginalInset.top ? -scrollView.contentOffset.y : scrollViewOriginalInset.top
-            insetT = insetT > frame.size.height + scrollViewOriginalInset.top ? frame.size.height + scrollViewOriginalInset.top : insetT
+            insetT = insetT > frame.height + scrollViewOriginalInset.top ? frame.height + scrollViewOriginalInset.top : insetT
             
             scrollView.contentInset.top = insetT
             insetTop = scrollViewOriginalInset.top - insetT
@@ -67,8 +52,8 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         
         guard offsetY <= happenOffsetY else { return }
         
-        let normal2pullingOffsetY = happenOffsetY - frame.size.height
-        let pullingPercent = (happenOffsetY - offsetY) / frame.size.height
+        let normal2pullingOffsetY = happenOffsetY - frame.height
+        let pullingPercent = (happenOffsetY - offsetY) / frame.height
         
         if scrollView.isDragging {
             self.pullingPercent = pullingPercent
@@ -91,9 +76,6 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         
         guard oldState == .refreshing else { return }
         
-        UserDefaults.standard.set(Date(), forKey: lastUpdatedTimeKey)
-        UserDefaults.standard.synchronize()
-        
         UIView.animate(withDuration: AnimationDuration.slow, animations: {
             self.scrollView?.contentInset.top += self.insetTop
             if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
@@ -108,7 +90,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         
         DispatchQueue.main.async {
             UIView.animate(withDuration: AnimationDuration.fast, animations: {
-                let top = self.scrollViewOriginalInset.top + self.frame.size.height
+                let top = self.scrollViewOriginalInset.top + self.frame.height
                 self.scrollView?.contentInset.top = top
                 var offset = self.scrollView!.contentOffset
                 offset.y = -top

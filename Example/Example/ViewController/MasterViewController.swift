@@ -95,7 +95,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             segue.destination.title = self.rows[1]
             
             let header = ZVRefreshNormalHeader()
-            header.lastUpdatedTimeLabel.isHidden = true
+            header.lastUpdatedTimeLabel?.isHidden = true
             
             var footer: ZVRefreshFooter?
             if _isAutoFooter {
@@ -112,15 +112,15 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let header = ZVRefreshNormalHeader(refreshHandler: { 
                 
             })
-            header.stateLabel.isHidden = true
-            header.lastUpdatedTimeLabel.isHidden = true
+            header.stateLabel?.isHidden = true
+            header.lastUpdatedTimeLabel?.isHidden = true
             
             var footer: ZVRefreshFooter?
             if _isAutoFooter {
                 footer = ZVRefreshAutoNormalFooter()
             } else {
                 footer = ZVRefreshBackNormalFooter()
-                (footer as? ZVRefreshBackNormalFooter)?.stateLabel.isHidden = true
+                (footer as? ZVRefreshBackNormalFooter)?.stateLabel?.isHidden = true
             }
 
             _set(for: section, viewController: segue.destination, header: header, footer: footer)
@@ -177,6 +177,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             segue.destination.title = self.rows[4]
             
             let header = ZVRefreshCustomAnimationHeader()
+            header.stateLabel?.isHidden = true
             let footer: ZVRefreshFooter?
             if _isAutoFooter {
                 footer = ZVRefreshAutoCustomAnimationFooter()

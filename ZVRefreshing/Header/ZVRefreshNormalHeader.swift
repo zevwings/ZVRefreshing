@@ -12,18 +12,13 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
     
     // MARK: - Property
     
-    public private(set) lazy var activityIndicator: ZVActivityIndicatorView = {
-        let activityIndicator = ZVActivityIndicatorView()
-        activityIndicator.color = .lightGray
-        activityIndicator.hidesWhenStopped = false
-        return activityIndicator
-    }()
+    public private(set) var activityIndicator: ZVActivityIndicatorView?
     
     // MARK: didSet
     
     override open var pullingPercent: CGFloat {
         didSet {
-            activityIndicator.progress = pullingPercent
+            activityIndicator?.progress = pullingPercent
         }
     }
     
@@ -32,33 +27,34 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
     override open func prepare() {
         super.prepare()
         
-        if activityIndicator.superview == nil {
-            addSubview(activityIndicator)
+        if activityIndicator == nil {
+            activityIndicator = ZVActivityIndicatorView()
+            activityIndicator?.color = .lightGray
+            activityIndicator?.hidesWhenStopped = false
+            addSubview(activityIndicator!)
         }
     }
     
     override open func placeSubViews() {
         super.placeSubViews()
         
-        var centerX = frame.size.width * 0.5
-        
-        if !stateLabel.isHidden {
-            var labelWidth: CGFloat = 0.0
-            if lastUpdatedTimeLabel.isHidden {
-                labelWidth = stateLabel.textWidth
-            } else {
-                labelWidth = max(lastUpdatedTimeLabel.textWidth, stateLabel.textWidth)
-            }
-            centerX -= (labelWidth * 0.5 + labelInsetLeft)
-        }
-        
-        let centerY = frame.size.height * 0.5
-        let center = CGPoint(x: centerX, y: centerY)
-        
-        if activityIndicator.constraints.count == 0 {
+        if let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 {
             
+            var activityIndicatorCenterX = frame.width * 0.5
+            if let stateLabel = stateLabel, !stateLabel.isHidden {
+                var maxLabelWidth: CGFloat = 0.0
+                if let lastUpdatedTimeLabel = lastUpdatedTimeLabel, !lastUpdatedTimeLabel.isHidden {
+                    maxLabelWidth = max(lastUpdatedTimeLabel.textWidth, stateLabel.textWidth)
+                } else {
+                    maxLabelWidth = stateLabel.textWidth
+                }
+                activityIndicatorCenterX -= (maxLabelWidth * 0.5 + labelInsetLeft)
+            }
+            
+            let activityIndicatorCenterY = frame.height * 0.5
+            let activityIndicatorCenter = CGPoint(x: activityIndicatorCenterX, y: activityIndicatorCenterY)
             activityIndicator.frame = CGRect(x: 0, y: 0, width: 24.0, height: 24.0)
-            activityIndicator.center = center
+            activityIndicator.center = activityIndicatorCenter
         }
     }
     
@@ -69,24 +65,24 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         
         if refreshState == .refreshing {
             UIView.animate(withDuration: AnimationDuration.slow, animations: {
-                self.activityIndicator.alpha = 0.0
-            }, completion: { finished in
+                self.activityIndicator?.alpha = 0.0
+            }, completion: { isFinished in
                 guard self.refreshState == .idle else { return }
-                self.activityIndicator.stopAnimating()
+                self.activityIndicator?.stopAnimating()
             })
         } else {
-            activityIndicator.stopAnimating()
+            activityIndicator?.stopAnimating()
         }
     }
     
     open override func doOnPulling(with oldState: ZVRefreshComponent.State) {
         super.doOnPulling(with: oldState)
-        activityIndicator.stopAnimating()
+        activityIndicator?.stopAnimating()
     }
     
     open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
         super.doOnRefreshing(with: oldState)
-        activityIndicator.startAnimating()
+        activityIndicator?.startAnimating()
     }
 }
 
@@ -96,8 +92,7 @@ extension ZVRefreshNormalHeader {
     
     override open var tintColor: UIColor! {
         didSet {
-            super.tintColor = tintColor
-            activityIndicator.color = tintColor
+            activityIndicator?.color = tintColor
         }
     }
 }

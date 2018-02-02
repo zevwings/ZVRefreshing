@@ -202,7 +202,7 @@ extension ZVRefreshComponent {
         _removeObservers()
         
         frame.origin.x = 0
-        frame.size.width = superview.frame.size.width
+        frame.size.width = superview.frame.width
         backgroundColor = superview.backgroundColor
         
         scrollView = superview

@@ -51,7 +51,7 @@ class ZVRefreshBackDIYFooter: ZVRefreshBackStateFooter {
         super.placeSubViews()
         
         var arrowCenterX = self.frame.width * 0.5
-        if !self.stateLabel.isHidden {
+        if let stateLabel = stateLabel, !stateLabel.isHidden {
             arrowCenterX -= 100
         }
         let arrowCenterY = self.frame.height * 0.5

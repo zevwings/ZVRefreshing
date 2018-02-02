@@ -42,7 +42,7 @@ class ZVRefreshAutoDIYFooter: ZVRefreshAutoStateFooter {
         if self._activityIndicator.constraints.count > 0 { return }
         
         var loadingCenterX = self.frame.width * 0.5
-        if !self.stateLabel.isHidden {
+        if let stateLabel = stateLabel, !stateLabel.isHidden {
             loadingCenterX -= 100
         }
         let loadingCenterY = self.frame.height * 0.5

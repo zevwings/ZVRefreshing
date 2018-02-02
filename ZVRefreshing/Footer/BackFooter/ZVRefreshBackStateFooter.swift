@@ -11,17 +11,18 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
     // MARK: - Property
     
-    public private(set) lazy var stateLabel: UILabel = .default
     public var labelInsetLeft: CGFloat = 24.0
-    public var stateTitles:[State: String] = [:]
-    
+    public var stateTitles: [State : String]?
+    public private(set) var stateLabel: UILabel?
+
     // MARK: - Subviews
     
     override open func prepare() {
         super.prepare()
         
-        if stateLabel.superview == nil {
-            addSubview(stateLabel)
+        if stateLabel == nil {
+            stateLabel = .default
+            addSubview(stateLabel!)
         }
         
         setTitle(localized(string: LocalizedKey.Footer.Back.idle), for: .idle)
@@ -32,15 +33,18 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
     override open func placeSubViews() {
         super.placeSubViews()
-        if stateLabel.constraints.count > 0 { return }
-        stateLabel.frame = bounds
+        
+        if let stateLabel = stateLabel, stateLabel.constraints.count == 0 {
+            stateLabel.frame = bounds
+        }
     }
     
     // MARK: - Do On State
     
     open override func doOnAnyState(with oldState: ZVRefreshComponent.State) {
         super.doOnAnyState(with: oldState)
-        stateLabel.text = stateTitles[refreshState]
+        
+        setCurrentStateTitle()
     }
 }
 
@@ -50,7 +54,7 @@ extension ZVRefreshBackStateFooter {
     
     override open var tintColor: UIColor! {
         didSet {
-            stateLabel.textColor = tintColor
+            stateLabel?.textColor = tintColor
         }
     }
 }

@@ -41,9 +41,15 @@ struct LocalizedKey {
 
 func localized(string key: String, comment: String = "") -> String {
     
-    guard let bundle = Bundle.resource else { return "" }
+    guard let path = Bundle(for: ZVRefreshComponent.self).path(forResource: "Resource", ofType: "bundle") else {
+        return ""
+    }
     
-    var tableName = ""
+    guard let bundle = Bundle(path: path) else {
+        return ""
+    }
+    
+    var tableName = "en"
     guard let language = Locale.preferredLanguages.first else { return "en"}
     if language.hasPrefix("zh-Hant") {
         tableName = "zh-Hant"
@@ -54,20 +60,4 @@ func localized(string key: String, comment: String = "") -> String {
     }
 
     return NSLocalizedString(key, tableName: tableName, bundle: bundle, value: "", comment: comment.isEmpty ? key: comment)
-}
-
-extension Bundle {
-    
-    class var current: Bundle {
-        return Bundle(for: ZVRefreshComponent.self)
-    }
-    
-    class var resource: Bundle? {
-        
-        guard let path = self.current.path(forResource: "Resource", ofType: "bundle") else {
-            return nil
-        }
-        
-        return Bundle(path: path)
-    }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal extension UILabel {
+extension UILabel {
     
     class var `default`: UILabel {
         let label = UILabel(frame: .zero)
@@ -24,10 +24,9 @@ internal extension UILabel {
         
         let size = CGSize(width: Int.max, height: Int.max)
         guard let text = self.text else { return 0 }
-        let textWidth = (text as NSString).boundingRect(with: size,
-                                                        options: .usesLineFragmentOrigin,
-                                                        attributes: [NSAttributedStringKey.font: self.font],
-                                                        context: nil).size.width
-        return textWidth
+        let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading, .usesDeviceMetrics, .truncatesLastVisibleLine]
+        let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.font: self.font]
+        let width = (text as NSString).boundingRect(with: size, options: options, attributes: attributes, context: nil).size.width
+        return width
     }
 }

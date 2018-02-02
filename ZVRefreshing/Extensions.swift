@@ -8,11 +8,15 @@
 
 import UIKit
 
-public protocol ZVRefreshHeaderConfigration: class {
+public protocol ZVRefreshComponentConfigration: class {
     
-    associatedtype T: ZVRefreshHeader
+    associatedtype H: ZVRefreshComponent
     
-    var header: T? { get set }
+    associatedtype F: ZVRefreshComponent
+    
+    var header: H? { get set }
+    
+    var footer: F? { get set }
     
 }
 

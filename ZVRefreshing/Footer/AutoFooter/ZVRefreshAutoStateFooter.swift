@@ -12,22 +12,20 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     // MARK: - Property
     
     public var labelInsetLeft: CGFloat = 24.0
-    public var stateTitles:[State: String] = [:]
-
-    public private(set) lazy var stateLabel: UILabel = { [unowned self] in
-        let label: UILabel = .default
-        label.isUserInteractionEnabled = true
-        label.addGestureRecognizer(.init(target: self, action: #selector(stateLabelClicked)))
-        return label
-    }()
+    
+    public var stateTitles: [State : String]?
+    public private(set) var stateLabel: UILabel?
 
     // MARK: - Subviews
     
     override open func prepare() {
         super.prepare()
         
-        if stateLabel.superview == nil {
-            addSubview(stateLabel)
+        if stateLabel == nil {
+            stateLabel = .default
+            stateLabel?.isUserInteractionEnabled = true
+            stateLabel?.addGestureRecognizer(.init(target: self, action: #selector(stateLabelClicked)))
+            addSubview(stateLabel!)
         }
         
         setTitle(localized(string: LocalizedKey.Footer.Auto.idle) , for: .idle)
@@ -38,8 +36,9 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     override open func placeSubViews() {
         super.placeSubViews()
         
-        if stateLabel.constraints.count > 0 { return }
-        stateLabel.frame = bounds
+        if let stateLabel = stateLabel, stateLabel.constraints.count == 0 {
+            stateLabel.frame = bounds
+        }
     }
     
     // MARK: - Do On State
@@ -47,11 +46,7 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     open override func doOnAnyState(with oldState: ZVRefreshComponent.State) {
         super.doOnAnyState(with: oldState)
         
-        if stateLabel.isHidden && refreshState == .refreshing {
-            stateLabel.text = nil
-        } else {
-            stateLabel.text = stateTitles[refreshState]
-        }
+        setCurrentStateTitle()
     }
 }
 
@@ -61,7 +56,7 @@ extension ZVRefreshAutoStateFooter {
     
     override open var tintColor: UIColor! {
         didSet {
-            stateLabel.textColor = tintColor
+            stateLabel?.textColor = tintColor
         }
     }
 }
