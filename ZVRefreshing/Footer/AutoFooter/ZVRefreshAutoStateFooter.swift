@@ -11,7 +11,7 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     
     // MARK: - Property
     
-    public var labelInsetLeft: CGFloat = 24.0
+    public var labelInsetLeft: CGFloat = 12.0
     
     public var stateTitles: [State : String]?
     public private(set) var stateLabel: UILabel?

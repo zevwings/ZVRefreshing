@@ -20,11 +20,7 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     
     override open var pullingPercent: CGFloat {
         didSet {
-            guard let images = stateImages[.idle], images.count > 0, refreshState == .idle else { return }
-            animationView?.stopAnimating()
-            var idx = Int(CGFloat(images.count) * pullingPercent)
-            if idx >= images.count { idx = images.count - 1 }
-            animationView?.image = images[idx]
+            pullAnimation(with: pullingPercent)
         }
     }
     
@@ -60,34 +56,19 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
         super.doOnIdle(with: oldState)
         
-        animationView?.stopAnimating()
-    }
-
-    open override func doOnPulling(with oldState: ZVRefreshComponent.State) {
-        super.doOnPulling(with: oldState)
-        
-        _doOn(pullingOrRefreshing: .pulling)
+        stopAnimating()
     }
     
+    open override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
+        super.doOnNoMoreData(with: oldState)
+
+        stopAnimating()
+    }
+
     open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
         super.doOnRefreshing(with: oldState)
         
-        _doOn(pullingOrRefreshing: .refreshing)
-    }
-    
-    private func _doOn(pullingOrRefreshing state: State) {
-        
-        guard let images = stateImages[state], images.count > 0 else { return }
-        
-        animationView?.stopAnimating()
-        
-        if images.count == 1 {
-            animationView?.image = images.last
-        } else {
-            animationView?.animationImages = images
-            animationView?.animationDuration = stateDurations[state] ?? 0.0
-            animationView?.startAnimating()
-        }
+        startAnimating()
     }
 }
 

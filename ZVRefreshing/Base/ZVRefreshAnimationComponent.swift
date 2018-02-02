@@ -35,4 +35,38 @@ public extension ZVRefreshAnimationComponent where Self: ZVRefreshComponent {
             frame.size.height = image.size.height
         }
     }
+    
+    func pullAnimation(with pullPercent: CGFloat) {
+        
+        guard let images = stateImages[.idle], images.count > 0, refreshState == .idle else { return }
+        
+        animationView?.stopAnimating()
+        
+        var idx = Int(CGFloat(images.count) * pullingPercent)
+        if idx >= images.count { idx = images.count - 1 }
+        animationView?.image = images[idx]
+        
+        if pullingPercent > 1.0 {
+            startAnimating()
+        }
+    }
+    
+    func startAnimating() {
+        
+        guard let images = stateImages[.refreshing], images.count > 0 else { return }
+        
+        animationView?.stopAnimating()
+        
+        if images.count == 1 {
+            animationView?.image = images.last
+        } else {
+            animationView?.animationImages = images
+            animationView?.animationDuration = stateDurations[.refreshing] ?? 0.0
+            animationView?.startAnimating()
+        }
+    }
+    
+    func stopAnimating() {
+        animationView?.stopAnimating()
+    }
 }

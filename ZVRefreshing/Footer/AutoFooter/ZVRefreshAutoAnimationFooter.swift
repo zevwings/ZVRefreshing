@@ -49,29 +49,19 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
         super.doOnRefreshing(with: oldState)
         
-        guard let images = stateImages[.refreshing], images.count > 0 else { return }
-        
-        animationView?.stopAnimating()
-        
-        if images.count == 1 {
-            animationView?.image = images.last
-        } else {
-            animationView?.animationImages = images
-            animationView?.animationDuration = stateDurations[.refreshing] ?? 0.0
-            animationView?.startAnimating()
-        }
+        startAnimating()
     }
     
     open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
         super.doOnIdle(with: oldState)
         
-        animationView?.stopAnimating()
+        stopAnimating()
     }
 
     open override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
         super.doOnNoMoreData(with: oldState)
         
-        animationView?.stopAnimating()
+        stopAnimating()
     }
 }
 

@@ -11,7 +11,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
 
     // MARK: - Property
     
-    public var isAutomaticallyRefresh: Bool = false
+    public var isAutomaticallyRefresh: Bool = true
     private var _triggerAutomaticallyRefreshPercent: CGFloat = 1.0
     
     // MARK: - Do On State
