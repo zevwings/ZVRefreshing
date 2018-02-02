@@ -46,8 +46,8 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
 
     // MARK: - Do On State
     
-    open override func doOnAnyState(with oldState: ZVRefreshComponent.State) {
-        super.doOnAnyState(with: oldState)
+    open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+        super.doOnRefreshing(with: oldState)
         
         guard let images = stateImages[.refreshing], images.count > 0 else { return }
         

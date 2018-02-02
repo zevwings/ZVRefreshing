@@ -20,14 +20,11 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     
     override open var pullingPercent: CGFloat {
         didSet {
-            let images = stateImages[.idle] ?? []
-            if refreshState != .idle || images.count == 0 { return }
+            guard let images = stateImages[.idle], images.count > 0, refreshState == .idle else { return }
             animationView?.stopAnimating()
-            var index = Int(CGFloat(images.count) * pullingPercent)
-            if index >= images.count {
-                index = images.count - 1
-            }
-            animationView?.image = images[index]
+            var idx = Int(CGFloat(images.count) * pullingPercent)
+            if idx >= images.count { idx = images.count - 1 }
+            animationView?.image = images[idx]
         }
     }
     
@@ -79,11 +76,13 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     }
     
     private func _doOn(pullingOrRefreshing state: State) {
-        let images = stateImages[state]
-        if images?.count == 0 { return }
+        
+        guard let images = stateImages[state], images.count > 0 else { return }
+        
         animationView?.stopAnimating()
-        if images?.count == 1 {
-            animationView?.image = images?.last
+        
+        if images.count == 1 {
+            animationView?.image = images.last
         } else {
             animationView?.animationImages = images
             animationView?.animationDuration = stateDurations[state] ?? 0.0

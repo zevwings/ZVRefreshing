@@ -20,15 +20,11 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
     
     override open var pullingPercent: CGFloat {
         didSet {
-            let images = stateImages[.idle] ?? []
-            if refreshState != .idle || images.count == 0 { return }
+            guard let images = stateImages[.idle], images.count > 0, refreshState == .idle  else { return }
             animationView?.stopAnimating()
-            var index = Int(CGFloat(images.count) * pullingPercent)
-            if index >= images.count {
-                index = images.count - 1
-            }
-            animationView?.image = images[index]
-            
+            var idx = Int(CGFloat(images.count) * pullingPercent)
+            if idx >= images.count { idx = images.count - 1 }
+            animationView?.image = images[idx]
         }
     }
     
@@ -40,7 +36,6 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
         if animationView == nil {
             animationView = UIImageView()
             animationView?.backgroundColor = .clear
-            animationView?.contentMode = .scaleAspectFit
             addSubview(animationView!)
         }
     }
@@ -50,8 +45,14 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
         
         if let animationView = animationView, animationView.constraints.count == 0 {
             if let stateLabel = stateLabel, !stateLabel.isHidden {
-                let width = (frame.width - stateLabel.textWidth) * 0.5 - self.labelInsetLeft
-                animationView.frame = .init(x: 0, y: 0, width: width, height: frame.height)
+                var animationViewWith: CGFloat = 0
+                if let lastUpdatedTimeLabel = lastUpdatedTimeLabel, !lastUpdatedTimeLabel.isHidden {
+                    let maxLabelWith = max(lastUpdatedTimeLabel.textWidth, stateLabel.textWidth)
+                    animationViewWith = (frame.width - maxLabelWith) * 0.5 - self.labelInsetLeft
+                } else {
+                    animationViewWith = (frame.width - stateLabel.textWidth) * 0.5 - self.labelInsetLeft
+                }
+                animationView.frame = .init(x: 0, y: 0, width: animationViewWith, height: frame.height)
                 animationView.contentMode = .right
             } else {
                 animationView.contentMode = .center
@@ -80,11 +81,13 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
     }
     
     private func _doOn(pullingOrRefreshing state: State) {
-        let images = stateImages[state]
-        if images?.count == 0 { return }
+        
+        guard let images = stateImages[state], images.count > 0 else { return }
+        
         animationView?.stopAnimating()
-        if images?.count == 1 {
-            animationView?.image = images?.last
+        
+        if images.count == 1 {
+            animationView?.image = images.last
         } else {
             animationView?.animationImages = images
             animationView?.animationDuration = stateDurations[state] ?? 0.0

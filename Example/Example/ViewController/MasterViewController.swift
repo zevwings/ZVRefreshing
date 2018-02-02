@@ -177,7 +177,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             segue.destination.title = self.rows[4]
             
             let header = ZVRefreshCustomAnimationHeader()
-            header.stateLabel?.isHidden = true
+//            header.stateLabel?.isHidden = true
             let footer: ZVRefreshFooter?
             if _isAutoFooter {
                 footer = ZVRefreshAutoCustomAnimationFooter()
