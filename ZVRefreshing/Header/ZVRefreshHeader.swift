@@ -79,7 +79,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         UIView.animate(withDuration: AnimationDuration.slow, animations: {
             self.scrollView?.contentInset.top += self.insetTop
             if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
-        }, completion: { finished in
+        }, completion: { _  in
             self.pullingPercent = 0.0
             self.endRefreshingCompletionHandler?()
         })
@@ -95,7 +95,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
                 var offset = self.scrollView!.contentOffset
                 offset.y = -top
                 self.scrollView?.setContentOffset(offset, animated: false)
-            }, completion: { isFinished in
+            }, completion: { _ in
                 self.executeRefreshCallback()
             })
         }

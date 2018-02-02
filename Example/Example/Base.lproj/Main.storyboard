@@ -106,10 +106,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kYN-WL-Zzd">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="118"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Wd9-sH-gfd">
-                                        <rect key="frame" x="12" y="8" width="351" height="29"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Wd9-sH-gfd">
+                                        <rect key="frame" x="12" y="7" width="351" height="29"/>
                                         <segments>
                                             <segment title="Auto Footer"/>
                                             <segment title="Back Footer"/>
@@ -119,17 +119,51 @@
                                             <action selector="setFooterType:" destination="qeA-OG-s5X" eventType="valueChanged" id="F7N-Bp-Ae3"/>
                                         </connections>
                                     </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide LasteTimeLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAQ-gn-Ikk">
+                                        <rect key="frame" x="12" y="48.5" width="151" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide StateLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lA2-yH-a9D">
+                                        <rect key="frame" x="12" y="86.5" width="115.5" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ww8-0H-WLH">
+                                        <rect key="frame" x="314" y="80" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="setStateLabelHidden:" destination="qeA-OG-s5X" eventType="valueChanged" id="XPU-6j-joV"/>
+                                        </connections>
+                                    </switch>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Mqp-9I-GNW">
+                                        <rect key="frame" x="314" y="42" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="setLastUpdatedLabelHidden:" destination="qeA-OG-s5X" eventType="valueChanged" id="KP2-zb-xlr"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95686274510000002" green="0.95686274510000002" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="lA2-yH-a9D" firstAttribute="centerY" secondItem="ww8-0H-WLH" secondAttribute="centerY" id="0cm-aJ-NQx"/>
                                     <constraint firstItem="Wd9-sH-gfd" firstAttribute="leading" secondItem="kYN-WL-Zzd" secondAttribute="leading" constant="12" id="71b-PH-VaX"/>
-                                    <constraint firstAttribute="height" constant="44" id="ACz-3D-rL8"/>
+                                    <constraint firstAttribute="bottom" secondItem="ww8-0H-WLH" secondAttribute="bottom" constant="7" id="8ug-eP-CdM"/>
+                                    <constraint firstItem="Mqp-9I-GNW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fAQ-gn-Ikk" secondAttribute="trailing" constant="8" id="AtJ-k9-CdH"/>
                                     <constraint firstAttribute="trailing" secondItem="Wd9-sH-gfd" secondAttribute="trailing" constant="12" id="BJp-Iu-JQE"/>
-                                    <constraint firstItem="Wd9-sH-gfd" firstAttribute="centerY" secondItem="kYN-WL-Zzd" secondAttribute="centerY" id="ScD-sT-njC"/>
+                                    <constraint firstItem="Wd9-sH-gfd" firstAttribute="top" secondItem="kYN-WL-Zzd" secondAttribute="top" constant="7" id="BRa-us-tcn"/>
+                                    <constraint firstItem="ww8-0H-WLH" firstAttribute="top" secondItem="Mqp-9I-GNW" secondAttribute="bottom" constant="7" id="TPj-tD-TwQ"/>
+                                    <constraint firstItem="ww8-0H-WLH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lA2-yH-a9D" secondAttribute="trailing" constant="8" id="VVI-BY-XQ8"/>
+                                    <constraint firstItem="Mqp-9I-GNW" firstAttribute="top" secondItem="Wd9-sH-gfd" secondAttribute="bottom" constant="7" id="bPr-22-hYz"/>
+                                    <constraint firstItem="lA2-yH-a9D" firstAttribute="leading" secondItem="Wd9-sH-gfd" secondAttribute="leading" id="dgT-St-IRI"/>
+                                    <constraint firstItem="fAQ-gn-Ikk" firstAttribute="leading" secondItem="Wd9-sH-gfd" secondAttribute="leading" id="gIW-2o-Rdo"/>
+                                    <constraint firstItem="Mqp-9I-GNW" firstAttribute="trailing" secondItem="Wd9-sH-gfd" secondAttribute="trailing" id="kDi-C2-66j"/>
+                                    <constraint firstItem="ww8-0H-WLH" firstAttribute="trailing" secondItem="Wd9-sH-gfd" secondAttribute="trailing" id="nv5-CM-hmG"/>
+                                    <constraint firstItem="fAQ-gn-Ikk" firstAttribute="centerY" secondItem="Mqp-9I-GNW" secondAttribute="centerY" id="u4G-HI-l0p"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1P3-C8-EGU">
-                                <rect key="frame" x="0.0" y="44" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="118" width="375" height="485"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TableViewTargetCell" id="tXr-a4-WcV">

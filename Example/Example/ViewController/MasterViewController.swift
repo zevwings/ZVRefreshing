@@ -15,16 +15,18 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private var _header: ZVRefreshHeader?
     private var _footer: ZVRefreshFooter?
-    private var _isAutoFooter: Bool = true
+    
+    private var isAutoFooter: Bool = true
+    private var isStateLabelHidden: Bool = false
+    private var isLastUpdateLabelHidden: Bool = false
     
     @IBOutlet weak var tableView: UITableView!
     
     private var sections = ["UITableView", "UICollectionView"]
-    private var rows     = ["Default", "Hide Time Label", "Hide Time Label& State Label", "Custom Text", "Animation", "DIY"]
+    private var rows     = ["Default", "Custom Text", "Animation", "DIY"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
     }
     
     override func didReceiveMemoryWarning() {
@@ -83,7 +85,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             let header = ZVRefreshNormalHeader()
             var footer: ZVRefreshFooter?
-            if _isAutoFooter {
+            if isAutoFooter {
                 footer = ZVRefreshAutoNormalFooter()
             } else {
                 footer = ZVRefreshBackNormalFooter()
@@ -98,7 +100,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             header.lastUpdatedTimeLabel?.isHidden = true
             
             var footer: ZVRefreshFooter?
-            if _isAutoFooter {
+            if isAutoFooter {
                 footer = ZVRefreshAutoNormalFooter()
             } else {
                 footer = ZVRefreshBackNormalFooter()
@@ -116,7 +118,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             header.lastUpdatedTimeLabel?.isHidden = true
             
             var footer: ZVRefreshFooter?
-            if _isAutoFooter {
+            if isAutoFooter {
                 footer = ZVRefreshAutoNormalFooter()
             } else {
                 footer = ZVRefreshBackNormalFooter()
@@ -147,7 +149,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             
             // 设置 Footer
-            if _isAutoFooter {
+            if isAutoFooter {
                 
                 let footer = ZVRefreshAutoNormalFooter()
                 footer.setTitle("custom pull up to load more label...", for: .idle)
@@ -179,7 +181,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let header = ZVRefreshCustomAnimationHeader()
 //            header.stateLabel?.isHidden = true
             let footer: ZVRefreshFooter?
-            if _isAutoFooter {
+            if isAutoFooter {
                 footer = ZVRefreshAutoCustomAnimationFooter()
             } else {
                 footer = ZVRefreshBackCustomAnimationFooter()
@@ -192,7 +194,7 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let header = ZVRefreshArrowIndicatorHeader()
             let footer: ZVRefreshFooter?
                 
-            if _isAutoFooter {
+            if isAutoFooter {
                 footer = ZVRefreshAutoArrowIndicatorFooter()
             } else {
                 footer = ZVRefreshBackArrowIndicatorFooter()
@@ -221,18 +223,83 @@ class MasterViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
+    // MARK: - Normal Header & Footer
+    
+    func normalHeader() {
+        let refreshHeader = ZVRefreshNormalHeader()
+        refreshHeader.stateLabel?.isHidden = isStateLabelHidden
+        refreshHeader.lastUpdatedTimeLabel?.isHidden = isLastUpdateLabelHidden
+    }
+    
+    func normalBackFooter() {
+        let refreshFooter = ZVRefreshBackNormalFooter()
+        refreshFooter.stateLabel?.isHidden = isStateLabelHidden
+    }
+    
+    func normalAutoFooter() {
+        let refreshFooter = ZVRefreshAutoNormalFooter()
+        refreshFooter.stateLabel?.isHidden = isStateLabelHidden
+    }
+    
+    // MARK: - Animation Header & Footer
+    
+    func animationHeader() {
+        let refreshHeader = ZVRefreshCustomAnimationHeader()
+        refreshHeader.stateLabel?.isHidden = isStateLabelHidden
+        refreshHeader.lastUpdatedTimeLabel?.isHidden = isLastUpdateLabelHidden
+    }
+    
+    func animationBackFooter() {
+        let refreshFooter = ZVRefreshBackCustomAnimationFooter()
+        refreshFooter.stateLabel?.isHidden = isStateLabelHidden
+    }
+    
+    func animationAutoFooter() {
+        let refreshFooter = ZVRefreshAutoAnimationFooter()
+        refreshFooter.stateLabel?.isHidden = isStateLabelHidden
+    }
+    
+    // MARK: - DIY Arrow ActivityIndicator Header & Footer
+    
+    func arrowIndicatorHeader() {
+        let refreshHeader = ZVRefreshArrowIndicatorHeader()
+        refreshHeader.stateLabel?.isHidden = isStateLabelHidden
+        refreshHeader.lastUpdatedTimeLabel?.isHidden = isLastUpdateLabelHidden
+    }
+    
+    func arrowIndicatorBackFooter() {
+        let refreshFooter = ZVRefreshBackArrowIndicatorFooter()
+        refreshFooter.stateLabel?.isHidden = isStateLabelHidden
+    }
+    
+    func arrowIndicatorAutoFooter() {
+        let refreshFooter = ZVRefreshAutoArrowIndicatorFooter()
+        refreshFooter.stateLabel?.isHidden = isStateLabelHidden
+    }
+    
+    // MARK: - Control Action
+    
     @IBAction func setFooterType(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:
-            _isAutoFooter = true
+            isAutoFooter = true
             break
         case 1:
-            _isAutoFooter = false
+            isAutoFooter = false
             break
         default:
             break
         }
     }
+    
+    @IBAction func setLastUpdatedLabelHidden(_ sender: UISwitch) {
+        isLastUpdateLabelHidden = sender.isOn
+    }
+    
+    @IBAction func setStateLabelHidden(_ sender: UISwitch) {
+        isStateLabelHidden = sender.isOn
+    }
+    
 }
 
 extension MasterViewController {

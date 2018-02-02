@@ -86,7 +86,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
             self.lastBottomDelta = bottom - scrollView.contentInset.bottom
             scrollView.contentInset.bottom = bottom
             scrollView.contentOffset.y = self._happenOffsetY + self.frame.height
-        }, completion: { isFinished in
+        }, completion: { _ in
             self.executeRefreshCallback()
         })
     }
@@ -99,7 +99,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
             UIView.animate(withDuration: AnimationDuration.slow, animations: {
                 scrollView.contentInset.bottom -= self.lastBottomDelta
                 if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
-            }, completion: { isFinished in
+            }, completion: { _ in
                 self.pullingPercent = 0.0
                 self.endRefreshingCompletionHandler?()
             })

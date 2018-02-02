@@ -1,5 +1,5 @@
 //
-//  RefreshCustomAnimationHeader.swift
+//  RefreshCustomAnimationFooter.swift
 //  Example
 //
 //  Created by zevwings on 2017/7/9.
@@ -9,7 +9,7 @@
 import UIKit
 import ZVRefreshing
 
-class ZVRefreshCustomAnimationHeader: ZVRefreshAnimationHeader {
+class ZVRefreshBackCustomAnimationFooter: ZVRefreshBackAnimationFooter {
 
     override func prepare() {
         super.prepare()
@@ -20,11 +20,10 @@ class ZVRefreshCustomAnimationHeader: ZVRefreshAnimationHeader {
             let img = UIImage(named: name)
             idleImages.append(img!)
         }
-        
         setImages(idleImages, for: .idle)
-        
-        // 设置正在刷新状态的动画图片
+
         var refreshingImages: [UIImage] = []
+        
         for index in 1 ... 3 {
             let name = "dropdown_loading_0\(index)"
             let img = UIImage(named: name)

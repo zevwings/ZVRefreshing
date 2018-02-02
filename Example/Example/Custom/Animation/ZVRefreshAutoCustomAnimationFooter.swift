@@ -13,7 +13,6 @@ class ZVRefreshAutoCustomAnimationFooter: ZVRefreshAutoAnimationFooter {
     
     override func prepare() {
         super.prepare()
-        // 设置正在刷新状态的动画图片
         var refreshingImages: [UIImage] = []
 
         for index in 1 ... 3 {

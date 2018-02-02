@@ -58,7 +58,7 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
         if oldState == .refreshing {
             UIView.animate(withDuration: AnimationDuration.fast, animations: {
                 self.activityIndicator?.alpha = 0.0
-            }, completion: { finished in
+            }, completion: { _ in
                 self.activityIndicator?.alpha = 1.0
                 self.activityIndicator?.stopAnimating()
             })
@@ -70,12 +70,6 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     public override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
         super.doOnNoMoreData(with: oldState)
 
-        activityIndicator?.stopAnimating()
-    }
-    
-    open override func doOnPulling(with oldState: ZVRefreshComponent.State) {
-        super.doOnPulling(with: oldState)
-        
         activityIndicator?.stopAnimating()
     }
     

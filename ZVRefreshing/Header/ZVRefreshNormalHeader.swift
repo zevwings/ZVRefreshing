@@ -65,18 +65,13 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
         if refreshState == .refreshing {
             UIView.animate(withDuration: AnimationDuration.slow, animations: {
                 self.activityIndicator?.alpha = 0.0
-            }, completion: { isFinished in
+            }, completion: { _ in
                 guard self.refreshState == .idle else { return }
                 self.activityIndicator?.stopAnimating()
             })
         } else {
             activityIndicator?.stopAnimating()
         }
-    }
-    
-    open override func doOnPulling(with oldState: ZVRefreshComponent.State) {
-        super.doOnPulling(with: oldState)
-        activityIndicator?.stopAnimating()
     }
     
     open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {

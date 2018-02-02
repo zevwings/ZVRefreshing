@@ -14,16 +14,16 @@
 		4D0578DC1F0B27D900F6D5A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D0578DA1F0B27D900F6D5A5 /* LaunchScreen.storyboard */; };
 		4D0578E71F0B27DA00F6D5A5 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0578E61F0B27DA00F6D5A5 /* ExampleTests.swift */; };
 		4D0578F21F0B27DA00F6D5A5 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */; };
+		4D8A638920244A8700B57EEB /* ZVRefreshAutoArrowIndicatorFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A638220244A8700B57EEB /* ZVRefreshAutoArrowIndicatorFooter.swift */; };
+		4D8A638A20244A8700B57EEB /* ZVRefreshArrowIndicatorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A638320244A8700B57EEB /* ZVRefreshArrowIndicatorHeader.swift */; };
+		4D8A638B20244A8700B57EEB /* ZVRefreshCustomAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A638520244A8700B57EEB /* ZVRefreshCustomAnimationHeader.swift */; };
+		4D8A638C20244A8700B57EEB /* ZVRefreshBackCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A638620244A8700B57EEB /* ZVRefreshBackCustomAnimationFooter.swift */; };
+		4D8A638F20244AD500B57EEB /* ZVRefreshAutoCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A638E20244AD500B57EEB /* ZVRefreshAutoCustomAnimationFooter.swift */; };
+		4D8A639120244ADB00B57EEB /* ZVRefreshBackArrowIndicatorFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A639020244ADB00B57EEB /* ZVRefreshBackArrowIndicatorFooter.swift */; };
 		4D9CC6ED1F6248FA002E84D6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9CC6EC1F6248FA002E84D6 /* AudioToolbox.framework */; };
 		4DDFCEAD1F13C10A00B62435 /* DetailCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFCEAC1F13C10A00B62435 /* DetailCollectionViewController.swift */; };
-		4DE4C8561F1C67280091B71A /* ZVRefreshArrowIndicatorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE4C8551F1C67280091B71A /* ZVRefreshArrowIndicatorHeader.swift */; };
-		4DE4C8591F1C674A0091B71A /* ZVRefreshBackArrowIndicatorFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE4C8581F1C674A0091B71A /* ZVRefreshBackArrowIndicatorFooter.swift */; };
-		4DE4C85B1F1C676D0091B71A /* ZVRefreshAutoArrowIndicatorFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE4C85A1F1C676D0091B71A /* ZVRefreshAutoArrowIndicatorFooter.swift */; };
-		4DEC37B81F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B21F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift */; };
-		4DEC37B91F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B31F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift */; };
 		4DEC37BB1F11CB16000EFAAF /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B61F11CB16000EFAAF /* DetailTableViewController.swift */; };
 		4DEC37BC1F11CB16000EFAAF /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B71F11CB16000EFAAF /* MasterViewController.swift */; };
-		4DEC37BE1F11CB44000EFAAF /* ZVRefreshAutoCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37BD1F11CB44000EFAAF /* ZVRefreshAutoCustomAnimationFooter.swift */; };
 		7C797ACCAD12C15BEB0DB702 /* Pods_ExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA1DDAE1E065CA3C942326A /* Pods_ExampleUITests.framework */; };
 		C1329451369285FC546E7CDD /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FBBE441AF7DE9815D417BB /* Pods_Example.framework */; };
 /* End PBXBuildFile section */
@@ -82,16 +82,16 @@
 		4D0578ED1F0B27DA00F6D5A5 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		4D0578F31F0B27DA00F6D5A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D8A638220244A8700B57EEB /* ZVRefreshAutoArrowIndicatorFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoArrowIndicatorFooter.swift; sourceTree = "<group>"; };
+		4D8A638320244A8700B57EEB /* ZVRefreshArrowIndicatorHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshArrowIndicatorHeader.swift; sourceTree = "<group>"; };
+		4D8A638520244A8700B57EEB /* ZVRefreshCustomAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshCustomAnimationHeader.swift; sourceTree = "<group>"; };
+		4D8A638620244A8700B57EEB /* ZVRefreshBackCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackCustomAnimationFooter.swift; sourceTree = "<group>"; };
+		4D8A638E20244AD500B57EEB /* ZVRefreshAutoCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoCustomAnimationFooter.swift; sourceTree = "<group>"; };
+		4D8A639020244ADB00B57EEB /* ZVRefreshBackArrowIndicatorFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackArrowIndicatorFooter.swift; sourceTree = "<group>"; };
 		4D9CC6EC1F6248FA002E84D6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4DDFCEAC1F13C10A00B62435 /* DetailCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailCollectionViewController.swift; sourceTree = "<group>"; };
-		4DE4C8551F1C67280091B71A /* ZVRefreshArrowIndicatorHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshArrowIndicatorHeader.swift; sourceTree = "<group>"; };
-		4DE4C8581F1C674A0091B71A /* ZVRefreshBackArrowIndicatorFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackArrowIndicatorFooter.swift; sourceTree = "<group>"; };
-		4DE4C85A1F1C676D0091B71A /* ZVRefreshAutoArrowIndicatorFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoArrowIndicatorFooter.swift; sourceTree = "<group>"; };
-		4DEC37B21F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackCustomAnimationFooter.swift; sourceTree = "<group>"; };
-		4DEC37B31F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshCustomAnimationHeader.swift; sourceTree = "<group>"; };
 		4DEC37B61F11CB16000EFAAF /* DetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		4DEC37B71F11CB16000EFAAF /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
-		4DEC37BD1F11CB44000EFAAF /* ZVRefreshAutoCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoCustomAnimationFooter.swift; sourceTree = "<group>"; };
 		6638481C72E266F093DAA76C /* Pods-ExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleUITests/Pods-ExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		719F53D012D583A097515468 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		94F5BD6641683098ACB6F80E /* Pods-ExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExampleTests/Pods-ExampleTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +184,26 @@
 			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
+		4D8A638020244A8700B57EEB /* ArrowIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				4D8A638320244A8700B57EEB /* ZVRefreshArrowIndicatorHeader.swift */,
+				4D8A639020244ADB00B57EEB /* ZVRefreshBackArrowIndicatorFooter.swift */,
+				4D8A638220244A8700B57EEB /* ZVRefreshAutoArrowIndicatorFooter.swift */,
+			);
+			path = ArrowIndicator;
+			sourceTree = "<group>";
+		};
+		4D8A638420244A8700B57EEB /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				4D8A638520244A8700B57EEB /* ZVRefreshCustomAnimationHeader.swift */,
+				4D8A638620244A8700B57EEB /* ZVRefreshBackCustomAnimationFooter.swift */,
+				4D8A638E20244AD500B57EEB /* ZVRefreshAutoCustomAnimationFooter.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
 		4D9CC6EB1F6248FA002E84D6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,12 +218,8 @@
 		4DEC37B11F11CB16000EFAAF /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				4DEC37B21F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift */,
-				4DEC37B31F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift */,
-				4DEC37BD1F11CB44000EFAAF /* ZVRefreshAutoCustomAnimationFooter.swift */,
-				4DE4C8551F1C67280091B71A /* ZVRefreshArrowIndicatorHeader.swift */,
-				4DE4C8581F1C674A0091B71A /* ZVRefreshBackArrowIndicatorFooter.swift */,
-				4DE4C85A1F1C676D0091B71A /* ZVRefreshAutoArrowIndicatorFooter.swift */,
+				4D8A638420244A8700B57EEB /* Animation */,
+				4D8A638020244A8700B57EEB /* ArrowIndicator */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -535,16 +551,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DE4C85B1F1C676D0091B71A /* ZVRefreshAutoArrowIndicatorFooter.swift in Sources */,
-				4DEC37B91F11CB16000EFAAF /* ZVRefreshCustomAnimationHeader.swift in Sources */,
-				4DE4C8561F1C67280091B71A /* ZVRefreshArrowIndicatorHeader.swift in Sources */,
 				4DDFCEAD1F13C10A00B62435 /* DetailCollectionViewController.swift in Sources */,
+				4D8A638920244A8700B57EEB /* ZVRefreshAutoArrowIndicatorFooter.swift in Sources */,
+				4D8A638B20244A8700B57EEB /* ZVRefreshCustomAnimationHeader.swift in Sources */,
+				4D8A639120244ADB00B57EEB /* ZVRefreshBackArrowIndicatorFooter.swift in Sources */,
 				4DEC37BC1F11CB16000EFAAF /* MasterViewController.swift in Sources */,
-				4DEC37B81F11CB16000EFAAF /* ZVRefreshBackCustomAnimationFooter.swift in Sources */,
-				4DE4C8591F1C674A0091B71A /* ZVRefreshBackArrowIndicatorFooter.swift in Sources */,
-				4DEC37BE1F11CB44000EFAAF /* ZVRefreshAutoCustomAnimationFooter.swift in Sources */,
 				4DEC37BB1F11CB16000EFAAF /* DetailTableViewController.swift in Sources */,
+				4D8A638A20244A8700B57EEB /* ZVRefreshArrowIndicatorHeader.swift in Sources */,
+				4D8A638C20244A8700B57EEB /* ZVRefreshBackCustomAnimationFooter.swift in Sources */,
 				4D0578D21F0B27D900F6D5A5 /* AppDelegate.swift in Sources */,
+				4D8A638F20244AD500B57EEB /* ZVRefreshAutoCustomAnimationFooter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
