@@ -43,14 +43,16 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
     override open func placeSubViews() {
         super.placeSubViews()
         
+        labelInsetLeft = 12
+        
         if let animationView = animationView, animationView.constraints.count == 0 {
             if let stateLabel = stateLabel, !stateLabel.isHidden {
                 var animationViewWith: CGFloat = 0
                 if let lastUpdatedTimeLabel = lastUpdatedTimeLabel, !lastUpdatedTimeLabel.isHidden {
                     let maxLabelWith = max(lastUpdatedTimeLabel.textWidth, stateLabel.textWidth)
-                    animationViewWith = (frame.width - maxLabelWith) * 0.5 - self.labelInsetLeft
+                    animationViewWith = (frame.width - maxLabelWith) * 0.5 - labelInsetLeft
                 } else {
-                    animationViewWith = (frame.width - stateLabel.textWidth) * 0.5 - self.labelInsetLeft
+                    animationViewWith = (frame.width - stateLabel.textWidth) * 0.5 - labelInsetLeft
                 }
                 animationView.frame = .init(x: 0, y: 0, width: animationViewWith, height: frame.height)
                 animationView.contentMode = .right

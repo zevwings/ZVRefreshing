@@ -20,17 +20,17 @@ open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
     
     override open func prepare() {
         super.prepare()
-        
+
         if stateLabel == nil {
             stateLabel = .default
-            stateLabel?.isUserInteractionEnabled = true
-            stateLabel?.addGestureRecognizer(.init(target: self, action: #selector(stateLabelClicked)))
             addSubview(stateLabel!)
         }
         
         setTitle(localized(string: LocalizedKey.Footer.Auto.idle) , for: .idle)
         setTitle(localized(string: LocalizedKey.Footer.Auto.refreshing), for: .refreshing)
         setTitle(localized(string: LocalizedKey.Footer.Auto.noMoreData), for: .noMoreData)
+        
+        addTarget(self, action: #selector(stateLabelClicked), for: .touchUpInside)
     }
     
     override open func placeSubViews() {

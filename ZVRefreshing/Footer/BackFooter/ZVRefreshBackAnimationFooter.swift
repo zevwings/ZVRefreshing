@@ -43,9 +43,11 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     override open func placeSubViews() {
         super.placeSubViews()
         
+        labelInsetLeft = 12
+        
         if let animationView = animationView, animationView.constraints.count == 0 {
             if let stateLabel = stateLabel, !stateLabel.isHidden {
-                let width = (frame.width - stateLabel.textWidth) * 0.5 - self.labelInsetLeft
+                let width = (frame.width - stateLabel.textWidth) * 0.5 - labelInsetLeft
                 animationView.frame = .init(x: 0, y: 0, width: width, height: frame.height)
                 animationView.contentMode = .right
             } else {
