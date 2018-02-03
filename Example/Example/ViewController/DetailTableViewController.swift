@@ -40,13 +40,16 @@ class DetailTableViewController: UIViewController {
         
         if refreshComponentType == .normal {
             
-            normalHeader = ZVRefreshNormalHeader(refreshHandler: { [unowned self] in
+            normalHeader = ZVRefreshNormalHeader(refreshHandler: { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 , execute: {
-                    self.normalHeader?.endRefreshing()
+                    self?.normalHeader?.endRefreshing()
+                    
+                    self?.rows += 16
+                    self?.tableView.reloadData()
                 })
             })
 
-//            normalBackFooter = ZVRefreshBackNormalFooter(target: self, action: #selector(refreshHeaderHandler(_:)))
+            normalBackFooter = ZVRefreshBackNormalFooter(target: self, action: #selector(refreshHeaderHandler(_:)))
 
             normalAutoFooter = ZVRefreshAutoNormalFooter()
             normalAutoFooter?.addTarget(self, action: #selector(refreshHeaderHandler(_:)))
@@ -56,33 +59,39 @@ class DetailTableViewController: UIViewController {
 
         } else if refreshComponentType == .animation {
 
-            animationHeader = ZVRefreshCustomAnimationHeader(refreshHandler: { [unowned self] in
+            animationHeader = ZVRefreshCustomAnimationHeader(refreshHandler: { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 , execute: {
-                    self.animationHeader?.endRefreshing()
+                    self?.animationHeader?.endRefreshing()
+                    
+                    self?.rows += 16
+                    self?.tableView.reloadData()
                 })
             })
 
-//            animationBackFooter = ZVRefreshBackCustomAnimationFooter(target: self, action: #selector(refreshHeaderHandler(_:)))
-//
+            animationBackFooter = ZVRefreshBackCustomAnimationFooter(target: self, action: #selector(refreshHeaderHandler(_:)))
+
             animationAutoFooter = ZVRefreshAutoCustomAnimationFooter()
-//            animationAutoFooter?.addTarget(self, action: #selector(refreshHeaderHandler(_:)))
-//
+            animationAutoFooter?.addTarget(self, action: #selector(refreshHeaderHandler(_:)))
+
             tableView.refreshHeader = animationHeader
             tableView.refreshFooter = animationAutoFooter
 
         } else if refreshComponentType == .diy {
 
-            diyHeader = ZVRefreshArrowIndicatorHeader(refreshHandler: { [unowned self] in
+            diyHeader = ZVRefreshArrowIndicatorHeader(refreshHandler: { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 , execute: {
-                    self.diyHeader?.endRefreshing()
+                    self?.diyHeader?.endRefreshing()
+                    
+                    self?.rows += 16
+                    self?.tableView.reloadData()
                 })
             })
 
-//            diyBackFooter = ZVRefreshBackArrowIndicatorFooter(target: self, action: #selector(refreshHeaderHandler(_:)))
-//
+            diyBackFooter = ZVRefreshBackArrowIndicatorFooter(target: self, action: #selector(refreshHeaderHandler(_:)))
+
             diyAutoFooter = ZVRefreshAutoArrowIndicatorFooter()
-//            diyAutoFooter?.addTarget(self, action: #selector(refreshHeaderHandler(_:)))
-//
+            diyAutoFooter?.addTarget(self, action: #selector(refreshHeaderHandler(_:)))
+
             tableView.refreshHeader = diyHeader
             tableView.refreshFooter = diyAutoFooter
         }
@@ -92,12 +101,97 @@ class DetailTableViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    @objc func refreshHeaderHandler(_ refreshHeader: ZVRefreshHeader) {
-//        DispatchQueue.main.async {
-//
-//        }
+    @objc func refreshHeaderHandler(_ refreshHeader: ZVRefreshHeader?) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 , execute: { [weak self] in
+            refreshHeader?.endRefreshing()
+            
+            self?.rows += 16
+            self?.tableView.reloadData()
+        })
     }
     
+    @IBAction func segmentedControlValueChanged(_ sender: UISegmentedControl) {
+        
+        if sender.selectedSegmentIndex == 0 {
+            
+            switch refreshComponentType {
+            case .normal:
+                tableView.refreshFooter = normalAutoFooter
+                break
+            case .animation:
+                tableView.refreshFooter = animationAutoFooter
+                break
+            case .diy:
+                tableView.refreshFooter = diyAutoFooter
+                break
+            }
+            
+        } else if sender.selectedSegmentIndex == 1 {
+            
+            switch refreshComponentType {
+            case .normal:
+                tableView.refreshFooter = normalBackFooter
+                break
+            case .animation:
+                tableView.refreshFooter = animationBackFooter
+                break
+            case .diy:
+                tableView.refreshFooter = diyBackFooter
+                break
+            }
+            
+        }
+    }
+    
+    @IBAction func lastUpdatedLabelHiddenValueChanged(_ sender: UISwitch) {
+        switch refreshComponentType {
+        case .normal:
+            normalHeader?.lastUpdatedTimeLabel?.isHidden = !sender.isOn
+//            normalHeader?.placeSubViews()
+            break
+        case .animation:
+            animationHeader?.lastUpdatedTimeLabel?.isHidden = !sender.isOn
+//            animationHeader?.placeSubViews()
+            break
+        case .diy:
+            diyHeader?.lastUpdatedTimeLabel?.isHidden = !sender.isOn
+//            diyHeader?.placeSubViews()
+            break
+        }
+    }
+    
+    @IBAction func stateLabelHieddenValueChanged(_ sender: UISwitch) {
+        
+        switch refreshComponentType {
+        case .normal:
+            normalHeader?.stateLabel?.isHidden = !sender.isOn
+            normalHeader?.placeSubViews()
+            
+            normalAutoFooter?.stateLabel?.isHidden = !sender.isOn
+            normalAutoFooter?.placeSubViews()
+
+            normalBackFooter?.stateLabel?.isHidden = !sender.isOn
+            normalBackFooter?.placeSubViews()
+            
+            break
+        case .animation:
+            animationHeader?.stateLabel?.isHidden = !sender.isOn
+            animationHeader?.placeSubViews()
+
+            animationAutoFooter?.stateLabel?.isHidden = !sender.isOn
+            animationBackFooter?.stateLabel?.isHidden = !sender.isOn
+            break
+        case .diy:
+            diyHeader?.stateLabel?.isHidden = !sender.isOn
+            diyHeader?.placeSubViews()
+
+            diyAutoFooter?.stateLabel?.isHidden = !sender.isOn
+            diyBackFooter?.stateLabel?.isHidden = !sender.isOn
+            break
+        }
+        
+    }
 }
 
 extension DetailTableViewController: UITableViewDataSource {

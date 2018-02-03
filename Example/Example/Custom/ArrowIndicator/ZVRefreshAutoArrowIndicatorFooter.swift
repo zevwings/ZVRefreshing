@@ -18,7 +18,6 @@ class ZVRefreshAutoArrowIndicatorFooter: ZVRefreshAutoStateFooter {
     public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
         didSet {
             activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
-            setNeedsLayout()
         }
     }
     

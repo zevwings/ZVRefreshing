@@ -88,17 +88,15 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
         super.doOnRefreshing(with: oldState)
         
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: AnimationDuration.fast, animations: {
-                let top = self.scrollViewOriginalInset.top + self.frame.height
-                self.scrollView?.contentInset.top = top
-                var offset = self.scrollView!.contentOffset
-                offset.y = -top
-                self.scrollView?.setContentOffset(offset, animated: false)
-            }, completion: { _ in
-                self.executeRefreshCallback()
-            })
-        }
+        UIView.animate(withDuration: AnimationDuration.fast, animations: {
+            let top = self.scrollViewOriginalInset.top + self.frame.height
+            self.scrollView?.contentInset.top = top
+            var offset = self.scrollView!.contentOffset
+            offset.y = -top
+            self.scrollView?.setContentOffset(offset, animated: false)
+        }, completion: { _ in
+            self.executeRefreshCallback()
+        })
     }
 }
 

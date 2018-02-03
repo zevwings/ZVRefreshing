@@ -21,7 +21,7 @@ open class ZVRefreshComponent: UIControl {
     
     public private(set) var isRefreshing: Bool = false
 
-    private var _target: Any?
+    private weak var _target: NSObject?
     private var _action: Selector?
     
     public var beginRefreshingCompletionHandler: ZVBeginRefreshingCompletionHandler?
@@ -125,7 +125,7 @@ open class ZVRefreshComponent: UIControl {
     /// - Parameters:
     ///   - target: callback target
     ///   - action: callback selector
-    public convenience init(target: Any, action: Selector) {
+    public convenience init(target: NSObject, action: Selector) {
         self.init()
         _target = target
         _action = action
@@ -269,7 +269,7 @@ extension ZVRefreshComponent {
         
         scrollView?.removeObserver(self, forKeyPath: ObserversKeyPath.contentOffset)
         scrollView?.removeObserver(self, forKeyPath: ObserversKeyPath.contentSize)
-        scrollView?.removeObserver(self, forKeyPath: ObserversKeyPath.panState)
+        _panGestureRecognizer?.removeObserver(self, forKeyPath: ObserversKeyPath.panState)
         _panGestureRecognizer = nil
     }
     
@@ -300,7 +300,7 @@ extension ZVRefreshComponent {
 
 public extension ZVRefreshComponent {
     
-    public func addTarget(_ target: Any, action: Selector) {
+    public func addTarget(_ target: NSObject, action: Selector) {
         _target = target
         _action = action
     }
@@ -314,10 +314,9 @@ extension ZVRefreshComponent {
         
         DispatchQueue.main.async {
             self._refreshHandler?()
-            if let target = self._target, let action = self._action {
-                if (target as AnyObject).responds(to: action) {
-                    Thread.detachNewThreadSelector(action, toTarget: target, with: self)
-                }
+            
+            if let target = self._target, let action = self._action, target.responds(to: action) {
+                target.perform(action, with: self)
             }
             self.beginRefreshingCompletionHandler?()
         }

@@ -88,6 +88,9 @@
                                             <segment title="Back Footer"/>
                                         </segments>
                                         <color key="tintColor" red="0.84313725490000002" green="0.12941176469999999" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="segmentedControlValueChanged:" destination="lB6-HK-6se" eventType="valueChanged" id="wbz-JE-tBN"/>
+                                        </connections>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hide LasteTimeLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="704-JG-Xhg">
                                         <rect key="frame" x="12" y="58" width="151" height="19.5"/>
@@ -101,11 +104,17 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="n2C-OD-Qkp">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n2C-OD-Qkp">
                                         <rect key="frame" x="314" y="52" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="lastUpdatedLabelHiddenValueChanged:" destination="lB6-HK-6se" eventType="valueChanged" id="nxA-Ew-ipk"/>
+                                        </connections>
                                     </switch>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8qL-dm-c68">
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8qL-dm-c68">
                                         <rect key="frame" x="314" y="95" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="stateLabelHieddenValueChanged:" destination="lB6-HK-6se" eventType="valueChanged" id="drf-b6-akU"/>
+                                        </connections>
                                     </switch>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9YL-cE-Lg2">
                                         <rect key="frame" x="0.0" y="137.5" width="375" height="0.5"/>

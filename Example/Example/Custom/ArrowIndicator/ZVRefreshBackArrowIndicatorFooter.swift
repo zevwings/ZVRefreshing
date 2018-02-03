@@ -88,7 +88,6 @@ class ZVRefreshBackArrowIndicatorFooter: ZVRefreshBackStateFooter {
             activityIndicator?.stopAnimating()
             UIView.animate(withDuration: 0.15, animations: {
                 self.arrowView?.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
-            }, completion: { _ in
             })
         }
     }

@@ -21,6 +21,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     public private(set) var stateLabel: UILabel?
     
     public private(set) var lastUpdatedTimeLabel: UILabel?
+    private var originalLastUpdatedTimeLabelHidden: Bool?
 
     // MARK: LastUpdateTime
 
@@ -64,8 +65,17 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     override open func placeSubViews() {
         super.placeSubViews()
         
-        guard let stateLabel = stateLabel, stateLabel.isHidden == false else { return }
-    
+        guard let stateLabel = stateLabel, stateLabel.isHidden == false else {
+            originalLastUpdatedTimeLabelHidden = lastUpdatedTimeLabel?.isHidden
+            lastUpdatedTimeLabel?.isHidden = true
+            return
+        }
+        
+        if let isHidden = originalLastUpdatedTimeLabelHidden, !isHidden {
+            lastUpdatedTimeLabel?.isHidden = isHidden
+            originalLastUpdatedTimeLabelHidden = nil
+        }
+        
         if let lastUpdatedTimeLabel = lastUpdatedTimeLabel, !lastUpdatedTimeLabel.isHidden {
 
             let statusLabelH = frame.size.height * 0.5
