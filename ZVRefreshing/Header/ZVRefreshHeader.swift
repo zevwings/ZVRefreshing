@@ -33,9 +33,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     override open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
         
         guard refreshState != .refreshing else {
-            
-            guard window != nil else { return }
-            
+                        
             var insetT = -scrollView.contentOffset.y > scrollViewOriginalInset.top ? -scrollView.contentOffset.y : scrollViewOriginalInset.top
             insetT = insetT > frame.height + scrollViewOriginalInset.top ? frame.height + scrollViewOriginalInset.top : insetT
             

@@ -24,25 +24,15 @@ open class ZVRefreshComponent: UIControl {
     private weak var _target: NSObject?
     private var _action: Selector?
     
-    public var beginRefreshingCompletionHandler: ZVBeginRefreshingCompletionHandler?
-    public var endRefreshingCompletionHandler: ZVEndRefreshingCompletionHandler?
+    public private(set) var beginRefreshingCompletionHandler: ZVBeginRefreshingCompletionHandler?
+    public private(set) var endRefreshingCompletionHandler: ZVEndRefreshingCompletionHandler?
 
-    internal var scrollViewOriginalInset: UIEdgeInsets = UIEdgeInsets.zero
+    private(set) var scrollView: UIScrollView?
+    var scrollViewOriginalInset: UIEdgeInsets = UIEdgeInsets.zero
 
-    internal var scrollView: UIScrollView?
-    private var _panGestureRecognizer: UIPanGestureRecognizer?
-    
     // MARK: getter & setter
     
-    private var _refreshHandler: ZVRefreshHandler?
-    public var refreshHandler: ZVRefreshHandler? {
-        get {
-            return _refreshHandler
-        }
-        set {
-            _refreshHandler = newValue
-        }
-    }
+    public var refreshHandler: ZVRefreshHandler?
     
     private var _refreshState: State = .idle
     open var refreshState: State {
@@ -121,7 +111,7 @@ open class ZVRefreshComponent: UIControl {
     /// - Parameter refreshHandler: callback closure
     public convenience init(refreshHandler: @escaping ZVRefreshHandler) {
         self.init()
-        _refreshHandler = refreshHandler
+        self.refreshHandler = refreshHandler
     }
     
     /// Init with callback target and selector
@@ -263,8 +253,7 @@ extension ZVRefreshComponent {
         
         let options: NSKeyValueObservingOptions = [.new, .old]
         
-        _panGestureRecognizer = scrollView?.panGestureRecognizer
-        _panGestureRecognizer?.addObserver(self, forKeyPath: ObserversKeyPath.panState, options: options, context: nil)
+        scrollView?.panGestureRecognizer.addObserver(self, forKeyPath: ObserversKeyPath.panState, options: options, context: nil)
         scrollView?.addObserver(self, forKeyPath: ObserversKeyPath.contentOffset, options: options, context: nil)
         scrollView?.addObserver(self, forKeyPath: ObserversKeyPath.contentSize, options: options, context: nil)
     }
@@ -273,8 +262,7 @@ extension ZVRefreshComponent {
         
         scrollView?.removeObserver(self, forKeyPath: ObserversKeyPath.contentOffset)
         scrollView?.removeObserver(self, forKeyPath: ObserversKeyPath.contentSize)
-        _panGestureRecognizer?.removeObserver(self, forKeyPath: ObserversKeyPath.panState)
-        _panGestureRecognizer = nil
+        scrollView?.panGestureRecognizer.removeObserver(self, forKeyPath: ObserversKeyPath.panState)
     }
     
     override open func observeValue(forKeyPath keyPath: String?,
@@ -317,7 +305,7 @@ extension ZVRefreshComponent {
     func executeRefreshCallback() {
         
         DispatchQueue.main.async {
-            self._refreshHandler?()
+            self.refreshHandler?()
             
             if let target = self._target, let action = self._action, target.responds(to: action) {
                 target.perform(action, with: self)
