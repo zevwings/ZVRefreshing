@@ -28,7 +28,7 @@ extension ZVRefreshComponentType {
     }
 }
 
-class MasterViewController: UIViewController {
+class ExampleMasterViewController: UIViewController {
     
     private var isAutoFooter: Bool = true
     private var isStateLabelHidden: Bool = false
@@ -76,7 +76,7 @@ class MasterViewController: UIViewController {
 
 // MARK: - UITableViewDataSource
 
-extension MasterViewController: UITableViewDataSource {
+extension ExampleMasterViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
@@ -97,7 +97,7 @@ extension MasterViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 
-extension MasterViewController : UITableViewDelegate {
+extension ExampleMasterViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 54.0
@@ -122,14 +122,24 @@ extension MasterViewController : UITableViewDelegate {
         if indexPath.section == 0 {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "DetailTableViewController") as! DetailTableViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "ExamplelTableViewController") as! ExamplelTableViewController
+            
+            vc.isAutoFooter = isAutoFooter
+            vc.isStateLabelHidden = isStateLabelHidden
+            vc.isLastUpdateLabelHidden = isLastUpdateLabelHidden
             vc.refreshComponentType = ZVRefreshComponentType(rawValue: indexPath.row)!
+            
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.section == 1 {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: "DetailCollectionViewController") as! DetailCollectionViewController
+            let vc = storyboard.instantiateViewController(withIdentifier: "ExampleCollectionViewController") as! ExampleCollectionViewController
+            
+            vc.isAutoFooter = isAutoFooter
+            vc.isStateLabelHidden = isStateLabelHidden
+            vc.isLastUpdateLabelHidden = isLastUpdateLabelHidden
             vc.refreshComponentType = ZVRefreshComponentType(rawValue: indexPath.row)!
+            
             navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -137,7 +147,7 @@ extension MasterViewController : UITableViewDelegate {
 
 // MARK: - Override
 
-extension MasterViewController {
+extension ExampleMasterViewController {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
