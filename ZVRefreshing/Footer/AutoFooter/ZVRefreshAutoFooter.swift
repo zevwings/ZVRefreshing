@@ -87,17 +87,18 @@ extension ZVRefreshAutoFooter {
     
     override open func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
+
+        guard let scrollView = scrollView else { return }
         
-        if scrollView == nil { return }
         if newSuperview == nil {
             if isHidden == false {
-                scrollView?.contentInset.bottom -= frame.height
+                scrollView.contentInset.bottom -= frame.height
             }
         } else {
             if isHidden == false {
-                scrollView?.contentInset.bottom += frame.height
+                scrollView.contentInset.bottom += frame.height
             }
-            frame.origin.y = scrollView!.contentSize.height
+            frame.origin.y = scrollView.contentSize.height
         }
     }
     

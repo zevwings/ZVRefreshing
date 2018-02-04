@@ -89,11 +89,12 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         super.doOnRefreshing(with: oldState)
         
         UIView.animate(withDuration: AnimationDuration.fast, animations: {
+            guard let scorllView = self.scrollView else { return }
             let top = self.scrollViewOriginalInset.top + self.frame.height
-            self.scrollView?.contentInset.top = top
-            var offset = self.scrollView!.contentOffset
+            scorllView.contentInset.top = top
+            var offset = scorllView.contentOffset
             offset.y = -top
-            self.scrollView?.setContentOffset(offset, animated: false)
+            scorllView.setContentOffset(offset, animated: false)
         }, completion: { _ in
             self.executeRefreshCallback()
         })
