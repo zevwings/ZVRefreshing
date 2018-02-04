@@ -2,7 +2,7 @@
 //  UILabel+Addition.swift
 //  ZVRefreshing
 //
-//  Created by 张伟 on 22/01/2018.
+//  Created by zevwings on 22/01/2018.
 //  Copyright © 2018 zevwings. All rights reserved.
 //
 

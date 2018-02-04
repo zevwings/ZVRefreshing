@@ -2,8 +2,8 @@
 //  Extensions.swift
 //  Refresh
 //
-//  Created by ZhangZZZZ on 16/3/30.
-//  Copyright © 2016年 ZhangZZZZ. All rights reserved.
+//  Created by zevwings on 16/3/30.
+//  Copyright © 2016年 zevwings. All rights reserved.
 //
 
 import UIKit

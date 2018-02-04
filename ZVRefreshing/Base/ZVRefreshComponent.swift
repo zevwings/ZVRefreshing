@@ -1,8 +1,8 @@
 //
 //  ZRefreshComponent.swift
 //
-//  Created by ZhangZZZZ on 16/3/29.
-//  Copyright © 2016年 ZhangZZZZ. All rights reserved.
+//  Created by zevwings on 16/3/29.
+//  Copyright © 2016年 zevwings. All rights reserved.
 //
 
 import UIKit
