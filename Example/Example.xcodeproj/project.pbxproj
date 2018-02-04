@@ -731,7 +731,7 @@
 				DEVELOPMENT_TEAM = 4D95EGYA4V;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zevwings.Example;
@@ -750,7 +750,7 @@
 				DEVELOPMENT_TEAM = 4D95EGYA4V;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Example/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zevwings.Example;
@@ -764,7 +764,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2788AA15F3DC5E16613922C4 /* Pods-ExampleTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4D95EGYA4V;
 				INFOPLIST_FILE = ExampleTests/Info.plist;
@@ -782,7 +782,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 94F5BD6641683098ACB6F80E /* Pods-ExampleTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 4D95EGYA4V;
 				INFOPLIST_FILE = ExampleTests/Info.plist;
@@ -800,7 +800,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D304A82FADD1FF0650D948F2 /* Pods-ExampleUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				DEVELOPMENT_TEAM = 4D95EGYA4V;
 				INFOPLIST_FILE = ExampleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -817,7 +817,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6638481C72E266F093DAA76C /* Pods-ExampleUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				DEVELOPMENT_TEAM = 4D95EGYA4V;
 				INFOPLIST_FILE = ExampleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

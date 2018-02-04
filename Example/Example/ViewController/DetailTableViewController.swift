@@ -31,6 +31,8 @@ class DetailTableViewController: UIViewController {
     
     deinit {
         print("DetailTableViewController deinit")
+        self.tableView.refreshHeader = nil
+        self.tableView.refreshFooter = nil
     }
     
     override func viewDidLoad() {
@@ -41,11 +43,14 @@ class DetailTableViewController: UIViewController {
         if refreshComponentType == .normal {
             
             normalHeader = ZVRefreshNormalHeader(refreshHandler: { [weak self] in
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 , execute: {
+                    
                     self?.normalHeader?.endRefreshing()
                     
                     self?.rows += 16
                     self?.tableView.reloadData()
+
                 })
             })
 
@@ -55,7 +60,7 @@ class DetailTableViewController: UIViewController {
             normalAutoFooter?.addTarget(self, action: #selector(refreshHeaderHandler(_:)))
 
             tableView.refreshHeader = normalHeader
-            tableView.refreshFooter = normalAutoFooter
+            tableView.refreshFooter = normalBackFooter
 
         } else if refreshComponentType == .animation {
 
@@ -74,7 +79,7 @@ class DetailTableViewController: UIViewController {
             animationAutoFooter?.addTarget(self, action: #selector(refreshHeaderHandler(_:)))
 
             tableView.refreshHeader = animationHeader
-            tableView.refreshFooter = animationAutoFooter
+            tableView.refreshFooter = animationBackFooter
 
         } else if refreshComponentType == .diy {
 
@@ -93,7 +98,7 @@ class DetailTableViewController: UIViewController {
             diyAutoFooter?.addTarget(self, action: #selector(refreshHeaderHandler(_:)))
 
             tableView.refreshHeader = diyHeader
-            tableView.refreshFooter = diyAutoFooter
+            tableView.refreshFooter = diyBackFooter
         }
     }
 
@@ -148,15 +153,15 @@ class DetailTableViewController: UIViewController {
         switch refreshComponentType {
         case .normal:
             normalHeader?.lastUpdatedTimeLabel?.isHidden = !sender.isOn
-//            normalHeader?.placeSubViews()
+            normalHeader?.placeSubViews()
             break
         case .animation:
             animationHeader?.lastUpdatedTimeLabel?.isHidden = !sender.isOn
-//            animationHeader?.placeSubViews()
+            animationHeader?.placeSubViews()
             break
         case .diy:
             diyHeader?.lastUpdatedTimeLabel?.isHidden = !sender.isOn
-//            diyHeader?.placeSubViews()
+            diyHeader?.placeSubViews()
             break
         }
     }

@@ -36,32 +36,45 @@ public extension UIScrollView {
         static var footer  = "com.zevwings.assocaiationkey.footer"
         static var handler  = "com.zevwings.assocaiationkey.handler"
     }
+    
+    private struct value {
+        static var header: ZVRefreshHeader?
+        static var footer: ZVRefreshFooter?
+    }
 
     public var refreshHeader: ZVRefreshHeader? {
         get {
-            return objc_getAssociatedObject(self, &AssociationKey.header) as? ZVRefreshHeader
+            return value.header
+//                objc_getAssociatedObject(self, &AssociationKey.header) as? ZVRefreshHeader
         }
         set {
             if (refreshHeader != newValue) {
                 refreshHeader?.removeFromSuperview()
-                if newValue != nil { insertSubview(newValue!, at: 0) }
-                willChangeValue(forKey: "refreshHeader")
-                objc_setAssociatedObject(self, &AssociationKey.header, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                didChangeValue(forKey: "refreshHeader")
+                value.header = nil
+                DispatchQueue.main.async {
+                    
+                    if newValue != nil { self.insertSubview(newValue!, at: 0) }
+                }
+//                willChangeValue(forKey: "refreshHeader")
+                value.header = newValue
+//                objc_setAssociatedObject(self, &AssociationKey.header, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//                didChangeValue(forKey: "refreshHeader")
             }
         }
     }
 
     public var refreshFooter: ZVRefreshFooter? {
         get {
-            return objc_getAssociatedObject(self, &AssociationKey.footer) as? ZVRefreshFooter
+            return value.footer
+//                objc_getAssociatedObject(self, &AssociationKey.footer) as? ZVRefreshFooter
         }
         set {
             if (refreshFooter != newValue) {
                 refreshFooter?.removeFromSuperview()
                 if newValue != nil { insertSubview(newValue!, at: 0) }
                 willChangeValue(forKey: "refreshFooter")
-                objc_setAssociatedObject(self, &AssociationKey.footer, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                value.footer = newValue
+//                objc_setAssociatedObject(self, &AssociationKey.footer, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
                 didChangeValue(forKey: "refreshFooter")
             }
         }
@@ -86,9 +99,9 @@ extension UIScrollView {
     
     var reloadDataHandler: ZVReloadDataHandler? {
         get {
-            let cl = objc_getAssociatedObject(self, &AssociationKey.handler)
+//            let cl = objc_getAssociatedObject(self, &AssociationKey.handler)
 //
-            return (cl as? ClosureWrapper)?.closure
+            return nil //(cl as? ClosureWrapper)?.closure
         }
         set {
 //            print("reloadDataHandler set new value")
@@ -126,8 +139,10 @@ extension UIScrollView {
 extension UIApplication {
     
     override open var next: UIResponder? {
+        
         UITableView.once
         UICollectionView.once
+        
         return super.next
     }
 }

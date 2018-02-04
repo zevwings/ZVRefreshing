@@ -7,22 +7,18 @@
 
 import UIKit
 
-public protocol ZVRefreshStateComponent: class {
+public protocol ZVRefreshStateComponentConvertor: class {
     
     var stateLabel: UILabel? { get }
 
     var stateTitles: [ZVRefreshComponent.State : String]? { get set }
+ 
+    func setCurrentStateTitle()
     
     func setTitle(_ title: String, for state: ZVRefreshComponent.State)
 }
 
-public extension ZVRefreshStateComponent where Self: ZVRefreshComponent {
-    
-    func setTitle(_ title: String, for state: ZVRefreshComponent.State) {
-        if stateTitles == nil { stateTitles = [:] }
-        stateTitles?[state] = title
-        stateLabel?.text = stateTitles?[refreshState]
-    }
+public extension ZVRefreshStateComponentConvertor where Self: ZVRefreshComponent {
     
     func setCurrentStateTitle() {
         guard let _stateLabel = stateLabel else { return }
@@ -31,5 +27,11 @@ public extension ZVRefreshStateComponent where Self: ZVRefreshComponent {
         } else {
             _stateLabel.text = stateTitles?[refreshState]
         }
+    }
+    
+    func setTitle(_ title: String, for state: ZVRefreshComponent.State) {
+        if stateTitles == nil { stateTitles = [:] }
+        stateTitles?[state] = title
+        stateLabel?.text = stateTitles?[refreshState]
     }
 }

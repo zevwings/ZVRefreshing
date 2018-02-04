@@ -62,5 +62,5 @@ extension ZVRefreshBackStateFooter {
 
 // MARK: - ZVRefreshStateComponent
 
-extension ZVRefreshBackStateFooter: ZVRefreshStateComponent {}
+extension ZVRefreshBackStateFooter: ZVRefreshStateComponentConvertor {}
 

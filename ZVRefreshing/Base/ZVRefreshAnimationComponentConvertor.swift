@@ -8,7 +8,7 @@
 import UIKit
 
 
-public protocol ZVRefreshAnimationComponent: class {
+public protocol ZVRefreshAnimationComponentConvertor: class {
     
     var stateImages: [ZVRefreshComponent.State: [UIImage]]? { get set }
     var stateDurations: [ZVRefreshComponent.State: TimeInterval]? { get set }
@@ -17,9 +17,13 @@ public protocol ZVRefreshAnimationComponent: class {
     
     func setImages(_ images: [UIImage], for state: ZVRefreshComponent.State)
     func setImages(_ images: [UIImage], duration: TimeInterval, for state: ZVRefreshComponent.State)
+    
+    func pullAnimation(with pullPercent: CGFloat)
+    func startAnimating()
+    func stopAnimating()
 }
 
-public extension ZVRefreshAnimationComponent where Self: ZVRefreshComponent {
+public extension ZVRefreshAnimationComponentConvertor where Self: ZVRefreshComponent {
     
     func setImages(_ images: [UIImage], for state: ZVRefreshComponent.State) {
         setImages(images, duration: Double(images.count) * 0.1, for: state)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class ZVRefreshAutoStateFooter: ZVRefreshAutoFooter {
+open class ZVRefreshAutoStateFooter : ZVRefreshAutoFooter {
     
     // MARK: - Property
     
@@ -72,5 +72,5 @@ private extension ZVRefreshAutoStateFooter {
 
 // MARK: - ZVRefreshStateComponent
 
-extension ZVRefreshAutoStateFooter: ZVRefreshStateComponent {}
+extension ZVRefreshAutoStateFooter : ZVRefreshStateComponentConvertor {}
 

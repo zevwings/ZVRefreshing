@@ -107,6 +107,10 @@ open class ZVRefreshComponent: UIControl {
     
     // MARK: - Init
     
+    deinit {
+        _removeObservers()
+    }
+    
     /// Init
     public convenience init() {
         self.init(frame: .zero)

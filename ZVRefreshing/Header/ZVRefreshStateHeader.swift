@@ -174,4 +174,4 @@ private extension ZVRefreshStateHeader {
 
 // MARK: - ZVRefreshStateComponent
 
-extension ZVRefreshStateHeader: ZVRefreshStateComponent {}
+extension ZVRefreshStateHeader: ZVRefreshStateComponentConvertor {}
