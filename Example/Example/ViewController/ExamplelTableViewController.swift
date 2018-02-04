@@ -168,9 +168,12 @@ class ExamplelTableViewController: UIViewController {
         }
     }
 
+    // MARK: - Life Circle
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    // MARK: - Event Action
     
     @objc func refreshFooterHandler(_ refreshFooter: ZVRefreshFooter?) {
         
@@ -184,6 +187,7 @@ class ExamplelTableViewController: UIViewController {
     
 }
 
+// MARK: - UITableViewDataSource
 extension ExamplelTableViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
