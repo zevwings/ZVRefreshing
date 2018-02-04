@@ -97,12 +97,12 @@ extension UIApplication {
 
 extension UITableView {
     
-    static let once: Void = {
+    fileprivate static let once: Void = {
         UITableView.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
                                            m2: #selector(UITableView._reloadData))
     }()
     
-    @objc func _reloadData() {
+    @objc private func _reloadData() {
         _reloadData()
         executeReloadDataBlock()
     }
@@ -110,12 +110,12 @@ extension UITableView {
 
 extension UICollectionView {
     
-    static let once: Void = {
+    fileprivate static let once: Void = {
         UICollectionView.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
                                                 m2: #selector(UICollectionView._reloadData))
     }()
     
-    @objc func _reloadData() {
+    @objc private func _reloadData() {
         _reloadData()
         executeReloadDataBlock()
     }
