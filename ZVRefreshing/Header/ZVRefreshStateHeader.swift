@@ -19,8 +19,8 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     
     public var stateTitles: [State : String]?
     public private(set) var stateLabel: UILabel?
-    
     public private(set) var lastUpdatedTimeLabel: UILabel?
+    
     private var originalLastUpdatedTimeLabelHidden: Bool?
 
     // MARK: LastUpdateTime

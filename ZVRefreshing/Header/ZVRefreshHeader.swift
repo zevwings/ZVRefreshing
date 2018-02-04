@@ -51,10 +51,10 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         guard offsetY <= happenOffsetY else { return }
         
         let normal2pullingOffsetY = happenOffsetY - frame.height
-        let pullingPercent = (happenOffsetY - offsetY) / frame.height
+        let _pullingPercent = (happenOffsetY - offsetY) / frame.height
         
         if scrollView.isDragging {
-            self.pullingPercent = pullingPercent
+            pullingPercent = _pullingPercent
             if refreshState == .idle && offsetY < normal2pullingOffsetY {
                 refreshState = .pulling
             } else if refreshState == .pulling && offsetY >= normal2pullingOffsetY {
@@ -62,8 +62,8 @@ open class ZVRefreshHeader: ZVRefreshComponent {
             }
         } else if refreshState == .pulling {
             beginRefreshing()
-        }else if pullingPercent < 1 {
-            self.pullingPercent = pullingPercent
+        }else if _pullingPercent < 1 {
+            pullingPercent = _pullingPercent
         }
     }
     

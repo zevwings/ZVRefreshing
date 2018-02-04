@@ -104,9 +104,10 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
                 self.endRefreshingCompletionHandler?()
             })
         }
-        if .refreshing == oldState && _heightForContentBreakView > CGFloat(0.0)
-            && scrollView.totalDataCount != lastRefreshCount{
-            self.scrollView?.contentOffset.y = scrollView.contentOffset.y
+        if .refreshing == oldState &&
+            _heightForContentBreakView > CGFloat(0.0) &&
+            scrollView.totalDataCount != lastRefreshCount {
+            scrollView.contentOffset.y = scrollView.contentOffset.y
         }
     }
 }
