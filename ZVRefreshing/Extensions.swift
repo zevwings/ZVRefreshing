@@ -8,110 +8,58 @@
 
 import UIKit
 
-public protocol ZVRefreshComponentConfigration: class {
-    
-    associatedtype H: ZVRefreshComponent
-    
-    associatedtype F: ZVRefreshComponent
-    
-    var header: H? { get set }
-    
-    var footer: F? { get set }
-    
-}
-
-public protocol ZVRefreshFooterConfigration: class {
-    
-    associatedtype T: ZVRefreshFooter
-    
-    var footer: T? { get set }
-    
-    func refreshFooter(_ refreshFooter: T)
-}
-
 public extension UIScrollView {
     
-    private struct AssociationKey {
-        static var header  = "com.zevwings.assocaiationkey.header"
-        static var footer  = "com.zevwings.assocaiationkey.footer"
-        static var handler  = "com.zevwings.assocaiationkey.handler"
-    }
-    
-    private struct value {
-        static var header: ZVRefreshHeader?
-        static var footer: ZVRefreshFooter?
+    private struct _Storage {
+        static var refreshHeader: ZVRefreshHeader?
+        static var refreshFooter: ZVRefreshFooter?
+        static var reloadHandler: ZVReloadDataHandler?
     }
 
     public var refreshHeader: ZVRefreshHeader? {
         get {
-            return value.header
-//                objc_getAssociatedObject(self, &AssociationKey.header) as? ZVRefreshHeader
+            return _Storage.refreshHeader
         }
         set {
-            if (refreshHeader != newValue) {
-                refreshHeader?.removeFromSuperview()
-                value.header = nil
-                DispatchQueue.main.async {
-                    
-                    if newValue != nil { self.insertSubview(newValue!, at: 0) }
-                }
-//                willChangeValue(forKey: "refreshHeader")
-                value.header = newValue
-//                objc_setAssociatedObject(self, &AssociationKey.header, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-//                didChangeValue(forKey: "refreshHeader")
-            }
+            guard refreshHeader != newValue else { return }
+            refreshHeader?.removeFromSuperview()
+            
+            willChangeValue(forKey: "refreshHeader")
+            _Storage.refreshHeader = newValue
+            didChangeValue(forKey: "refreshHeader")
+            
+            guard let _refreshHeader = refreshHeader else { return }
+            insertSubview(_refreshHeader, at: 0)
         }
     }
 
     public var refreshFooter: ZVRefreshFooter? {
         get {
-            return value.footer
-//                objc_getAssociatedObject(self, &AssociationKey.footer) as? ZVRefreshFooter
+            return _Storage.refreshFooter
         }
         set {
-            if (refreshFooter != newValue) {
-                refreshFooter?.removeFromSuperview()
-                if newValue != nil { insertSubview(newValue!, at: 0) }
-                willChangeValue(forKey: "refreshFooter")
-                value.footer = newValue
-//                objc_setAssociatedObject(self, &AssociationKey.footer, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-                didChangeValue(forKey: "refreshFooter")
-            }
+            guard refreshFooter != newValue else { return }
+            refreshFooter?.removeFromSuperview()
+
+            willChangeValue(forKey: "refreshFooter")
+            _Storage.refreshFooter = newValue
+            didChangeValue(forKey: "refreshFooter")
+
+            guard let _refreshFooter = refreshFooter else { return }
+            insertSubview(_refreshFooter, at: 0)
         }
     }
-}
-
-
-
-class ClosureWrapper {
-    var closure: ZVReloadDataHandler?
     
-    init(_ closure: ZVReloadDataHandler?) {
-        self.closure = closure
-    }
-    
-    deinit {
-        print("ClosureWrapper deinit.")
-    }
-}
-
-extension UIScrollView {
-    
-    var reloadDataHandler: ZVReloadDataHandler? {
+    internal var reloadDataHandler: ZVReloadDataHandler? {
         get {
-//            let cl = objc_getAssociatedObject(self, &AssociationKey.handler)
-//
-            return nil //(cl as? ClosureWrapper)?.closure
+            return _Storage.reloadHandler
         }
         set {
-//            print("reloadDataHandler set new value")
-//            let cl = ClosureWrapper(newValue)
-//            print("cl \(cl)")
-//            objc_setAssociatedObject(self, &AssociationKey.handler, cl, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            _Storage.reloadHandler = newValue
         }
     }
     
-    var totalDataCount: Int {
+    internal var totalDataCount: Int {
         
         var totalCount: Int = 0
         if isKind(of: UITableView.classForCoder()) {
@@ -130,7 +78,7 @@ extension UIScrollView {
         return totalCount
     }
     
-    func executeReloadDataBlock() {
+    internal func executeReloadDataBlock() {
         reloadDataHandler?(totalDataCount)
     }
 }
