@@ -53,7 +53,7 @@ public class ZVRefreshAutoNativeFooter: ZVRefreshAutoStateFooter {
 
     // MARK: - Do On State
     
-    override public func doOnIdle(with oldState: ZVRefreshComponent.State) {
+    override public func doOnIdle(with oldState: State) {
         super.doOnIdle(with: oldState)
         
         activityIndicator?.stopAnimating()
@@ -65,7 +65,7 @@ public class ZVRefreshAutoNativeFooter: ZVRefreshAutoStateFooter {
         activityIndicator?.stopAnimating()
     }
     
-    override public func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+    override public func doOnRefreshing(with oldState: State) {
         super.doOnRefreshing(with: oldState)
         
         activityIndicator?.startAnimating()

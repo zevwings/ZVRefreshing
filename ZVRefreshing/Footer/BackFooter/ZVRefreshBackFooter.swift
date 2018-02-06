@@ -60,19 +60,19 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
     
     // MARK: - Do On State
     
-    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+    override open func doOnIdle(with oldState: State) {
         super.doOnIdle(with: oldState)
         
         _doOn(idleOrNoMoreData: .idle, with: oldState)
     }
     
-    open override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
+    override open func doOnNoMoreData(with oldState: State) {
         super.doOnNoMoreData(with: oldState)
         
         _doOn(idleOrNoMoreData: .noMoreData, with: oldState)
     }
 
-    open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+    override open func doOnRefreshing(with oldState: State) {
         super.doOnRefreshing(with: oldState)
         
         guard let scrollView = scrollView else { return }

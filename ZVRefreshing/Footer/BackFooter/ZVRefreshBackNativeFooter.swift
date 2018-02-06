@@ -74,7 +74,7 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
 
     // MARK: - Do On State
     
-    override public func doOnIdle(with oldState: ZVRefreshComponent.State) {
+    override public func doOnIdle(with oldState: State) {
         super.doOnIdle(with: oldState)
         
         if oldState == .refreshing {
@@ -95,7 +95,7 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    override public func doOnPulling(with oldState: ZVRefreshComponent.State) {
+    override public func doOnPulling(with oldState: State) {
         super.doOnPulling(with: oldState)
         
         arrowView?.isHidden = false
@@ -105,7 +105,7 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
         })
     }
     
-    override public func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+    override public func doOnRefreshing(with oldState: State) {
         super.doOnRefreshing(with: oldState)
         
         arrowView?.isHidden = true

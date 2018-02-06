@@ -59,13 +59,13 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
 
     // MARK: - Do On State
     
-    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+    override open func doOnIdle(with oldState: State) {
         super.doOnIdle(with: oldState)
         
         stopAnimating()
     }
     
-    open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+    override open func doOnRefreshing(with oldState: State) {
         super.doOnRefreshing(with: oldState)
 
         startAnimating()

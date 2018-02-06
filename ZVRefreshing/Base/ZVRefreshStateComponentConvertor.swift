@@ -29,7 +29,7 @@ public extension ZVRefreshStateComponentConvertor where Self: ZVRefreshComponent
         }
     }
     
-    func setTitle(_ title: String, for state: ZVRefreshComponent.State) {
+    func setTitle(_ title: String, for state: State) {
         if stateTitles == nil { stateTitles = [:] }
         stateTitles?[state] = title
         stateLabel?.text = stateTitles?[refreshState]

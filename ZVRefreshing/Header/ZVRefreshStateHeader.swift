@@ -100,13 +100,13 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     
     // MARK: - Do On State
     
-    open override func doOnAnyState(with oldState: ZVRefreshComponent.State) {
+    override open func doOnAnyState(with oldState: State) {
         super.doOnAnyState(with: oldState)
         
         setCurrentStateTitle()
     }
     
-    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+    override open func doOnIdle(with oldState: State) {
         super.doOnIdle(with: oldState)
         
         guard oldState == .refreshing else { return }

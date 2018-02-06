@@ -25,11 +25,11 @@ public protocol ZVRefreshAnimationComponentConvertor: class {
 
 public extension ZVRefreshAnimationComponentConvertor where Self: ZVRefreshComponent {
     
-    func setImages(_ images: [UIImage], for state: ZVRefreshComponent.State) {
+    func setImages(_ images: [UIImage], for state: State) {
         setImages(images, duration: Double(images.count) * 0.1, for: state)
     }
     
-    func setImages(_ images: [UIImage], duration: TimeInterval, for state: ZVRefreshComponent.State) {
+    func setImages(_ images: [UIImage], duration: TimeInterval, for state: State) {
         
         guard images.count > 0 else { return }
         

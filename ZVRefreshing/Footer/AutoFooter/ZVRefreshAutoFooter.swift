@@ -16,7 +16,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     
     // MARK: - Do On State
     
-    open override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+    override open func doOnRefreshing(with oldState: State) {
         super.doOnRefreshing(with: oldState)
         
         self.executeRefreshCallback()

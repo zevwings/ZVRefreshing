@@ -80,7 +80,7 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
     
     // MARK: - Do On State
     
-    open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+    override open func doOnIdle(with oldState: State) {
         super.doOnIdle(with: oldState)
         
         if refreshState == .refreshing {
@@ -102,7 +102,7 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
         }
     }
     
-    override public func doOnPulling(with oldState: ZVRefreshComponent.State) {
+    override public func doOnPulling(with oldState: State) {
         super.doOnPulling(with: oldState)
         
         activityIndicator?.stopAnimating()
@@ -112,7 +112,7 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
         })
     }
     
-    override public func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+    override public func doOnRefreshing(with oldState: State) {
         super.doOnRefreshing(with: oldState)
         
         activityIndicator?.alpha = 1.0
