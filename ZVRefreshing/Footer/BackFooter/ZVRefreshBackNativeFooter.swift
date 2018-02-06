@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import ZVRefreshing
 
-class ZVRefreshBackArrowIndicatorFooter: ZVRefreshBackStateFooter {
+public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
     
     // MARK: - Property
     
@@ -26,13 +25,16 @@ class ZVRefreshBackArrowIndicatorFooter: ZVRefreshBackStateFooter {
     
     // MARK: - Subviews
     
-    override func prepare() {
+    override public func prepare() {
         super.prepare()
+        
+        self.labelInsetLeft = 24.0
         
         if arrowView == nil {
             arrowView = UIImageView()
-            arrowView?.image = UIImage(named: "arrow.png")
-            arrowView?.tintColor = .green
+            arrowView?.contentMode = .scaleAspectFit
+            arrowView?.image = UIImage.arrow
+            arrowView?.tintColor = .lightGray
             arrowView?.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
             addSubview(arrowView!)
         }
@@ -41,37 +43,38 @@ class ZVRefreshBackArrowIndicatorFooter: ZVRefreshBackStateFooter {
             activityIndicator = UIActivityIndicatorView()
             activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
             activityIndicator?.hidesWhenStopped = true
-
+            activityIndicator?.color = .lightGray
             addSubview(activityIndicator!)
         }
     }
     
-    override func placeSubViews() {
+    override public func placeSubViews() {
         super.placeSubViews()
         
-        var arrowCenterX = frame.width * 0.5
+        var centerX = frame.width * 0.5
         if let stateLabel = stateLabel, !stateLabel.isHidden {
-            arrowCenterX -= 100
+            let labelWith = stateLabel.textWidth
+            centerX -= (labelWith * 0.5 + labelInsetLeft + activityIndicator!.frame.width * 0.5)
         }
-        let arrowCenterY = frame.height * 0.5
-        let arrowCenter = CGPoint(x: arrowCenterX, y: arrowCenterY)
+        let centerY = frame.height * 0.5
+        let center = CGPoint(x: centerX, y: centerY)
         
-        if let arrowView = arrowView, arrowView.constraints.count == 0, arrowView.image != nil {
+        if let arrowView = arrowView, arrowView.constraints.count == 0 && arrowView.image != nil {
             arrowView.isHidden = false
             arrowView.frame.size = arrowView.image!.size
-            arrowView.center = arrowCenter
+            arrowView.center = center
         } else {
             arrowView?.isHidden = true
         }
         
-        if activityIndicator?.constraints.count == 0 {
-            activityIndicator?.center = arrowCenter
+        if let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 {
+            activityIndicator.center = center
         }
     }
 
     // MARK: - Do On State
     
-    override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+    override public func doOnIdle(with oldState: ZVRefreshComponent.State) {
         super.doOnIdle(with: oldState)
         
         if oldState == .refreshing {
@@ -92,7 +95,7 @@ class ZVRefreshBackArrowIndicatorFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    override func doOnPulling(with oldState: ZVRefreshComponent.State) {
+    override public func doOnPulling(with oldState: ZVRefreshComponent.State) {
         super.doOnPulling(with: oldState)
         
         arrowView?.isHidden = false
@@ -102,14 +105,14 @@ class ZVRefreshBackArrowIndicatorFooter: ZVRefreshBackStateFooter {
         })
     }
     
-    override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+    override public func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
         super.doOnRefreshing(with: oldState)
         
         arrowView?.isHidden = true
         activityIndicator?.startAnimating()
     }
     
-    override func doOnNoMoreData(with oldState: State) {
+    override public func doOnNoMoreData(with oldState: State) {
         super.doOnNoMoreData(with: oldState)
         
         arrowView?.isHidden = true

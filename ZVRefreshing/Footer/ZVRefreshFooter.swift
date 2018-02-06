@@ -22,9 +22,9 @@ open class ZVRefreshFooter: ZVRefreshComponent {
     public var isNoMoreData: Bool = false {
         didSet {
             if isNoMoreData {
-                refreshState = .noMoreData
+                endRefreshingWithNoMoreData()
             } else {
-                refreshState = .idle
+                endRefreshing()
             }
         }
     }
@@ -32,11 +32,11 @@ open class ZVRefreshFooter: ZVRefreshComponent {
     // MARK: - State Control
     
     public func endRefreshingWithNoMoreData() {
-        refreshState = .noMoreData
+        self.refreshState = .noMoreData
     }
     
     public func resetNoMoreData() {
-        refreshState = .idle
+        self.refreshState = .idle
     }
     
     // MARK: - Subviews

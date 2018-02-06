@@ -14,12 +14,9 @@
 		4D0578DC1F0B27D900F6D5A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D0578DA1F0B27D900F6D5A5 /* LaunchScreen.storyboard */; };
 		4D0578E71F0B27DA00F6D5A5 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0578E61F0B27DA00F6D5A5 /* ExampleTests.swift */; };
 		4D0578F21F0B27DA00F6D5A5 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */; };
-		4D8A638920244A8700B57EEB /* ZVRefreshAutoArrowIndicatorFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A638220244A8700B57EEB /* ZVRefreshAutoArrowIndicatorFooter.swift */; };
-		4D8A638A20244A8700B57EEB /* ZVRefreshArrowIndicatorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A638320244A8700B57EEB /* ZVRefreshArrowIndicatorHeader.swift */; };
 		4D8A638B20244A8700B57EEB /* ZVRefreshCustomAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A638520244A8700B57EEB /* ZVRefreshCustomAnimationHeader.swift */; };
 		4D8A638C20244A8700B57EEB /* ZVRefreshBackCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A638620244A8700B57EEB /* ZVRefreshBackCustomAnimationFooter.swift */; };
 		4D8A638F20244AD500B57EEB /* ZVRefreshAutoCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A638E20244AD500B57EEB /* ZVRefreshAutoCustomAnimationFooter.swift */; };
-		4D8A639120244ADB00B57EEB /* ZVRefreshBackArrowIndicatorFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D8A639020244ADB00B57EEB /* ZVRefreshBackArrowIndicatorFooter.swift */; };
 		4D9CC6ED1F6248FA002E84D6 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D9CC6EC1F6248FA002E84D6 /* AudioToolbox.framework */; };
 		4DDFCEAD1F13C10A00B62435 /* ExampleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DDFCEAC1F13C10A00B62435 /* ExampleCollectionViewController.swift */; };
 		4DEC37BB1F11CB16000EFAAF /* ExamplelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DEC37B61F11CB16000EFAAF /* ExamplelTableViewController.swift */; };
@@ -82,12 +79,9 @@
 		4D0578ED1F0B27DA00F6D5A5 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D0578F11F0B27DA00F6D5A5 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		4D0578F31F0B27DA00F6D5A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D8A638220244A8700B57EEB /* ZVRefreshAutoArrowIndicatorFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoArrowIndicatorFooter.swift; sourceTree = "<group>"; };
-		4D8A638320244A8700B57EEB /* ZVRefreshArrowIndicatorHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshArrowIndicatorHeader.swift; sourceTree = "<group>"; };
 		4D8A638520244A8700B57EEB /* ZVRefreshCustomAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshCustomAnimationHeader.swift; sourceTree = "<group>"; };
 		4D8A638620244A8700B57EEB /* ZVRefreshBackCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackCustomAnimationFooter.swift; sourceTree = "<group>"; };
 		4D8A638E20244AD500B57EEB /* ZVRefreshAutoCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoCustomAnimationFooter.swift; sourceTree = "<group>"; };
-		4D8A639020244ADB00B57EEB /* ZVRefreshBackArrowIndicatorFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackArrowIndicatorFooter.swift; sourceTree = "<group>"; };
 		4D9CC6EC1F6248FA002E84D6 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		4DDFCEAC1F13C10A00B62435 /* ExampleCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewController.swift; sourceTree = "<group>"; };
 		4DEC37B61F11CB16000EFAAF /* ExamplelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamplelTableViewController.swift; sourceTree = "<group>"; };
@@ -184,16 +178,6 @@
 			path = ExampleUITests;
 			sourceTree = "<group>";
 		};
-		4D8A638020244A8700B57EEB /* ArrowIndicator */ = {
-			isa = PBXGroup;
-			children = (
-				4D8A638320244A8700B57EEB /* ZVRefreshArrowIndicatorHeader.swift */,
-				4D8A639020244ADB00B57EEB /* ZVRefreshBackArrowIndicatorFooter.swift */,
-				4D8A638220244A8700B57EEB /* ZVRefreshAutoArrowIndicatorFooter.swift */,
-			);
-			path = ArrowIndicator;
-			sourceTree = "<group>";
-		};
 		4D8A638420244A8700B57EEB /* Animation */ = {
 			isa = PBXGroup;
 			children = (
@@ -219,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				4D8A638420244A8700B57EEB /* Animation */,
-				4D8A638020244A8700B57EEB /* ArrowIndicator */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -552,12 +535,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DDFCEAD1F13C10A00B62435 /* ExampleCollectionViewController.swift in Sources */,
-				4D8A638920244A8700B57EEB /* ZVRefreshAutoArrowIndicatorFooter.swift in Sources */,
 				4D8A638B20244A8700B57EEB /* ZVRefreshCustomAnimationHeader.swift in Sources */,
-				4D8A639120244ADB00B57EEB /* ZVRefreshBackArrowIndicatorFooter.swift in Sources */,
 				4DEC37BC1F11CB16000EFAAF /* ExampleMasterViewController.swift in Sources */,
 				4DEC37BB1F11CB16000EFAAF /* ExamplelTableViewController.swift in Sources */,
-				4D8A638A20244A8700B57EEB /* ZVRefreshArrowIndicatorHeader.swift in Sources */,
 				4D8A638C20244A8700B57EEB /* ZVRefreshBackCustomAnimationFooter.swift in Sources */,
 				4D0578D21F0B27D900F6D5A5 /* AppDelegate.swift in Sources */,
 				4D8A638F20244AD500B57EEB /* ZVRefreshAutoCustomAnimationFooter.swift in Sources */,

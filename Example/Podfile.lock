@@ -1,6 +1,6 @@
 PODS:
   - ZVActivityIndicatorView (0.0.4)
-  - ZVRefreshing (1.2):
+  - ZVRefreshing (2.0.0):
     - ZVActivityIndicatorView
 
 DEPENDENCIES:
@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   ZVActivityIndicatorView: 9b715eaa909eee5a27a079a10a8084aa6d577931
-  ZVRefreshing: b359464b81e12e4d211e1933db68e1b2de134bf7
+  ZVRefreshing: 0c98a51e74d80de2c0aa893c0f962550838f3355
 
 PODFILE CHECKSUM: 1c03eebcf3a14995c5364a913a2865b4360fb01d
 

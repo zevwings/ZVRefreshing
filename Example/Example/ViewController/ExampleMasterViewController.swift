@@ -10,20 +10,20 @@ import UIKit
 import ZVRefreshing
 
 enum ZVRefreshComponentType : Int {
-    case normal
+    case flat
+    case native
     case animation
-    case diy
 }
 
 extension ZVRefreshComponentType {
     var title : String {
         switch self {
-        case .normal:
-            return "Normal"
+        case .flat:
+            return "Flat"
+        case .native:
+            return "Native"
         case .animation:
             return "Animation"
-        case .diy:
-            return "DIY"
         }
     }
 }
@@ -37,7 +37,7 @@ class ExampleMasterViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private var sections = ["UITableView", "UICollectionView"]
-    private var rows = ["Default", "Animation", "DIY"]
+    private var rows = ["Flat", "Native", "Animation"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

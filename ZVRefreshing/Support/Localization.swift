@@ -41,9 +41,7 @@ struct LocalizedKey {
 
 func localized(string key: String, comment: String = "") -> String {
     
-    let currentBundle = Bundle(for: ZVRefreshComponent.self)
-    guard let path = currentBundle.path(forResource: "Resource", ofType: "bundle") else { return "" }
-    guard let bundle = Bundle(path: path) else { return "" }
+    guard let bundle = Bundle.current else { return "" }
     
     var tableName = ""
     guard let language = Locale.preferredLanguages.first else { return "en"}

@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import ZVRefreshing
 
-class ZVRefreshAutoArrowIndicatorFooter: ZVRefreshAutoStateFooter {
+public class ZVRefreshAutoNativeFooter: ZVRefreshAutoStateFooter {
     
     // MARK: - Property
     
@@ -23,45 +22,50 @@ class ZVRefreshAutoArrowIndicatorFooter: ZVRefreshAutoStateFooter {
     
     // MARK: - Subviews
     
-    override func prepare() {
+    override public func prepare() {
         super.prepare()
+        
+        self.labelInsetLeft = 24.0
         
         if activityIndicator == nil {
             activityIndicator = UIActivityIndicatorView()
             activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
             activityIndicator?.hidesWhenStopped = true
+            activityIndicator?.color = .lightGray
             addSubview(activityIndicator!)
         }
     }
     
-    override func placeSubViews() {
+    override public func placeSubViews() {
         super.placeSubViews()
         
-        guard let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 else { return }
-        
-        var loadingCenterX = frame.width * 0.5
-        if let stateLabel = stateLabel, !stateLabel.isHidden {
-            loadingCenterX -= 100
+        if let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 {
+            
+            var activityIndicatorCenterX = frame.width * 0.5
+            if let stateLabel = stateLabel, !stateLabel.isHidden {
+                activityIndicatorCenterX -= (stateLabel.textWidth * 0.5 + labelInsetLeft + activityIndicator.frame.width * 0.5)
+            }
+            
+            let activityIndicatorCenterY = frame.height * 0.5
+            activityIndicator.center = CGPoint(x: activityIndicatorCenterX, y: activityIndicatorCenterY)
         }
-        let loadingCenterY = frame.height * 0.5
-        activityIndicator.center = CGPoint(x: loadingCenterX, y: loadingCenterY)
     }
 
     // MARK: - Do On State
     
-    override func doOnIdle(with oldState: ZVRefreshComponent.State) {
+    override public func doOnIdle(with oldState: ZVRefreshComponent.State) {
         super.doOnIdle(with: oldState)
         
         activityIndicator?.stopAnimating()
     }
     
-    override func doOnNoMoreData(with oldState: State) {
+    override public func doOnNoMoreData(with oldState: State) {
         super.doOnNoMoreData(with: oldState)
         
         activityIndicator?.stopAnimating()
     }
     
-    override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+    override public func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
         super.doOnRefreshing(with: oldState)
         
         activityIndicator?.startAnimating()

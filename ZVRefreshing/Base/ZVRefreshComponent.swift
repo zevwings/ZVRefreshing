@@ -24,9 +24,6 @@ open class ZVRefreshComponent: UIControl {
     private weak var _target: NSObject?
     private var _action: Selector?
     
-    public private(set) var beginRefreshingCompletionHandler: ZVBeginRefreshingCompletionHandler?
-    public private(set) var endRefreshingCompletionHandler: ZVEndRefreshingCompletionHandler?
-
     private(set) var scrollView: UIScrollView?
     var scrollViewOriginalInset: UIEdgeInsets = UIEdgeInsets.zero
 
@@ -79,7 +76,7 @@ open class ZVRefreshComponent: UIControl {
     
     public var isAutomaticallyChangeAlpha: Bool = true {
         didSet {
-            guard isRefreshing == false else { return }
+            guard !isRefreshing else { return }
             if isAutomaticallyChangeAlpha {
                 alpha = pullingPercent
             } else {
@@ -223,18 +220,8 @@ extension ZVRefreshComponent {
         }
     }
     
-    public func beginRefreshing(with completionHandler: @escaping () -> ()) {
-        beginRefreshingCompletionHandler = completionHandler
-        beginRefreshing()
-    }
-    
     public func endRefreshing() {
-        refreshState = .idle
-    }
-    
-    public func endRefreshing(with completionHandler: @escaping () -> ()) {
-        endRefreshingCompletionHandler = completionHandler
-        endRefreshing()
+        self.refreshState = .idle
     }
 }
 
@@ -306,11 +293,9 @@ extension ZVRefreshComponent {
         
         DispatchQueue.main.async {
             self.refreshHandler?()
-            
             if let target = self._target, let action = self._action, target.responds(to: action) {
                 target.perform(action, with: self)
             }
-            self.beginRefreshingCompletionHandler?()
         }
     }
 }

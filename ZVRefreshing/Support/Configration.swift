@@ -9,8 +9,6 @@
 import UIKit
 
 public typealias ZVRefreshHandler = () -> ()
-public typealias ZVBeginRefreshingCompletionHandler = () -> ()
-public typealias ZVEndRefreshingCompletionHandler = () -> ()
 
 typealias ZVReloadDataHandler = (_ totalCount: Int) -> ()
 
@@ -29,4 +27,25 @@ struct ComponentFooter {
 
 struct ActivityIndicator {
     static let width = 24.0
+}
+
+extension Bundle {
+    static var current: Bundle? {
+        let bundle = Bundle(for: ZVRefreshComponent.self)
+        guard let path = bundle.path(forResource: "Resource", ofType: "bundle") else {
+            return nil
+        }
+        return Bundle(path: path)
+    }
+}
+
+extension UIImage {
+    
+    static var arrow: UIImage? {
+        guard let path = Bundle.current?.path(forResource: "arrow@3x", ofType: "png") else {
+            return nil
+        }
+        let image = UIImage(contentsOfFile: path)?.withRenderingMode(.alwaysTemplate)
+        return image
+    }
 }

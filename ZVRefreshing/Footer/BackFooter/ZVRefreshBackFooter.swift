@@ -101,7 +101,6 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
                 if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
             }, completion: { _ in
                 self.pullingPercent = 0.0
-                self.endRefreshingCompletionHandler?()
             })
         }
         if .refreshing == oldState &&

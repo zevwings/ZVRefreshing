@@ -1,32 +1,24 @@
 //
-//  ZRefreshBackStateNormalFooter.swift
+//  ZRefreshAutoNormalFooter.swift
 //
-//  Created by zevwings on 16/4/1.
+//  Created by zevwings on 16/3/31.
 //  Copyright © 2016年 zevwings. All rights reserved.
 //
 
 import UIKit
 import ZVActivityIndicatorView
 
-public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
-    
+public class ZVRefreshAutoFlatFooter: ZVRefreshAutoStateFooter {
+
     // MARK: - Property
     
     public private(set) var activityIndicator : ZVActivityIndicatorView?
-    
-    // MARK: didSet
-    
-    override public var pullingPercent: CGFloat {
-        didSet {
-            activityIndicator?.progress = pullingPercent
-        }
-    }
     
     // MARK: - Subviews
     
     override public func prepare() {
         super.prepare()
-
+        
         if activityIndicator == nil {
             activityIndicator = ZVActivityIndicatorView(frame: .init(x: 0, y: 0, width: 24, height: 24))
             activityIndicator?.color = .lightGray
@@ -55,21 +47,12 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     open override func doOnIdle(with oldState: ZVRefreshComponent.State) {
         super.doOnIdle(with: oldState)
         
-        if oldState == .refreshing {
-            UIView.animate(withDuration: AnimationDuration.fast, animations: {
-                self.activityIndicator?.alpha = 0.0
-            }, completion: { _ in
-                self.activityIndicator?.alpha = 1.0
-                self.activityIndicator?.stopAnimating()
-            })
-        } else {
-            activityIndicator?.stopAnimating()
-        }
+        activityIndicator?.stopAnimating()
     }
 
-    public override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
+    open override func doOnNoMoreData(with oldState: ZVRefreshComponent.State) {
         super.doOnNoMoreData(with: oldState)
-
+        
         activityIndicator?.stopAnimating()
     }
     
@@ -80,10 +63,11 @@ public class ZVRefreshBackNormalFooter: ZVRefreshBackStateFooter {
     }
 }
 
-// MARK: - System Override
+// MARK: - Override
 
-extension ZVRefreshBackNormalFooter {
-    override open var tintColor: UIColor! {
+extension ZVRefreshAutoFlatFooter {
+    
+    override public var tintColor: UIColor! {
         didSet {
             activityIndicator?.color = tintColor
         }

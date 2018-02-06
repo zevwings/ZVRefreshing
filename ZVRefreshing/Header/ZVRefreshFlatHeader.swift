@@ -8,7 +8,7 @@
 import UIKit
 import ZVActivityIndicatorView
 
-open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
+open class ZVRefreshFlatHeader: ZVRefreshStateHeader {
     
     // MARK: - Property
     
@@ -82,7 +82,7 @@ open class ZVRefreshNormalHeader: ZVRefreshStateHeader {
 
 // MARK: - System Override
 
-extension ZVRefreshNormalHeader {
+extension ZVRefreshFlatHeader {
     
     override open var tintColor: UIColor! {
         didSet {

@@ -18,19 +18,19 @@ class ExamplelTableViewController: UIViewController {
     var isAutoFooter: Bool = true
     var isStateLabelHidden: Bool = false
     var isLastUpdateLabelHidden: Bool = false
-    var refreshComponentType: ZVRefreshComponentType = .normal
+    var refreshComponentType: ZVRefreshComponentType = .flat
     
-    private var normalHeader: ZVRefreshNormalHeader?
-    private var normalBackFooter: ZVRefreshBackNormalFooter?
-    private var normalAutoFooter: ZVRefreshAutoNormalFooter?
+    private var flatHeader: ZVRefreshFlatHeader?
+    private var flatBackFooter: ZVRefreshBackFlatFooter?
+    private var flatAutoFooter: ZVRefreshAutoFlatFooter?
     
     private var animationHeader: ZVRefreshCustomAnimationHeader?
     private var animationBackFooter: ZVRefreshBackCustomAnimationFooter?
     private var animationAutoFooter: ZVRefreshAutoCustomAnimationFooter?
     
-    private var diyHeader: ZVRefreshArrowIndicatorHeader?
-    private var diyBackFooter: ZVRefreshBackArrowIndicatorFooter?
-    private var diyAutoFooter: ZVRefreshAutoArrowIndicatorFooter?
+    private var nativeHeader: ZVRefreshNativeHeader?
+    private var nativeBackFooter: ZVRefreshBackNativeFooter?
+    private var nativeAutoFooter: ZVRefreshAutoNativeFooter?
     
     deinit {
     }
@@ -41,30 +41,26 @@ class ExamplelTableViewController: UIViewController {
         self.title = refreshComponentType.title
         
         // MARK: - Normal
-        if refreshComponentType == .normal {
+        if refreshComponentType == .flat {
             
             // MARK: Header
-            normalHeader = ZVRefreshNormalHeader(refreshHandler: { [weak self] in
-                
+            flatHeader = ZVRefreshFlatHeader(refreshHandler: { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 , execute: {
-                    
-                    self?.normalHeader?.endRefreshing()
-                    
+                    self?.flatHeader?.endRefreshing()
                     self?.rows = 16
                     self?.tableView.reloadData()
-
                 })
             })
 
-            normalHeader?.stateLabel?.isHidden = isStateLabelHidden
-            normalHeader?.lastUpdatedTimeLabel?.isHidden = isLastUpdateLabelHidden
+            flatHeader?.stateLabel?.isHidden = isStateLabelHidden
+            flatHeader?.lastUpdatedTimeLabel?.isHidden = isLastUpdateLabelHidden
             
             // MARK: SetTitile
-            normalHeader?.setTitle("下拉开始刷新数据", for: .idle)
-            normalHeader?.setTitle("释放开始刷新数据", for: .pulling)
-            normalHeader?.setTitle("正在刷新数据", for: .refreshing)
+            flatHeader?.setTitle("下拉开始刷新数据", for: .idle)
+            flatHeader?.setTitle("释放开始刷新数据", for: .pulling)
+            flatHeader?.setTitle("正在刷新数据", for: .refreshing)
             
-            normalHeader?.lastUpdatedTimeLabelText = { date in
+            flatHeader?.lastUpdatedTimeLabelText = { date in
                 
                 guard let _date = date else { return "暂无刷新时间" }
                 
@@ -74,34 +70,34 @@ class ExamplelTableViewController: UIViewController {
                 
             }
             
-            tableView.refreshHeader = normalHeader
+            tableView.refreshHeader = flatHeader
             
             if isAutoFooter {
                 
                 // MARK: Auto Footer
-                normalAutoFooter = ZVRefreshAutoNormalFooter()
-                normalAutoFooter?.stateLabel?.isHidden = isStateLabelHidden
-                normalAutoFooter?.addTarget(self, action: #selector(refreshFooterHandler(_:)))
+                flatAutoFooter = ZVRefreshAutoFlatFooter()
+                flatAutoFooter?.stateLabel?.isHidden = isStateLabelHidden
+                flatAutoFooter?.addTarget(self, action: #selector(refreshFooterHandler(_:)))
                 
                 // MARK: SetTitile
-                normalAutoFooter?.setTitle("点击或上拉加载更多数据" , for: .idle)
-                normalAutoFooter?.setTitle("正在刷新数据", for: .refreshing)
-                normalAutoFooter?.setTitle("没有更多数据", for: .noMoreData)
+                flatAutoFooter?.setTitle("点击或上拉加载更多数据" , for: .idle)
+                flatAutoFooter?.setTitle("正在刷新数据", for: .refreshing)
+                flatAutoFooter?.setTitle("没有更多数据", for: .noMoreData)
                 
-                tableView.refreshFooter = normalAutoFooter
+                tableView.refreshFooter = flatAutoFooter
             } else {
             
                 // MARK: Back Footer
-                normalBackFooter = ZVRefreshBackNormalFooter(target: self, action: #selector(refreshFooterHandler(_:)))
-                normalBackFooter?.stateLabel?.isHidden = isStateLabelHidden
+                flatBackFooter = ZVRefreshBackFlatFooter(target: self, action: #selector(refreshFooterHandler(_:)))
+                flatBackFooter?.stateLabel?.isHidden = isStateLabelHidden
                 
                 // MARK: SetTitile
-                normalBackFooter?.setTitle("上拉加载更多数据", for: .idle)
-                normalBackFooter?.setTitle("释放开始加载数据", for: .pulling)
-                normalBackFooter?.setTitle("正在刷新数据", for: .refreshing)
-                normalBackFooter?.setTitle("没有更多数据", for: .noMoreData)
+                flatBackFooter?.setTitle("上拉加载更多数据", for: .idle)
+                flatBackFooter?.setTitle("释放开始加载数据", for: .pulling)
+                flatBackFooter?.setTitle("正在刷新数据", for: .refreshing)
+                flatBackFooter?.setTitle("没有更多数据", for: .noMoreData)
 
-                tableView.refreshFooter = normalBackFooter
+                tableView.refreshFooter = flatBackFooter
             }
 
         } else if refreshComponentType == .animation {
@@ -136,34 +132,35 @@ class ExamplelTableViewController: UIViewController {
                 tableView.refreshFooter = animationBackFooter
             }
 
-        } else if refreshComponentType == .diy {
+        } else if refreshComponentType == .native {
 
         // MARK: - DIY
             
             // MARK: Header
-            diyHeader = ZVRefreshArrowIndicatorHeader(refreshHandler: { [weak self] in
+            nativeHeader = ZVRefreshNativeHeader(refreshHandler: { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 , execute: {
-                    self?.diyHeader?.endRefreshing()
+                    self?.nativeHeader?.endRefreshing()
                     
                     self?.rows = 16
                     self?.tableView.reloadData()
                 })
             })
-            diyHeader?.stateLabel?.isHidden = isStateLabelHidden
-            diyHeader?.lastUpdatedTimeLabel?.isHidden = isLastUpdateLabelHidden
-            tableView.refreshHeader = diyHeader
+            nativeHeader?.tintColor = .black
+            nativeHeader?.stateLabel?.isHidden = isStateLabelHidden
+            nativeHeader?.lastUpdatedTimeLabel?.isHidden = isLastUpdateLabelHidden
+            tableView.refreshHeader = nativeHeader
 
             if isAutoFooter {
                 // MARK: Auto Footer
-                diyAutoFooter = ZVRefreshAutoArrowIndicatorFooter()
-                diyAutoFooter?.stateLabel?.isHidden = isStateLabelHidden
-                diyAutoFooter?.addTarget(self, action: #selector(refreshFooterHandler(_:)))
-                tableView.refreshFooter = diyAutoFooter
+                nativeAutoFooter = ZVRefreshAutoNativeFooter()
+                nativeAutoFooter?.stateLabel?.isHidden = isStateLabelHidden
+                nativeAutoFooter?.addTarget(self, action: #selector(refreshFooterHandler(_:)))
+                tableView.refreshFooter = nativeAutoFooter
             } else {
                 // MARK: Back Footer
-                diyBackFooter = ZVRefreshBackArrowIndicatorFooter(target: self, action: #selector(refreshFooterHandler(_:)))
-                diyBackFooter?.stateLabel?.isHidden = isStateLabelHidden
-                tableView.refreshFooter = diyBackFooter
+                nativeBackFooter = ZVRefreshBackNativeFooter(target: self, action: #selector(refreshFooterHandler(_:)))
+                nativeBackFooter?.stateLabel?.isHidden = isStateLabelHidden
+                tableView.refreshFooter = nativeBackFooter
             }
         }
     }

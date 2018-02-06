@@ -20,19 +20,19 @@ class ExampleCollectionViewController: UICollectionViewController {
     var isAutoFooter: Bool = true
     var isStateLabelHidden: Bool = false
     var isLastUpdateLabelHidden: Bool = false
-    var refreshComponentType: ZVRefreshComponentType = .normal
+    var refreshComponentType: ZVRefreshComponentType = .flat
     
-    private var normalHeader: ZVRefreshNormalHeader?
-    private var normalBackFooter: ZVRefreshBackNormalFooter?
-    private var normalAutoFooter: ZVRefreshAutoNormalFooter?
+    private var flatHeader: ZVRefreshFlatHeader?
+    private var flatBackFooter: ZVRefreshBackFlatFooter?
+    private var flatAutoFooter: ZVRefreshAutoFlatFooter?
     
     private var animationHeader: ZVRefreshCustomAnimationHeader?
     private var animationBackFooter: ZVRefreshBackCustomAnimationFooter?
     private var animationAutoFooter: ZVRefreshAutoCustomAnimationFooter?
     
-    private var diyHeader: ZVRefreshArrowIndicatorHeader?
-    private var diyBackFooter: ZVRefreshBackArrowIndicatorFooter?
-    private var diyAutoFooter: ZVRefreshAutoArrowIndicatorFooter?
+    private var nativeHeader: ZVRefreshNativeHeader?
+    private var nativeBackFooter: ZVRefreshBackNativeFooter?
+    private var nativeAutoFooter: ZVRefreshAutoNativeFooter?
 
     
     deinit {
@@ -44,40 +44,65 @@ class ExampleCollectionViewController: UICollectionViewController {
         collectionViewFlowLayout.itemSize = .init(width: view.frame.width, height: 88)
         
         self.title = refreshComponentType.title
-                
+        
         // MARK: - Normal
-        if refreshComponentType == .normal {
+        if refreshComponentType == .flat {
             
             // MARK: Header
-            normalHeader = ZVRefreshNormalHeader(refreshHandler: { [weak self] in
-                
+            flatHeader = ZVRefreshFlatHeader(refreshHandler: { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 , execute: {
-                    
-                    self?.normalHeader?.endRefreshing()
-                    
+                    self?.flatHeader?.endRefreshing()
                     self?.rows = 16
                     self?.collectionView?.reloadData()
-                    
                 })
             })
             
-            normalHeader?.stateLabel?.isHidden = isStateLabelHidden
-            normalHeader?.lastUpdatedTimeLabel?.isHidden = isLastUpdateLabelHidden
-            collectionView?.refreshHeader = normalHeader
+            flatHeader?.stateLabel?.isHidden = isStateLabelHidden
+            flatHeader?.lastUpdatedTimeLabel?.isHidden = isLastUpdateLabelHidden
+            
+            // MARK: SetTitile
+            flatHeader?.setTitle("下拉开始刷新数据", for: .idle)
+            flatHeader?.setTitle("释放开始刷新数据", for: .pulling)
+            flatHeader?.setTitle("正在刷新数据", for: .refreshing)
+            
+            flatHeader?.lastUpdatedTimeLabelText = { date in
+                
+                guard let _date = date else { return "暂无刷新时间" }
+                
+                let formmater = DateFormatter()
+                formmater.dateFormat = "yyyy-MM-dd"
+                return String(format: "刷新时间: %@", formmater.string(from: _date))
+                
+            }
+            
+            collectionView?.refreshHeader = flatHeader
             
             if isAutoFooter {
                 
                 // MARK: Auto Footer
-                normalAutoFooter = ZVRefreshAutoNormalFooter()
-                normalAutoFooter?.stateLabel?.isHidden = isStateLabelHidden
-                normalAutoFooter?.addTarget(self, action: #selector(refreshFooterHandler(_:)))
-                collectionView?.refreshFooter = normalAutoFooter
+                flatAutoFooter = ZVRefreshAutoFlatFooter()
+                flatAutoFooter?.stateLabel?.isHidden = isStateLabelHidden
+                flatAutoFooter?.addTarget(self, action: #selector(refreshFooterHandler(_:)))
+                
+                // MARK: SetTitile
+                flatAutoFooter?.setTitle("点击或上拉加载更多数据" , for: .idle)
+                flatAutoFooter?.setTitle("正在刷新数据", for: .refreshing)
+                flatAutoFooter?.setTitle("没有更多数据", for: .noMoreData)
+                
+                collectionView?.refreshFooter = flatAutoFooter
             } else {
                 
                 // MARK: Back Footer
-                normalBackFooter = ZVRefreshBackNormalFooter(target: self, action: #selector(refreshFooterHandler(_:)))
-                normalBackFooter?.stateLabel?.isHidden = isStateLabelHidden
-                collectionView?.refreshFooter = normalBackFooter
+                flatBackFooter = ZVRefreshBackFlatFooter(target: self, action: #selector(refreshFooterHandler(_:)))
+                flatBackFooter?.stateLabel?.isHidden = isStateLabelHidden
+                
+                // MARK: SetTitile
+                flatBackFooter?.setTitle("上拉加载更多数据", for: .idle)
+                flatBackFooter?.setTitle("释放开始加载数据", for: .pulling)
+                flatBackFooter?.setTitle("正在刷新数据", for: .refreshing)
+                flatBackFooter?.setTitle("没有更多数据", for: .noMoreData)
+                
+                collectionView?.refreshFooter = flatBackFooter
             }
             
         } else if refreshComponentType == .animation {
@@ -112,34 +137,35 @@ class ExampleCollectionViewController: UICollectionViewController {
                 collectionView?.refreshFooter = animationBackFooter
             }
             
-        } else if refreshComponentType == .diy {
+        } else if refreshComponentType == .native {
             
             // MARK: - DIY
             
             // MARK: Header
-            diyHeader = ZVRefreshArrowIndicatorHeader(refreshHandler: { [weak self] in
+            nativeHeader = ZVRefreshNativeHeader(refreshHandler: { [weak self] in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0 , execute: {
-                    self?.diyHeader?.endRefreshing()
+                    self?.nativeHeader?.endRefreshing()
                     
                     self?.rows = 16
                     self?.collectionView?.reloadData()
                 })
             })
-            diyHeader?.stateLabel?.isHidden = isStateLabelHidden
-            diyHeader?.lastUpdatedTimeLabel?.isHidden = isLastUpdateLabelHidden
-            collectionView?.refreshHeader = diyHeader
+            nativeHeader?.tintColor = .black
+            nativeHeader?.stateLabel?.isHidden = isStateLabelHidden
+            nativeHeader?.lastUpdatedTimeLabel?.isHidden = isLastUpdateLabelHidden
+            collectionView?.refreshHeader = nativeHeader
             
             if isAutoFooter {
                 // MARK: Auto Footer
-                diyAutoFooter = ZVRefreshAutoArrowIndicatorFooter()
-                diyAutoFooter?.stateLabel?.isHidden = isStateLabelHidden
-                diyAutoFooter?.addTarget(self, action: #selector(refreshFooterHandler(_:)))
-                collectionView?.refreshFooter = diyAutoFooter
+                nativeAutoFooter = ZVRefreshAutoNativeFooter()
+                nativeAutoFooter?.stateLabel?.isHidden = isStateLabelHidden
+                nativeAutoFooter?.addTarget(self, action: #selector(refreshFooterHandler(_:)))
+                collectionView?.refreshFooter = nativeAutoFooter
             } else {
                 // MARK: Back Footer
-                diyBackFooter = ZVRefreshBackArrowIndicatorFooter(target: self, action: #selector(refreshFooterHandler(_:)))
-                diyBackFooter?.stateLabel?.isHidden = isStateLabelHidden
-                collectionView?.refreshFooter = diyBackFooter
+                nativeBackFooter = ZVRefreshBackNativeFooter(target: self, action: #selector(refreshFooterHandler(_:)))
+                nativeBackFooter?.stateLabel?.isHidden = isStateLabelHidden
+                collectionView?.refreshFooter = nativeBackFooter
             }
         }
 

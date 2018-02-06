@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import ZVRefreshing
 
-class ZVRefreshArrowIndicatorHeader: ZVRefreshStateHeader {
+public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
     
     // MARK: - Property
     
@@ -28,33 +27,40 @@ class ZVRefreshArrowIndicatorHeader: ZVRefreshStateHeader {
 
     // MARK: - Subviews
     
-    override func prepare() {
+    override public func prepare() {
         super.prepare()
         
+        self.labelInsetLeft = 24.0
+        
         if arrowView == nil {
-            
             arrowView = UIImageView()
-            arrowView?.image = UIImage(named: "arrow.png")
-
+            arrowView?.contentMode = .scaleAspectFit
+            arrowView?.image = UIImage.arrow
+            arrowView?.tintColor = .lightGray
             addSubview(arrowView!)
         }
         
         if activityIndicator == nil {
-
             activityIndicator = UIActivityIndicatorView()
             activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
             activityIndicator?.hidesWhenStopped = true
-
+            activityIndicator?.color = .lightGray
             addSubview(activityIndicator!)
         }
     }
     
-    override func placeSubViews() {
+    override public func placeSubViews() {
         super.placeSubViews()
         
         var centerX = frame.width * 0.5
         if let stateLabel = stateLabel, !stateLabel.isHidden {
-            centerX -= 100
+            var maxLabelWidth: CGFloat = 0.0
+            if let lastUpdatedTimeLabel = lastUpdatedTimeLabel, !lastUpdatedTimeLabel.isHidden {
+                maxLabelWidth = max(lastUpdatedTimeLabel.textWidth, stateLabel.textWidth)
+            } else {
+                maxLabelWidth = stateLabel.textWidth
+            }
+            centerX -= (maxLabelWidth * 0.5 + labelInsetLeft + activityIndicator!.frame.width * 0.5)
         }
         let centerY = frame.height * 0.5
         let center = CGPoint(x: centerX, y: centerY)
@@ -96,7 +102,7 @@ class ZVRefreshArrowIndicatorHeader: ZVRefreshStateHeader {
         }
     }
     
-    override func doOnPulling(with oldState: ZVRefreshComponent.State) {
+    override public func doOnPulling(with oldState: ZVRefreshComponent.State) {
         super.doOnPulling(with: oldState)
         
         activityIndicator?.stopAnimating()
@@ -106,12 +112,22 @@ class ZVRefreshArrowIndicatorHeader: ZVRefreshStateHeader {
         })
     }
     
-    override func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
+    override public func doOnRefreshing(with oldState: ZVRefreshComponent.State) {
         super.doOnRefreshing(with: oldState)
         
         activityIndicator?.alpha = 1.0
         activityIndicator?.startAnimating()
         arrowView?.isHidden = true
+    }
+}
+
+extension ZVRefreshNativeHeader {
+    
+    override public var tintColor: UIColor! {
+        didSet {
+            self.arrowView?.tintColor = tintColor
+            self.activityIndicator?.color = tintColor
+        }
     }
 }
 

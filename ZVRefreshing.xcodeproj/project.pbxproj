@@ -8,19 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		0447D9E00E48038A5E857BC1 /* Pods_ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08021CECB90CE01335B96D3B /* Pods_ZVRefreshing.framework */; };
-		4D1A31CF2018932000E6F85F /* ZVRefreshNormalHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31B72018932000E6F85F /* ZVRefreshNormalHeader.swift */; };
 		4D1A31D02018932000E6F85F /* ZVRefreshAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31B82018932000E6F85F /* ZVRefreshAnimationHeader.swift */; };
 		4D1A31D12018932000E6F85F /* ZVRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31B92018932000E6F85F /* ZVRefreshHeader.swift */; };
 		4D1A31D22018932000E6F85F /* ZVRefreshStateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31BA2018932000E6F85F /* ZVRefreshStateHeader.swift */; };
 		4D1A31D32018932000E6F85F /* ZVRefreshComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31BC2018932000E6F85F /* ZVRefreshComponent.swift */; };
 		4D1A31D42018932000E6F85F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31BD2018932000E6F85F /* Extensions.swift */; };
-		4D1A31D52018932000E6F85F /* ZVRefreshAutoNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C02018932000E6F85F /* ZVRefreshAutoNormalFooter.swift */; };
 		4D1A31D62018932000E6F85F /* ZVRefreshAutoFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C12018932000E6F85F /* ZVRefreshAutoFooter.swift */; };
 		4D1A31D72018932000E6F85F /* ZVRefreshAutoStateFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C22018932000E6F85F /* ZVRefreshAutoStateFooter.swift */; };
 		4D1A31D82018932000E6F85F /* ZVRefreshAutoAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C32018932000E6F85F /* ZVRefreshAutoAnimationFooter.swift */; };
 		4D1A31D92018932000E6F85F /* ZVRefreshBackAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C52018932000E6F85F /* ZVRefreshBackAnimationFooter.swift */; };
 		4D1A31DA2018932000E6F85F /* ZVRefreshBackStateFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C62018932000E6F85F /* ZVRefreshBackStateFooter.swift */; };
-		4D1A31DB2018932000E6F85F /* ZVRefreshBackNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C72018932000E6F85F /* ZVRefreshBackNormalFooter.swift */; };
 		4D1A31DC2018932000E6F85F /* ZVRefreshBackFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C82018932000E6F85F /* ZVRefreshBackFooter.swift */; };
 		4D1A31DD2018932000E6F85F /* ZVRefreshFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31C92018932000E6F85F /* ZVRefreshFooter.swift */; };
 		4D1A31DE2018932000E6F85F /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CB2018932000E6F85F /* Localization.swift */; };
@@ -31,6 +28,12 @@
 		4D94FC9E1F0DFFC500677215 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; };
 		4D94FCA31F0DFFC500677215 /* ZVRefreshingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCA21F0DFFC500677215 /* ZVRefreshingTests.swift */; };
 		4D94FCA51F0DFFC500677215 /* ZVRefreshing.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D94FC971F0DFFC500677215 /* ZVRefreshing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4DA825C720289356002AB7B1 /* ZVRefreshNativeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA825C620289356002AB7B1 /* ZVRefreshNativeHeader.swift */; };
+		4DA825C92028935D002AB7B1 /* ZVRefreshAutoNativeFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA825C82028935D002AB7B1 /* ZVRefreshAutoNativeFooter.swift */; };
+		4DA825CB20289363002AB7B1 /* ZVRefreshBackNativeFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA825CA20289363002AB7B1 /* ZVRefreshBackNativeFooter.swift */; };
+		4DA825CD20293FB2002AB7B1 /* ZVRefreshFlatHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA825CC20293FB1002AB7B1 /* ZVRefreshFlatHeader.swift */; };
+		4DA825CF20293FB9002AB7B1 /* ZVRefreshAutoFlatFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA825CE20293FB8002AB7B1 /* ZVRefreshAutoFlatFooter.swift */; };
+		4DA825D120293FBE002AB7B1 /* ZVRefreshBackFlatFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA825D020293FBE002AB7B1 /* ZVRefreshBackFlatFooter.swift */; };
 		4DC387CC2026EA4500CC8F9C /* ZVRefreshStateComponentConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC387CA2026EA4400CC8F9C /* ZVRefreshStateComponentConvertor.swift */; };
 		4DC387CD2026EA4500CC8F9C /* ZVRefreshAnimationComponentConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC387CB2026EA4500CC8F9C /* ZVRefreshAnimationComponentConvertor.swift */; };
 		910CB44D64870EB88233EFF2 /* Pods_ZVRefreshingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72433DDADE78D1C8E8FD3623 /* Pods_ZVRefreshingTests.framework */; };
@@ -51,19 +54,16 @@
 		135A3ABE8D39DB85FEB55526 /* Pods-ZVRefreshing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZVRefreshing.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZVRefreshing/Pods-ZVRefreshing.release.xcconfig"; sourceTree = "<group>"; };
 		39C705FD8E9555DCDC1AE8ED /* Pods-ZVRefreshing-ZVRefreshingExmaple.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZVRefreshing-ZVRefreshingExmaple.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZVRefreshing-ZVRefreshingExmaple/Pods-ZVRefreshing-ZVRefreshingExmaple.debug.xcconfig"; sourceTree = "<group>"; };
 		48CE07207A240A83E97F0991 /* Pods-ZVRefreshingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZVRefreshingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ZVRefreshingTests/Pods-ZVRefreshingTests.release.xcconfig"; sourceTree = "<group>"; };
-		4D1A31B72018932000E6F85F /* ZVRefreshNormalHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshNormalHeader.swift; sourceTree = "<group>"; };
 		4D1A31B82018932000E6F85F /* ZVRefreshAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAnimationHeader.swift; sourceTree = "<group>"; };
 		4D1A31B92018932000E6F85F /* ZVRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshHeader.swift; sourceTree = "<group>"; };
 		4D1A31BA2018932000E6F85F /* ZVRefreshStateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshStateHeader.swift; sourceTree = "<group>"; };
 		4D1A31BC2018932000E6F85F /* ZVRefreshComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshComponent.swift; sourceTree = "<group>"; };
 		4D1A31BD2018932000E6F85F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		4D1A31C02018932000E6F85F /* ZVRefreshAutoNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoNormalFooter.swift; sourceTree = "<group>"; };
 		4D1A31C12018932000E6F85F /* ZVRefreshAutoFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoFooter.swift; sourceTree = "<group>"; };
 		4D1A31C22018932000E6F85F /* ZVRefreshAutoStateFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoStateFooter.swift; sourceTree = "<group>"; };
 		4D1A31C32018932000E6F85F /* ZVRefreshAutoAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoAnimationFooter.swift; sourceTree = "<group>"; };
 		4D1A31C52018932000E6F85F /* ZVRefreshBackAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackAnimationFooter.swift; sourceTree = "<group>"; };
 		4D1A31C62018932000E6F85F /* ZVRefreshBackStateFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackStateFooter.swift; sourceTree = "<group>"; };
-		4D1A31C72018932000E6F85F /* ZVRefreshBackNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackNormalFooter.swift; sourceTree = "<group>"; };
 		4D1A31C82018932000E6F85F /* ZVRefreshBackFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackFooter.swift; sourceTree = "<group>"; };
 		4D1A31C92018932000E6F85F /* ZVRefreshFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshFooter.swift; sourceTree = "<group>"; };
 		4D1A31CB2018932000E6F85F /* Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
@@ -77,6 +77,12 @@
 		4D94FC9D1F0DFFC500677215 /* ZVRefreshingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZVRefreshingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D94FCA21F0DFFC500677215 /* ZVRefreshingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZVRefreshingTests.swift; sourceTree = "<group>"; };
 		4D94FCA41F0DFFC500677215 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4DA825C620289356002AB7B1 /* ZVRefreshNativeHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshNativeHeader.swift; sourceTree = "<group>"; };
+		4DA825C82028935D002AB7B1 /* ZVRefreshAutoNativeFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoNativeFooter.swift; sourceTree = "<group>"; };
+		4DA825CA20289363002AB7B1 /* ZVRefreshBackNativeFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackNativeFooter.swift; sourceTree = "<group>"; };
+		4DA825CC20293FB1002AB7B1 /* ZVRefreshFlatHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshFlatHeader.swift; sourceTree = "<group>"; };
+		4DA825CE20293FB8002AB7B1 /* ZVRefreshAutoFlatFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoFlatFooter.swift; sourceTree = "<group>"; };
+		4DA825D020293FBE002AB7B1 /* ZVRefreshBackFlatFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackFlatFooter.swift; sourceTree = "<group>"; };
 		4DC387CA2026EA4400CC8F9C /* ZVRefreshStateComponentConvertor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshStateComponentConvertor.swift; sourceTree = "<group>"; };
 		4DC387CB2026EA4500CC8F9C /* ZVRefreshAnimationComponentConvertor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAnimationComponentConvertor.swift; sourceTree = "<group>"; };
 		63FB96F22A22977A5DADC032 /* Pods-ZVRefreshing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZVRefreshing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ZVRefreshing/Pods-ZVRefreshing.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,7 +118,8 @@
 			children = (
 				4D1A31B92018932000E6F85F /* ZVRefreshHeader.swift */,
 				4D1A31BA2018932000E6F85F /* ZVRefreshStateHeader.swift */,
-				4D1A31B72018932000E6F85F /* ZVRefreshNormalHeader.swift */,
+				4DA825CC20293FB1002AB7B1 /* ZVRefreshFlatHeader.swift */,
+				4DA825C620289356002AB7B1 /* ZVRefreshNativeHeader.swift */,
 				4D1A31B82018932000E6F85F /* ZVRefreshAnimationHeader.swift */,
 			);
 			path = Header;
@@ -143,7 +150,8 @@
 			children = (
 				4D1A31C12018932000E6F85F /* ZVRefreshAutoFooter.swift */,
 				4D1A31C22018932000E6F85F /* ZVRefreshAutoStateFooter.swift */,
-				4D1A31C02018932000E6F85F /* ZVRefreshAutoNormalFooter.swift */,
+				4DA825CE20293FB8002AB7B1 /* ZVRefreshAutoFlatFooter.swift */,
+				4DA825C82028935D002AB7B1 /* ZVRefreshAutoNativeFooter.swift */,
 				4D1A31C32018932000E6F85F /* ZVRefreshAutoAnimationFooter.swift */,
 			);
 			path = AutoFooter;
@@ -154,7 +162,8 @@
 			children = (
 				4D1A31C82018932000E6F85F /* ZVRefreshBackFooter.swift */,
 				4D1A31C62018932000E6F85F /* ZVRefreshBackStateFooter.swift */,
-				4D1A31C72018932000E6F85F /* ZVRefreshBackNormalFooter.swift */,
+				4DA825D020293FBE002AB7B1 /* ZVRefreshBackFlatFooter.swift */,
+				4DA825CA20289363002AB7B1 /* ZVRefreshBackNativeFooter.swift */,
 				4D1A31C52018932000E6F85F /* ZVRefreshBackAnimationFooter.swift */,
 			);
 			path = BackFooter;
@@ -456,20 +465,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DA825CB20289363002AB7B1 /* ZVRefreshBackNativeFooter.swift in Sources */,
 				4D1A31D82018932000E6F85F /* ZVRefreshAutoAnimationFooter.swift in Sources */,
 				4D1A31DC2018932000E6F85F /* ZVRefreshBackFooter.swift in Sources */,
 				4DC387CC2026EA4500CC8F9C /* ZVRefreshStateComponentConvertor.swift in Sources */,
 				4D1A31D12018932000E6F85F /* ZVRefreshHeader.swift in Sources */,
 				4D1A31D42018932000E6F85F /* Extensions.swift in Sources */,
 				4D1A31D92018932000E6F85F /* ZVRefreshBackAnimationFooter.swift in Sources */,
-				4D1A31CF2018932000E6F85F /* ZVRefreshNormalHeader.swift in Sources */,
 				4D1A31DE2018932000E6F85F /* Localization.swift in Sources */,
 				4D1A31DA2018932000E6F85F /* ZVRefreshBackStateFooter.swift in Sources */,
+				4DA825C720289356002AB7B1 /* ZVRefreshNativeHeader.swift in Sources */,
 				4D1A31D62018932000E6F85F /* ZVRefreshAutoFooter.swift in Sources */,
+				4DA825CF20293FB9002AB7B1 /* ZVRefreshAutoFlatFooter.swift in Sources */,
 				4D1A31DD2018932000E6F85F /* ZVRefreshFooter.swift in Sources */,
-				4D1A31D52018932000E6F85F /* ZVRefreshAutoNormalFooter.swift in Sources */,
 				4D1A31DF2018932000E6F85F /* Configration.swift in Sources */,
-				4D1A31DB2018932000E6F85F /* ZVRefreshBackNormalFooter.swift in Sources */,
+				4DA825D120293FBE002AB7B1 /* ZVRefreshBackFlatFooter.swift in Sources */,
+				4DA825C92028935D002AB7B1 /* ZVRefreshAutoNativeFooter.swift in Sources */,
 				4DC387CD2026EA4500CC8F9C /* ZVRefreshAnimationComponentConvertor.swift in Sources */,
 				4D1A31D32018932000E6F85F /* ZVRefreshComponent.swift in Sources */,
 				4D1A31E02018932000E6F85F /* UILabel+Addition.swift in Sources */,
@@ -477,6 +488,7 @@
 				4D1A31D72018932000E6F85F /* ZVRefreshAutoStateFooter.swift in Sources */,
 				4D1A31E12018932000E6F85F /* NSObject+Addition.swift in Sources */,
 				4D1A31D02018932000E6F85F /* ZVRefreshAnimationHeader.swift in Sources */,
+				4DA825CD20293FB2002AB7B1 /* ZVRefreshFlatHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

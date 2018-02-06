@@ -79,7 +79,6 @@ open class ZVRefreshHeader: ZVRefreshComponent {
             if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
         }, completion: { _  in
             self.pullingPercent = 0.0
-            self.endRefreshingCompletionHandler?()
         })
     }
     
