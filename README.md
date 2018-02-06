@@ -1,18 +1,19 @@
 # ZVRefreshing
 
-![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)[](https://github.com/Carthage/Carthage)
-![CocoaPods Compatible](https://img.shields.io/badge/pod-1.0.0-4BC51D.svg?style=flat)[](https://cocoapods.org)
-![Platform](https://img.shields.io/badge/platform-ios-9F9F9F.svg)[](http://cocoadocs.org/docsets/Alamofire)
-
+![](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg)[]()
+![](https://img.shields.io/badge/CocoaPods-1.4.0-4BC51D.svg?style=flat)[](https://cocoapods.org)
+![](https://img.shields.io/badge/Platform-iOS-4BB32E.svg)
+![](https://img.shields.io/badge/License-MIT-4BC51D.svg)
+![](https://img.shields.io/badge/swift-4.0.0-4BC51D.svg)
 <br/>
-ZVRefreshing is a pure-swift and wieldy refresh component.
+ZVRefreshing is a pure-swift and  wieldy refresh component.
 
 [中文文档](https://github.com/zevwings/ZVRefreshing/blob/master/README_CN.md)
 
 ## Requirements
 
-- iOS 8.0+ 
-- Swift 3.0
+- iOS 9.0+ 
+- Swift 4.0   
 
 ## Installation
 ### Cocoapod
@@ -32,7 +33,7 @@ platform :ios, '8.0'
 
 target 'TargetName' do
     use_frameworks!
-    pod 'ZVRefreshing', :git => 'https://github.com/zevwings/ZVRefreshing.git'
+    pod 'ZVRefreshing' ~> '2.0.0'
 end
 ```
 
@@ -84,7 +85,7 @@ There is three ways to initialize this widget.
 - Target-Action
 
 ```
-let header = ZVRefreshNormalHeader(target: Any, action: Selector)
+let header = ZVRefreshNormalHeader(target: NSObject, action: Selector)
 self.tableView.header = header
 ```
 - Block
