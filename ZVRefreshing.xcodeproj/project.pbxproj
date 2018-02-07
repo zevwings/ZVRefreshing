@@ -38,8 +38,6 @@
 		4D93A43E202AB135000220E8 /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4D93A443202AB1EF000220E8 /* ZVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D93A442202AB1EF000220E8 /* ZVActivityIndicatorView.framework */; };
 		4D93A444202AB1EF000220E8 /* ZVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D93A442202AB1EF000220E8 /* ZVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4D94FC9E1F0DFFC500677215 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; };
-		4D94FCA31F0DFFC500677215 /* ZVRefreshingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCA21F0DFFC500677215 /* ZVRefreshingTests.swift */; };
 		4D94FCA51F0DFFC500677215 /* ZVRefreshing.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D94FC971F0DFFC500677215 /* ZVRefreshing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4DA825C720289356002AB7B1 /* ZVRefreshNativeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA825C620289356002AB7B1 /* ZVRefreshNativeHeader.swift */; };
 		4DA825C92028935D002AB7B1 /* ZVRefreshAutoNativeFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA825C82028935D002AB7B1 /* ZVRefreshAutoNativeFooter.swift */; };
@@ -53,13 +51,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		4D93A43F202AB135000220E8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4D94FC8B1F0DFFC500677215 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4D94FC931F0DFFC500677215;
-			remoteInfo = ZVRefreshing;
-		};
-		4D94FC9F1F0DFFC500677215 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4D94FC8B1F0DFFC500677215 /* Project object */;
 			proxyType = 1;
@@ -117,9 +108,6 @@
 		4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZVRefreshing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D94FC971F0DFFC500677215 /* ZVRefreshing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZVRefreshing.h; sourceTree = "<group>"; };
 		4D94FC981F0DFFC500677215 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D94FC9D1F0DFFC500677215 /* ZVRefreshingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZVRefreshingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4D94FCA21F0DFFC500677215 /* ZVRefreshingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZVRefreshingTests.swift; sourceTree = "<group>"; };
-		4D94FCA41F0DFFC500677215 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4DA825C620289356002AB7B1 /* ZVRefreshNativeHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshNativeHeader.swift; sourceTree = "<group>"; };
 		4DA825C82028935D002AB7B1 /* ZVRefreshAutoNativeFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoNativeFooter.swift; sourceTree = "<group>"; };
 		4DA825CA20289363002AB7B1 /* ZVRefreshBackNativeFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackNativeFooter.swift; sourceTree = "<group>"; };
@@ -144,14 +132,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4D94FC9A1F0DFFC500677215 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4D94FC9E1F0DFFC500677215 /* ZVRefreshing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +260,6 @@
 			children = (
 				4D93A442202AB1EF000220E8 /* ZVActivityIndicatorView.framework */,
 				4D94FC961F0DFFC500677215 /* ZVRefreshing */,
-				4D94FCA11F0DFFC500677215 /* ZVRefreshingTests */,
 				4D93A41D202AB0C6000220E8 /* ZVRefreshingExample */,
 				4D94FC951F0DFFC500677215 /* Products */,
 			);
@@ -290,7 +269,6 @@
 			isa = PBXGroup;
 			children = (
 				4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */,
-				4D94FC9D1F0DFFC500677215 /* ZVRefreshingTests.xctest */,
 				4D93A41C202AB0C6000220E8 /* ZVRefreshingExample.app */,
 			);
 			name = Products;
@@ -309,15 +287,6 @@
 				4D94FC981F0DFFC500677215 /* Info.plist */,
 			);
 			path = ZVRefreshing;
-			sourceTree = "<group>";
-		};
-		4D94FCA11F0DFFC500677215 /* ZVRefreshingTests */ = {
-			isa = PBXGroup;
-			children = (
-				4D94FCA21F0DFFC500677215 /* ZVRefreshingTests.swift */,
-				4D94FCA41F0DFFC500677215 /* Info.plist */,
-			);
-			path = ZVRefreshingTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,27 +340,6 @@
 			productReference = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		4D94FC9C1F0DFFC500677215 /* ZVRefreshingTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4D94FCAB1F0DFFC500677215 /* Build configuration list for PBXNativeTarget "ZVRefreshingTests" */;
-			buildPhases = (
-				965A0AB884FD476D107F0929 /* [CP] Check Pods Manifest.lock */,
-				4D94FC991F0DFFC500677215 /* Sources */,
-				4D94FC9A1F0DFFC500677215 /* Frameworks */,
-				4D94FC9B1F0DFFC500677215 /* Resources */,
-				BCC2105F55B88C7976A47BD1 /* [CP] Embed Pods Frameworks */,
-				564D60B38B0C2E072EC2ED4E /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4D94FCA01F0DFFC500677215 /* PBXTargetDependency */,
-			);
-			name = ZVRefreshingTests;
-			productName = ZVRefreshingTests;
-			productReference = 4D94FC9D1F0DFFC500677215 /* ZVRefreshingTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -413,12 +361,6 @@
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
-					4D94FC9C1F0DFFC500677215 = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 4D95EGYA4V;
-						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = 4D94FC8E1F0DFFC500677215 /* Build configuration list for PBXProject "ZVRefreshing" */;
@@ -437,7 +379,6 @@
 			projectRoot = "";
 			targets = (
 				4D94FC931F0DFFC500677215 /* ZVRefreshing */,
-				4D94FC9C1F0DFFC500677215 /* ZVRefreshingTests */,
 				4D93A41B202AB0C6000220E8 /* ZVRefreshingExample */,
 			);
 		};
@@ -462,68 +403,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4D94FC9B1F0DFFC500677215 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		564D60B38B0C2E072EC2ED4E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZVRefreshingTests/Pods-ZVRefreshingTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		965A0AB884FD476D107F0929 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ZVRefreshingTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BCC2105F55B88C7976A47BD1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ZVRefreshingTests/Pods-ZVRefreshingTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/ZVActivityIndicatorView/ZVActivityIndicatorView.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ZVActivityIndicatorView.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ZVRefreshingTests/Pods-ZVRefreshingTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4D93A418202AB0C6000220E8 /* Sources */ = {
@@ -571,14 +451,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4D94FC991F0DFFC500677215 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4D94FCA31F0DFFC500677215 /* ZVRefreshingTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -586,11 +458,6 @@
 			isa = PBXTargetDependency;
 			target = 4D94FC931F0DFFC500677215 /* ZVRefreshing */;
 			targetProxy = 4D93A43F202AB135000220E8 /* PBXContainerItemProxy */;
-		};
-		4D94FCA01F0DFFC500677215 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4D94FC931F0DFFC500677215 /* ZVRefreshing */;
-			targetProxy = 4D94FC9F1F0DFFC500677215 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -836,34 +703,6 @@
 			};
 			name = Release;
 		};
-		4D94FCAC1F0DFFC500677215 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 4D95EGYA4V;
-				INFOPLIST_FILE = ZVRefreshingTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zevwings.ZVRefreshingTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		4D94FCAD1F0DFFC500677215 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 4D95EGYA4V;
-				INFOPLIST_FILE = ZVRefreshingTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zevwings.ZVRefreshingTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -890,15 +729,6 @@
 			buildConfigurations = (
 				4D94FCA91F0DFFC500677215 /* Debug */,
 				4D94FCAA1F0DFFC500677215 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4D94FCAB1F0DFFC500677215 /* Build configuration list for PBXNativeTarget "ZVRefreshingTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4D94FCAC1F0DFFC500677215 /* Debug */,
-				4D94FCAD1F0DFFC500677215 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
