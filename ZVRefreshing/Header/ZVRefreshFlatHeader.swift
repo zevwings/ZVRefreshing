@@ -8,7 +8,7 @@
 import UIKit
 import ZVActivityIndicatorView
 
-open class ZVRefreshFlatHeader: ZVRefreshStateHeader {
+public class ZVRefreshFlatHeader: ZVRefreshStateHeader {
     
     // MARK: - Property
     
@@ -16,7 +16,7 @@ open class ZVRefreshFlatHeader: ZVRefreshStateHeader {
     
     // MARK: didSet
     
-    override open var pullingPercent: CGFloat {
+    override public var pullingPercent: CGFloat {
         didSet {
             activityIndicator?.progress = pullingPercent
         }
@@ -24,7 +24,7 @@ open class ZVRefreshFlatHeader: ZVRefreshStateHeader {
     
     // MARK: - Subviews
     
-    override open func prepare() {
+    override public func prepare() {
         super.prepare()
         
         if activityIndicator == nil {
@@ -35,7 +35,7 @@ open class ZVRefreshFlatHeader: ZVRefreshStateHeader {
         }
     }
     
-    override open func placeSubViews() {
+    override public func placeSubViews() {
         super.placeSubViews()
         
         if let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 {
@@ -59,7 +59,7 @@ open class ZVRefreshFlatHeader: ZVRefreshStateHeader {
     
     // MARK: - Do On State
     
-    override open func doOnIdle(with oldState: State) {
+    override public func doOnIdle(with oldState: State) {
         super.doOnIdle(with: oldState)
         
         if refreshState == .refreshing {
@@ -74,7 +74,7 @@ open class ZVRefreshFlatHeader: ZVRefreshStateHeader {
         }
     }
     
-    override open func doOnRefreshing(with oldState: State) {
+    override public func doOnRefreshing(with oldState: State) {
         super.doOnRefreshing(with: oldState)
         activityIndicator?.startAnimating()
     }

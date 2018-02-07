@@ -29,7 +29,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         return UserDefaults.standard.object(forKey: lastUpdatedTimeKey) as? Date
     }
     
-    public var lastUpdatedTimeKey: String! {
+    public var lastUpdatedTimeKey: String = LastUpdatedTimeKey.default {
         didSet {
             _didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
         }
@@ -136,7 +136,7 @@ private extension ZVRefreshStateHeader {
     
     func _didSetLastUpdatedTimeKey(_ newValue: String) {
         
-        guard lastUpdatedTimeLabelText == nil else {
+        if lastUpdatedTimeLabelText != nil {
             lastUpdatedTimeLabel?.text = lastUpdatedTimeLabelText?(lastUpdatedTime)
             return
         }

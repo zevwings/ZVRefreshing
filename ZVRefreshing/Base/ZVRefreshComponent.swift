@@ -116,13 +116,15 @@ open class ZVRefreshComponent: UIControl {
     /// - Parameters:
     ///   - target: callback target
     ///   - action: callback selector
-    public convenience init(target: NSObject, action: Selector) {
+    public convenience init(target: Any, action: Selector) {
         self.init()
+        
+        guard let target = target as? NSObject else { return }
         _target = target
         _action = action
     }
     
-    override public init(frame: CGRect) {
+    override private init(frame: CGRect) {
         super.init(frame: frame)
         prepare()
     }
@@ -279,7 +281,8 @@ extension ZVRefreshComponent {
 
 public extension ZVRefreshComponent {
     
-    public func addTarget(_ target: NSObject, action: Selector) {
+    func addTarget(_ target: Any, action: Selector) {
+        guard let target = target as? NSObject else { return }
         _target = target
         _action = action
     }
