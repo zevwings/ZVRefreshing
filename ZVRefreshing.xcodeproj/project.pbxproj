@@ -24,7 +24,20 @@
 		4D1A31E02018932000E6F85F /* UILabel+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CD2018932000E6F85F /* UILabel+Addition.swift */; };
 		4D1A31E12018932000E6F85F /* NSObject+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CE2018932000E6F85F /* NSObject+Addition.swift */; };
 		4D5237241F4C24E8005080E1 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4D5237231F4C24E8005080E1 /* Resource.bundle */; };
-		4D7ABC24202AAB23008A32E8 /* ZVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D7ABC23202AAB23008A32E8 /* ZVActivityIndicatorView.framework */; };
+		4D93A41F202AB0C6000220E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93A41E202AB0C6000220E8 /* AppDelegate.swift */; };
+		4D93A424202AB0C6000220E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D93A422202AB0C6000220E8 /* Main.storyboard */; };
+		4D93A426202AB0C6000220E8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D93A425202AB0C6000220E8 /* Assets.xcassets */; };
+		4D93A429202AB0C6000220E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D93A427202AB0C6000220E8 /* LaunchScreen.storyboard */; };
+		4D93A437202AB109000220E8 /* ZVRefreshCustomAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93A430202AB109000220E8 /* ZVRefreshCustomAnimationHeader.swift */; };
+		4D93A438202AB109000220E8 /* ZVRefreshAutoCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93A431202AB109000220E8 /* ZVRefreshAutoCustomAnimationFooter.swift */; };
+		4D93A439202AB109000220E8 /* ZVRefreshBackCustomAnimationFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93A432202AB109000220E8 /* ZVRefreshBackCustomAnimationFooter.swift */; };
+		4D93A43A202AB109000220E8 /* ExamplelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93A434202AB109000220E8 /* ExamplelTableViewController.swift */; };
+		4D93A43B202AB109000220E8 /* ExampleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93A435202AB109000220E8 /* ExampleCollectionViewController.swift */; };
+		4D93A43C202AB109000220E8 /* ExampleMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93A436202AB109000220E8 /* ExampleMasterViewController.swift */; };
+		4D93A43D202AB135000220E8 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; };
+		4D93A43E202AB135000220E8 /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4D93A443202AB1EF000220E8 /* ZVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D93A442202AB1EF000220E8 /* ZVActivityIndicatorView.framework */; };
+		4D93A444202AB1EF000220E8 /* ZVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D93A442202AB1EF000220E8 /* ZVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4D94FC9E1F0DFFC500677215 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; };
 		4D94FCA31F0DFFC500677215 /* ZVRefreshingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94FCA21F0DFFC500677215 /* ZVRefreshingTests.swift */; };
 		4D94FCA51F0DFFC500677215 /* ZVRefreshing.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D94FC971F0DFFC500677215 /* ZVRefreshing.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -39,6 +52,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4D93A43F202AB135000220E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4D94FC8B1F0DFFC500677215 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4D94FC931F0DFFC500677215;
+			remoteInfo = ZVRefreshing;
+		};
 		4D94FC9F1F0DFFC500677215 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4D94FC8B1F0DFFC500677215 /* Project object */;
@@ -47,6 +67,21 @@
 			remoteInfo = ZVRefreshing;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4D93A441202AB136000220E8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4D93A444202AB1EF000220E8 /* ZVActivityIndicatorView.framework in Embed Frameworks */,
+				4D93A43E202AB135000220E8 /* ZVRefreshing.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4D1A31B82018932000E6F85F /* ZVRefreshAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAnimationHeader.swift; sourceTree = "<group>"; };
@@ -66,7 +101,19 @@
 		4D1A31CD2018932000E6F85F /* UILabel+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Addition.swift"; sourceTree = "<group>"; };
 		4D1A31CE2018932000E6F85F /* NSObject+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Addition.swift"; sourceTree = "<group>"; };
 		4D5237231F4C24E8005080E1 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
-		4D7ABC23202AAB23008A32E8 /* ZVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZVActivityIndicatorView.framework; path = Carthage/Build/iOS/ZVActivityIndicatorView.framework; sourceTree = "<group>"; };
+		4D93A41C202AB0C6000220E8 /* ZVRefreshingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZVRefreshingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D93A41E202AB0C6000220E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4D93A423202AB0C6000220E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4D93A425202AB0C6000220E8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4D93A428202AB0C6000220E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4D93A42A202AB0C6000220E8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D93A430202AB109000220E8 /* ZVRefreshCustomAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshCustomAnimationHeader.swift; sourceTree = "<group>"; };
+		4D93A431202AB109000220E8 /* ZVRefreshAutoCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAutoCustomAnimationFooter.swift; sourceTree = "<group>"; };
+		4D93A432202AB109000220E8 /* ZVRefreshBackCustomAnimationFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshBackCustomAnimationFooter.swift; sourceTree = "<group>"; };
+		4D93A434202AB109000220E8 /* ExamplelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamplelTableViewController.swift; sourceTree = "<group>"; };
+		4D93A435202AB109000220E8 /* ExampleCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewController.swift; sourceTree = "<group>"; };
+		4D93A436202AB109000220E8 /* ExampleMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleMasterViewController.swift; sourceTree = "<group>"; };
+		4D93A442202AB1EF000220E8 /* ZVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZVActivityIndicatorView.framework; path = Carthage/Build/iOS/ZVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZVRefreshing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D94FC971F0DFFC500677215 /* ZVRefreshing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZVRefreshing.h; sourceTree = "<group>"; };
 		4D94FC981F0DFFC500677215 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,11 +131,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4D93A419202AB0C6000220E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D93A443202AB1EF000220E8 /* ZVActivityIndicatorView.framework in Frameworks */,
+				4D93A43D202AB135000220E8 /* ZVRefreshing.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4D94FC901F0DFFC500677215 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D7ABC24202AAB23008A32E8 /* ZVActivityIndicatorView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,14 +225,6 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		4D7ABC22202AAB22008A32E8 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4D7ABC23202AAB23008A32E8 /* ZVActivityIndicatorView.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		4D9110121F224D8C001B05D4 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -186,13 +233,56 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		4D93A41D202AB0C6000220E8 /* ZVRefreshingExample */ = {
+			isa = PBXGroup;
+			children = (
+				4D93A41E202AB0C6000220E8 /* AppDelegate.swift */,
+				4D93A42E202AB109000220E8 /* Custom */,
+				4D93A433202AB109000220E8 /* ViewController */,
+				4D93A422202AB0C6000220E8 /* Main.storyboard */,
+				4D93A425202AB0C6000220E8 /* Assets.xcassets */,
+				4D93A427202AB0C6000220E8 /* LaunchScreen.storyboard */,
+				4D93A42A202AB0C6000220E8 /* Info.plist */,
+			);
+			path = ZVRefreshingExample;
+			sourceTree = "<group>";
+		};
+		4D93A42E202AB109000220E8 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				4D93A42F202AB109000220E8 /* Animation */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
+		4D93A42F202AB109000220E8 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				4D93A430202AB109000220E8 /* ZVRefreshCustomAnimationHeader.swift */,
+				4D93A431202AB109000220E8 /* ZVRefreshAutoCustomAnimationFooter.swift */,
+				4D93A432202AB109000220E8 /* ZVRefreshBackCustomAnimationFooter.swift */,
+			);
+			path = Animation;
+			sourceTree = "<group>";
+		};
+		4D93A433202AB109000220E8 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4D93A434202AB109000220E8 /* ExamplelTableViewController.swift */,
+				4D93A435202AB109000220E8 /* ExampleCollectionViewController.swift */,
+				4D93A436202AB109000220E8 /* ExampleMasterViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		4D94FC8A1F0DFFC500677215 = {
 			isa = PBXGroup;
 			children = (
+				4D93A442202AB1EF000220E8 /* ZVActivityIndicatorView.framework */,
 				4D94FC961F0DFFC500677215 /* ZVRefreshing */,
 				4D94FCA11F0DFFC500677215 /* ZVRefreshingTests */,
+				4D93A41D202AB0C6000220E8 /* ZVRefreshingExample */,
 				4D94FC951F0DFFC500677215 /* Products */,
-				4D7ABC22202AAB22008A32E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -201,6 +291,7 @@
 			children = (
 				4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */,
 				4D94FC9D1F0DFFC500677215 /* ZVRefreshingTests.xctest */,
+				4D93A41C202AB0C6000220E8 /* ZVRefreshingExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -243,6 +334,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		4D93A41B202AB0C6000220E8 /* ZVRefreshingExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D93A42D202AB0C6000220E8 /* Build configuration list for PBXNativeTarget "ZVRefreshingExample" */;
+			buildPhases = (
+				4D93A418202AB0C6000220E8 /* Sources */,
+				4D93A419202AB0C6000220E8 /* Frameworks */,
+				4D93A41A202AB0C6000220E8 /* Resources */,
+				4D93A441202AB136000220E8 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4D93A440202AB135000220E8 /* PBXTargetDependency */,
+			);
+			name = ZVRefreshingExample;
+			productName = ZVRefreshingExample;
+			productReference = 4D93A41C202AB0C6000220E8 /* ZVRefreshingExample.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4D94FC931F0DFFC500677215 /* ZVRefreshing */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4D94FCA81F0DFFC500677215 /* Build configuration list for PBXNativeTarget "ZVRefreshing" */;
@@ -292,6 +402,11 @@
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = zevwings;
 				TargetAttributes = {
+					4D93A41B202AB0C6000220E8 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 4D95EGYA4V;
+						ProvisioningStyle = Automatic;
+					};
 					4D94FC931F0DFFC500677215 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 4D95EGYA4V;
@@ -323,11 +438,22 @@
 			targets = (
 				4D94FC931F0DFFC500677215 /* ZVRefreshing */,
 				4D94FC9C1F0DFFC500677215 /* ZVRefreshingTests */,
+				4D93A41B202AB0C6000220E8 /* ZVRefreshingExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4D93A41A202AB0C6000220E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D93A429202AB0C6000220E8 /* LaunchScreen.storyboard in Resources */,
+				4D93A426202AB0C6000220E8 /* Assets.xcassets in Resources */,
+				4D93A424202AB0C6000220E8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4D94FC921F0DFFC500677215 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -400,6 +526,20 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4D93A418202AB0C6000220E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D93A437202AB109000220E8 /* ZVRefreshCustomAnimationHeader.swift in Sources */,
+				4D93A43B202AB109000220E8 /* ExampleCollectionViewController.swift in Sources */,
+				4D93A43A202AB109000220E8 /* ExamplelTableViewController.swift in Sources */,
+				4D93A439202AB109000220E8 /* ZVRefreshBackCustomAnimationFooter.swift in Sources */,
+				4D93A43C202AB109000220E8 /* ExampleMasterViewController.swift in Sources */,
+				4D93A41F202AB0C6000220E8 /* AppDelegate.swift in Sources */,
+				4D93A438202AB109000220E8 /* ZVRefreshAutoCustomAnimationFooter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4D94FC8F1F0DFFC500677215 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -442,6 +582,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4D93A440202AB135000220E8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4D94FC931F0DFFC500677215 /* ZVRefreshing */;
+			targetProxy = 4D93A43F202AB135000220E8 /* PBXContainerItemProxy */;
+		};
 		4D94FCA01F0DFFC500677215 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4D94FC931F0DFFC500677215 /* ZVRefreshing */;
@@ -449,7 +594,76 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		4D93A422202AB0C6000220E8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4D93A423202AB0C6000220E8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4D93A427202AB0C6000220E8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4D93A428202AB0C6000220E8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		4D93A42B202AB0C6000220E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4D95EGYA4V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ZVRefreshingExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zevwings.ZVRefreshingExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4D93A42C202AB0C6000220E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4D95EGYA4V;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ZVRefreshingExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.zevwings.ZVRefreshingExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		4D94FCA61F0DFFC500677215 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -653,6 +867,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4D93A42D202AB0C6000220E8 /* Build configuration list for PBXNativeTarget "ZVRefreshingExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4D93A42B202AB0C6000220E8 /* Debug */,
+				4D93A42C202AB0C6000220E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4D94FC8E1F0DFFC500677215 /* Build configuration list for PBXProject "ZVRefreshing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

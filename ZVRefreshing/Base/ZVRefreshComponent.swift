@@ -99,14 +99,14 @@ open class ZVRefreshComponent: UIControl {
     }
     
     /// Init
-    public convenience init() {
+    convenience public init() {
         self.init(frame: .zero)
     }
     
     /// Init with callback closure
     ///
     /// - Parameter refreshHandler: callback closure
-    public convenience init(refreshHandler: @escaping ZVRefreshHandler) {
+    convenience public init(refreshHandler: @escaping ZVRefreshHandler) {
         self.init()
         self.refreshHandler = refreshHandler
     }
@@ -116,7 +116,7 @@ open class ZVRefreshComponent: UIControl {
     /// - Parameters:
     ///   - target: callback target
     ///   - action: callback selector
-    public convenience init(target: Any, action: Selector) {
+    convenience public init(target: Any, action: Selector) {
         self.init()
         
         guard let target = target as? NSObject else { return }
@@ -124,7 +124,7 @@ open class ZVRefreshComponent: UIControl {
         _action = action
     }
     
-    override private init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         prepare()
     }
