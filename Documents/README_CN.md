@@ -42,13 +42,17 @@ github "zevwings/ZVRefreshing" ~> 2.0.0
 
 #### 使用自定义指示器的
 1. ZVRefreshFlatHeader
+
 ![Flat-Header](https://github.com/zevwings/ZVRefreshing/blob/master/Documents/Resource/Flat-Header.gif)
+
 2. ZVRefreshAutoFlatFooter
+
 ![Flat-AutoFooter](https://github.com/zevwings/ZVRefreshing/blob/master/Documents/Resource/Flat-AutoFooter.gif)
+
 3. ZVRefreshBackFlatFooter
+
 ![Flat-BackFooter](https://github.com/zevwings/ZVRefreshing/blob/master/Documents/Resource/Flat-BackFooter.gif)
 
-![(上拉刷新05-自定义文字)](http://images0.cnblogs.com/blog2015/497279/201506/141205295511153.gif)
   
 #### 使用原生指示器的
 1. ZVRefreshNativeHeader
