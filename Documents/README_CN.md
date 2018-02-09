@@ -41,44 +41,82 @@ github "zevwings/ZVRefreshing" ~> 2.0.0
 在`ZVRefreshing`中定义好了6个可以直接使用的空间，可以根据自己的需求选择需要的控件。
 
 #### 使用自定义指示器的
-1. ZVRefreshFlatHeader
+##### ZVRefreshFlatHeader
 
 ```
+// 使用 init(refreshHandler:) 初始化
 let flatHeader = ZVRefreshFlatHeader(refreshHandler: { [weak self] in
 })
-flatHeader?.beginRefreshing()
-collectionView?.refreshHeader = flatHeader
+// 开始刷新
+flatHeader.beginRefreshing()
+// 给collectionView 添加一个刷新控件
+collectionView.refreshHeader = flatHeader
 ```
 
 ![Flat-Header](https://github.com/zevwings/ZVRefreshing/blob/master/Documents/Resource/Flat-Header.gif)
 
-2. ZVRefreshAutoFlatFooter
+##### ZVRefreshAutoFlatFooter
 
 ```
+// 使用 init() 方法初始化
 let flatAutoFooter = ZVRefreshAutoFlatFooter()
+// 添加回调对象何回调函数
 flatAutoFooter.addTarget(self, action: #selector(refreshFooterHandler(_:)))
+// 给collectionView 添加一个刷新控件
 collectionView?.refreshFooter = flatAutoFooter
 ```
 
 ![Flat-AutoFooter](https://github.com/zevwings/ZVRefreshing/blob/master/Documents/Resource/Flat-AutoFooter.gif)
 
-3. ZVRefreshBackFlatFooter
+##### ZVRefreshBackFlatFooter
 
 ```
-flatBackFooter = ZVRefreshBackFlatFooter(target: self, action: #selector(refreshFooterHandler(_:)))
+// 使用 init(target:action:) 初始化
+let flatBackFooter = ZVRefreshBackFlatFooter(target: self, action: #selector(refreshFooterHandler(_:)))
+// 给collectionView 添加一个刷新控件
 collectionView?.refreshFooter = flatBackFooter
 ```
 
 ![Flat-BackFooter](https://github.com/zevwings/ZVRefreshing/blob/master/Documents/Resource/Flat-BackFooter.gif)
 
-  
 #### 使用原生指示器的
-1. ZVRefreshNativeHeader
-2. ZVRefreshAutoNativeFooter
-3. ZVRefreshBackNativeFooter
+##### ZVRefreshNativeHeader
 
+```
+// 使用 init(refreshHandler:) 初始化
+let nativeHeader = ZVRefreshNativeHeader(refreshHandler: { [weak self] in
+})
+// 开始刷新
+nativeHeader.beginRefreshing()
+// 给collectionView 添加一个刷新控件
+collectionView?.refreshHeader = nativeHeader
+```
 
+![Native-Header](https://github.com/zevwings/ZVRefreshing/blob/master/Documents/Resource/Native-Header.gif)
 
+##### ZVRefreshAutoNativeFooter
+
+```
+// 使用 init() 方法初始化
+let nativeAutoFooter = ZVRefreshAutoNativeFooter()
+// 添加回调对象何回调函数
+nativeAutoFooter.addTarget(self, action: #selector(refreshFooterHandler(_:)))
+// 给collectionView 添加一个刷新控件
+collectionView?.refreshFooter = nativeAutoFooter
+```
+
+![Native-AutoFooter](https://github.com/zevwings/ZVRefreshing/blob/master/Documents/Resource/Native-AutoFooter.gif)
+
+##### ZVRefreshBackNativeFooter
+
+```
+// 使用 init(target:action:) 初始化
+let nativeBackFooter = ZVRefreshBackNativeFooter(target: self, action: #selector(refreshFooterHandler(_:)))
+// 给collectionView 添加一个刷新控件
+collectionView?.refreshFooter = nativeBackFooter
+```
+
+![Native-BackFooter](https://github.com/zevwings/ZVRefreshing/blob/master/Documents/Resource/Native-BackFooter.gif)
 
 ### 动画定义篇
 
