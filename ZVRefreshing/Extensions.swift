@@ -23,7 +23,6 @@ public extension UIScrollView {
         set {
             guard refreshHeader != newValue else { return }
             refreshHeader?.removeFromSuperview()
-            
             willChangeValue(forKey: "refreshHeader")
             _Storage.refreshHeader = newValue
             didChangeValue(forKey: "refreshHeader")

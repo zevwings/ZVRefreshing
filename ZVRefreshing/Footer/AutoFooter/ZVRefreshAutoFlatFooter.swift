@@ -21,7 +21,7 @@ public class ZVRefreshAutoFlatFooter: ZVRefreshAutoStateFooter {
         
         if activityIndicator == nil {
             activityIndicator = ZVActivityIndicatorView(frame: .init(x: 0, y: 0, width: 24, height: 24))
-            activityIndicator?.color = .lightGray
+            activityIndicator?.tintColor = .lightGray
             activityIndicator?.hidesWhenStopped = false
             addSubview(activityIndicator!)
         }
@@ -69,7 +69,7 @@ extension ZVRefreshAutoFlatFooter {
     
     override public var tintColor: UIColor! {
         didSet {
-            activityIndicator?.color = tintColor
+            activityIndicator?.tintColor = tintColor
         }
     }
 }

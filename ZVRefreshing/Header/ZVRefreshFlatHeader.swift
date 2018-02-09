@@ -29,7 +29,7 @@ public class ZVRefreshFlatHeader: ZVRefreshStateHeader {
         
         if activityIndicator == nil {
             activityIndicator = ZVActivityIndicatorView(frame: .init(x: 0, y: 0, width: 24, height: 24))
-            activityIndicator?.color = .lightGray
+            activityIndicator?.tintColor = .lightGray
             activityIndicator?.hidesWhenStopped = false
             addSubview(activityIndicator!)
         }
@@ -86,7 +86,7 @@ extension ZVRefreshFlatHeader {
     
     override open var tintColor: UIColor! {
         didSet {
-            activityIndicator?.color = tintColor
+            activityIndicator?.tintColor = tintColor
         }
     }
 }
