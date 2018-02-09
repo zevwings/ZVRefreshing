@@ -43,13 +43,31 @@ github "zevwings/ZVRefreshing" ~> 2.0.0
 #### 使用自定义指示器的
 1. ZVRefreshFlatHeader
 
+```
+let flatHeader = ZVRefreshFlatHeader(refreshHandler: { [weak self] in
+})
+flatHeader?.beginRefreshing()
+collectionView?.refreshHeader = flatHeader
+```
+
 ![Flat-Header](https://github.com/zevwings/ZVRefreshing/blob/master/Documents/Resource/Flat-Header.gif)
 
 2. ZVRefreshAutoFlatFooter
 
+```
+let flatAutoFooter = ZVRefreshAutoFlatFooter()
+flatAutoFooter.addTarget(self, action: #selector(refreshFooterHandler(_:)))
+collectionView?.refreshFooter = flatAutoFooter
+```
+
 ![Flat-AutoFooter](https://github.com/zevwings/ZVRefreshing/blob/master/Documents/Resource/Flat-AutoFooter.gif)
 
 3. ZVRefreshBackFlatFooter
+
+```
+flatBackFooter = ZVRefreshBackFlatFooter(target: self, action: #selector(refreshFooterHandler(_:)))
+collectionView?.refreshFooter = flatBackFooter
+```
 
 ![Flat-BackFooter](https://github.com/zevwings/ZVRefreshing/blob/master/Documents/Resource/Flat-BackFooter.gif)
 
