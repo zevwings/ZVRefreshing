@@ -12,19 +12,10 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
     
     // MARK: - Property
     
-    private var arrowView: UIImageView?
+    public private(set) var arrowView: UIImageView?
     
-    private var activityIndicator: UIActivityIndicatorView?
+    public private(set) var activityIndicator: UIActivityIndicatorView?
     
-    // MARK: didSet
-    
-    public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
-        didSet {
-            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
-            setNeedsLayout()
-        }
-    }
-
     // MARK: - Subviews
     
     override public func prepare() {
@@ -42,7 +33,7 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
         
         if activityIndicator == nil {
             activityIndicator = UIActivityIndicatorView()
-            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
+            activityIndicator?.activityIndicatorViewStyle = .gray
             activityIndicator?.hidesWhenStopped = true
             activityIndicator?.color = .lightGray
             addSubview(activityIndicator!)

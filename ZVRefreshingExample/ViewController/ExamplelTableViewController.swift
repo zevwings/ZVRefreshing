@@ -78,7 +78,9 @@ class ExamplelTableViewController: UIViewController {
                 flatAutoFooter = ZVRefreshAutoFlatFooter()
                 flatAutoFooter?.stateLabel?.isHidden = isStateLabelHidden
                 flatAutoFooter?.addTarget(self, action: #selector(refreshFooterHandler(_:)))
-                
+                flatAutoFooter?.refreshHandler = { [weak self] in
+                    
+                }
                 // MARK: SetTitile
                 flatAutoFooter?.setTitle("点击或上拉加载更多数据" , for: .idle)
                 flatAutoFooter?.setTitle("正在刷新数据", for: .refreshing)

@@ -9,6 +9,8 @@ import UIKit
 
 public protocol ZVRefreshStateComponentConvertor: class {
     
+    var labelInsetLeft: CGFloat { get set }
+    
     var stateLabel: UILabel? { get }
 
     var stateTitles: [ZVRefreshComponent.State : String]? { get set }
