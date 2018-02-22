@@ -23,6 +23,8 @@
 		4D1A31DF2018932000E6F85F /* Configration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CC2018932000E6F85F /* Configration.swift */; };
 		4D1A31E02018932000E6F85F /* UILabel+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CD2018932000E6F85F /* UILabel+Addition.swift */; };
 		4D1A31E12018932000E6F85F /* NSObject+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CE2018932000E6F85F /* NSObject+Addition.swift */; };
+		4D249DB1203E714B004F4E1B /* ZVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D249DB0203E714A004F4E1B /* ZVActivityIndicatorView.framework */; };
+		4D249DB2203E714B004F4E1B /* ZVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D249DB0203E714A004F4E1B /* ZVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4D5237241F4C24E8005080E1 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4D5237231F4C24E8005080E1 /* Resource.bundle */; };
 		4D93A41F202AB0C6000220E8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93A41E202AB0C6000220E8 /* AppDelegate.swift */; };
 		4D93A424202AB0C6000220E8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4D93A422202AB0C6000220E8 /* Main.storyboard */; };
@@ -34,10 +36,6 @@
 		4D93A43A202AB109000220E8 /* ExamplelTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93A434202AB109000220E8 /* ExamplelTableViewController.swift */; };
 		4D93A43B202AB109000220E8 /* ExampleCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93A435202AB109000220E8 /* ExampleCollectionViewController.swift */; };
 		4D93A43C202AB109000220E8 /* ExampleMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D93A436202AB109000220E8 /* ExampleMasterViewController.swift */; };
-		4D93A43D202AB135000220E8 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; };
-		4D93A43E202AB135000220E8 /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		4D93A443202AB1EF000220E8 /* ZVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D93A442202AB1EF000220E8 /* ZVActivityIndicatorView.framework */; };
-		4D93A444202AB1EF000220E8 /* ZVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D93A442202AB1EF000220E8 /* ZVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4D94FCA51F0DFFC500677215 /* ZVRefreshing.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D94FC971F0DFFC500677215 /* ZVRefreshing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4DA825C720289356002AB7B1 /* ZVRefreshNativeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA825C620289356002AB7B1 /* ZVRefreshNativeHeader.swift */; };
 		4DA825C92028935D002AB7B1 /* ZVRefreshAutoNativeFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA825C82028935D002AB7B1 /* ZVRefreshAutoNativeFooter.swift */; };
@@ -47,10 +45,12 @@
 		4DA825D120293FBE002AB7B1 /* ZVRefreshBackFlatFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DA825D020293FBE002AB7B1 /* ZVRefreshBackFlatFooter.swift */; };
 		4DC387CC2026EA4500CC8F9C /* ZVRefreshStateComponentConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC387CA2026EA4400CC8F9C /* ZVRefreshStateComponentConvertor.swift */; };
 		4DC387CD2026EA4500CC8F9C /* ZVRefreshAnimationComponentConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC387CB2026EA4500CC8F9C /* ZVRefreshAnimationComponentConvertor.swift */; };
+		4DFF5B2620318CC60098BA7D /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; };
+		4DFF5B2720318CC60098BA7D /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4D93A43F202AB135000220E8 /* PBXContainerItemProxy */ = {
+		4DFF5B2820318CC60098BA7D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4D94FC8B1F0DFFC500677215 /* Project object */;
 			proxyType = 1;
@@ -60,14 +60,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4D93A441202AB136000220E8 /* Embed Frameworks */ = {
+		4DFF5B2A20318CC60098BA7D /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4D93A444202AB1EF000220E8 /* ZVActivityIndicatorView.framework in Embed Frameworks */,
-				4D93A43E202AB135000220E8 /* ZVRefreshing.framework in Embed Frameworks */,
+				4D249DB2203E714B004F4E1B /* ZVActivityIndicatorView.framework in Embed Frameworks */,
+				4DFF5B2720318CC60098BA7D /* ZVRefreshing.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,6 +91,7 @@
 		4D1A31CC2018932000E6F85F /* Configration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configration.swift; sourceTree = "<group>"; };
 		4D1A31CD2018932000E6F85F /* UILabel+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Addition.swift"; sourceTree = "<group>"; };
 		4D1A31CE2018932000E6F85F /* NSObject+Addition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Addition.swift"; sourceTree = "<group>"; };
+		4D249DB0203E714A004F4E1B /* ZVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZVActivityIndicatorView.framework; path = Carthage/Build/iOS/ZVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		4D5237231F4C24E8005080E1 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		4D93A41C202AB0C6000220E8 /* ZVRefreshingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZVRefreshingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D93A41E202AB0C6000220E8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,7 +105,6 @@
 		4D93A434202AB109000220E8 /* ExamplelTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamplelTableViewController.swift; sourceTree = "<group>"; };
 		4D93A435202AB109000220E8 /* ExampleCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleCollectionViewController.swift; sourceTree = "<group>"; };
 		4D93A436202AB109000220E8 /* ExampleMasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleMasterViewController.swift; sourceTree = "<group>"; };
-		4D93A442202AB1EF000220E8 /* ZVActivityIndicatorView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZVActivityIndicatorView.framework; path = Carthage/Build/iOS/ZVActivityIndicatorView.framework; sourceTree = "<group>"; };
 		4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ZVRefreshing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D94FC971F0DFFC500677215 /* ZVRefreshing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZVRefreshing.h; sourceTree = "<group>"; };
 		4D94FC981F0DFFC500677215 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -123,8 +123,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4D93A443202AB1EF000220E8 /* ZVActivityIndicatorView.framework in Frameworks */,
-				4D93A43D202AB135000220E8 /* ZVRefreshing.framework in Frameworks */,
+				4D249DB1203E714B004F4E1B /* ZVActivityIndicatorView.framework in Frameworks */,
+				4DFF5B2620318CC60098BA7D /* ZVRefreshing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +205,13 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
+		4D249DAF203E7128004F4E1B /* Framworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Framworks;
+			sourceTree = "<group>";
+		};
 		4D9110121F224D8C001B05D4 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,9 +265,10 @@
 		4D94FC8A1F0DFFC500677215 = {
 			isa = PBXGroup;
 			children = (
-				4D93A442202AB1EF000220E8 /* ZVActivityIndicatorView.framework */,
+				4D249DB0203E714A004F4E1B /* ZVActivityIndicatorView.framework */,
 				4D94FC961F0DFFC500677215 /* ZVRefreshing */,
 				4D93A41D202AB0C6000220E8 /* ZVRefreshingExample */,
+				4D249DAF203E7128004F4E1B /* Framworks */,
 				4D94FC951F0DFFC500677215 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -310,12 +318,12 @@
 				4D93A418202AB0C6000220E8 /* Sources */,
 				4D93A419202AB0C6000220E8 /* Frameworks */,
 				4D93A41A202AB0C6000220E8 /* Resources */,
-				4D93A441202AB136000220E8 /* Embed Frameworks */,
+				4DFF5B2A20318CC60098BA7D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4D93A440202AB135000220E8 /* PBXTargetDependency */,
+				4DFF5B2920318CC60098BA7D /* PBXTargetDependency */,
 			);
 			name = ZVRefreshingExample;
 			productName = ZVRefreshingExample;
@@ -454,10 +462,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4D93A440202AB135000220E8 /* PBXTargetDependency */ = {
+		4DFF5B2920318CC60098BA7D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4D94FC931F0DFFC500677215 /* ZVRefreshing */;
-			targetProxy = 4D93A43F202AB135000220E8 /* PBXContainerItemProxy */;
+			targetProxy = 4DFF5B2820318CC60098BA7D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
