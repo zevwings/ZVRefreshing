@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 public protocol ZVRefreshAnimationComponentConvertor: class {
     
     var stateImages: [ZVRefreshComponent.State: [UIImage]]? { get set }
