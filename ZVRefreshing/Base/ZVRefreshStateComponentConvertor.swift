@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol ZVRefreshStateComponentConvertor: class {
+public protocol ZVRefreshStateComponentConvertor: AnyObject {
     
     var labelInsetLeft: CGFloat { get set }
     

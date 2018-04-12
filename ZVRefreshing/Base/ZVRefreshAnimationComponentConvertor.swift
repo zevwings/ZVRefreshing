@@ -7,7 +7,7 @@
 
 import UIKit
 
-public protocol ZVRefreshAnimationComponentConvertor: class {
+public protocol ZVRefreshAnimationComponentConvertor: AnyObject {
     
     var stateImages: [ZVRefreshComponent.State: [UIImage]]? { get set }
     var stateDurations: [ZVRefreshComponent.State: TimeInterval]? { get set }
