@@ -52,7 +52,7 @@ public class ZVRefreshBackFlatFooter: ZVRefreshBackStateFooter {
     
     // MARK: - Do On State
     
-    override open func doOnIdle(with oldState: State) {
+    override open func doOnIdle(with oldState: RefreshState) {
         super.doOnIdle(with: oldState)
         
         if oldState == .refreshing {
@@ -67,13 +67,13 @@ public class ZVRefreshBackFlatFooter: ZVRefreshBackStateFooter {
         }
     }
 
-    override public func doOnNoMoreData(with oldState: State) {
+    override public func doOnNoMoreData(with oldState: RefreshState) {
         super.doOnNoMoreData(with: oldState)
 
         activityIndicator?.stopAnimating()
     }
     
-    override open func doOnRefreshing(with oldState: State) {
+    override open func doOnRefreshing(with oldState: RefreshState) {
         super.doOnRefreshing(with: oldState)
         
         activityIndicator?.startAnimating()

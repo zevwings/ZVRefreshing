@@ -12,10 +12,19 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
     
     // MARK: - Property
     
-    public private(set) var arrowView: UIImageView?
+    private var arrowView: UIImageView?
     
-    public private(set) var activityIndicator: UIActivityIndicatorView?
+    private var activityIndicator: UIActivityIndicatorView?
     
+    // MARK: didSet
+    
+    public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
+        didSet {
+            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
+            setNeedsLayout()
+        }
+    }
+
     // MARK: - Subviews
     
     override public func prepare() {
@@ -33,7 +42,7 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
         
         if activityIndicator == nil {
             activityIndicator = UIActivityIndicatorView()
-            activityIndicator?.activityIndicatorViewStyle = .gray
+            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
             activityIndicator?.hidesWhenStopped = true
             activityIndicator?.color = .lightGray
             addSubview(activityIndicator!)
@@ -71,7 +80,7 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
     
     // MARK: - Do On State
     
-    override open func doOnIdle(with oldState: State) {
+    override open func doOnIdle(with oldState: RefreshState) {
         super.doOnIdle(with: oldState)
         
         if refreshState == .refreshing {
@@ -93,7 +102,7 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
         }
     }
     
-    override public func doOnPulling(with oldState: State) {
+    override public func doOnPulling(with oldState: RefreshState) {
         super.doOnPulling(with: oldState)
         
         activityIndicator?.stopAnimating()
@@ -103,7 +112,7 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
         })
     }
     
-    override public func doOnRefreshing(with oldState: State) {
+    override public func doOnRefreshing(with oldState: RefreshState) {
         super.doOnRefreshing(with: oldState)
         
         activityIndicator?.alpha = 1.0

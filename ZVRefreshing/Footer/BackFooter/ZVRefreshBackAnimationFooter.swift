@@ -13,8 +13,8 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     
     public private(set) var animationView: UIImageView?
     
-    public var stateImages: [State: [UIImage]]?
-    public var stateDurations: [State: TimeInterval]?
+    public var stateImages: [RefreshState: [UIImage]]?
+    public var stateDurations: [RefreshState: TimeInterval]?
     
     // MARK: didSet
     
@@ -53,19 +53,19 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
     
     // MARK: - Do On State
     
-    override open func doOnIdle(with oldState: State) {
+    override open func doOnIdle(with oldState: RefreshState) {
         super.doOnIdle(with: oldState)
         
         stopAnimating()
     }
     
-    override open func doOnNoMoreData(with oldState: State) {
+    override open func doOnNoMoreData(with oldState: RefreshState) {
         super.doOnNoMoreData(with: oldState)
 
         stopAnimating()
     }
 
-    override open func doOnRefreshing(with oldState: State) {
+    override open func doOnRefreshing(with oldState: RefreshState) {
         super.doOnRefreshing(with: oldState)
         
         startAnimating()

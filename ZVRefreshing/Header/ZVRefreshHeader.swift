@@ -69,7 +69,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     
     // MARK: - Do On State
     
-    override open func doOnIdle(with oldState: State) {
+    override open func doOnIdle(with oldState: RefreshState) {
         super.doOnIdle(with: oldState)
         
         guard oldState == .refreshing else { return }
@@ -82,7 +82,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         })
     }
     
-    override open func doOnRefreshing(with oldState: State) {
+    override open func doOnRefreshing(with oldState: RefreshState) {
         super.doOnRefreshing(with: oldState)
         
         UIView.animate(withDuration: AnimationDuration.fast, animations: {

@@ -16,7 +16,8 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     // MARK: - Property
     
     public var labelInsetLeft: CGFloat = 12.0
-    public var stateTitles: [State : String]?
+    
+    public var stateTitles: [RefreshState : String]?
     public private(set) var stateLabel: UILabel?
     public private(set) var lastUpdatedTimeLabel: UILabel?
     
@@ -99,13 +100,13 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     
     // MARK: - Do On State
     
-    override open func doOnAnyState(with oldState: State) {
+    override open func doOnAnyState(with oldState: RefreshState) {
         super.doOnAnyState(with: oldState)
         
         setCurrentStateTitle()
     }
     
-    override open func doOnIdle(with oldState: State) {
+    override open func doOnIdle(with oldState: RefreshState) {
         super.doOnIdle(with: oldState)
         
         guard oldState == .refreshing else { return }

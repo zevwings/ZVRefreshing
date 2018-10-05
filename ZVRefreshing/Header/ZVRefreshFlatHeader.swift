@@ -59,7 +59,7 @@ public class ZVRefreshFlatHeader: ZVRefreshStateHeader {
     
     // MARK: - Do On State
     
-    override public func doOnIdle(with oldState: State) {
+    override public func doOnIdle(with oldState: RefreshState) {
         super.doOnIdle(with: oldState)
         
         if refreshState == .refreshing {
@@ -74,7 +74,7 @@ public class ZVRefreshFlatHeader: ZVRefreshStateHeader {
         }
     }
     
-    override public func doOnRefreshing(with oldState: State) {
+    override public func doOnRefreshing(with oldState: RefreshState) {
         super.doOnRefreshing(with: oldState)
         activityIndicator?.startAnimating()
     }

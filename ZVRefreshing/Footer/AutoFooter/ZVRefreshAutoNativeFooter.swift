@@ -12,7 +12,13 @@ public class ZVRefreshAutoNativeFooter: ZVRefreshAutoStateFooter {
     
     // MARK: - Property
     
-    public private(set) var activityIndicator: UIActivityIndicatorView?
+    private var activityIndicator: UIActivityIndicatorView?
+    
+    public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
+        didSet {
+            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
+        }
+    }
     
     // MARK: - Subviews
     
@@ -23,7 +29,7 @@ public class ZVRefreshAutoNativeFooter: ZVRefreshAutoStateFooter {
         
         if activityIndicator == nil {
             activityIndicator = UIActivityIndicatorView()
-            activityIndicator?.activityIndicatorViewStyle = .gray
+            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
             activityIndicator?.hidesWhenStopped = true
             activityIndicator?.color = .lightGray
             addSubview(activityIndicator!)
@@ -47,19 +53,19 @@ public class ZVRefreshAutoNativeFooter: ZVRefreshAutoStateFooter {
 
     // MARK: - Do On State
     
-    override public func doOnIdle(with oldState: State) {
+    override public func doOnIdle(with oldState: RefreshState) {
         super.doOnIdle(with: oldState)
         
         activityIndicator?.stopAnimating()
     }
     
-    override public func doOnNoMoreData(with oldState: State) {
+    override public func doOnNoMoreData(with oldState: RefreshState) {
         super.doOnNoMoreData(with: oldState)
         
         activityIndicator?.stopAnimating()
     }
     
-    override public func doOnRefreshing(with oldState: State) {
+    override public func doOnRefreshing(with oldState: RefreshState) {
         super.doOnRefreshing(with: oldState)
         
         activityIndicator?.startAnimating()

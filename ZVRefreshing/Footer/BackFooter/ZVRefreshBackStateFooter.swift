@@ -12,7 +12,8 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     // MARK: - Property
     
     public var labelInsetLeft: CGFloat = 12.0
-    public var stateTitles: [State : String]?
+    
+    public var stateTitles: [RefreshState : String]?
     public private(set) var stateLabel: UILabel?
     
     // MARK: - Subviews
@@ -41,7 +42,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
     // MARK: - Do On State
     
-    override open func doOnAnyState(with oldState: State) {
+    override open func doOnAnyState(with oldState: RefreshState) {
         super.doOnAnyState(with: oldState)
         
         setCurrentStateTitle()
