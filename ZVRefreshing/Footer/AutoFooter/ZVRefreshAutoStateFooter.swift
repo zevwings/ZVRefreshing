@@ -1,5 +1,6 @@
 //
 //  ZRefreshAutoStateFooter.swift
+//  ZVRefreshing
 //
 //  Created by zevwings on 16/3/31.
 //  Copyright © 2016年 zevwings. All rights reserved.
@@ -26,9 +27,9 @@ open class ZVRefreshAutoStateFooter : ZVRefreshAutoFooter {
             addSubview(stateLabel!)
         }
         
-        setTitle(with: LocalizedKey.Footer.Auto.idle , for: .idle)
-        setTitle(with: LocalizedKey.Footer.Auto.refreshing, for: .refreshing)
-        setTitle(with: LocalizedKey.Footer.Auto.noMoreData, for: .noMoreData)
+        setTitle(with: LocalizedKey.AutoFooter.idle , for: .idle)
+        setTitle(with: LocalizedKey.AutoFooter.refreshing, for: .refreshing)
+        setTitle(with: LocalizedKey.AutoFooter.noMoreData, for: .noMoreData)
         
         addTarget(self, action: #selector(_stateLabelClicked), for: .touchUpInside)
     }

@@ -1,6 +1,6 @@
 //
 //  ZVRefreshDIYHeader.swift
-//  Example
+//  ZVRefreshing
 //
 //  Created by zevwings on 2017/7/17.
 //  Copyright © 2017年 zevwings. All rights reserved.
@@ -13,7 +13,6 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
     // MARK: - Property
     
     private var arrowView: UIImageView?
-    
     private var activityIndicator: UIActivityIndicatorView?
     
     // MARK: didSet

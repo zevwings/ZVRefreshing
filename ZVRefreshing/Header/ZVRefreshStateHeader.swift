@@ -1,5 +1,6 @@
 //
 //  ZRefreshStateHeader.swift
+//  ZVRefreshing
 //
 //  Created by zevwings on 16/3/30.
 //  Copyright © 2016年 zevwings. All rights reserved.
@@ -158,8 +159,8 @@ private extension ZVRefreshStateHeader {
             } else {
                 formatter.dateFormat = "yyyy-MM-dd HH:mm"
             }
-            let timeString = formatter.string(from: lastUpdatedTime)
             
+            let timeString = formatter.string(from: lastUpdatedTime)
             lastUpdatedTimeLabel?.text = String(format: "%@ %@ %@",
                                                 ZVLocalizedString(LocalizedKey.State.lastUpdatedTime),
                                                 isToday ? ZVLocalizedString(LocalizedKey.State.dateToday) : "",

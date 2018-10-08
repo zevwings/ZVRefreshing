@@ -1,6 +1,6 @@
 //
 //  ZVRefreshAutoDIYFooter.swift
-//  Example
+//  ZVRefreshing
 //
 //  Created by zevwings on 2017/7/17.
 //  Copyright © 2017年 zevwings. All rights reserved.

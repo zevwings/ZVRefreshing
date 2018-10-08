@@ -1,5 +1,6 @@
 //
 //  ZRefreshBackStateFooter.swift
+//  ZVRefreshing
 //
 //  Created by zevwings on 16/4/1.
 //  Copyright © 2016年 zevwings. All rights reserved.
@@ -26,10 +27,10 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
             addSubview(stateLabel!)
         }
         
-        setTitle(with: LocalizedKey.Footer.Back.idle, for: .idle)
-        setTitle(with: LocalizedKey.Footer.Back.pulling, for: .pulling)
-        setTitle(with: LocalizedKey.Footer.Back.refreshing, for: .refreshing)
-        setTitle(with: LocalizedKey.Footer.Back.noMoreData, for: .noMoreData)
+        setTitle(with: LocalizedKey.BackFooter.idle, for: .idle)
+        setTitle(with: LocalizedKey.BackFooter.pulling, for: .pulling)
+        setTitle(with: LocalizedKey.BackFooter.refreshing, for: .refreshing)
+        setTitle(with: LocalizedKey.BackFooter.noMoreData, for: .noMoreData)
     }
     
     override open func placeSubViews() {

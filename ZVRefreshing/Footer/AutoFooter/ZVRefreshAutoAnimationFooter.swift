@@ -1,5 +1,6 @@
 //
 //  ZRefreshAutoAnimationFooter.swift
+//  ZVRefreshing
 //
 //  Created by zevwings on 16/4/1.
 //  Copyright © 2016年 zevwings. All rights reserved.

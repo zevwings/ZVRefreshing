@@ -1,6 +1,6 @@
 //
 //  ZVRefreshBackDIYFooter.swift
-//  Example
+//  ZVRefreshing
 //
 //  Created by zevwings on 2017/7/17.
 //  Copyright © 2017年 zevwings. All rights reserved.
@@ -13,7 +13,6 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
     // MARK: - Property
     
     private var arrowView: UIImageView?
-    
     private var activityIndicator: UIActivityIndicatorView?
     
     public var activityIndicatorViewStyle: UIActivityIndicatorView.Style = .gray {
@@ -90,7 +89,7 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
             arrowView?.isHidden = false
             activityIndicator?.stopAnimating()
             UIView.animate(withDuration: 0.15, animations: {
-                self.arrowView?.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
+                self.arrowView?.transform = CGAffineTransform(rotationAngle: -CGFloat(Double.pi))
             })
         }
     }

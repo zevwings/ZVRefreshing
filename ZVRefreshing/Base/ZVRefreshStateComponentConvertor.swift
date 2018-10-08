@@ -1,8 +1,9 @@
 //
 //  ZVRefreshStateComponent.swift
-//  Pods-Example
+//  ZVRefreshing
 //
 //  Created by zevwings on 01/02/2018.
+//  Copyright © 2016年 zevwings. All rights reserved.
 //
 
 import UIKit
@@ -18,12 +19,11 @@ public protocol ZVRefreshStateComponentConvertor: class {
 
 public extension ZVRefreshStateComponentConvertor where Self: ZVRefreshComponent {
     
-
-    
     func setTitle(_ title: String, for state: RefreshState) {
         if stateTitles == nil { stateTitles = [:] }
         stateTitles?[state] = title
         stateLabel?.text = stateTitles?[refreshState]
+        setNeedsLayout()
     }
     
     func setTitle(with localizedKey: String, for state: RefreshState) {

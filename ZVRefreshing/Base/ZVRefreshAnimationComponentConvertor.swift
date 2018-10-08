@@ -1,12 +1,12 @@
 //
 //  Protocols.swift
-//  Pods-Example
+//  ZVRefreshing
 //
 //  Created by zevwings on 01/02/2018.
+//  Copyright © 2016年 zevwings. All rights reserved.
 //
 
 import UIKit
-
 
 public protocol ZVRefreshAnimationComponentConvertor: AnyObject {
     
@@ -19,7 +19,9 @@ public protocol ZVRefreshAnimationComponentConvertor: AnyObject {
     func setImages(_ images: [UIImage], duration: TimeInterval, for state: ZVRefreshComponent.RefreshState)
     
     func pullAnimation(with pullPercent: CGFloat)
+    
     func startAnimating()
+    
     func stopAnimating()
 }
 
