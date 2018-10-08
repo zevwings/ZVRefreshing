@@ -26,10 +26,10 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
             addSubview(stateLabel!)
         }
         
-        setTitle(localized(string: LocalizedKey.Footer.Back.idle), for: .idle)
-        setTitle(localized(string: LocalizedKey.Footer.Back.pulling), for: .pulling)
-        setTitle(localized(string: LocalizedKey.Footer.Back.refreshing), for: .refreshing)
-        setTitle(localized(string: LocalizedKey.Footer.Back.noMoreData), for: .noMoreData)
+        setTitle(with: LocalizedKey.Footer.Back.idle, for: .idle)
+        setTitle(with: LocalizedKey.Footer.Back.pulling, for: .pulling)
+        setTitle(with: LocalizedKey.Footer.Back.refreshing, for: .refreshing)
+        setTitle(with: LocalizedKey.Footer.Back.noMoreData, for: .noMoreData)
     }
     
     override open func placeSubViews() {
@@ -45,7 +45,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     override open func doOnAnyState(with oldState: RefreshState) {
         super.doOnAnyState(with: oldState)
         
-        setCurrentStateTitle()
+        setTitleForCurrentState()
     }
 }
 

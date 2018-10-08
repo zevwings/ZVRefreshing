@@ -57,9 +57,9 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
             lastUpdatedTimeKey = LastUpdatedTimeKey.default
         }
         
-        setTitle(localized(string: LocalizedKey.Header.idle), for: .idle)
-        setTitle(localized(string: LocalizedKey.Header.pulling), for: .pulling)
-        setTitle(localized(string: LocalizedKey.Header.refreshing), for: .refreshing)
+        setTitle(with: LocalizedKey.Header.idle, for: .idle)
+        setTitle(with: LocalizedKey.Header.pulling, for: .pulling)
+        setTitle(with: LocalizedKey.Header.refreshing, for: .refreshing)
     }
     
     override open func placeSubViews() {
@@ -103,7 +103,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     override open func doOnAnyState(with oldState: RefreshState) {
         super.doOnAnyState(with: oldState)
         
-        setCurrentStateTitle()
+        setTitleForCurrentState()
     }
     
     override open func doOnIdle(with oldState: RefreshState) {
@@ -161,13 +161,13 @@ private extension ZVRefreshStateHeader {
             let timeString = formatter.string(from: lastUpdatedTime)
             
             lastUpdatedTimeLabel?.text = String(format: "%@ %@ %@",
-                                                localized(string: LocalizedKey.State.lastUpdatedTime),
-                                                isToday ? localized(string: LocalizedKey.State.dateToday) : "",
+                                                ZVLocalizedString(LocalizedKey.State.lastUpdatedTime),
+                                                isToday ? ZVLocalizedString(LocalizedKey.State.dateToday) : "",
                                                 timeString)
         } else {
             lastUpdatedTimeLabel?.text = String(format: "%@ %@",
-                                                localized(string: LocalizedKey.State.lastUpdatedTime),
-                                                localized(string: LocalizedKey.State.noLastTime))
+                                                ZVLocalizedString(LocalizedKey.State.lastUpdatedTime),
+                                                ZVLocalizedString(LocalizedKey.State.noLastTime))
         }
     }
 }

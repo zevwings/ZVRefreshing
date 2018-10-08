@@ -12,26 +12,31 @@ public protocol ZVRefreshStateComponentConvertor: class {
     var stateLabel: UILabel? { get }
 
     var stateTitles: [ZVRefreshComponent.RefreshState : String]? { get set }
- 
-    func setCurrentStateTitle()
     
     func setTitle(_ title: String, for state: ZVRefreshComponent.RefreshState)
 }
 
 public extension ZVRefreshStateComponentConvertor where Self: ZVRefreshComponent {
     
-    func setCurrentStateTitle() {
+
+    
+    func setTitle(_ title: String, for state: RefreshState) {
+        if stateTitles == nil { stateTitles = [:] }
+        stateTitles?[state] = title
+        stateLabel?.text = stateTitles?[refreshState]
+    }
+    
+    func setTitle(with localizedKey: String, for state: RefreshState) {
+        let title = ZVLocalizedString(localizedKey)
+        setTitle(title, for: state)
+    }
+    
+    func setTitleForCurrentState() {
         guard let _stateLabel = stateLabel else { return }
         if _stateLabel.isHidden && refreshState == .refreshing {
             _stateLabel.text = nil
         } else {
             _stateLabel.text = stateTitles?[refreshState]
         }
-    }
-    
-    func setTitle(_ title: String, for state: RefreshState) {
-        if stateTitles == nil { stateTitles = [:] }
-        stateTitles?[state] = title
-        stateLabel?.text = stateTitles?[refreshState]
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct LocalizedKey {
+public struct LocalizedKey {
     
     struct Header {
         static let idle = "pull down to refresh"
@@ -39,7 +39,7 @@ struct LocalizedKey {
     }
 }
 
-func localized(string key: String, comment: String = "") -> String {
+func ZVLocalizedString(_ key: String, comment: String = "") -> String {
     
     guard let bundle = Bundle.current else { return "" }
     
@@ -52,6 +52,6 @@ func localized(string key: String, comment: String = "") -> String {
     } else {
         tableName = "en"
     }
-
-    return NSLocalizedString(key, tableName: tableName, bundle: bundle, value: "", comment: comment.isEmpty ? key: comment)
+    
+    return NSLocalizedString(key, tableName: tableName, bundle: bundle, value: "", comment: comment.isEmpty ? key : comment)
 }
