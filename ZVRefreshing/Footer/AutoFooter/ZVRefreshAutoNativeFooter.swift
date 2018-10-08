@@ -14,9 +14,9 @@ public class ZVRefreshAutoNativeFooter: ZVRefreshAutoStateFooter {
     
     private var activityIndicator: UIActivityIndicatorView?
     
-    public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
+    public var activityIndicatorViewStyle: UIActivityIndicatorView.Style = .gray {
         didSet {
-            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
+            activityIndicator?.style = activityIndicatorViewStyle
         }
     }
     
@@ -29,7 +29,7 @@ public class ZVRefreshAutoNativeFooter: ZVRefreshAutoStateFooter {
         
         if activityIndicator == nil {
             activityIndicator = UIActivityIndicatorView()
-            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
+            activityIndicator?.style = activityIndicatorViewStyle
             activityIndicator?.hidesWhenStopped = true
             activityIndicator?.color = .lightGray
             addSubview(activityIndicator!)

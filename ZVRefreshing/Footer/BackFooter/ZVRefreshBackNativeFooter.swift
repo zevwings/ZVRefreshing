@@ -16,9 +16,9 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
     
     private var activityIndicator: UIActivityIndicatorView?
     
-    public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
+    public var activityIndicatorViewStyle: UIActivityIndicatorView.Style = .gray {
         didSet {
-            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
+            activityIndicator?.style = activityIndicatorViewStyle
             setNeedsLayout()
         }
     }
@@ -41,7 +41,7 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
         
         if activityIndicator == nil {
             activityIndicator = UIActivityIndicatorView()
-            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
+            activityIndicator?.style = activityIndicatorViewStyle
             activityIndicator?.hidesWhenStopped = true
             activityIndicator?.color = .lightGray
             addSubview(activityIndicator!)

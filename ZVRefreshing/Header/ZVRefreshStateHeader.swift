@@ -65,7 +65,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     override open func placeSubViews() {
         super.placeSubViews()
         
-        guard let stateLabel = stateLabel, stateLabel.isHidden == false else {
+        guard let stateLabel = stateLabel, !stateLabel.isHidden else {
             originalLastUpdatedTimeLabelHidden = lastUpdatedTimeLabel?.isHidden
             lastUpdatedTimeLabel?.isHidden = true
             return
