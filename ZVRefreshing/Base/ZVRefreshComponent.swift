@@ -9,7 +9,7 @@ import UIKit
 
 open class ZVRefreshComponent: UIControl {
     
-    public enum State {
+    public enum RefreshState {
         case idle
         case pulling
         case willRefresh
@@ -31,8 +31,8 @@ open class ZVRefreshComponent: UIControl {
     
     public var refreshHandler: ZVRefreshHandler?
     
-    private var _refreshState: State = .idle
-    open var refreshState: State {
+    private var _refreshState: RefreshState = .idle
+    open var refreshState: RefreshState {
         get {
             return _refreshState
         }
@@ -145,17 +145,17 @@ open class ZVRefreshComponent: UIControl {
     
     // MARK: - doOn
 
-    open func doOnAnyState(with oldState: State) {}
+    open func doOnAnyState(with oldState: RefreshState) {}
     
-    open func doOnIdle(with oldState: State) {}
+    open func doOnIdle(with oldState: RefreshState) {}
     
-    open func doOnNoMoreData(with oldState: State) {}
+    open func doOnNoMoreData(with oldState: RefreshState) {}
 
-    open func doOnPulling(with oldState: State) {}
+    open func doOnPulling(with oldState: RefreshState) {}
     
-    open func doOnWillRefresh(with oldState: State) {}
+    open func doOnWillRefresh(with oldState: RefreshState) {}
     
-    open func doOnRefreshing(with oldState: State) {}
+    open func doOnRefreshing(with oldState: RefreshState) {}
     
     // MARK: - Observers
     

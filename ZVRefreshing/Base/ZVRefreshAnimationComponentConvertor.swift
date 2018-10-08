@@ -7,15 +7,16 @@
 
 import UIKit
 
-public protocol ZVRefreshAnimationComponentConvertor: AnyObject {
+
+public protocol ZVRefreshAnimationComponentConvertor: class {
     
-    var stateImages: [ZVRefreshComponent.State: [UIImage]]? { get set }
-    var stateDurations: [ZVRefreshComponent.State: TimeInterval]? { get set }
+    var stateImages: [ZVRefreshComponent.RefreshState: [UIImage]]? { get set }
+    var stateDurations: [ZVRefreshComponent.RefreshState: TimeInterval]? { get set }
     
     var animationView: UIImageView? { get }
     
-    func setImages(_ images: [UIImage], for state: ZVRefreshComponent.State)
-    func setImages(_ images: [UIImage], duration: TimeInterval, for state: ZVRefreshComponent.State)
+    func setImages(_ images: [UIImage], for state: ZVRefreshComponent.RefreshState)
+    func setImages(_ images: [UIImage], duration: TimeInterval, for state: ZVRefreshComponent.RefreshState)
     
     func pullAnimation(with pullPercent: CGFloat)
     func startAnimating()
@@ -24,11 +25,11 @@ public protocol ZVRefreshAnimationComponentConvertor: AnyObject {
 
 public extension ZVRefreshAnimationComponentConvertor where Self: ZVRefreshComponent {
     
-    func setImages(_ images: [UIImage], for state: State) {
+    func setImages(_ images: [UIImage], for state: RefreshState) {
         setImages(images, duration: Double(images.count) * 0.1, for: state)
     }
     
-    func setImages(_ images: [UIImage], duration: TimeInterval, for state: State) {
+    func setImages(_ images: [UIImage], duration: TimeInterval, for state: RefreshState) {
         
         guard images.count > 0 else { return }
         

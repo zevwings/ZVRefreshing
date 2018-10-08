@@ -12,10 +12,16 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
     
     // MARK: - Property
     
-    public private(set) var arrowView: UIImageView?
+    private var arrowView: UIImageView?
     
-    public private(set) var activityIndicator: UIActivityIndicatorView?
+    private var activityIndicator: UIActivityIndicatorView?
     
+    public var activityIndicatorViewStyle: UIActivityIndicatorViewStyle = .gray {
+        didSet {
+            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
+            setNeedsLayout()
+        }
+    }
     
     // MARK: - Subviews
     
@@ -35,7 +41,7 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
         
         if activityIndicator == nil {
             activityIndicator = UIActivityIndicatorView()
-            activityIndicator?.activityIndicatorViewStyle = .gray
+            activityIndicator?.activityIndicatorViewStyle = activityIndicatorViewStyle
             activityIndicator?.hidesWhenStopped = true
             activityIndicator?.color = .lightGray
             addSubview(activityIndicator!)
@@ -68,7 +74,7 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
 
     // MARK: - Do On State
     
-    override public func doOnIdle(with oldState: State) {
+    override public func doOnIdle(with oldState: RefreshState) {
         super.doOnIdle(with: oldState)
         
         if oldState == .refreshing {
@@ -89,7 +95,7 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    override public func doOnPulling(with oldState: State) {
+    override public func doOnPulling(with oldState: RefreshState) {
         super.doOnPulling(with: oldState)
         
         arrowView?.isHidden = false
@@ -99,14 +105,14 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
         })
     }
     
-    override public func doOnRefreshing(with oldState: State) {
+    override public func doOnRefreshing(with oldState: RefreshState) {
         super.doOnRefreshing(with: oldState)
         
         arrowView?.isHidden = true
         activityIndicator?.startAnimating()
     }
     
-    override public func doOnNoMoreData(with oldState: State) {
+    override public func doOnNoMoreData(with oldState: RefreshState) {
         super.doOnNoMoreData(with: oldState)
         
         arrowView?.isHidden = true

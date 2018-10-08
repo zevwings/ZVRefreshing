@@ -7,17 +7,15 @@
 
 import UIKit
 
-public protocol ZVRefreshStateComponentConvertor: AnyObject {
-    
-    var labelInsetLeft: CGFloat { get set }
+public protocol ZVRefreshStateComponentConvertor: class {
     
     var stateLabel: UILabel? { get }
 
-    var stateTitles: [ZVRefreshComponent.State : String]? { get set }
+    var stateTitles: [ZVRefreshComponent.RefreshState : String]? { get set }
  
     func setCurrentStateTitle()
     
-    func setTitle(_ title: String, for state: ZVRefreshComponent.State)
+    func setTitle(_ title: String, for state: ZVRefreshComponent.RefreshState)
 }
 
 public extension ZVRefreshStateComponentConvertor where Self: ZVRefreshComponent {
@@ -31,7 +29,7 @@ public extension ZVRefreshStateComponentConvertor where Self: ZVRefreshComponent
         }
     }
     
-    func setTitle(_ title: String, for state: State) {
+    func setTitle(_ title: String, for state: RefreshState) {
         if stateTitles == nil { stateTitles = [:] }
         stateTitles?[state] = title
         stateLabel?.text = stateTitles?[refreshState]
