@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol ZVRefreshStateComponentConvertor: class {
+public protocol ZVRefreshStateComponentConvertor: AnyObject {
     
     var stateLabel: UILabel? { get }
 
