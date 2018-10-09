@@ -13,7 +13,7 @@ ZVRefreshing is a pure-swift and  wieldy refresh component.
 ## Requirements
 
 - iOS 9.0+ 
-- Swift 4.0   
+- Swift 4.2   
 
 ## Installation
 ### Cocoapod
