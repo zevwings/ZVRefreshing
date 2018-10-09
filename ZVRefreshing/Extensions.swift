@@ -10,21 +10,25 @@ import UIKit
 
 public extension UIScrollView {
     
-    private struct _Storage {
-        static var refreshHeader: ZVRefreshHeader?
-        static var refreshFooter: ZVRefreshFooter?
-        static var reloadHandler: ZVReloadDataHandler?
+    private struct _StorageKey {
+        static let refreshHeader = "com.zevwings.refreshing.header"
+        static let refreshFooter = "com.zevwings.refreshing.footer"
+        static let reloadHandler = "com.zevwings.refreshing.reloadhandler"
     }
 
     public var refreshHeader: ZVRefreshHeader? {
         get {
-            return _Storage.refreshHeader
+            if let refreshHeader = objc_getAssociatedObject(self, _StorageKey.refreshHeader) as? ZVRefreshHeader {
+                return refreshHeader;
+            } else {
+                return nil
+            }
         }
         set {
             guard refreshHeader != newValue else { return }
             refreshHeader?.removeFromSuperview()
             willChangeValue(forKey: "refreshHeader")
-            _Storage.refreshHeader = newValue
+            objc_setAssociatedObject(self, _StorageKey.refreshHeader, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             didChangeValue(forKey: "refreshHeader")
             
             guard let _refreshHeader = refreshHeader else { return }
@@ -34,27 +38,36 @@ public extension UIScrollView {
 
     public var refreshFooter: ZVRefreshFooter? {
         get {
-            return _Storage.refreshFooter
+            if let refreshFooter = objc_getAssociatedObject(self, _StorageKey.refreshFooter) as? ZVRefreshFooter {
+                return refreshFooter;
+            } else {
+                return nil
+            }
         }
         set {
             guard refreshFooter != newValue else { return }
             refreshFooter?.removeFromSuperview()
 
             willChangeValue(forKey: "refreshFooter")
-            _Storage.refreshFooter = newValue
+            objc_setAssociatedObject(self, _StorageKey.refreshFooter, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             didChangeValue(forKey: "refreshFooter")
 
             guard let _refreshFooter = refreshFooter else { return }
             insertSubview(_refreshFooter, at: 0)
         }
     }
-    
+
     internal var reloadDataHandler: ZVReloadDataHandler? {
         get {
-            return _Storage.reloadHandler
+            if let wrapper = objc_getAssociatedObject(self, _StorageKey.reloadHandler) as? ZVReloadDataHandlerWrapper {
+                return wrapper.reloadDataHanader
+            } else {
+                return nil
+            }
         }
         set {
-            _Storage.reloadHandler = newValue
+            let wrapper = ZVReloadDataHandlerWrapper(value: newValue)
+            objc_setAssociatedObject(self, _StorageKey.reloadHandler, wrapper, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
@@ -117,5 +130,13 @@ extension UICollectionView {
     @objc private func _reloadData() {
         _reloadData()
         executeReloadDataBlock()
+    }
+}
+
+// wrap and unwrap `ZVReloadDataHandler` as an `AnyObject` value
+fileprivate struct ZVReloadDataHandlerWrapper {
+    var reloadDataHanader: ZVReloadDataHandler?
+    init(value: ZVReloadDataHandler?) {
+        self.reloadDataHanader = value
     }
 }
