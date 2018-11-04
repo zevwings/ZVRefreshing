@@ -139,6 +139,8 @@ private extension ZVRefreshStateHeader {
         
         if lastUpdatedTimeLabelText != nil {
             lastUpdatedTimeLabel?.text = lastUpdatedTimeLabelText?(lastUpdatedTime)
+            setNeedsLayout()
+            layoutIfNeeded()
             return
         }
         
@@ -170,6 +172,9 @@ private extension ZVRefreshStateHeader {
                                                 ZVLocalizedString(LocalizedKey.State.lastUpdatedTime),
                                                 ZVLocalizedString(LocalizedKey.State.noLastTime))
         }
+        
+        setNeedsLayout()
+        layoutIfNeeded()
     }
 }
 
