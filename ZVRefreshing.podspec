@@ -9,14 +9,14 @@
 Pod::Spec.new do |s|
 
   s.name         = "ZVRefreshing"
-  s.version      = "2.0.6"
+  s.version      = "2.0.8"
   s.summary      = "A pure-swift and wieldy refresh component."
   s.description  = <<-DESC
   					ZRefreshing is a pure-swift and wieldy refresh component.
                    DESC
 
   s.homepage     = "https://github.com/zevwings/ZVRefreshing"
-  s.license      = { :type => "MIT", :file => "LICENSE" }
+  s.license 	 = 'MIT'
   s.author       = { "zevwings" => "zev.wings@gmail.com" }
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/zevwings/ZVRefreshing.git", :tag => "#{s.version}" }
