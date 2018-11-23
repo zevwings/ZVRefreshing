@@ -8,7 +8,10 @@
 
 import RxSwift
 import RxCocoa
+
+#if !COCOAPODS
 import ZVRefreshing
+#endif
 
 extension Reactive where Base: ZVRefreshComponent {
     
