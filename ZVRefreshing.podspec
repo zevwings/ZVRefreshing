@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'RxSwift' do |rx|
-  	rx.source_files  = "RxZVRefershing/**/*.swift", "RxZVRefershing/RxZVRefershing.h"
+  	rx.source_files  = "ZVRefreshing+Rx/**/*.swift", "ZVRefreshing+Rx/ZVRefreshing-Rx.h"
   	rx.dependency "ZVRefreshing/Core"
   	rx.dependency "RxSwift"
   	rx.dependency "RxCocoa"
