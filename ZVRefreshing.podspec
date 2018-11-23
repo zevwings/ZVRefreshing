@@ -22,18 +22,19 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/zevwings/ZVRefreshing.git", :tag => "#{s.version}" }
   s.resources    = "ZVRefreshing/Resource/*"
   s.requires_arc = true
+
   s.default_subspec = 'Core'
 
   s.subspec 'Core' do |core|
-  	core.source_files = "ZVRefreshing/**/*.swift", "ZVRefreshing/ZVRefreshing.h"
-    core.dependency "ZVActivityIndicatorView"
+  	s.source_files = "ZVRefreshing/**/*.swift", "ZVRefreshing/ZVRefreshing.h"
+    s.dependency "ZVActivityIndicatorView"
   end
 
   s.subspec 'RxSwift' do |rx|
-  	rx.source_files  = "ZVRefreshing+Rx/**/*.swift", "ZVRefreshing+Rx/ZVRefreshing-Rx.h"
-  	rx.dependency = "ZVRefreshing/Core"
-  	rx.dependency = "RxSwift"
-  	rx.dependency = "RxCocoa"
+  	rx.source_files  = "RxZVRefershing/**/*.swift", "RxZVRefershing/RxZVRefershing.h"
+  	rx.dependency "ZVRefreshing/Core"
+  	rx.dependency "RxSwift"
+  	rx.dependency "RxCocoa"
   end
 
 end
