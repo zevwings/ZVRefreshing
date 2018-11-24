@@ -26,8 +26,8 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Core'
 
   s.subspec 'Core' do |core|
-  	s.source_files = "ZVRefreshing/**/*.swift", "ZVRefreshing/ZVRefreshing.h"
-    s.dependency "ZVActivityIndicatorView"
+  	core.source_files = "ZVRefreshing/**/*.swift", "ZVRefreshing/ZVRefreshing.h"
+    core.dependency "ZVActivityIndicatorView"
   end
 
   s.subspec 'RxSwift' do |rx|
