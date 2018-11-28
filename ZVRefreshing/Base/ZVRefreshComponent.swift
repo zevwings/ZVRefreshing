@@ -24,7 +24,7 @@ open class ZVRefreshComponent: UIControl {
     private weak var _target: NSObject?
     private var _action: Selector?
     
-    private(set) var scrollView: UIScrollView?
+    private(set) weak var scrollView: UIScrollView?
     var scrollViewOriginalInset: UIEdgeInsets = UIEdgeInsets.zero
 
     // MARK: getter & setter
