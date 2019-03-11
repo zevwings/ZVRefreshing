@@ -8,35 +8,24 @@
 
 Pod::Spec.new do |s|
 
-  s.name         = "ZVRefreshing"
-  s.version      = "2.1.1"
-  s.summary      = "A pure-swift and wieldy refresh component."
+  s.name          = "ZVRefreshing"
+  s.version       = "2.1.3"
+  s.summary       = "A pure-swift and wieldy refresh component."
   s.swift_version = '4.2'
   
-  s.description  = <<-DESC
-  					ZRefreshing is a pure-swift and wieldy refresh component.
+  s.description   = <<-DESC
+  					         ZRefreshing is a pure-swift and wieldy refresh component.
                    DESC
 
   s.homepage     = "https://github.com/zevwings/ZVRefreshing"
-  s.license 	 = 'MIT'
+  s.license 	   = 'MIT'
   s.author       = { "zevwings" => "zev.wings@gmail.com" }
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/zevwings/ZVRefreshing.git", :tag => "#{s.version}" }
   s.resources    = "ZVRefreshing/Resource/*"
+  s.source_files = "ZVRefreshing/**/*.swift", "ZVRefreshing/ZVRefreshing.h"
   s.requires_arc = true
 
-  s.default_subspec = 'Core'
-
-  s.subspec 'Core' do |core|
-  	core.source_files = "ZVRefreshing/**/*.swift", "ZVRefreshing/ZVRefreshing.h"
-    core.dependency "ZVActivityIndicatorView"
-  end
-
-  s.subspec 'RxSwift' do |rx|
-  	rx.source_files  = "ZVRefreshing+Rx/**/*.swift", "ZVRefreshing+Rx/ZVRefreshing-Rx.h"
-  	rx.dependency "ZVRefreshing/Core"
-  	rx.dependency "RxSwift"
-  	rx.dependency "RxCocoa"
-  end
+  s.dependency "ZVActivityIndicatorView"
 
 end
