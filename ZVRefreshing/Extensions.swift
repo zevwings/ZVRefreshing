@@ -16,7 +16,7 @@ public extension UIScrollView {
         static var reloadHandler = "com.zevwings.refreshing.reloadhandler"
     }
 
-    public var refreshHeader: ZVRefreshHeader? {
+    var refreshHeader: ZVRefreshHeader? {
         get {
             if let refreshHeader = objc_getAssociatedObject(self, &_StorageKey.refreshHeader) as? ZVRefreshHeader {
                 return refreshHeader;
@@ -36,7 +36,7 @@ public extension UIScrollView {
         }
     }
 
-    public var refreshFooter: ZVRefreshFooter? {
+    var refreshFooter: ZVRefreshFooter? {
         get {
             if let refreshFooter = objc_getAssociatedObject(self, &_StorageKey.refreshFooter) as? ZVRefreshFooter {
                 return refreshFooter;

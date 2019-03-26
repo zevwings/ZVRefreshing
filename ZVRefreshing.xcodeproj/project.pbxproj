@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D1293DA2249EAF200DD5F72 /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; };
+		4D1293DB2249EAF200DD5F72 /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4D1293DF2249EB3000DD5F72 /* ZVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEE47D821A838660082D412 /* ZVActivityIndicatorView.framework */; };
+		4D1293E02249EB3000DD5F72 /* ZVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEE47D821A838660082D412 /* ZVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4D1A31D02018932000E6F85F /* ZVRefreshAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31B82018932000E6F85F /* ZVRefreshAnimationHeader.swift */; };
 		4D1A31D12018932000E6F85F /* ZVRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31B92018932000E6F85F /* ZVRefreshHeader.swift */; };
 		4D1A31D22018932000E6F85F /* ZVRefreshStateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31BA2018932000E6F85F /* ZVRefreshStateHeader.swift */; };
@@ -44,12 +48,10 @@
 		4DC387CC2026EA4500CC8F9C /* ZVRefreshStateComponentConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC387CA2026EA4400CC8F9C /* ZVRefreshStateComponentConvertor.swift */; };
 		4DC387CD2026EA4500CC8F9C /* ZVRefreshAnimationComponentConvertor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DC387CB2026EA4500CC8F9C /* ZVRefreshAnimationComponentConvertor.swift */; };
 		4DEE47D921A838660082D412 /* ZVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEE47D821A838660082D412 /* ZVActivityIndicatorView.framework */; };
-		4DFF5B2620318CC60098BA7D /* ZVRefreshing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; };
-		4DFF5B2720318CC60098BA7D /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4DFF5B2820318CC60098BA7D /* PBXContainerItemProxy */ = {
+		4D1293DC2249EAF200DD5F72 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4D94FC8B1F0DFFC500677215 /* Project object */;
 			proxyType = 1;
@@ -59,13 +61,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4DFF5B2A20318CC60098BA7D /* Embed Frameworks */ = {
+		4D1293DE2249EAF200DD5F72 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4DFF5B2720318CC60098BA7D /* ZVRefreshing.framework in Embed Frameworks */,
+				4D1293E02249EB3000DD5F72 /* ZVActivityIndicatorView.framework in Embed Frameworks */,
+				4D1293DB2249EAF200DD5F72 /* ZVRefreshing.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -123,7 +126,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4DFF5B2620318CC60098BA7D /* ZVRefreshing.framework in Frameworks */,
+				4D1293DF2249EB3000DD5F72 /* ZVActivityIndicatorView.framework in Frameworks */,
+				4D1293DA2249EAF200DD5F72 /* ZVRefreshing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,12 +324,12 @@
 				4D93A418202AB0C6000220E8 /* Sources */,
 				4D93A419202AB0C6000220E8 /* Frameworks */,
 				4D93A41A202AB0C6000220E8 /* Resources */,
-				4DFF5B2A20318CC60098BA7D /* Embed Frameworks */,
+				4D1293DE2249EAF200DD5F72 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4DFF5B2920318CC60098BA7D /* PBXTargetDependency */,
+				4D1293DD2249EAF200DD5F72 /* PBXTargetDependency */,
 			);
 			name = ZVRefreshingExample;
 			productName = ZVRefreshingExample;
@@ -362,19 +366,19 @@
 				TargetAttributes = {
 					4D93A41B202AB0C6000220E8 = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 					4D94FC931F0DFFC500677215 = {
 						CreatedOnToolsVersion = 8.3.3;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 4D94FC8E1F0DFFC500677215 /* Build configuration list for PBXProject "ZVRefreshing" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -463,10 +467,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4DFF5B2920318CC60098BA7D /* PBXTargetDependency */ = {
+		4D1293DD2249EAF200DD5F72 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4D94FC931F0DFFC500677215 /* ZVRefreshing */;
-			targetProxy = 4DFF5B2820318CC60098BA7D /* PBXContainerItemProxy */;
+			targetProxy = 4D1293DC2249EAF200DD5F72 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -510,7 +514,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zevwings.ZVRefreshingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -535,7 +539,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zevwings.ZVRefreshingExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -683,7 +687,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -710,7 +714,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zevwings.ZVRefreshing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

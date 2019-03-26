@@ -33,6 +33,7 @@ class ExamplelTableViewController: UIViewController {
     private var nativeAutoFooter: ZVRefreshAutoNativeFooter?
     
     deinit {
+        print("ExamplelTableViewController : \(#function)")
     }
     
     override func viewDidLoad() {
@@ -83,7 +84,7 @@ class ExamplelTableViewController: UIViewController {
                  the self must be weak, if not, the associated object can't be released.
                 */
                 flatAutoFooter?.refreshHandler = { [weak self] in
-                    
+                    print("\(String(describing: self))")
                 }
                 
                 // MARK: SetTitile
