@@ -9,6 +9,12 @@
 import UIKit
 import ZVRefreshing
 
+/**
+ RxSwift support @see ZVRefreshing+Rx.swift
+ import RxSwift
+ import RxCocoa
+ */
+
 class ExamplelTableViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -31,6 +37,10 @@ class ExamplelTableViewController: UIViewController {
     private var nativeHeader: ZVRefreshNativeHeader?
     private var nativeBackFooter: ZVRefreshBackNativeFooter?
     private var nativeAutoFooter: ZVRefreshAutoNativeFooter?
+    
+    /**
+    private var disposeBag = DisposeBag()
+    */
     
     deinit {
         print("ExamplelTableViewController : \(#function)")
@@ -171,6 +181,31 @@ class ExamplelTableViewController: UIViewController {
                 tableView.refreshFooter = nativeBackFooter
             }
         }
+        
+        /**
+         
+         Also support RxSwift
+         
+         
+        DispatchQueue.main.async { [weak self] in
+            Observable.just(true)
+                .asDriver(onErrorJustReturn: false)
+                .drive(self!.flatHeader!.rx.isRefreshing)
+                .disposed(by: self!.disposeBag)
+        }
+        
+        flatHeader?.rx.refresh
+            .subscribe(onNext: { isRefreshing in
+                print("onNext isRefreshing : \(isRefreshing)")
+            }, onError: { err in
+                print("err : \(err)")
+            }, onCompleted: {
+                print("completed")
+            }, onDisposed: {
+                print("disposed")
+            }).disposed(by: disposeBag)
+         */
+
     }
 
     // MARK: - Life Circle

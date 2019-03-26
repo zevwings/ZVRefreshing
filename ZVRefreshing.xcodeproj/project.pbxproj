@@ -11,6 +11,11 @@
 		4D1293DB2249EAF200DD5F72 /* ZVRefreshing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4D94FC941F0DFFC500677215 /* ZVRefreshing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4D1293DF2249EB3000DD5F72 /* ZVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEE47D821A838660082D412 /* ZVActivityIndicatorView.framework */; };
 		4D1293E02249EB3000DD5F72 /* ZVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEE47D821A838660082D412 /* ZVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4D1293E32249EF2B00DD5F72 /* ZVRefreshing+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1293E22249EF2B00DD5F72 /* ZVRefreshing+Rx.swift */; };
+		4D1293E42249F0A500DD5F72 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEE47F221A83A090082D412 /* RxCocoa.framework */; };
+		4D1293E52249F0A500DD5F72 /* RxCocoa.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEE47F221A83A090082D412 /* RxCocoa.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4D1293E62249F0A500DD5F72 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEE47DA21A8395F0082D412 /* RxSwift.framework */; };
+		4D1293E72249F0A500DD5F72 /* RxSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEE47DA21A8395F0082D412 /* RxSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4D1A31D02018932000E6F85F /* ZVRefreshAnimationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31B82018932000E6F85F /* ZVRefreshAnimationHeader.swift */; };
 		4D1A31D12018932000E6F85F /* ZVRefreshHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31B92018932000E6F85F /* ZVRefreshHeader.swift */; };
 		4D1A31D22018932000E6F85F /* ZVRefreshStateHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31BA2018932000E6F85F /* ZVRefreshStateHeader.swift */; };
@@ -67,6 +72,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4D1293E72249F0A500DD5F72 /* RxSwift.framework in Embed Frameworks */,
+				4D1293E52249F0A500DD5F72 /* RxCocoa.framework in Embed Frameworks */,
 				4D1293E02249EB3000DD5F72 /* ZVActivityIndicatorView.framework in Embed Frameworks */,
 				4D1293DB2249EAF200DD5F72 /* ZVRefreshing.framework in Embed Frameworks */,
 			);
@@ -76,6 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4D1293E22249EF2B00DD5F72 /* ZVRefreshing+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ZVRefreshing+Rx.swift"; sourceTree = "<group>"; };
 		4D1A31B82018932000E6F85F /* ZVRefreshAnimationHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshAnimationHeader.swift; sourceTree = "<group>"; };
 		4D1A31B92018932000E6F85F /* ZVRefreshHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshHeader.swift; sourceTree = "<group>"; };
 		4D1A31BA2018932000E6F85F /* ZVRefreshStateHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZVRefreshStateHeader.swift; sourceTree = "<group>"; };
@@ -126,6 +134,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D1293E62249F0A500DD5F72 /* RxSwift.framework in Frameworks */,
+				4D1293E42249F0A500DD5F72 /* RxCocoa.framework in Frameworks */,
 				4D1293DF2249EB3000DD5F72 /* ZVActivityIndicatorView.framework in Frameworks */,
 				4D1293DA2249EAF200DD5F72 /* ZVRefreshing.framework in Frameworks */,
 			);
@@ -142,6 +152,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D1293E12249EECA00DD5F72 /* Rx */ = {
+			isa = PBXGroup;
+			children = (
+				4D1293E22249EF2B00DD5F72 /* ZVRefreshing+Rx.swift */,
+			);
+			path = Rx;
+			sourceTree = "<group>";
+		};
 		4D1A31B62018932000E6F85F /* Header */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				4D93A41E202AB0C6000220E8 /* AppDelegate.swift */,
+				4D1293E12249EECA00DD5F72 /* Rx */,
 				4D93A42E202AB109000220E8 /* Custom */,
 				4D93A433202AB109000220E8 /* ViewController */,
 				4D93A422202AB0C6000220E8 /* Main.storyboard */,
@@ -425,6 +444,7 @@
 			files = (
 				4D93A437202AB109000220E8 /* ZVRefreshCustomAnimationHeader.swift in Sources */,
 				4D93A43B202AB109000220E8 /* ExampleCollectionViewController.swift in Sources */,
+				4D1293E32249EF2B00DD5F72 /* ZVRefreshing+Rx.swift in Sources */,
 				4D93A43A202AB109000220E8 /* ExamplelTableViewController.swift in Sources */,
 				4D93A439202AB109000220E8 /* ZVRefreshBackCustomAnimationFooter.swift in Sources */,
 				4D93A43C202AB109000220E8 /* ExampleMasterViewController.swift in Sources */,
