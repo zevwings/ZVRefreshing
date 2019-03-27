@@ -53,7 +53,8 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
         var centerX = frame.width * 0.5
         if let stateLabel = stateLabel, !stateLabel.isHidden {
             let labelWith = stateLabel.textWidth
-            centerX -= (labelWith * 0.5 + labelInsetLeft + activityIndicator!.frame.width * 0.5)
+            let activityIndicatorOffset = (activityIndicator?.frame.width ?? 0.0) * 0.5
+            centerX -= (labelWith * 0.5 + labelInsetLeft + activityIndicatorOffset)
         }
         let centerY = frame.height * 0.5
         let center = CGPoint(x: centerX, y: centerY)

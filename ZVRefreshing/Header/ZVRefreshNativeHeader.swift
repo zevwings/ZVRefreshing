@@ -59,7 +59,9 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
             } else {
                 maxLabelWidth = stateLabel.textWidth
             }
-            centerX -= (maxLabelWidth * 0.5 + labelInsetLeft + activityIndicator!.frame.width * 0.5)
+            
+            let activityIndicatorOffset = (activityIndicator?.frame.width ?? 0.0) * 0.5
+            centerX -= (maxLabelWidth * 0.5 + labelInsetLeft + activityIndicatorOffset)
         }
         let centerY = frame.height * 0.5
         let center = CGPoint(x: centerX, y: centerY)
