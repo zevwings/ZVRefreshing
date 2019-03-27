@@ -206,24 +206,31 @@ extension ZVRefreshComponent {
     
     public func beginRefreshing() {
         
-        UIView.animate(withDuration: AnimationDuration.fast, animations: {
-            self.alpha = 1.0
-        })
-        
-        pullingPercent = 1.0
-        
-        if window != nil {
-            refreshState = .refreshing
-        } else {
-            if refreshState != .refreshing {
-                refreshState = .willRefresh
-                setNeedsDisplay()
+        // make sure code excute in main queue.
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: AnimationDuration.fast, animations: {
+                self.alpha = 1.0
+            })
+            
+            self.pullingPercent = 1.0
+            
+            if self.window != nil {
+                self.refreshState = .refreshing
+            } else {
+                if self.refreshState != .refreshing {
+                    self.refreshState = .willRefresh
+                    self.setNeedsDisplay()
+                }
             }
         }
     }
     
     public func endRefreshing() {
-        self.refreshState = .idle
+        
+        // make sure code excute in main queue.
+        DispatchQueue.main.async {
+            self.refreshState = .idle
+        }
     }
 }
 
