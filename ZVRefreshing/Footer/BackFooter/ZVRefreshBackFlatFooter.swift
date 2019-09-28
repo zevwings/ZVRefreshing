@@ -13,7 +13,7 @@ public class ZVRefreshBackFlatFooter: ZVRefreshBackStateFooter {
     
     // MARK: - Property
     
-    public private(set) var activityIndicator : ZVActivityIndicatorView?
+    public private(set) var activityIndicator : ActivityIndicatorView?
     
     // MARK: didSet
     
@@ -29,7 +29,7 @@ public class ZVRefreshBackFlatFooter: ZVRefreshBackStateFooter {
         super.prepare()
 
         if activityIndicator == nil {
-            activityIndicator = ZVActivityIndicatorView(frame: .init(x: 0, y: 0, width: 24, height: 24))
+            activityIndicator = ActivityIndicatorView(frame: .init(x: 0, y: 0, width: 24, height: 24))
             activityIndicator?.tintColor = .lightGray
             activityIndicator?.hidesWhenStopped = false
             addSubview(activityIndicator!)
