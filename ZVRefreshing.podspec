@@ -9,8 +9,9 @@
 Pod::Spec.new do |s|
 
   s.name          = "ZVRefreshing"
-  s.version       = "2.2.2"
+  s.version       = "2.3.0"
   s.summary       = "A pure-swift and wieldy refresh component."
+  s.swift_version = "5.1"
   
   s.description   = <<-DESC
   					         ZRefreshing is a pure-swift and wieldy refresh component.
