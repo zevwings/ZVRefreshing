@@ -36,7 +36,7 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         }
     }
 
-    public var lastUpdatedTimeLabelText:((_ date: Date?)->(String))? {
+    public var lastUpdatedTimeLabelText:((_ date: Date?) -> (String))? {
         didSet {
             _didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
         }
@@ -81,21 +81,21 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
 
             let statusLabelH = frame.size.height * 0.5
             
-            if stateLabel.constraints.count == 0 {
+            if stateLabel.constraints.isEmpty {
                 stateLabel.frame.origin.x = 0
                 stateLabel.frame.origin.y = 0
                 stateLabel.frame.size.width = frame.width
                 stateLabel.frame.size.height = statusLabelH
             }
             
-            if lastUpdatedTimeLabel.constraints.count == 0 {
+            if lastUpdatedTimeLabel.constraints.isEmpty {
                 lastUpdatedTimeLabel.frame.origin.x = 0
                 lastUpdatedTimeLabel.frame.origin.y = statusLabelH
                 lastUpdatedTimeLabel.frame.size.width = frame.width
                 lastUpdatedTimeLabel.frame.size.height = frame.height - lastUpdatedTimeLabel.frame.origin.y
             }
         } else {
-            if stateLabel.constraints.count == 0 { stateLabel.frame = bounds }
+            if stateLabel.constraints.isEmpty { stateLabel.frame = bounds }
         }
     }
     

@@ -32,11 +32,11 @@ public extension ZVRefreshStateComponentConvertor where Self: ZVRefreshComponent
     }
     
     func setTitleForCurrentState() {
-        guard let _stateLabel = stateLabel else { return }
-        if _stateLabel.isHidden && refreshState == .refreshing {
-            _stateLabel.text = nil
+        guard let stateLabel = stateLabel else { return }
+        if stateLabel.isHidden && refreshState == .refreshing {
+            stateLabel.text = nil
         } else {
-            _stateLabel.text = stateTitles?[refreshState]
+            stateLabel.text = stateTitles?[refreshState]
         }
     }
 }

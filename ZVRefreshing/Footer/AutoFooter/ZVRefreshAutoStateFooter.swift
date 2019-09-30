@@ -27,7 +27,7 @@ open class ZVRefreshAutoStateFooter : ZVRefreshAutoFooter {
             addSubview(stateLabel!)
         }
         
-        setTitle(with: LocalizedKey.AutoFooter.idle , for: .idle)
+        setTitle(with: LocalizedKey.AutoFooter.idle, for: .idle)
         setTitle(with: LocalizedKey.AutoFooter.refreshing, for: .refreshing)
         setTitle(with: LocalizedKey.AutoFooter.noMoreData, for: .noMoreData)
         
@@ -37,7 +37,7 @@ open class ZVRefreshAutoStateFooter : ZVRefreshAutoFooter {
     override open func placeSubViews() {
         super.placeSubViews()
         
-        if let stateLabel = stateLabel, stateLabel.constraints.count == 0 {
+        if let stateLabel = stateLabel, stateLabel.constraints.isEmpty {
             stateLabel.frame = bounds
         }
     }
@@ -74,4 +74,3 @@ private extension ZVRefreshAutoStateFooter {
 // MARK: - ZVRefreshStateComponent
 
 extension ZVRefreshAutoStateFooter : ZVRefreshStateComponentConvertor {}
-

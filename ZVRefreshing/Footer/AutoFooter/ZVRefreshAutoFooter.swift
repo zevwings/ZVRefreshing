@@ -25,19 +25,25 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     
     // MARK: - Observers
 
-    override open func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollView(
+        _ scrollView: UIScrollView,
+        contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?
+    ) {
         super.scrollView(scrollView, contentSizeDidChanged: value)
         
         frame.origin.y = scrollView.contentSize.height
     }
     
-    override open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
-        
+    override open func scrollView(
+        _ scrollView: UIScrollView,
+        contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?
+    ) {
         guard refreshState == .idle, isAutomaticallyRefresh, frame.origin.y != 0 else { return }
         
         super.scrollView(scrollView, contentSizeDidChanged: value)
         
         if scrollView.contentInset.top + scrollView.contentSize.height > scrollView.frame.height {
+            //swiftlint:disable:next line_length
             if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.height + frame.height * _triggerAutomaticallyRefreshPercent + scrollView.contentInset.bottom - frame.height) {
                 let old = (value?[.oldKey] as? NSValue)?.cgPointValue
                 let new = (value?[.newKey] as? NSValue)?.cgPointValue
@@ -48,8 +54,10 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
         }
     }
     
-    override open func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey : Any]?, for scrollView: UIScrollView) {
-        
+    override open func panGestureRecognizer(
+        _ panGestureRecognizer: UIPanGestureRecognizer,
+        stateValueChanged value: [NSKeyValueChangeKey : Any]?, for scrollView: UIScrollView
+    ) {
         super.panGestureRecognizer(panGestureRecognizer, stateValueChanged: value, for: scrollView)
         
         guard refreshState == .idle else { return }
@@ -60,6 +68,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
                     beginRefreshing()
                 }
             } else {
+                //swiftlint:disable:next line_length
                 if scrollView.contentOffset.y >= (scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.frame.height) {
                     beginRefreshing()
                 }
@@ -112,4 +121,3 @@ extension ZVRefreshAutoFooter {
         }
     }
 }
-

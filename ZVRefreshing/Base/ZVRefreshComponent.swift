@@ -55,19 +55,14 @@ open class ZVRefreshComponent: UIControl {
             switch newValue {
             case .idle:
                 doOnIdle(with: oldState)
-                break
             case .noMoreData:
                 doOnNoMoreData(with: oldState)
-                break
             case .pulling:
                 doOnPulling(with: oldState)
-                break
             case .willRefresh:
                 doOnWillRefresh(with: oldState)
-                break
             case .refreshing:
                 doOnRefreshing(with: oldState)
-                break
             }
         }
     }
@@ -163,6 +158,7 @@ open class ZVRefreshComponent: UIControl {
     
     open func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey: Any]?) {}
     
+    //swiftlint:disable:next line_length
     open func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey: Any]?, for scrollView: UIScrollView) {}
 
 }
@@ -309,4 +305,3 @@ extension ZVRefreshComponent {
         }
     }
 }
-

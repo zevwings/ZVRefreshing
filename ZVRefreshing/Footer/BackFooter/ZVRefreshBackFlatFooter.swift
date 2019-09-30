@@ -39,10 +39,11 @@ public class ZVRefreshBackFlatFooter: ZVRefreshBackStateFooter {
     override public func placeSubViews() {
         super.placeSubViews()
         
-        if let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 {
+        if let activityIndicator = activityIndicator, activityIndicator.constraints.isEmpty {
             
             var activityIndicatorCenterX = frame.width * 0.5
             if let stateLabel = stateLabel, !stateLabel.isHidden {
+                //swiftlint:disable:next line_length
                 activityIndicatorCenterX -= (stateLabel.textWidth * 0.5 + labelInsetLeft + activityIndicator.frame.width * 0.5)
             }
             
@@ -90,4 +91,3 @@ extension ZVRefreshBackFlatFooter {
         }
     }
 }
-

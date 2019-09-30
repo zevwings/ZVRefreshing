@@ -33,7 +33,7 @@ public extension ZVRefreshAnimationComponentConvertor where Self: ZVRefreshCompo
     
     func setImages(_ images: [UIImage], duration: TimeInterval, for state: RefreshState) {
         
-        guard images.count > 0 else { return }
+        guard !images.isEmpty else { return }
         
         if stateImages == nil { stateImages = [:] }
         if stateDurations == nil { stateDurations = [:] }
@@ -47,7 +47,7 @@ public extension ZVRefreshAnimationComponentConvertor where Self: ZVRefreshCompo
     
     func pullAnimation(with pullPercent: CGFloat) {
         
-        guard let images = stateImages?[.idle], images.count > 0, refreshState == .idle else { return }
+        guard let images = stateImages?[.idle], !images.isEmpty, refreshState == .idle else { return }
         
         animationView?.stopAnimating()
         
@@ -62,7 +62,7 @@ public extension ZVRefreshAnimationComponentConvertor where Self: ZVRefreshCompo
     
     func startAnimating() {
         
-        guard let images = stateImages?[.refreshing], images.count > 0 else { return }
+        guard let images = stateImages?[.refreshing], !images.isEmpty else { return }
         
         animationView?.stopAnimating()
         

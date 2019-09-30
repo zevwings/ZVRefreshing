@@ -17,8 +17,10 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
     
     // MARK: - Observers
 
-    override open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
-        
+    override open func scrollView(
+        _ scrollView: UIScrollView,
+        contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?
+    ) {
         super.scrollView(scrollView, contentSizeDidChanged: value)
         
         guard refreshState != .refreshing else { return }
@@ -50,10 +52,15 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         }
     }
     
-    override open func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?) {
+    override open func scrollView(
+        _ scrollView: UIScrollView,
+        contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?
+    ) {
         super.scrollView(scrollView, contentSizeDidChanged: value)
         
         let contentHeight = scrollView.contentSize.height + ignoredScrollViewContentInsetBottom
+        
+        //swiftlint:disable:next line_length
         let scrollHeight = scrollView.frame.height - scrollViewOriginalInset.top - scrollViewOriginalInset.bottom + ignoredScrollViewContentInsetBottom
         
         frame.origin.y = max(contentHeight, scrollHeight)
@@ -120,9 +127,8 @@ private extension ZVRefreshBackFooter {
         
         guard let scrollView = scrollView else { return 0.0 }
         
-        let h = scrollView.frame.height - scrollViewOriginalInset.bottom - scrollViewOriginalInset.top
-        let height = scrollView.contentSize.height - h
-        return height
+        let height = scrollView.frame.height - scrollViewOriginalInset.bottom - scrollViewOriginalInset.top
+        return scrollView.contentSize.height - height
     }
     
     private var _happenOffsetY: CGFloat {
@@ -135,4 +141,3 @@ private extension ZVRefreshBackFooter {
         }
     }
 }
-

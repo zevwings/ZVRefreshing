@@ -8,9 +8,9 @@
 
 import UIKit
 
-public typealias ZVRefreshHandler = () -> ()
+public typealias ZVRefreshHandler = () -> Void
 
-typealias ZVReloadDataHandler = (_ totalCount: Int) -> ()
+typealias ZVReloadDataHandler = (_ totalCount: Int) -> Void
 
 struct AnimationDuration {
     static let fast = 0.25

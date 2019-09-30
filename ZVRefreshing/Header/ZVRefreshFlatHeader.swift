@@ -39,7 +39,7 @@ public class ZVRefreshFlatHeader: ZVRefreshStateHeader {
     override public func placeSubViews() {
         super.placeSubViews()
         
-        if let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 {
+        if let activityIndicator = activityIndicator, activityIndicator.constraints.isEmpty {
             
             var activityIndicatorCenterX = frame.width * 0.5
             if let stateLabel = stateLabel, !stateLabel.isHidden {

@@ -21,13 +21,14 @@ extension UILabel {
     }
     
     var textWidth: CGFloat {
-        
+        //swiftlint:disable line_length
         let size = CGSize(width: Int.max, height: Int.max)
         guard let text = self.text else { return 0 }
         let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading, .usesDeviceMetrics, .truncatesLastVisibleLine]
         let font: UIFont = self.font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
         let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font]
         let width = (text as NSString).boundingRect(with: size, options: options, attributes: attributes, context: nil).size.width
+        //swiftlint:enable line_length
         return width
     }
 }

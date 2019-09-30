@@ -66,7 +66,7 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
         let centerY = frame.height * 0.5
         let center = CGPoint(x: centerX, y: centerY)
         
-        if let arrowView = arrowView, arrowView.constraints.count == 0 && arrowView.image != nil {
+        if let arrowView = arrowView, arrowView.constraints.isEmpty && arrowView.image != nil {
             arrowView.isHidden = false
             arrowView.frame.size = arrowView.image!.size
             arrowView.center = center
@@ -74,7 +74,7 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
             arrowView?.isHidden = true
         }
         
-        if let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 {
+        if let activityIndicator = activityIndicator, activityIndicator.constraints.isEmpty {
             activityIndicator.center = center
         }
     }
@@ -131,4 +131,3 @@ extension ZVRefreshNativeHeader {
         }
     }
 }
-
