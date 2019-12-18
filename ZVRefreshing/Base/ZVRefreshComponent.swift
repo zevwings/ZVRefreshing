@@ -310,3 +310,14 @@ extension ZVRefreshComponent {
     }
 }
 
+extension ZVRefreshComponent {
+
+    /// 解决iOS 10 Observer 临时解决方案
+    public func removeObservers() {
+        if #available(iOS 11.0, *) {
+
+        } else {
+            _removeObservers()
+        }
+    }
+}

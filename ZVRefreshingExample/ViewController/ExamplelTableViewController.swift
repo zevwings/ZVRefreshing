@@ -43,6 +43,8 @@ class ExamplelTableViewController: UIViewController {
     */
     
     deinit {
+        flatHeader?.removeObservers()
+        flatAutoFooter?.removeObservers()
         print("ExamplelTableViewController : \(#function)")
     }
     
