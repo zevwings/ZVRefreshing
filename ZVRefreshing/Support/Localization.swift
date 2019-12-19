@@ -50,5 +50,9 @@ func ZVLocalizedString(_ key: String, comment: String = "") -> String {
         tableName = "en"
     }
     
-    return NSLocalizedString(key, tableName: tableName, bundle: bundle, value: "", comment: comment.isEmpty ? key : comment)
+    return NSLocalizedString(key,
+                             tableName: tableName,
+                             bundle: bundle,
+                             value: "",
+                             comment: comment.isEmpty ? key : comment)
 }

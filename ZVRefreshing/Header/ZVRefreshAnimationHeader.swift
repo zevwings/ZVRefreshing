@@ -40,7 +40,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
     override open func placeSubViews() {
         super.placeSubViews()
         
-        if let animationView = animationView, animationView.constraints.count == 0 {
+        if let animationView = animationView, animationView.constraints.isEmpty {
             if let stateLabel = stateLabel, !stateLabel.isHidden {
                 var animationViewWith: CGFloat = 0
                 if let lastUpdatedTimeLabel = lastUpdatedTimeLabel, !lastUpdatedTimeLabel.isHidden {
@@ -76,4 +76,3 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
 // MARK: - Public
 
 extension ZVRefreshAnimationHeader: ZVRefreshAnimationComponentConvertor {}
-

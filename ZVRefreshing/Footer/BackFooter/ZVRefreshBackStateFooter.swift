@@ -36,7 +36,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     override open func placeSubViews() {
         super.placeSubViews()
         
-        if let stateLabel = stateLabel, stateLabel.constraints.count == 0 {
+        if let stateLabel = stateLabel, stateLabel.constraints.isEmpty {
             stateLabel.frame = bounds
         }
     }
@@ -64,4 +64,3 @@ extension ZVRefreshBackStateFooter {
 // MARK: - ZVRefreshStateComponent
 
 extension ZVRefreshBackStateFooter: ZVRefreshStateComponentConvertor {}
-

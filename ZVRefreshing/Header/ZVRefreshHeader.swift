@@ -31,13 +31,16 @@ open class ZVRefreshHeader: ZVRefreshComponent {
 
     // MARK: - Observers
     
-    override open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
-        
+    override open func scrollView(
+        _ scrollView: UIScrollView,
+        contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?
+    ) {
         guard refreshState != .refreshing else {
-                        
+       
+            //swiftlint:disable line_length
             var insetT = -scrollView.contentOffset.y > scrollViewOriginalInset.top ? -scrollView.contentOffset.y : scrollViewOriginalInset.top
             insetT = insetT > frame.height + scrollViewOriginalInset.top ? frame.height + scrollViewOriginalInset.top : insetT
-            
+            //swiftlint:enable line_length
             scrollView.contentInset.top = insetT
             insetTop = scrollViewOriginalInset.top - insetT
             
@@ -52,10 +55,10 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         guard offsetY <= happenOffsetY else { return }
         
         let normal2pullingOffsetY = happenOffsetY - frame.height
-        let _pullingPercent = (happenOffsetY - offsetY) / frame.height
+        let percent = (happenOffsetY - offsetY) / frame.height
         
         if scrollView.isDragging {
-            pullingPercent = _pullingPercent
+            pullingPercent = percent
             if refreshState == .idle && offsetY < normal2pullingOffsetY {
                 refreshState = .pulling
             } else if refreshState == .pulling && offsetY >= normal2pullingOffsetY {
@@ -63,8 +66,8 @@ open class ZVRefreshHeader: ZVRefreshComponent {
             }
         } else if refreshState == .pulling {
             beginRefreshing()
-        }else if _pullingPercent < 1 {
-            pullingPercent = _pullingPercent
+        } else if percent < 1 {
+            pullingPercent = percent
         }
     }
     
@@ -98,4 +101,3 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         })
     }
 }
-

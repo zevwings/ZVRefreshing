@@ -10,17 +10,20 @@ import Foundation
 
 extension NSObject {
     
-    class func exchangeInstanceMethod(m1: Selector, m2: Selector) {
-        
-        let method1 = class_getInstanceMethod(self, m1)
-        let method2 = class_getInstanceMethod(self, m2)
-        
-        let didAddMethod = class_addMethod(self, m1, method_getImplementation(method2!), method_getTypeEncoding(method2!))
-        
+    class func exchangeInstanceMethod(origin: Selector, target: Selector) {
+
+        guard let originalMethod = class_getInstanceMethod(self, origin),
+            let swizzledMethod = class_getInstanceMethod(self, target) else { return }
+
+        let didAddMethod: Bool = class_addMethod(self, origin,
+                                                 method_getImplementation(swizzledMethod),
+                                                 method_getTypeEncoding(swizzledMethod))
         if didAddMethod {
-            class_replaceMethod(self, m2, method_getImplementation(method1!), method_getTypeEncoding(method1!))
+            class_replaceMethod(self, target,
+                                method_getImplementation(originalMethod),
+                                method_getTypeEncoding(originalMethod))
         } else {
-            method_exchangeImplementations(method1!, method2!)
+            method_exchangeImplementations(originalMethod, swizzledMethod)
         }
     }
 }

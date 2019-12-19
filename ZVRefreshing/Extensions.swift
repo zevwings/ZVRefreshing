@@ -19,7 +19,7 @@ public extension UIScrollView {
     var refreshHeader: ZVRefreshHeader? {
         get {
             if let refreshHeader = objc_getAssociatedObject(self, &_StorageKey.refreshHeader) as? ZVRefreshHeader {
-                return refreshHeader;
+                return refreshHeader
             } else {
                 return nil
             }
@@ -31,15 +31,15 @@ public extension UIScrollView {
             objc_setAssociatedObject(self, &_StorageKey.refreshHeader, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             didChangeValue(forKey: "refreshHeader")
             
-            guard let _refreshHeader = refreshHeader else { return }
-            insertSubview(_refreshHeader, at: 0)
+            guard let refreshHeader = refreshHeader else { return }
+            insertSubview(refreshHeader, at: 0)
         }
     }
 
     var refreshFooter: ZVRefreshFooter? {
         get {
             if let refreshFooter = objc_getAssociatedObject(self, &_StorageKey.refreshFooter) as? ZVRefreshFooter {
-                return refreshFooter;
+                return refreshFooter
             } else {
                 return nil
             }
@@ -52,8 +52,8 @@ public extension UIScrollView {
             objc_setAssociatedObject(self, &_StorageKey.refreshFooter, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
             didChangeValue(forKey: "refreshFooter")
 
-            guard let _refreshFooter = refreshFooter else { return }
-            insertSubview(_refreshFooter, at: 0)
+            guard let refreshFooter = refreshFooter else { return }
+            insertSubview(refreshFooter, at: 0)
         }
     }
 
@@ -74,15 +74,11 @@ public extension UIScrollView {
     internal var totalDataCount: Int {
         
         var totalCount: Int = 0
-        if isKind(of: UITableView.classForCoder()) {
-            
-            let tableView = self as? UITableView
-            for section in 0 ..< tableView!.numberOfSections {
-                totalCount += tableView!.numberOfRows(inSection: section)
+        if let tableView = self as? UITableView {
+            for section in 0 ..< tableView.numberOfSections {
+                totalCount += tableView.numberOfRows(inSection: section)
             }
-        } else if isKind(of: UICollectionView.classForCoder()) {
-            
-            let collectionView = self as! UICollectionView
+        } else if let collectionView = self as? UICollectionView {
             for section in 0 ..< collectionView.numberOfSections  {
                 totalCount += collectionView.numberOfItems(inSection: section)
             }
@@ -94,7 +90,6 @@ public extension UIScrollView {
         reloadDataHandler?(totalDataCount)
     }
 }
-
 
 extension UIApplication {
     
@@ -110,8 +105,8 @@ extension UIApplication {
 extension UITableView {
     
     fileprivate static let once: Void = {
-        UITableView.exchangeInstanceMethod(m1: #selector(UITableView.reloadData),
-                                           m2: #selector(UITableView._reloadData))
+        UITableView.exchangeInstanceMethod(origin: #selector(UITableView.reloadData),
+                                           target: #selector(UITableView._reloadData))
     }()
     
     @objc private func _reloadData() {
@@ -123,8 +118,8 @@ extension UITableView {
 extension UICollectionView {
     
     fileprivate static let once: Void = {
-        UICollectionView.exchangeInstanceMethod(m1: #selector(UICollectionView.reloadData),
-                                                m2: #selector(UICollectionView._reloadData))
+        UICollectionView.exchangeInstanceMethod(origin: #selector(UICollectionView.reloadData),
+                                                target: #selector(UICollectionView._reloadData))
     }()
     
     @objc private func _reloadData() {
@@ -134,7 +129,8 @@ extension UICollectionView {
 }
 
 // wrap and unwrap `ZVReloadDataHandler` as an `AnyObject` value
-fileprivate struct ZVReloadDataHandlerWrapper {
+private struct ZVReloadDataHandlerWrapper {
+    
     var reloadDataHanader: ZVReloadDataHandler?
     init(value: ZVReloadDataHandler?) {
         self.reloadDataHanader = value

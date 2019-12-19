@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     
     // MARK: - Property
@@ -33,7 +32,7 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
     override open func placeSubViews() {
         super.placeSubViews()
         
-        if let animationView = animationView, animationView.constraints.count == 0 {
+        if let animationView = animationView, animationView.constraints.isEmpty {
             if let stateLabel = stateLabel, !stateLabel.isHidden {
                 let width = (frame.width - stateLabel.textWidth) * 0.5 - labelInsetLeft
                 animationView.frame = .init(x: 0, y: 0, width: width, height: frame.height)
@@ -67,4 +66,3 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
 }
 
 extension ZVRefreshAutoAnimationFooter: ZVRefreshAnimationComponentConvertor {}
-
