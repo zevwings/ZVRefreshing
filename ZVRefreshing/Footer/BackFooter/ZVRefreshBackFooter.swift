@@ -17,11 +17,12 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
     
     // MARK: - Observers
 
-    override open func scrollView(
+    open override func scrollView(
         _ scrollView: UIScrollView,
-        contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?
+        contentOffset oldValue: CGPoint?,
+        newValue: CGPoint?
     ) {
-        super.scrollView(scrollView, contentSizeDidChanged: value)
+        super.scrollView(scrollView, contentOffset: oldValue, newValue: newValue)
         
         guard refreshState != .refreshing else { return }
         
@@ -51,13 +52,14 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
             self.pullingPercent = pullingPercent
         }
     }
-    
-    override open func scrollView(
+
+    open override func scrollView(
         _ scrollView: UIScrollView,
-        contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?
+        contentSize oldValue: CGSize?,
+        newValue: CGSize?
     ) {
-        super.scrollView(scrollView, contentSizeDidChanged: value)
-        
+        super.scrollView(scrollView, contentSize: oldValue, newValue: newValue)
+
         let contentHeight = scrollView.contentSize.height + ignoredScrollViewContentInsetBottom
         
         //swiftlint:disable:next line_length

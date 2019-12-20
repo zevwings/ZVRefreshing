@@ -24,7 +24,14 @@ open class ZVRefreshComponent: UIControl {
     private weak var target: AnyObject?
     private var action: Selector?
     
-    private(set) weak var scrollView: UIScrollView?
+    public private(set) weak var scrollView: UIScrollView?
+    public private(set) weak var pan: UIPanGestureRecognizer?
+
+    private var offsetObservation: NSKeyValueObservation?
+    private var insetsObservation: NSKeyValueObservation?
+    private var contentSizeObservation: NSKeyValueObservation?
+    private var panStateObservation: NSKeyValueObservation?
+
     var scrollViewOriginalInset: UIEdgeInsets = UIEdgeInsets.zero
 
     // MARK: getter & setter
@@ -148,13 +155,30 @@ open class ZVRefreshComponent: UIControl {
     ) {}
     
     // MARK: - Observers
-    
-    open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey: Any]?) {}
-    
-    open func scrollView(_ scrollView: UIScrollView, contentSizeDidChanged value: [NSKeyValueChangeKey: Any]?) {}
-    
-    //swiftlint:disable:next line_length
-    open func panGestureRecognizer(_ panGestureRecognizer: UIPanGestureRecognizer, stateValueChanged value: [NSKeyValueChangeKey: Any]?, for scrollView: UIScrollView) {}
+
+    open func scrollView(
+        _ scrollView: UIScrollView,
+        contentOffset oldValue: CGPoint?,
+        newValue: CGPoint?
+    ) {}
+
+    open func scrollView(
+        _ scrollView: UIScrollView,
+        contentSize oldValue: CGSize?,
+        newValue: CGSize?
+    ) {}
+
+    open func scrollView(
+        _ scrollView: UIScrollView,
+        contentInsets oldValue: UIEdgeInsets?,
+        newValue: UIEdgeInsets?
+    ) {}
+
+    open func pan(
+        _ pan: UIPanGestureRecognizer,
+        state oldValue: UIPanGestureRecognizer.State?,
+        newValue: UIPanGestureRecognizer.State?
+    ) {}
 
 }
 
@@ -228,51 +252,82 @@ extension ZVRefreshComponent {
 // MARK: - Observers
 
 extension ZVRefreshComponent {
-    
-    private struct ObserversKeyPath {
-        static let contentOffset = "contentOffset"
-        static let contentInset  = "contentInset"
-        static let contentSize   = "contentSize"
-        static let panState      = "state"
-    }
 
     private func _addObservers() {
         
         let options: NSKeyValueObservingOptions = [.new, .old]
-        
-        scrollView?.panGestureRecognizer.addObserver(self, forKeyPath: ObserversKeyPath.panState, options: options, context: nil)
-        scrollView?.addObserver(self, forKeyPath: ObserversKeyPath.contentOffset, options: options, context: nil)
-        scrollView?.addObserver(self, forKeyPath: ObserversKeyPath.contentSize, options: options, context: nil)
+
+        guard let scrollView = scrollView else { return }
+
+        offsetObservation = scrollView.observe(
+            \.contentOffset,
+            options: options,
+            changeHandler: { (scrollView, change) in
+                self.scrollView(scrollView, contentOffset: change.oldValue, newValue: change.newValue)
+        })
+
+        contentSizeObservation = scrollView.observe(
+            \.contentSize,
+            options: options,
+            changeHandler: { (scrollView, change) in
+                self.scrollView(scrollView, contentSize: change.oldValue, newValue: change.newValue)
+        })
+
+        insetsObservation = scrollView.observe(
+            \.contentInset,
+            options: options,
+            changeHandler: { (scrollView, change) in
+                self.scrollView(scrollView, contentInsets: change.oldValue, newValue: change.newValue)
+        })
+
+        self.pan = scrollView.panGestureRecognizer
+        panStateObservation = pan?.observe(
+            \.state,
+            options: options,
+            changeHandler: { (pan, change) in
+                self.pan(pan, state: change.oldValue, newValue: change.newValue)
+        })
     }
     
     private func _removeObservers() {
+        offsetObservation?.invalidate()
+        contentSizeObservation?.invalidate()
+        insetsObservation?.invalidate()
+        panStateObservation?.invalidate()
+        pan = nil
         
-        scrollView?.removeObserver(self, forKeyPath: ObserversKeyPath.contentOffset)
-        scrollView?.removeObserver(self, forKeyPath: ObserversKeyPath.contentSize)
-        scrollView?.panGestureRecognizer.removeObserver(self, forKeyPath: ObserversKeyPath.panState)
+//        scrollView?.removeObserver(self, forKeyPath: KVO.ScrollViewPath.contentSize, context: &KVO.context)
+//        scrollView?.removeObserver(self, forKeyPath: KVO.ScrollViewPath.contentInset, context: &KVO.context)
+//        scrollView?.removeObserver(self, forKeyPath: KVO.ScrollViewPath.contentOffset, context: &KVO.context)
+//
+//        pan?.removeObserver(self, forKeyPath: KVO.PanGesturePath.state, context: &KVO.context)
+//        pan = nil
     }
-    
-    override open func observeValue(forKeyPath keyPath: String?,
-                                    of object: Any?,
-                                    change: [NSKeyValueChangeKey : Any]?,
-                                    context: UnsafeMutableRawPointer?) {
+//
+//    override open func observeValue(forKeyPath keyPath: String?,
+//                                    of object: Any?,
+//                                    change: [NSKeyValueChangeKey : Any]?,
+//                                    context: UnsafeMutableRawPointer?) {
 
-        guard isUserInteractionEnabled else { return }
+//        guard isUserInteractionEnabled else { return }
+//
+//        guard let superScrollView = scrollView else { return }
 
-        guard let superScrollView = scrollView else { return }
-        
-        if keyPath == ObserversKeyPath.contentSize {
-            scrollView(superScrollView, contentSizeDidChanged: change)
-        }
+//        let old = (value?[.oldKey] as? NSValue)?.cgPointValue
+//        let new = (value?[.newKey] as? NSValue)?.cgPointValue
 
-        guard isHidden == false else { return }
-
-        if keyPath == ObserversKeyPath.contentOffset {
-            scrollView(superScrollView, contentOffsetDidChanged: change)
-        } else if keyPath == ObserversKeyPath.panState {
-            panGestureRecognizer(superScrollView.panGestureRecognizer, stateValueChanged: change, for: superScrollView)
-        }
-    }
+//        if keyPath == ObserversKeyPath.contentSize {
+//            scrollView(superScrollView, contentSizeDidChanged: change)
+//        }
+//
+//        guard isHidden == false else { return }
+//
+//        if keyPath == ObserversKeyPath.contentOffset {
+//            scrollView(superScrollView, contentOffsetDidChanged: change)
+//        } else if keyPath == ObserversKeyPath.panState {
+//            panGestureRecognizer(superScrollView.panGestureRecognizer, stateValueChanged: change, for: superScrollView)
+//        }
+//    }
 }
 
 // MARK: - Public

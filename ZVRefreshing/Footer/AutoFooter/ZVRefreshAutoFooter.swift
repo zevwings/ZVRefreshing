@@ -33,42 +33,43 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     
     // MARK: - Observers
 
-    override open func scrollView(
+    open override func scrollView(
         _ scrollView: UIScrollView,
-        contentSizeDidChanged value: [NSKeyValueChangeKey : Any]?
+        contentSize oldValue: CGSize?,
+        newValue: CGSize?
     ) {
-        super.scrollView(scrollView, contentSizeDidChanged: value)
-        
+        super.scrollView(scrollView, contentSize: oldValue, newValue: newValue)
+
         frame.origin.y = scrollView.contentSize.height
     }
-    
-    override open func scrollView(
+
+    open override func scrollView(
         _ scrollView: UIScrollView,
-        contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?
+        contentOffset oldValue: CGPoint?,
+        newValue: CGPoint?
     ) {
         guard refreshState == .idle, isAutomaticallyRefresh, frame.origin.y != 0 else { return }
-        
-        super.scrollView(scrollView, contentSizeDidChanged: value)
-        
+        super.scrollView(scrollView, contentOffset: oldValue, newValue: newValue)
+
         if scrollView.contentInset.top + scrollView.contentSize.height > scrollView.frame.height {
             //swiftlint:disable:next line_length
             if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.height + frame.height * _triggerAutomaticallyRefreshPercent + scrollView.contentInset.bottom - frame.height) {
-                let old = (value?[.oldKey] as? NSValue)?.cgPointValue
-                let new = (value?[.newKey] as? NSValue)?.cgPointValue
-                if old != nil && new != nil && new!.y > old!.y {
+                if oldValue != nil && newValue != nil && newValue!.y > oldValue!.y {
                     beginRefreshing()
                 }
             }
         }
     }
-    
-    override open func panGestureRecognizer(
-        _ panGestureRecognizer: UIPanGestureRecognizer,
-        stateValueChanged value: [NSKeyValueChangeKey : Any]?, for scrollView: UIScrollView
+
+    open override func pan(
+        _ pan: UIPanGestureRecognizer,
+        state oldValue: UIGestureRecognizer.State?,
+        newValue: UIGestureRecognizer.State?
     ) {
-        super.panGestureRecognizer(panGestureRecognizer, stateValueChanged: value, for: scrollView)
+        super.pan(pan, state: oldValue, newValue: newValue)
         
         guard refreshState == .idle else { return }
+        guard let scrollView = scrollView else { return }
 
         if scrollView.panGestureRecognizer.state == .ended {
             if scrollView.contentInset.top + scrollView.contentSize.height <= scrollView.frame.height {

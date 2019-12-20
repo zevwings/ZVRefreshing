@@ -30,11 +30,14 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     }
 
     // MARK: - Observers
-    
-    override open func scrollView(
+
+    open override func scrollView(
         _ scrollView: UIScrollView,
-        contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?
+        contentOffset oldValue: CGPoint?,
+        newValue: CGPoint?
     ) {
+        super.scrollView(scrollView, contentOffset: oldValue, newValue: newValue)
+
         guard refreshState != .refreshing else {
        
             //swiftlint:disable line_length
