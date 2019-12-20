@@ -16,8 +16,40 @@ open class ZVRefreshComponent: UIControl {
         case refreshing
         case noMoreData
     }
-    
-    // MARK: - Property
+
+    // MARK: - Open
+
+    private var _refreshState: RefreshState = .idle
+    open var refreshState: RefreshState {
+        get {
+            return _refreshState
+        }
+        set {
+            let oldState = refreshState
+            guard oldState != newValue else { return }
+
+            willChangeValue(forKey: "isRefreshing")
+            isRefreshing = newValue == .refreshing
+            didChangeValue(forKey: "isRefreshing")
+
+            willChangeValue(forKey: "refreshState")
+            _refreshState = newValue
+            didChangeValue(forKey: "refreshState")
+
+            sendActions(for: .valueChanged)
+
+            refreshStateUpdate(newValue, oldState: oldState)
+        }
+    }
+
+    open var pullingPercent: CGFloat = 0.0 {
+        didSet {
+            guard isRefreshing == false else { return }
+            if isAutomaticallyChangeAlpha { alpha = pullingPercent }
+        }
+    }
+
+    // MARK: - Public
     
     public private(set) var isRefreshing: Bool = false
 
@@ -25,6 +57,17 @@ open class ZVRefreshComponent: UIControl {
     public private(set) weak var pan: UIPanGestureRecognizer?
 
     public var defaultContentInset: UIEdgeInsets = UIEdgeInsets.zero
+
+    public var isAutomaticallyChangeAlpha: Bool = true {
+        didSet {
+            guard !isRefreshing else { return }
+            if isAutomaticallyChangeAlpha {
+                alpha = pullingPercent
+            } else {
+                alpha = 1.0
+            }
+        }
+    }
 
     // MARK: Private
     
@@ -37,50 +80,7 @@ open class ZVRefreshComponent: UIControl {
     private var panStateObservation: NSKeyValueObservation?
 
     private var refreshHandler: ZVRefreshHandler?
-    
-    private var _refreshState: RefreshState = .idle
-    open var refreshState: RefreshState {
-        get {
-            return _refreshState
-        }
-        set {
-            let oldState = refreshState
-            guard oldState != newValue else { return }
-            
-            willChangeValue(forKey: "isRefreshing")
-            isRefreshing = newValue == .refreshing
-            didChangeValue(forKey: "isRefreshing")
-            
-            willChangeValue(forKey: "refreshState")
-            _refreshState = newValue
-            didChangeValue(forKey: "refreshState")
-            
-            sendActions(for: .valueChanged)
 
-            refreshStateUpdate(newValue, oldState: oldState)
-        }
-    }
-    
-    // MARK: didSet
-    
-    public var isAutomaticallyChangeAlpha: Bool = true {
-        didSet {
-            guard !isRefreshing else { return }
-            if isAutomaticallyChangeAlpha {
-                alpha = pullingPercent
-            } else {
-                alpha = 1.0
-            }
-        }
-    }
-    
-    open var pullingPercent: CGFloat = 0.0 {
-        didSet {
-            guard isRefreshing == false else { return }
-            if isAutomaticallyChangeAlpha { alpha = pullingPercent }
-        }
-    }
-    
     // MARK: - Init
     
     deinit {
