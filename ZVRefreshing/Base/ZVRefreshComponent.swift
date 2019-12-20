@@ -21,15 +21,15 @@ open class ZVRefreshComponent: UIControl {
     
     public private(set) var isRefreshing: Bool = false
 
-    private weak var _target: NSObject?
-    private var _action: Selector?
+    private weak var target: AnyObject?
+    private var action: Selector?
     
     private(set) weak var scrollView: UIScrollView?
     var scrollViewOriginalInset: UIEdgeInsets = UIEdgeInsets.zero
 
     // MARK: getter & setter
     
-    public var refreshHandler: ZVRefreshHandler?
+    private var refreshHandler: ZVRefreshHandler?
     
     private var _refreshState: RefreshState = .idle
     open var refreshState: RefreshState {
@@ -117,8 +117,8 @@ open class ZVRefreshComponent: UIControl {
         self.init()
         
         guard let target = target as? NSObject else { return }
-        _target = target
-        _action = action
+        self.target = target
+        self.action = action
     }
     
     override public init(frame: CGRect) {
@@ -278,11 +278,14 @@ extension ZVRefreshComponent {
 // MARK: - Public
 
 public extension ZVRefreshComponent {
-    
+
+    func addHander(_ refreshHandler: @escaping ZVRefreshHandler) {
+        self.refreshHandler = refreshHandler
+    }
+
     func addTarget(_ target: Any, action: Selector) {
-        guard let target = target as? NSObject else { return }
-        _target = target
-        _action = action
+        self.target = target as AnyObject
+        self.action = action
     }
 }
 
@@ -294,8 +297,8 @@ extension ZVRefreshComponent {
         
         DispatchQueue.main.async {
             self.refreshHandler?()
-            if let target = self._target, let action = self._action, target.responds(to: action) {
-                target.perform(action, with: self)
+            if let target = self.target, let action = self.action, target.responds(to: action) {
+                _ = target.perform(action, with: self)
             }
         }
     }

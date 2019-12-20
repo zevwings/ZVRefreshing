@@ -95,10 +95,10 @@ class ExamplelTableViewController: UIViewController {
                  WARNING:
                  the self must be weak, if not, the associated object can't be released.
                 */
-                flatAutoFooter?.refreshHandler = { [weak self] in
+                flatAutoFooter?.addHander { [weak self] in
                     print("\(String(describing: self))")
                 }
-                
+
                 // MARK: SetTitile
                 flatAutoFooter?.setTitle("点击或上拉加载更多数据" , for: .idle)
                 flatAutoFooter?.setTitle("正在刷新数据", for: .refreshing)
