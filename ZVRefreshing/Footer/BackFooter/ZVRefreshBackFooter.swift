@@ -26,7 +26,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         
         guard refreshState != .refreshing else { return }
         
-        scrollViewOriginalInset = scrollView.contentInset
+        defaultContentInset = scrollView.contentInset
         let currentOffsetY = scrollView.contentOffset.y
         
         guard currentOffsetY > _happenOffsetY else { return }
@@ -63,7 +63,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         let contentHeight = scrollView.contentSize.height + ignoredScrollViewContentInsetBottom
         
         //swiftlint:disable:next line_length
-        let scrollHeight = scrollView.frame.height - scrollViewOriginalInset.top - scrollViewOriginalInset.bottom + ignoredScrollViewContentInsetBottom
+        let scrollHeight = scrollView.frame.height - defaultContentInset.top - defaultContentInset.bottom + ignoredScrollViewContentInsetBottom
         
         frame.origin.y = max(contentHeight, scrollHeight)
     }
@@ -96,7 +96,7 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         case .refreshing:
             lastRefreshCount = scrollView.totalDataCount
             UIView.animate(withDuration: AnimationDuration.fast, animations: {
-                var bottom = self.frame.height + self.scrollViewOriginalInset.bottom
+                var bottom = self.frame.height + self.defaultContentInset.bottom
                 if self._heightForContentBreakView < 0 {
                     bottom -= self._heightForContentBreakView
                 }
@@ -120,7 +120,7 @@ private extension ZVRefreshBackFooter {
         
         guard let scrollView = scrollView else { return 0.0 }
         
-        let height = scrollView.frame.height - scrollViewOriginalInset.bottom - scrollViewOriginalInset.top
+        let height = scrollView.frame.height - defaultContentInset.bottom - defaultContentInset.top
         return scrollView.contentSize.height - height
     }
     
@@ -128,9 +128,9 @@ private extension ZVRefreshBackFooter {
         
         let deletaH = _heightForContentBreakView
         if deletaH > 0 {
-            return deletaH - scrollViewOriginalInset.top
+            return deletaH - defaultContentInset.top
         } else {
-            return -scrollViewOriginalInset.top
+            return -defaultContentInset.top
         }
     }
 }

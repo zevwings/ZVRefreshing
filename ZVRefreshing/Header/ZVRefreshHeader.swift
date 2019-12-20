@@ -41,19 +41,19 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         guard refreshState != .refreshing else {
        
             //swiftlint:disable line_length
-            var insetT = -scrollView.contentOffset.y > scrollViewOriginalInset.top ? -scrollView.contentOffset.y : scrollViewOriginalInset.top
-            insetT = insetT > frame.height + scrollViewOriginalInset.top ? frame.height + scrollViewOriginalInset.top : insetT
+            var insetT = -scrollView.contentOffset.y > defaultContentInset.top ? -scrollView.contentOffset.y : defaultContentInset.top
+            insetT = insetT > frame.height + defaultContentInset.top ? frame.height + defaultContentInset.top : insetT
             //swiftlint:enable line_length
             scrollView.contentInset.top = insetT
-            insetTop = scrollViewOriginalInset.top - insetT
+            insetTop = defaultContentInset.top - insetT
             
             return
         }
         
-        scrollViewOriginalInset = scrollView.contentInset
+        defaultContentInset = scrollView.contentInset
         
         let offsetY = scrollView.contentOffset.y
-        let happenOffsetY = -scrollViewOriginalInset.top
+        let happenOffsetY = -defaultContentInset.top
         
         guard offsetY <= happenOffsetY else { return }
         
@@ -94,7 +94,7 @@ open class ZVRefreshHeader: ZVRefreshComponent {
         case .refreshing:
             UIView.animate(withDuration: AnimationDuration.fast, animations: {
                 guard let scorllView = self.scrollView else { return }
-                let top = self.scrollViewOriginalInset.top + self.frame.height
+                let top = self.defaultContentInset.top + self.frame.height
                 scorllView.contentInset.top = top
                 var offset = scorllView.contentOffset
                 offset.y = -top

@@ -21,21 +21,21 @@ open class ZVRefreshComponent: UIControl {
     
     public private(set) var isRefreshing: Bool = false
 
-    private weak var target: AnyObject?
-    private var action: Selector?
-    
     public private(set) weak var scrollView: UIScrollView?
     public private(set) weak var pan: UIPanGestureRecognizer?
+
+    public var defaultContentInset: UIEdgeInsets = UIEdgeInsets.zero
+
+    // MARK: Private
+    
+    private weak var target: AnyObject?
+    private var action: Selector?
 
     private var offsetObservation: NSKeyValueObservation?
     private var insetsObservation: NSKeyValueObservation?
     private var contentSizeObservation: NSKeyValueObservation?
     private var panStateObservation: NSKeyValueObservation?
 
-    var scrollViewOriginalInset: UIEdgeInsets = UIEdgeInsets.zero
-
-    // MARK: getter & setter
-    
     private var refreshHandler: ZVRefreshHandler?
     
     private var _refreshState: RefreshState = .idle
@@ -58,21 +58,6 @@ open class ZVRefreshComponent: UIControl {
             sendActions(for: .valueChanged)
 
             refreshStateUpdate(newValue, oldState: oldState)
-
-//            doOnAnyState(with: oldState)
-//
-//            switch newValue {
-//            case .idle:
-//                doOnIdle(with: oldState)
-//            case .noMoreData:
-//                doOnNoMoreData(with: oldState)
-//            case .pulling:
-//                doOnPulling(with: oldState)
-//            case .willRefresh:
-//                doOnWillRefresh(with: oldState)
-//            case .refreshing:
-//                doOnRefreshing(with: oldState)
-//            }
         }
     }
     
@@ -209,7 +194,7 @@ extension ZVRefreshComponent {
         
         scrollView = superview
         scrollView?.alwaysBounceVertical = true
-        scrollViewOriginalInset = superview.contentInset
+        defaultContentInset = superview.contentInset
         
         _addObservers()
     }
