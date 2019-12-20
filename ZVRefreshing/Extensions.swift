@@ -79,7 +79,7 @@ public extension UIScrollView {
                 totalCount += tableView.numberOfRows(inSection: section)
             }
         } else if let collectionView = self as? UICollectionView {
-            for section in 0 ..< collectionView.numberOfSections  {
+            for section in 0 ..< collectionView.numberOfSections {
                 totalCount += collectionView.numberOfItems(inSection: section)
             }
         }

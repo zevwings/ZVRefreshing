@@ -14,7 +14,7 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
     
     public var labelInsetLeft: CGFloat = 12.0
     
-    public var stateTitles: [RefreshState : String]?
+    public var stateTitles: [RefreshState : String] = [:]
     public private(set) var stateLabel: UILabel?
     
     // MARK: - Subviews
@@ -50,6 +50,26 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
         super.refreshStateUpdate(state, oldState: oldState)
         setTitleForCurrentState()
     }
+
+    open func setTitle(_ title: String, for state: RefreshState) {
+           stateTitles[state] = title
+           stateLabel?.text = stateTitles[refreshState]
+           setNeedsLayout()
+       }
+
+       open func setTitle(with localizedKey: String, for state: RefreshState) {
+           let title = ZVLocalizedString(localizedKey)
+           setTitle(title, for: state)
+       }
+
+       open func setTitleForCurrentState() {
+           guard let stateLabel = stateLabel else { return }
+           if stateLabel.isHidden && refreshState == .refreshing {
+               stateLabel.text = nil
+           } else {
+               stateLabel.text = stateTitles[refreshState]
+           }
+       }
 }
 
 // MARK: - Override
@@ -62,7 +82,3 @@ extension ZVRefreshBackStateFooter {
         }
     }
 }
-
-// MARK: - ZVRefreshStateComponent
-
-extension ZVRefreshBackStateFooter: ZVRefreshStateComponentConvertor {}

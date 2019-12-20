@@ -74,6 +74,7 @@ open class ZVRefreshComponent: UIControl {
     private weak var target: AnyObject?
     private var action: Selector?
 
+    private var isObserved: Bool = false
     private var offsetObservation: NSKeyValueObservation?
     private var insetsObservation: NSKeyValueObservation?
     private var contentSizeObservation: NSKeyValueObservation?
@@ -84,7 +85,7 @@ open class ZVRefreshComponent: UIControl {
     // MARK: - Init
     
     deinit {
-        _removeObservers()
+        removeScrollViewObservers()
     }
     
     /// Init
@@ -183,54 +184,20 @@ extension ZVRefreshComponent {
     
     override open func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
-        
-        guard let superview = newSuperview as? UIScrollView else { return }
-        
-        _removeObservers()
+
+        removeScrollViewObservers()
+
+        guard let scrollView = newSuperview as? UIScrollView else { return }
         
         frame.origin.x = 0
-        frame.size.width = superview.frame.width
-        backgroundColor = superview.backgroundColor
-        
-        scrollView = superview
-        scrollView?.alwaysBounceVertical = true
-        defaultContentInset = superview.contentInset
-        
-        _addObservers()
-    }
-}
+        frame.size.width = scrollView.frame.width
+        backgroundColor = scrollView.backgroundColor
+        defaultContentInset = scrollView.contentInset
 
-// MARK: - State Control
+        self.scrollView = scrollView
+        self.scrollView?.alwaysBounceVertical = true
 
-extension ZVRefreshComponent {
-    
-    public func beginRefreshing() {
-        
-        // make sure code excute in main queue.
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: AnimationDuration.fast, animations: {
-                self.alpha = 1.0
-            })
-            
-            self.pullingPercent = 1.0
-            
-            if self.window != nil {
-                self.refreshState = .refreshing
-            } else {
-                if self.refreshState != .refreshing {
-                    self.refreshState = .willRefresh
-                    self.setNeedsDisplay()
-                }
-            }
-        }
-    }
-    
-    public func endRefreshing() {
-        
-        // make sure code excute in main queue.
-        DispatchQueue.main.async {
-            self.refreshState = .idle
-        }
+        addScrollViewObservers()
     }
 }
 
@@ -238,11 +205,11 @@ extension ZVRefreshComponent {
 
 extension ZVRefreshComponent {
 
-    private func _addObservers() {
+    private func addScrollViewObservers() {
         
         let options: NSKeyValueObservingOptions = [.new, .old]
 
-        guard let scrollView = scrollView else { return }
+        guard let scrollView = scrollView, !isObserved else { return }
 
         offsetObservation = scrollView.observe(
             \.contentOffset,
@@ -272,52 +239,54 @@ extension ZVRefreshComponent {
             changeHandler: { (pan, change) in
                 self.pan(pan, state: change.oldValue, newValue: change.newValue)
         })
+
+        isObserved = true
     }
     
-    private func _removeObservers() {
-        offsetObservation?.invalidate()
-        contentSizeObservation?.invalidate()
-        insetsObservation?.invalidate()
-        panStateObservation?.invalidate()
+    private func removeScrollViewObservers() {
+
+        guard scrollView != nil, isObserved else { return }
+
+        offsetObservation = nil
+        contentSizeObservation = nil
+        insetsObservation = nil
+        panStateObservation = nil
         pan = nil
-        
-//        scrollView?.removeObserver(self, forKeyPath: KVO.ScrollViewPath.contentSize, context: &KVO.context)
-//        scrollView?.removeObserver(self, forKeyPath: KVO.ScrollViewPath.contentInset, context: &KVO.context)
-//        scrollView?.removeObserver(self, forKeyPath: KVO.ScrollViewPath.contentOffset, context: &KVO.context)
-//
-//        pan?.removeObserver(self, forKeyPath: KVO.PanGesturePath.state, context: &KVO.context)
-//        pan = nil
+
+        isObserved = false
     }
-//
-//    override open func observeValue(forKeyPath keyPath: String?,
-//                                    of object: Any?,
-//                                    change: [NSKeyValueChangeKey : Any]?,
-//                                    context: UnsafeMutableRawPointer?) {
-
-//        guard isUserInteractionEnabled else { return }
-//
-//        guard let superScrollView = scrollView else { return }
-
-//        let old = (value?[.oldKey] as? NSValue)?.cgPointValue
-//        let new = (value?[.newKey] as? NSValue)?.cgPointValue
-
-//        if keyPath == ObserversKeyPath.contentSize {
-//            scrollView(superScrollView, contentSizeDidChanged: change)
-//        }
-//
-//        guard isHidden == false else { return }
-//
-//        if keyPath == ObserversKeyPath.contentOffset {
-//            scrollView(superScrollView, contentOffsetDidChanged: change)
-//        } else if keyPath == ObserversKeyPath.panState {
-//            panGestureRecognizer(superScrollView.panGestureRecognizer, stateValueChanged: change, for: superScrollView)
-//        }
-//    }
 }
 
 // MARK: - Public
 
 public extension ZVRefreshComponent {
+
+    func beginRefreshing() {
+        // make sure code excute in main queue.
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: AnimationDuration.fast, animations: {
+                self.alpha = 1.0
+            })
+
+            self.pullingPercent = 1.0
+
+            if self.window != nil {
+                self.refreshState = .refreshing
+            } else {
+                if self.refreshState != .refreshing {
+                    self.refreshState = .willRefresh
+                    self.setNeedsDisplay()
+                }
+            }
+        }
+    }
+
+    func endRefreshing() {
+        // make sure code excute in main queue.
+        DispatchQueue.main.async {
+            self.refreshState = .idle
+        }
+    }
 
     func addHander(_ refreshHandler: @escaping ZVRefreshHandler) {
         self.refreshHandler = refreshHandler
@@ -334,7 +303,6 @@ public extension ZVRefreshComponent {
 extension ZVRefreshComponent {
     
     func executeRefreshCallback() {
-        
         DispatchQueue.main.async {
             self.refreshHandler?()
             if let target = self.target, let action = self.action, target.responds(to: action) {
@@ -351,7 +319,7 @@ extension ZVRefreshComponent {
         if #available(iOS 11.0, *) {
 
         } else {
-            _removeObservers()
+            removeScrollViewObservers()
         }
     }
 }
