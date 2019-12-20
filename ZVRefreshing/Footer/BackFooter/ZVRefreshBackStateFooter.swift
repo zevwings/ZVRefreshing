@@ -41,11 +41,13 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
         }
     }
     
-    // MARK: - Do On State
+    // MARK: - State Update
     
-    override open func doOnAnyState(with oldState: RefreshState) {
-        super.doOnAnyState(with: oldState)
-        
+    open override func refreshStateUpdate(
+        _ state: ZVRefreshComponent.RefreshState,
+        oldState: ZVRefreshComponent.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
         setTitleForCurrentState()
     }
 }

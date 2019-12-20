@@ -49,21 +49,23 @@ open class ZVRefreshComponent: UIControl {
             didChangeValue(forKey: "refreshState")
             
             sendActions(for: .valueChanged)
-            
-            doOnAnyState(with: oldState)
-            
-            switch newValue {
-            case .idle:
-                doOnIdle(with: oldState)
-            case .noMoreData:
-                doOnNoMoreData(with: oldState)
-            case .pulling:
-                doOnPulling(with: oldState)
-            case .willRefresh:
-                doOnWillRefresh(with: oldState)
-            case .refreshing:
-                doOnRefreshing(with: oldState)
-            }
+
+            refreshStateUpdate(newValue, oldState: oldState)
+
+//            doOnAnyState(with: oldState)
+//
+//            switch newValue {
+//            case .idle:
+//                doOnIdle(with: oldState)
+//            case .noMoreData:
+//                doOnNoMoreData(with: oldState)
+//            case .pulling:
+//                doOnPulling(with: oldState)
+//            case .willRefresh:
+//                doOnWillRefresh(with: oldState)
+//            case .refreshing:
+//                doOnRefreshing(with: oldState)
+//            }
         }
     }
     
@@ -138,19 +140,12 @@ open class ZVRefreshComponent: UIControl {
     
     open func placeSubViews() {}
     
-    // MARK: - doOn
+    // MARK: - State Update
 
-    open func doOnAnyState(with oldState: RefreshState) {}
-    
-    open func doOnIdle(with oldState: RefreshState) {}
-    
-    open func doOnNoMoreData(with oldState: RefreshState) {}
-
-    open func doOnPulling(with oldState: RefreshState) {}
-    
-    open func doOnWillRefresh(with oldState: RefreshState) {}
-    
-    open func doOnRefreshing(with oldState: RefreshState) {}
+    open func refreshStateUpdate(
+        _ state: ZVRefreshComponent.RefreshState,
+        oldState: ZVRefreshComponent.RefreshState
+    ) {}
     
     // MARK: - Observers
     
@@ -305,7 +300,6 @@ extension ZVRefreshComponent {
         }
     }
 }
-<<<<<<< HEAD
 
 extension ZVRefreshComponent {
 
@@ -318,5 +312,3 @@ extension ZVRefreshComponent {
         }
     }
 }
-=======
->>>>>>> 562ba320ab0f72aca1834fe881140ac43bad4217

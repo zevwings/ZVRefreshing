@@ -52,24 +52,21 @@ open class ZVRefreshBackAnimationFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    // MARK: - Do On State
+    // MARK: - State Update
     
-    override open func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        stopAnimating()
-    }
-    
-    override open func doOnNoMoreData(with oldState: RefreshState) {
-        super.doOnNoMoreData(with: oldState)
-
-        stopAnimating()
-    }
-
-    override open func doOnRefreshing(with oldState: RefreshState) {
-        super.doOnRefreshing(with: oldState)
-        
-        startAnimating()
+    open override func refreshStateUpdate(
+        _ state: ZVRefreshComponent.RefreshState,
+        oldState: ZVRefreshComponent.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
+        switch state {
+        case .idle, .noMoreData:
+            stopAnimating()
+        case .refreshing:
+            startAnimating()
+        default:
+            break
+        }
     }
 }
 

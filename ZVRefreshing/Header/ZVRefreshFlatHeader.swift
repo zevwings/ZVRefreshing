@@ -57,28 +57,6 @@ public class ZVRefreshFlatHeader: ZVRefreshStateHeader {
             activityIndicator.center = activityIndicatorCenter
         }
     }
-    
-    // MARK: - Do On State
-    
-    override public func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        if refreshState == .refreshing {
-            UIView.animate(withDuration: AnimationDuration.slow, animations: {
-                self.activityIndicator?.alpha = 0.0
-            }, completion: { _ in
-                guard self.refreshState == .idle else { return }
-                self.activityIndicator?.stopAnimating()
-            })
-        } else {
-            activityIndicator?.stopAnimating()
-        }
-    }
-    
-    override public func doOnRefreshing(with oldState: RefreshState) {
-        super.doOnRefreshing(with: oldState)
-        activityIndicator?.startAnimating()
-    }
 }
 
 // MARK: - System Override

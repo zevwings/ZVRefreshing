@@ -70,34 +70,37 @@ open class ZVRefreshHeader: ZVRefreshComponent {
             pullingPercent = percent
         }
     }
-    
-    // MARK: - Do On State
-    
-    override open func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        guard oldState == .refreshing else { return }
-        
-        UIView.animate(withDuration: AnimationDuration.slow, animations: {
-            self.scrollView?.contentInset.top += self.insetTop
-            if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
-        }, completion: { _  in
-            self.pullingPercent = 0.0
-        })
-    }
-    
-    override open func doOnRefreshing(with oldState: RefreshState) {
-        super.doOnRefreshing(with: oldState)
-        
-        UIView.animate(withDuration: AnimationDuration.fast, animations: {
-            guard let scorllView = self.scrollView else { return }
-            let top = self.scrollViewOriginalInset.top + self.frame.height
-            scorllView.contentInset.top = top
-            var offset = scorllView.contentOffset
-            offset.y = -top
-            scorllView.setContentOffset(offset, animated: false)
-        }, completion: { _ in
-            self.executeRefreshCallback()
-        })
+
+    // MARK: - State Update
+
+    override open func refreshStateUpdate(
+        _ state: ZVRefreshComponent.RefreshState,
+        oldState: ZVRefreshComponent.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
+
+        switch state {
+        case .idle:
+            guard oldState == .refreshing else { return }
+            UIView.animate(withDuration: AnimationDuration.slow, animations: {
+                self.scrollView?.contentInset.top += self.insetTop
+                if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
+            }, completion: { _  in
+                self.pullingPercent = 0.0
+            })
+        case .refreshing:
+            UIView.animate(withDuration: AnimationDuration.fast, animations: {
+                guard let scorllView = self.scrollView else { return }
+                let top = self.scrollViewOriginalInset.top + self.frame.height
+                scorllView.contentInset.top = top
+                var offset = scorllView.contentOffset
+                offset.y = -top
+                scorllView.setContentOffset(offset, animated: false)
+            }, completion: { _ in
+                self.executeRefreshCallback()
+            })
+        default:
+            break
+        }
     }
 }

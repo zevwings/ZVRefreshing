@@ -52,33 +52,32 @@ public class ZVRefreshBackFlatFooter: ZVRefreshBackStateFooter {
         }
     }
     
-    // MARK: - Do On State
+    // MARK: - State Update
     
-    override open func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        if oldState == .refreshing {
-            UIView.animate(withDuration: AnimationDuration.fast, animations: {
-                self.activityIndicator?.alpha = 0.0
-            }, completion: { _ in
-                self.activityIndicator?.alpha = 1.0
-                self.activityIndicator?.stopAnimating()
-            })
-        } else {
+    open override func refreshStateUpdate(
+        _ state: ZVRefreshComponent.RefreshState,
+        oldState: ZVRefreshComponent.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
+        switch state {
+        case .idle:
+            if oldState == .refreshing {
+                UIView.animate(withDuration: AnimationDuration.fast, animations: {
+                    self.activityIndicator?.alpha = 0.0
+                }, completion: { _ in
+                    self.activityIndicator?.alpha = 1.0
+                    self.activityIndicator?.stopAnimating()
+                })
+            } else {
+                activityIndicator?.stopAnimating()
+            }
+        case .noMoreData:
             activityIndicator?.stopAnimating()
+        case .refreshing:
+            activityIndicator?.startAnimating()
+        default:
+            break
         }
-    }
-
-    override public func doOnNoMoreData(with oldState: RefreshState) {
-        super.doOnNoMoreData(with: oldState)
-
-        activityIndicator?.stopAnimating()
-    }
-    
-    override open func doOnRefreshing(with oldState: RefreshState) {
-        super.doOnRefreshing(with: oldState)
-        
-        activityIndicator?.startAnimating()
     }
 }
 

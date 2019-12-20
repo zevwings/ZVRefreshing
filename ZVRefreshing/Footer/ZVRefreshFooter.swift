@@ -29,7 +29,7 @@ open class ZVRefreshFooter: ZVRefreshComponent {
             }
         }
     }
-    
+
     // MARK: - State Control
     
     public func endRefreshingWithNoMoreData() {

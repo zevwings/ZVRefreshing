@@ -79,46 +79,46 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
         }
     }
     
-    // MARK: - Do On State
-    
-    override open func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        if refreshState == .refreshing {
-            arrowView?.transform = CGAffineTransform.identity
-            UIView.animate(withDuration: 0.15, animations: {
-                self.activityIndicator?.alpha = 0.0
-            }, completion: { _ in
-                guard self.refreshState == .idle else { return }
-                self.activityIndicator?.alpha = 1.0
-                self.activityIndicator?.stopAnimating()
-                self.arrowView?.isHidden = false
-            })
-        } else {
+    // MARK: - State Update
+
+    public override func refreshStateUpdate(
+        _ state: ZVRefreshComponent.RefreshState,
+        oldState: ZVRefreshComponent.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
+
+        switch state {
+        case .idle:
+            if refreshState == .refreshing {
+                arrowView?.transform = CGAffineTransform.identity
+                UIView.animate(withDuration: 0.15, animations: {
+                    self.activityIndicator?.alpha = 0.0
+                }, completion: { _ in
+                    guard self.refreshState == .idle else { return }
+                    self.activityIndicator?.alpha = 1.0
+                    self.activityIndicator?.stopAnimating()
+                    self.arrowView?.isHidden = false
+                })
+            } else {
+                activityIndicator?.stopAnimating()
+                arrowView?.isHidden = false
+                UIView.animate(withDuration: 0.15, animations: {
+                    self.arrowView?.transform = CGAffineTransform.identity
+                })
+            }
+        case .pulling:
             activityIndicator?.stopAnimating()
             arrowView?.isHidden = false
             UIView.animate(withDuration: 0.15, animations: {
-                self.arrowView?.transform = CGAffineTransform.identity
+                self.arrowView?.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
             })
+        case .refreshing:
+            activityIndicator?.alpha = 1.0
+            activityIndicator?.startAnimating()
+            arrowView?.isHidden = true
+        default:
+            break
         }
-    }
-    
-    override public func doOnPulling(with oldState: RefreshState) {
-        super.doOnPulling(with: oldState)
-        
-        activityIndicator?.stopAnimating()
-        arrowView?.isHidden = false
-        UIView.animate(withDuration: 0.15, animations: {
-            self.arrowView?.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
-        })
-    }
-    
-    override public func doOnRefreshing(with oldState: RefreshState) {
-        super.doOnRefreshing(with: oldState)
-        
-        activityIndicator?.alpha = 1.0
-        activityIndicator?.startAnimating()
-        arrowView?.isHidden = true
     }
 }
 

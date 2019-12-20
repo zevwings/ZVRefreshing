@@ -44,24 +44,22 @@ public class ZVRefreshAutoFlatFooter: ZVRefreshAutoStateFooter {
         }
     }
     
-    // MARK: - Do On State
-    
-    override open func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        activityIndicator?.stopAnimating()
-    }
+    // MARK: - State Update
 
-    override open func doOnNoMoreData(with oldState: RefreshState) {
-        super.doOnNoMoreData(with: oldState)
-        
-        activityIndicator?.stopAnimating()
-    }
-    
-    override open func doOnRefreshing(with oldState: RefreshState) {
-        super.doOnRefreshing(with: oldState)
-        
-        activityIndicator?.startAnimating()
+    open override func refreshStateUpdate(
+        _ state: ZVRefreshComponent.RefreshState,
+        oldState: ZVRefreshComponent.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
+
+        switch state {
+        case .idle, .noMoreData:
+            activityIndicator?.stopAnimating()
+        case .refreshing:
+            activityIndicator?.startAnimating()
+        default:
+            break
+        }
     }
 }
 

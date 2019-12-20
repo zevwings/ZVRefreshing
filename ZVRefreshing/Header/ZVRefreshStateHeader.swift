@@ -99,23 +99,25 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
         }
     }
     
-    // MARK: - Do On State
-    
-    override open func doOnAnyState(with oldState: RefreshState) {
-        super.doOnAnyState(with: oldState)
-        
+    // MARK: - State Update
+
+    open override func refreshStateUpdate(
+        _ state: ZVRefreshComponent.RefreshState,
+        oldState: ZVRefreshComponent.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
+
         setTitleForCurrentState()
-    }
-    
-    override open func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        guard oldState == .refreshing else { return }
-        
-        UserDefaults.standard.set(Date(), forKey: lastUpdatedTimeKey)
-        UserDefaults.standard.synchronize()
-        
-        _didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
+
+        switch state {
+        case .idle:
+            guard oldState == .refreshing else { return }
+            UserDefaults.standard.set(Date(), forKey: lastUpdatedTimeKey)
+            UserDefaults.standard.synchronize()
+            _didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
+        default:
+            break
+        }
     }
 }
 
