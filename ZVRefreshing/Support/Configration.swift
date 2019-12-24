@@ -10,8 +10,6 @@ import UIKit
 
 public typealias ZVRefreshHandler = () -> Void
 
-typealias ZVReloadDataHandler = (_ totalCount: Int) -> Void
-
 struct AnimationDuration {
     static let fast = 0.25
     static let slow = 0.4
@@ -31,7 +29,7 @@ struct ActivityIndicator {
 
 extension Bundle {
     static var current: Bundle? {
-        let bundle = Bundle(for: ZVRefreshComponent.self)
+        let bundle = Bundle(for: ZVRefreshControl.self)
         guard let path = bundle.path(forResource: "Resource", ofType: "bundle") else {
             return nil
         }

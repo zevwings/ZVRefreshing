@@ -7,7 +7,7 @@
 
 import UIKit
 
-open class ZVRefreshComponent: UIControl {
+open class ZVRefreshControl: UIControl {
     
     public enum RefreshState {
         case idle
@@ -85,6 +85,7 @@ open class ZVRefreshComponent: UIControl {
     // MARK: - Init
     
     deinit {
+        print("...")
         removeScrollViewObservers()
     }
     
@@ -136,8 +137,8 @@ open class ZVRefreshComponent: UIControl {
     // MARK: - State Update
 
     open func refreshStateUpdate(
-        _ state: ZVRefreshComponent.RefreshState,
-        oldState: ZVRefreshComponent.RefreshState
+        _ state: ZVRefreshControl.RefreshState,
+        oldState: ZVRefreshControl.RefreshState
     ) {}
     
     // MARK: - Observers
@@ -170,7 +171,7 @@ open class ZVRefreshComponent: UIControl {
 
 // MARK: - System Override
 
-extension ZVRefreshComponent {
+extension ZVRefreshControl {
     
     override open func layoutSubviews() {
         placeSubViews()
@@ -203,9 +204,9 @@ extension ZVRefreshComponent {
 
 // MARK: - Observers
 
-extension ZVRefreshComponent {
+extension ZVRefreshControl {
 
-    private func addScrollViewObservers() {
+    func addScrollViewObservers() {
         
         let options: NSKeyValueObservingOptions = [.new, .old]
 
@@ -243,7 +244,7 @@ extension ZVRefreshComponent {
         isObserved = true
     }
     
-    private func removeScrollViewObservers() {
+    func removeScrollViewObservers() {
 
         guard scrollView != nil, isObserved else { return }
 
@@ -259,7 +260,7 @@ extension ZVRefreshComponent {
 
 // MARK: - Public
 
-public extension ZVRefreshComponent {
+public extension ZVRefreshControl {
 
     func beginRefreshing() {
         // make sure code excute in main queue.
@@ -300,7 +301,7 @@ public extension ZVRefreshComponent {
 
 // MARK: - Internal
 
-extension ZVRefreshComponent {
+extension ZVRefreshControl {
     
     func executeRefreshCallback() {
         DispatchQueue.main.async {
@@ -308,18 +309,6 @@ extension ZVRefreshComponent {
             if let target = self.target, let action = self.action, target.responds(to: action) {
                 _ = target.perform(action, with: self)
             }
-        }
-    }
-}
-
-extension ZVRefreshComponent {
-
-    /// 解决iOS 10 Observer 临时解决方案
-    public func removeObservers() {
-        if #available(iOS 11.0, *) {
-
-        } else {
-            removeScrollViewObservers()
         }
     }
 }

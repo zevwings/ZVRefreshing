@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import ZVRefreshing
 
-extension Reactive where Base: ZVRefreshComponent {
+extension Reactive where Base: ZVRefreshControl {
     
     /// Reactive wrapper for `ValueChanged` control event.
     /// Call it when `isRefreshing == true`

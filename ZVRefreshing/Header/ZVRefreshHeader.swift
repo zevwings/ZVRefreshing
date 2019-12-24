@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class ZVRefreshHeader: ZVRefreshComponent {
+open class ZVRefreshHeader: ZVRefreshControl {
     
     // MARK: - Property
     
@@ -77,8 +77,8 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     // MARK: - State Update
 
     override open func refreshStateUpdate(
-        _ state: ZVRefreshComponent.RefreshState,
-        oldState: ZVRefreshComponent.RefreshState
+        _ state: ZVRefreshControl.RefreshState,
+        oldState: ZVRefreshControl.RefreshState
     ) {
         super.refreshStateUpdate(state, oldState: oldState)
 

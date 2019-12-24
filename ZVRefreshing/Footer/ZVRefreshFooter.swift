@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class ZVRefreshFooter: ZVRefreshComponent {
+open class ZVRefreshFooter: ZVRefreshControl {
 
     // MARK: - Property
     

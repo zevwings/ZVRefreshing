@@ -24,7 +24,7 @@ class ExamplelTableViewController: UIViewController {
     var isAutoFooter: Bool = true
     var isStateLabelHidden: Bool = false
     var isLastUpdateLabelHidden: Bool = false
-    var refreshComponentType: ZVRefreshComponentType = .flat
+    var refreshComponentType: ZVRefreshControlType = .flat
     
     private var flatHeader: ZVRefreshFlatHeader?
     private var flatBackFooter: ZVRefreshBackFlatFooter?
@@ -43,8 +43,7 @@ class ExamplelTableViewController: UIViewController {
     */
     
     deinit {
-        flatHeader?.removeObservers()
-        flatAutoFooter?.removeObservers()
+        tableView.removeRefreshControl()
         print("ExamplelTableViewController : \(#function)")
     }
     

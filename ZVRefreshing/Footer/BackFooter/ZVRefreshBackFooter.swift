@@ -71,8 +71,8 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
     // MARK: - State Update
 
     open override func refreshStateUpdate(
-        _ state: ZVRefreshComponent.RefreshState,
-        oldState: ZVRefreshComponent.RefreshState
+        _ state: ZVRefreshControl.RefreshState,
+        oldState: ZVRefreshControl.RefreshState
     ) {
         super.refreshStateUpdate(state, oldState: oldState)
 

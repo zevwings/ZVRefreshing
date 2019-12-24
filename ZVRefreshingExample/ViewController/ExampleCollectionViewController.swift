@@ -20,7 +20,7 @@ class ExampleCollectionViewController: UICollectionViewController {
     var isAutoFooter: Bool = true
     var isStateLabelHidden: Bool = false
     var isLastUpdateLabelHidden: Bool = false
-    var refreshComponentType: ZVRefreshComponentType = .flat
+    var refreshComponentType: ZVRefreshControlType = .flat
     
     private var flatHeader: ZVRefreshFlatHeader?
     private var flatBackFooter: ZVRefreshBackFlatFooter?
