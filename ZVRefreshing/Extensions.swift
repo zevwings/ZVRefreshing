@@ -93,6 +93,15 @@ public extension UIScrollView {
     internal func executeReloadDataBlock() {
         reloadDataHandler?(totalDataCount)
     }
+
+    func removeRefreshComponents() {
+        refreshHeader?.removeObservers()
+        refreshHeader?.removeFromSuperview()
+        refreshHeader = nil
+        refreshFooter?.removeObservers()
+        refreshFooter?.removeFromSuperview()
+        refreshFooter = nil
+    }
 }
 
 
