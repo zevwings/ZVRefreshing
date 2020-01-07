@@ -49,7 +49,7 @@ open class ZVRefreshAnimationHeader: ZVRefreshStateHeader {
                 } else {
                     animationViewWith = (frame.width - stateLabel.textWidth) * 0.5 - labelInsetLeft
                 }
-                animationView.frame = .init(x: 0, y: 0, width: animationViewWith, height: frame.height)
+                animationView.frame = CGRect(x: 0, y: 0, width: animationViewWith, height: frame.height)
                 animationView.contentMode = .right
             } else {
                 animationView.contentMode = .center

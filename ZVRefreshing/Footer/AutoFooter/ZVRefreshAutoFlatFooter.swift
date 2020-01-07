@@ -21,7 +21,7 @@ public class ZVRefreshAutoFlatFooter: ZVRefreshAutoStateFooter {
         super.prepare()
         
         if activityIndicator == nil {
-            activityIndicator = ActivityIndicatorView(frame: .init(x: 0, y: 0, width: 24, height: 24))
+            activityIndicator = ActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
             activityIndicator?.tintColor = .lightGray
             activityIndicator?.hidesWhenStopped = false
             addSubview(activityIndicator!)

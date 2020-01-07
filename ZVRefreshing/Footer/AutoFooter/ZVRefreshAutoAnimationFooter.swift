@@ -35,7 +35,7 @@ open class ZVRefreshAutoAnimationFooter: ZVRefreshAutoStateFooter {
         if let animationView = animationView, animationView.constraints.isEmpty {
             if let stateLabel = stateLabel, !stateLabel.isHidden {
                 let width = (frame.width - stateLabel.textWidth) * 0.5 - labelInsetLeft
-                animationView.frame = .init(x: 0, y: 0, width: width, height: frame.height)
+                animationView.frame = CGRect(x: 0, y: 0, width: width, height: frame.height)
                 animationView.contentMode = .right
             } else {
                 animationView.contentMode = .center
