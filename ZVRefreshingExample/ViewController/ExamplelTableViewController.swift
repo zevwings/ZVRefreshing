@@ -43,7 +43,7 @@ class ExamplelTableViewController: UIViewController {
     */
     
     deinit {
-        tableView.removeRefreshControl()
+//        tableView.removeRefreshControls()
         print("ExamplelTableViewController : \(#function)")
     }
     
@@ -72,7 +72,7 @@ class ExamplelTableViewController: UIViewController {
             flatHeader?.setTitle("释放开始刷新数据", for: .pulling)
             flatHeader?.setTitle("正在刷新数据", for: .refreshing)
             
-            flatHeader?.lastUpdatedTimeLabelText = { date in
+            flatHeader?.lastUpdatedTimeConvertor = { date in
                 
                 guard let _date = date else { return "暂无刷新时间" }
                 

@@ -30,19 +30,14 @@ struct ActivityIndicator {
 extension Bundle {
     static var current: Bundle? {
         let bundle = Bundle(for: ZVRefreshControl.self)
-        guard let path = bundle.path(forResource: "Resource", ofType: "bundle") else {
-            return nil
-        }
+        guard let path = bundle.path(forResource: "Resource", ofType: "bundle") else { return nil }
         return Bundle(path: path)
     }
 }
 
 extension UIImage {
-    
     static var arrow: UIImage? {
-        guard let path = Bundle.current?.path(forResource: "arrow@3x", ofType: "png") else {
-            return nil
-        }
+        guard let path = Bundle.current?.path(forResource: "arrow@3x", ofType: "png") else { return nil }
         let image = UIImage(contentsOfFile: path)?.withRenderingMode(.alwaysTemplate)
         return image
     }

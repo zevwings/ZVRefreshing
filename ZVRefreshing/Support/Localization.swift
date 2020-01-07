@@ -8,33 +8,33 @@
 
 import Foundation
 
-public struct LocalizedKey {
-    
-    struct Header {
-        static let idle = "pull down to refresh"
-        static let pulling = "release to refresh"
-        static let refreshing = "loading..."
-    }
-    
-    struct AutoFooter {
-        static let idle = "tap or pull up to load more"
-        static let refreshing = "loading..."
-        static let noMoreData = "no more data"
-    }
-    
-    struct BackFooter {
-        static let idle = "pull up to load more"
-        static let pulling = "release to load more"
-        static let refreshing = "loading..."
-        static let noMoreData = "no more data"
-    }
-    
-    struct State {
-        static let lastUpdatedTime = "last update:"
-        static let dateToday = "today"
-        static let noLastTime = "no record"
-    }
-}
+//public struct LocalizedKey {
+//    
+//    struct Header {
+//        static let idle = "pull down to refresh"
+//        static let pulling = "release to refresh"
+//        static let refreshing = "loading..."
+//    }
+//    
+//    struct AutoFooter {
+//        static let idle = "tap or pull up to load more"
+//        static let refreshing = "loading..."
+//        static let noMoreData = "no more data"
+//    }
+//    
+//    struct BackFooter {
+//        static let idle = "pull up to load more"
+//        static let pulling = "release to load more"
+//        static let refreshing = "loading..."
+//        static let noMoreData = "no more data"
+//    }
+//    
+//    struct State {
+//        static let lastUpdatedTime = "last update"
+//        static let dateToday = "today"
+//        static let noLastTime = "no record"
+//    }
+//}
 
 func ZVLocalizedString(_ key: String, comment: String = "") -> String {
     
@@ -50,9 +50,11 @@ func ZVLocalizedString(_ key: String, comment: String = "") -> String {
         tableName = "en"
     }
     
-    return NSLocalizedString(key,
-                             tableName: tableName,
-                             bundle: bundle,
-                             value: "",
-                             comment: comment.isEmpty ? key : comment)
+    return NSLocalizedString(
+        key,
+        tableName: tableName,
+        bundle: bundle,
+        value: "",
+        comment: comment.isEmpty ? key : comment
+    )
 }

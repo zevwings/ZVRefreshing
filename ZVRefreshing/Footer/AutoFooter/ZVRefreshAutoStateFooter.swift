@@ -9,6 +9,12 @@
 import UIKit
 
 open class ZVRefreshAutoStateFooter : ZVRefreshAutoFooter {
+
+    struct LocalizedKey {
+        static let idle = "tap or pull up to load more"
+        static let refreshing = "loading"
+        static let noMoreData = "no more data"
+    }
     
     // MARK: - Property
     
@@ -27,9 +33,9 @@ open class ZVRefreshAutoStateFooter : ZVRefreshAutoFooter {
             addSubview(stateLabel!)
         }
         
-        setTitle(with: LocalizedKey.AutoFooter.idle, for: .idle)
-        setTitle(with: LocalizedKey.AutoFooter.refreshing, for: .refreshing)
-        setTitle(with: LocalizedKey.AutoFooter.noMoreData, for: .noMoreData)
+        setTitle(with: LocalizedKey.idle, for: .idle)
+        setTitle(with: LocalizedKey.refreshing, for: .refreshing)
+        setTitle(with: LocalizedKey.noMoreData, for: .noMoreData)
         
         addTarget(self, action: #selector(_stateLabelClicked), for: .touchUpInside)
     }

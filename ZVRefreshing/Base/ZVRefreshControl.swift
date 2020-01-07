@@ -54,6 +54,7 @@ open class ZVRefreshControl: UIControl {
     public private(set) var isRefreshing: Bool = false
 
     public private(set) weak var scrollView: UIScrollView?
+    
     public private(set) weak var pan: UIPanGestureRecognizer?
 
     public var defaultContentInset: UIEdgeInsets = UIEdgeInsets.zero
@@ -75,8 +76,8 @@ open class ZVRefreshControl: UIControl {
     private var action: Selector?
 
     private var isObserved: Bool = false
-    private var offsetObservation: NSKeyValueObservation?
-    private var insetsObservation: NSKeyValueObservation?
+    private var contentOffsetObservation: NSKeyValueObservation?
+    private var contentInsetsObservation: NSKeyValueObservation?
     private var contentSizeObservation: NSKeyValueObservation?
     private var panStateObservation: NSKeyValueObservation?
 
@@ -85,7 +86,7 @@ open class ZVRefreshControl: UIControl {
     // MARK: - Init
     
     deinit {
-        print("...")
+        print("ZVRefreshControl deinit")
         removeScrollViewObservers()
     }
     
@@ -212,13 +213,6 @@ extension ZVRefreshControl {
 
         guard let scrollView = scrollView, !isObserved else { return }
 
-        offsetObservation = scrollView.observe(
-            \.contentOffset,
-            options: options,
-            changeHandler: { (scrollView, change) in
-                self.scrollView(scrollView, contentOffset: change.oldValue, newValue: change.newValue)
-        })
-
         contentSizeObservation = scrollView.observe(
             \.contentSize,
             options: options,
@@ -226,7 +220,14 @@ extension ZVRefreshControl {
                 self.scrollView(scrollView, contentSize: change.oldValue, newValue: change.newValue)
         })
 
-        insetsObservation = scrollView.observe(
+        contentOffsetObservation = scrollView.observe(
+            \.contentOffset,
+            options: options,
+            changeHandler: { (scrollView, change) in
+                self.scrollView(scrollView, contentOffset: change.oldValue, newValue: change.newValue)
+        })
+
+        contentInsetsObservation = scrollView.observe(
             \.contentInset,
             options: options,
             changeHandler: { (scrollView, change) in
@@ -248,9 +249,9 @@ extension ZVRefreshControl {
 
         guard scrollView != nil, isObserved else { return }
 
-        offsetObservation = nil
         contentSizeObservation = nil
-        insetsObservation = nil
+        contentOffsetObservation = nil
+        contentInsetsObservation = nil
         panStateObservation = nil
         pan = nil
 

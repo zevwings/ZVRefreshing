@@ -9,6 +9,13 @@
 import UIKit
 
 open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
+
+    struct LocalizedKey {
+        static let idle = "pull up to load more"
+        static let pulling = "release to load more"
+        static let refreshing = "loading"
+        static let noMoreData = "no more data"
+    }
     
     // MARK: - Property
     
@@ -27,10 +34,10 @@ open class ZVRefreshBackStateFooter: ZVRefreshBackFooter {
             addSubview(stateLabel!)
         }
         
-        setTitle(with: LocalizedKey.BackFooter.idle, for: .idle)
-        setTitle(with: LocalizedKey.BackFooter.pulling, for: .pulling)
-        setTitle(with: LocalizedKey.BackFooter.refreshing, for: .refreshing)
-        setTitle(with: LocalizedKey.BackFooter.noMoreData, for: .noMoreData)
+        setTitle(with: LocalizedKey.idle, for: .idle)
+        setTitle(with: LocalizedKey.pulling, for: .pulling)
+        setTitle(with: LocalizedKey.refreshing, for: .refreshing)
+        setTitle(with: LocalizedKey.noMoreData, for: .noMoreData)
     }
     
     override open func placeSubViews() {

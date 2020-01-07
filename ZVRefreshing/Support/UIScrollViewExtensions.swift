@@ -24,10 +24,16 @@ public extension UIScrollView {
             guard refreshHeader != newValue else { return }
             refreshHeader?.removeFromSuperview()
             willChangeValue(forKey: "refreshHeader")
-            objc_setAssociatedObject(self, &AssociatedKeys.refreshHeader, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(
+                self,
+                &AssociatedKeys.refreshHeader,
+                newValue,
+                .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+            )
             didChangeValue(forKey: "refreshHeader")
             guard let refreshHeader = refreshHeader else { return }
-            insertSubview(refreshHeader, at: 0)
+            addSubview(refreshHeader)
+            sendSubviewToBack(refreshHeader)
         }
     }
 
@@ -39,19 +45,42 @@ public extension UIScrollView {
             guard refreshFooter != newValue else { return }
             refreshFooter?.removeFromSuperview()
             willChangeValue(forKey: "refreshFooter")
-            objc_setAssociatedObject(self, &AssociatedKeys.refreshFooter, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            objc_setAssociatedObject(
+                self,
+                &AssociatedKeys.refreshFooter,
+                newValue,
+                .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+            )
             didChangeValue(forKey: "refreshFooter")
             guard let refreshFooter = refreshFooter else { return }
-            insertSubview(refreshFooter, at: 0)
+            addSubview(refreshFooter)
+            sendSubviewToBack(refreshFooter)
+//            onDeinit {
+//                print("refresh footer ....")
+//            }
         }
     }
 
-    func removeRefreshControl() {
+    func removeRefreshControls() {
+        print("removeRefreshControls")
         refreshHeader?.removeScrollViewObservers()
+        refreshHeader?.removeFromSuperview()
         refreshHeader = nil
         refreshFooter?.removeScrollViewObservers()
+        refreshFooter?.removeFromSuperview()
         refreshFooter = nil
     }
+
+//    internal func addDeinitializer() {
+//        if deinitializationObserver == nil {
+//            print("add onDeinit")
+//            onDeinit {
+//                print("onDeinit")
+//                self.removeRefreshControls()
+//                self.removeDeinitializationObserver()
+//            }
+//        }
+//    }
 }
 
 extension UIScrollView {
@@ -65,21 +94,30 @@ extension UIScrollView {
         }
     }
 
-    //swiftlint:disable line_length
     var reloadDataHandler: ReloadDataHandler? {
         get {
-            return (objc_getAssociatedObject(self, &AssociatedKeys.reloadHandler) as? ReloadDataHandlerWrapper)?.reloadDataHanader
+            let wrapper = objc_getAssociatedObject(self, &AssociatedKeys.reloadHandler) as? ReloadDataHandlerWrapper
+            return wrapper?.reloadDataHanader
         }
         set {
             if let reloadDataHanader = newValue {
                 let wrapper = ReloadDataHandlerWrapper(value: reloadDataHanader)
-                objc_setAssociatedObject(self, &AssociatedKeys.reloadHandler, wrapper, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                objc_setAssociatedObject(
+                    self,
+                    &AssociatedKeys.reloadHandler,
+                    wrapper,
+                    .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+                )
             } else {
-                objc_setAssociatedObject(self, &AssociatedKeys.reloadHandler, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                objc_setAssociatedObject(
+                    self,
+                    &AssociatedKeys.reloadHandler,
+                    nil,
+                    .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+                )
             }
         }
     }
-    //swiftlint:enable line_length
 
     var totalDataCount: Int {
 
@@ -147,3 +185,7 @@ extension UIApplication {
         return super.next
     }
 }
+
+//extension UIScrollView : ObservableDeinitialization {
+//
+//}

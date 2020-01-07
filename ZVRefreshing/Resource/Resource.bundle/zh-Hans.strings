@@ -8,7 +8,7 @@
 
 "pull down to refresh"          = "下拉开始刷新数据";
 "release to refresh"            = "释放开始刷新数据";
-"loading..."                    = "正在刷新数据";
+"loading"                       = "正在刷新数据";
 
 "tap or pull up to load more"   = "点击或上拉加载更多数据";
 "no more data"                  = "没有更多数据";
@@ -16,6 +16,6 @@
 "pull up to load more"          = "上拉加载更多数据";
 "release to load more"          = "释放开始加载数据";
 
-"last update:"                  = "上次更新时间: ";
+"last update"                   = "上次更新时间: ";
 "today"                         = "今天";
 "no record"                     = "无记录";

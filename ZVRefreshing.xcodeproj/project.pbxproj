@@ -24,6 +24,9 @@
 		4D1A31DF2018932000E6F85F /* Configration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CC2018932000E6F85F /* Configration.swift */; };
 		4D1A31E02018932000E6F85F /* UILabelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CD2018932000E6F85F /* UILabelExtensions.swift */; };
 		4D1A31E12018932000E6F85F /* Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1A31CE2018932000E6F85F /* Swizzle.swift */; };
+		4D2BD10523C43AD900476DC0 /* UIScrollView+Addition.h in Headers */ = {isa = PBXBuildFile; fileRef = 4D2BD10323C43AD900476DC0 /* UIScrollView+Addition.h */; };
+		4D2BD10623C43AD900476DC0 /* UIScrollView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D2BD10423C43AD900476DC0 /* UIScrollView+Addition.m */; };
+		4D40A3EA23B2075B00D429F4 /* DeinitializationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D40A3E923B2075B00D429F4 /* DeinitializationObserver.swift */; };
 		4D5237241F4C24E8005080E1 /* Resource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4D5237231F4C24E8005080E1 /* Resource.bundle */; };
 		4D73AA4023A9ED0E00080B9B /* ZVActivityIndicatorView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEE47D821A838660082D412 /* ZVActivityIndicatorView.framework */; };
 		4D73AA4123A9ED0E00080B9B /* ZVActivityIndicatorView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4DEE47D821A838660082D412 /* ZVActivityIndicatorView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -113,6 +116,9 @@
 		4D1A31CC2018932000E6F85F /* Configration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Configration.swift; sourceTree = "<group>"; };
 		4D1A31CD2018932000E6F85F /* UILabelExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UILabelExtensions.swift; sourceTree = "<group>"; };
 		4D1A31CE2018932000E6F85F /* Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzle.swift; sourceTree = "<group>"; };
+		4D2BD10323C43AD900476DC0 /* UIScrollView+Addition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+Addition.h"; sourceTree = "<group>"; };
+		4D2BD10423C43AD900476DC0 /* UIScrollView+Addition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+Addition.m"; sourceTree = "<group>"; };
+		4D40A3E923B2075B00D429F4 /* DeinitializationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeinitializationObserver.swift; sourceTree = "<group>"; };
 		4D5237231F4C24E8005080E1 /* Resource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Resource.bundle; sourceTree = "<group>"; };
 		4D73AA4E23A9ED2900080B9B /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		4D93A41C202AB0C6000220E8 /* ZVRefreshingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZVRefreshingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +241,7 @@
 				4D1A31BD2018932000E6F85F /* UIScrollViewExtensions.swift */,
 				4D1A31CD2018932000E6F85F /* UILabelExtensions.swift */,
 				4D1A31CE2018932000E6F85F /* Swizzle.swift */,
+				4D40A3E923B2075B00D429F4 /* DeinitializationObserver.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -319,6 +326,8 @@
 				4D9110121F224D8C001B05D4 /* Resource */,
 				4D94FC971F0DFFC500677215 /* ZVRefreshing.h */,
 				4D94FC981F0DFFC500677215 /* Info.plist */,
+				4D2BD10323C43AD900476DC0 /* UIScrollView+Addition.h */,
+				4D2BD10423C43AD900476DC0 /* UIScrollView+Addition.m */,
 			);
 			path = ZVRefreshing;
 			sourceTree = "<group>";
@@ -341,6 +350,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D2BD10523C43AD900476DC0 /* UIScrollView+Addition.h in Headers */,
 				4D94FCA51F0DFFC500677215 /* ZVRefreshing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,7 +414,7 @@
 					};
 					4D94FC931F0DFFC500677215 = {
 						CreatedOnToolsVersion = 8.3.3;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -492,6 +502,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4DA825CB20289363002AB7B1 /* ZVRefreshBackNativeFooter.swift in Sources */,
+				4D2BD10623C43AD900476DC0 /* UIScrollView+Addition.m in Sources */,
 				4D1A31D82018932000E6F85F /* ZVRefreshAutoAnimationFooter.swift in Sources */,
 				4D1A31DC2018932000E6F85F /* ZVRefreshBackFooter.swift in Sources */,
 				4D1A31D12018932000E6F85F /* ZVRefreshHeader.swift in Sources */,
@@ -508,6 +519,7 @@
 				4DA825C92028935D002AB7B1 /* ZVRefreshAutoNativeFooter.swift in Sources */,
 				4D1A31D32018932000E6F85F /* ZVRefreshControl.swift in Sources */,
 				4D1A31E02018932000E6F85F /* UILabelExtensions.swift in Sources */,
+				4D40A3EA23B2075B00D429F4 /* DeinitializationObserver.swift in Sources */,
 				4D1A31D22018932000E6F85F /* ZVRefreshStateHeader.swift in Sources */,
 				4D1A31D72018932000E6F85F /* ZVRefreshAutoStateFooter.swift in Sources */,
 				4D1A31E12018932000E6F85F /* Swizzle.swift in Sources */,
@@ -651,6 +663,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -706,6 +719,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
