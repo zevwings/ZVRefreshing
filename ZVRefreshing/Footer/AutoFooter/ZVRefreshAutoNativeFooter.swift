@@ -40,11 +40,14 @@ public class ZVRefreshAutoNativeFooter: ZVRefreshAutoStateFooter {
     override public func placeSubViews() {
         super.placeSubViews()
         
-        if let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 {
+        if let activityIndicator = activityIndicator, activityIndicator.constraints.isEmpty {
             
             var activityIndicatorCenterX = frame.width * 0.5
             if let stateLabel = stateLabel, !stateLabel.isHidden {
-                activityIndicatorCenterX -= (stateLabel.textWidth * 0.5 + labelInsetLeft + activityIndicator.frame.width * 0.5)
+                let leftPadding = stateLabel.textWidth * 0.5 +
+                    labelInsetLeft +
+                    activityIndicator.frame.width * 0.5
+                activityIndicatorCenterX -= leftPadding
             }
             
             let activityIndicatorCenterY = frame.height * 0.5
@@ -52,24 +55,21 @@ public class ZVRefreshAutoNativeFooter: ZVRefreshAutoStateFooter {
         }
     }
 
-    // MARK: - Do On State
+    // MARK: - State Update
     
-    override public func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        activityIndicator?.stopAnimating()
-    }
-    
-    override public func doOnNoMoreData(with oldState: RefreshState) {
-        super.doOnNoMoreData(with: oldState)
-        
-        activityIndicator?.stopAnimating()
-    }
-    
-    override public func doOnRefreshing(with oldState: RefreshState) {
-        super.doOnRefreshing(with: oldState)
-        
-        activityIndicator?.startAnimating()
+    open override func refreshStateUpdate(
+        _ state: ZVRefreshControl.RefreshState,
+        oldState: ZVRefreshControl.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
+
+        switch state {
+        case .idle, .noMoreData:
+            activityIndicator?.stopAnimating()
+        case .refreshing:
+            activityIndicator?.startAnimating()
+        default:
+            break
+        }
     }
 }
-

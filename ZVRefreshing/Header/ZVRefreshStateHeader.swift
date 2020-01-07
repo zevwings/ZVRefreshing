@@ -13,12 +13,24 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     public struct LastUpdatedTimeKey {
         static var `default`: String { return "com.zevwings.refreshing.lastUpdateTime" }
     }
+
+    public struct LocalizedKey {
+        static let idle = "pull down to refresh"
+        static let pulling = "release to refresh"
+        static let refreshing = "loading"
+
+        static let lastUpdatedTime = "last update"
+        static let dateToday = "today"
+        static let noLastTime = "no record"
+    }
+
+    public typealias LastUpdatedTimeConvertor = (_ date: Date?) -> (String)
     
     // MARK: - Property
     
     public var labelInsetLeft: CGFloat = 12.0
     
-    public var stateTitles: [RefreshState : String]?
+    public var stateTitles: [RefreshState : String] = [:]
     public private(set) var stateLabel: UILabel?
     public private(set) var lastUpdatedTimeLabel: UILabel?
     
@@ -32,13 +44,13 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
     
     public var lastUpdatedTimeKey: String = LastUpdatedTimeKey.default {
         didSet {
-            _didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
+            updateLastUpdatedTime()
         }
     }
 
-    public var lastUpdatedTimeLabelText:((_ date: Date?)->(String))? {
+    public var lastUpdatedTimeConvertor: LastUpdatedTimeConvertor? {
         didSet {
-            _didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
+            updateLastUpdatedTime()
         }
     }
     
@@ -58,9 +70,9 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
             lastUpdatedTimeKey = LastUpdatedTimeKey.default
         }
         
-        setTitle(with: LocalizedKey.Header.idle, for: .idle)
-        setTitle(with: LocalizedKey.Header.pulling, for: .pulling)
-        setTitle(with: LocalizedKey.Header.refreshing, for: .refreshing)
+        setTitle(with: LocalizedKey.idle, for: .idle)
+        setTitle(with: LocalizedKey.pulling, for: .pulling)
+        setTitle(with: LocalizedKey.refreshing, for: .refreshing)
     }
     
     override open func placeSubViews() {
@@ -81,41 +93,63 @@ open class ZVRefreshStateHeader: ZVRefreshHeader {
 
             let statusLabelH = frame.size.height * 0.5
             
-            if stateLabel.constraints.count == 0 {
+            if stateLabel.constraints.isEmpty {
                 stateLabel.frame.origin.x = 0
                 stateLabel.frame.origin.y = 0
                 stateLabel.frame.size.width = frame.width
                 stateLabel.frame.size.height = statusLabelH
             }
             
-            if lastUpdatedTimeLabel.constraints.count == 0 {
+            if lastUpdatedTimeLabel.constraints.isEmpty {
                 lastUpdatedTimeLabel.frame.origin.x = 0
                 lastUpdatedTimeLabel.frame.origin.y = statusLabelH
                 lastUpdatedTimeLabel.frame.size.width = frame.width
                 lastUpdatedTimeLabel.frame.size.height = frame.height - lastUpdatedTimeLabel.frame.origin.y
             }
         } else {
-            if stateLabel.constraints.count == 0 { stateLabel.frame = bounds }
+            if stateLabel.constraints.isEmpty { stateLabel.frame = bounds }
         }
     }
     
-    // MARK: - Do On State
-    
-    override open func doOnAnyState(with oldState: RefreshState) {
-        super.doOnAnyState(with: oldState)
-        
+    // MARK: - State Update
+
+    open override func refreshStateUpdate(
+        _ state: ZVRefreshControl.RefreshState,
+        oldState: ZVRefreshControl.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
+
         setTitleForCurrentState()
+
+        switch state {
+        case .idle:
+            guard oldState == .refreshing else { return }
+            UserDefaults.standard.set(Date(), forKey: lastUpdatedTimeKey)
+            UserDefaults.standard.synchronize()
+            updateLastUpdatedTime()
+        default:
+            break
+        }
     }
-    
-    override open func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        guard oldState == .refreshing else { return }
-        
-        UserDefaults.standard.set(Date(), forKey: lastUpdatedTimeKey)
-        UserDefaults.standard.synchronize()
-        
-        _didSetLastUpdatedTimeKey(lastUpdatedTimeKey)
+
+    open func setTitle(_ title: String, for state: RefreshState) {
+        stateTitles[state] = title
+        stateLabel?.text = stateTitles[refreshState]
+        setNeedsLayout()
+    }
+
+    open func setTitle(with localizedKey: String, for state: RefreshState) {
+        let title = ZVLocalizedString(localizedKey)
+        setTitle(title, for: state)
+    }
+
+    open func setTitleForCurrentState() {
+        guard let stateLabel = stateLabel else { return }
+        if stateLabel.isHidden && refreshState == .refreshing {
+            stateLabel.text = nil
+        } else {
+            stateLabel.text = stateTitles[refreshState]
+        }
     }
 }
 
@@ -134,50 +168,56 @@ extension ZVRefreshStateHeader {
 // MARK: - Private
 
 private extension ZVRefreshStateHeader {
-    
-    func _didSetLastUpdatedTimeKey(_ newValue: String) {
-        
-        if lastUpdatedTimeLabelText != nil {
-            lastUpdatedTimeLabel?.text = lastUpdatedTimeLabelText?(lastUpdatedTime)
-            setNeedsLayout()
-            layoutIfNeeded()
-            return
-        }
-        
-        if let lastUpdatedTime = lastUpdatedTime {
-            
-            let components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
-            
-            let calendar = Calendar(identifier: .gregorian)
-            let cmp1 = calendar.dateComponents(components, from: lastUpdatedTime)
-            let cmp2 = calendar.dateComponents(components, from: lastUpdatedTime)
-            let formatter = DateFormatter()
-            var isToday = false
-            if cmp1.day == cmp2.day {
-                formatter.dateFormat = "HH:mm"
-                isToday = true
-            } else if cmp1.year == cmp2.year {
-                formatter.dateFormat = "MM-dd HH:mm"
+
+    var defaultTimeConvertor: LastUpdatedTimeConvertor {
+        return { date -> String in
+
+            if let lastUpdatedTime = date {
+
+                let components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
+
+                let calendar = Calendar(identifier: .gregorian)
+                let cmp1 = calendar.dateComponents(components, from: lastUpdatedTime)
+                let cmp2 = calendar.dateComponents(components, from: lastUpdatedTime)
+                let formatter = DateFormatter()
+                var isToday = false
+                if cmp1.day == cmp2.day {
+                    formatter.dateFormat = "HH:mm"
+                    isToday = true
+                } else if cmp1.year == cmp2.year {
+                    formatter.dateFormat = "MM-dd HH:mm"
+                } else {
+                    formatter.dateFormat = "yyyy-MM-dd HH:mm"
+                }
+
+                let timeString = formatter.string(from: lastUpdatedTime)
+                return String(
+                    format: "%@ %@ %@",
+                    ZVLocalizedString(LocalizedKey.lastUpdatedTime),
+                    isToday ? ZVLocalizedString(LocalizedKey.dateToday) : "",
+                    timeString
+                )
             } else {
-                formatter.dateFormat = "yyyy-MM-dd HH:mm"
+                return String(
+                    format: "%@ %@",
+                    ZVLocalizedString(LocalizedKey.lastUpdatedTime),
+                    ZVLocalizedString(LocalizedKey.noLastTime)
+                )
             }
-            
-            let timeString = formatter.string(from: lastUpdatedTime)
-            lastUpdatedTimeLabel?.text = String(format: "%@ %@ %@",
-                                                ZVLocalizedString(LocalizedKey.State.lastUpdatedTime),
-                                                isToday ? ZVLocalizedString(LocalizedKey.State.dateToday) : "",
-                                                timeString)
-        } else {
-            lastUpdatedTimeLabel?.text = String(format: "%@ %@",
-                                                ZVLocalizedString(LocalizedKey.State.lastUpdatedTime),
-                                                ZVLocalizedString(LocalizedKey.State.noLastTime))
         }
-        
+    }
+
+    func updateLastUpdatedTime() {
+
+        let timeConvertor: LastUpdatedTimeConvertor
+        if let lastUpdatedTimeConvertor = lastUpdatedTimeConvertor {
+            timeConvertor = lastUpdatedTimeConvertor
+        } else {
+            timeConvertor = defaultTimeConvertor
+        }
+
+        lastUpdatedTimeLabel?.text = timeConvertor(lastUpdatedTime)
         setNeedsLayout()
         layoutIfNeeded()
     }
 }
-
-// MARK: - ZVRefreshStateComponent
-
-extension ZVRefreshStateHeader: ZVRefreshStateComponentConvertor {}

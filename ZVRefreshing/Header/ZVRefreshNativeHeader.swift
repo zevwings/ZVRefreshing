@@ -66,7 +66,7 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
         let centerY = frame.height * 0.5
         let center = CGPoint(x: centerX, y: centerY)
         
-        if let arrowView = arrowView, arrowView.constraints.count == 0 && arrowView.image != nil {
+        if let arrowView = arrowView, arrowView.constraints.isEmpty && arrowView.image != nil {
             arrowView.isHidden = false
             arrowView.frame.size = arrowView.image!.size
             arrowView.center = center
@@ -74,51 +74,51 @@ public class ZVRefreshNativeHeader: ZVRefreshStateHeader {
             arrowView?.isHidden = true
         }
         
-        if let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 {
+        if let activityIndicator = activityIndicator, activityIndicator.constraints.isEmpty {
             activityIndicator.center = center
         }
     }
     
-    // MARK: - Do On State
-    
-    override open func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        if refreshState == .refreshing {
-            arrowView?.transform = CGAffineTransform.identity
-            UIView.animate(withDuration: 0.15, animations: {
-                self.activityIndicator?.alpha = 0.0
-            }, completion: { _ in
-                guard self.refreshState == .idle else { return }
-                self.activityIndicator?.alpha = 1.0
-                self.activityIndicator?.stopAnimating()
-                self.arrowView?.isHidden = false
-            })
-        } else {
+    // MARK: - State Update
+
+    public override func refreshStateUpdate(
+        _ state: ZVRefreshControl.RefreshState,
+        oldState: ZVRefreshControl.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
+
+        switch state {
+        case .idle:
+            if refreshState == .refreshing {
+                arrowView?.transform = CGAffineTransform.identity
+                UIView.animate(withDuration: 0.15, animations: {
+                    self.activityIndicator?.alpha = 0.0
+                }, completion: { _ in
+                    guard self.refreshState == .idle else { return }
+                    self.activityIndicator?.alpha = 1.0
+                    self.activityIndicator?.stopAnimating()
+                    self.arrowView?.isHidden = false
+                })
+            } else {
+                activityIndicator?.stopAnimating()
+                arrowView?.isHidden = false
+                UIView.animate(withDuration: 0.15, animations: {
+                    self.arrowView?.transform = CGAffineTransform.identity
+                })
+            }
+        case .pulling:
             activityIndicator?.stopAnimating()
             arrowView?.isHidden = false
             UIView.animate(withDuration: 0.15, animations: {
-                self.arrowView?.transform = CGAffineTransform.identity
+                self.arrowView?.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
             })
+        case .refreshing:
+            activityIndicator?.alpha = 1.0
+            activityIndicator?.startAnimating()
+            arrowView?.isHidden = true
+        default:
+            break
         }
-    }
-    
-    override public func doOnPulling(with oldState: RefreshState) {
-        super.doOnPulling(with: oldState)
-        
-        activityIndicator?.stopAnimating()
-        arrowView?.isHidden = false
-        UIView.animate(withDuration: 0.15, animations: {
-            self.arrowView?.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
-        })
-    }
-    
-    override public func doOnRefreshing(with oldState: RefreshState) {
-        super.doOnRefreshing(with: oldState)
-        
-        activityIndicator?.alpha = 1.0
-        activityIndicator?.startAnimating()
-        arrowView?.isHidden = true
     }
 }
 
@@ -131,4 +131,3 @@ extension ZVRefreshNativeHeader {
         }
     }
 }
-

@@ -59,7 +59,7 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
         let centerY = frame.height * 0.5
         let center = CGPoint(x: centerX, y: centerY)
         
-        if let arrowView = arrowView, arrowView.constraints.count == 0 && arrowView.image != nil {
+        if let arrowView = arrowView, arrowView.constraints.isEmpty && arrowView.image != nil {
             arrowView.isHidden = false
             arrowView.frame.size = arrowView.image!.size
             arrowView.center = center
@@ -67,55 +67,50 @@ public class ZVRefreshBackNativeFooter: ZVRefreshBackStateFooter {
             arrowView?.isHidden = true
         }
         
-        if let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 {
+        if let activityIndicator = activityIndicator, activityIndicator.constraints.isEmpty {
             activityIndicator.center = center
         }
     }
 
-    // MARK: - Do On State
+    // MARK: - State Update
     
-    override public func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        if oldState == .refreshing {
-            arrowView?.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
-            UIView.animate(withDuration: 0.15, animations: {
-                self.activityIndicator?.alpha = 0.0
-            }, completion: { _ in
-                self.activityIndicator?.alpha = 1.0
-                self.activityIndicator?.stopAnimating()
-                self.arrowView?.isHidden = false
-            })
-        } else {
+    open override func refreshStateUpdate(
+        _ state: ZVRefreshControl.RefreshState,
+        oldState: ZVRefreshControl.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
+        switch state {
+        case .idle:
+            if oldState == .refreshing {
+                arrowView?.transform = CGAffineTransform(rotationAngle: 0.000001 - CGFloat(Double.pi))
+                UIView.animate(withDuration: 0.15, animations: {
+                    self.activityIndicator?.alpha = 0.0
+                }, completion: { _ in
+                    self.activityIndicator?.alpha = 1.0
+                    self.activityIndicator?.stopAnimating()
+                    self.arrowView?.isHidden = false
+                })
+            } else {
+                arrowView?.isHidden = false
+                activityIndicator?.stopAnimating()
+                UIView.animate(withDuration: 0.15, animations: {
+                    self.arrowView?.transform = CGAffineTransform(rotationAngle: -CGFloat(Double.pi))
+                })
+            }
+        case .pulling:
             arrowView?.isHidden = false
             activityIndicator?.stopAnimating()
             UIView.animate(withDuration: 0.15, animations: {
-                self.arrowView?.transform = CGAffineTransform(rotationAngle: -CGFloat(Double.pi))
+                self.arrowView?.transform = CGAffineTransform.identity
             })
+        case .refreshing:
+            arrowView?.isHidden = true
+            activityIndicator?.startAnimating()
+        case .noMoreData:
+            arrowView?.isHidden = true
+            activityIndicator?.stopAnimating()
+        default:
+            break
         }
-    }
-    
-    override public func doOnPulling(with oldState: RefreshState) {
-        super.doOnPulling(with: oldState)
-        
-        arrowView?.isHidden = false
-        activityIndicator?.stopAnimating()
-        UIView.animate(withDuration: 0.15, animations: {
-            self.arrowView?.transform = CGAffineTransform.identity
-        })
-    }
-    
-    override public func doOnRefreshing(with oldState: RefreshState) {
-        super.doOnRefreshing(with: oldState)
-        
-        arrowView?.isHidden = true
-        activityIndicator?.startAnimating()
-    }
-    
-    override public func doOnNoMoreData(with oldState: RefreshState) {
-        super.doOnNoMoreData(with: oldState)
-        
-        arrowView?.isHidden = true
-        activityIndicator?.stopAnimating()
     }
 }

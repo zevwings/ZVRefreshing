@@ -20,7 +20,7 @@ class ExampleCollectionViewController: UICollectionViewController {
     var isAutoFooter: Bool = true
     var isStateLabelHidden: Bool = false
     var isLastUpdateLabelHidden: Bool = false
-    var refreshComponentType: ZVRefreshComponentType = .flat
+    var refreshComponentType: ZVRefreshControlType = .flat
     
     private var flatHeader: ZVRefreshFlatHeader?
     private var flatBackFooter: ZVRefreshBackFlatFooter?
@@ -36,12 +36,13 @@ class ExampleCollectionViewController: UICollectionViewController {
 
     
     deinit {
+        collectionView.removeAllRefreshControls()
         print("DetailCollectionViewController deinit")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionViewFlowLayout.itemSize = .init(width: view.frame.width, height: 88)
+        collectionViewFlowLayout.itemSize = CGSize(width: view.frame.width, height: 88)
         
         self.title = refreshComponentType.title
         
@@ -65,7 +66,7 @@ class ExampleCollectionViewController: UICollectionViewController {
             flatHeader?.setTitle("释放开始刷新数据", for: .pulling)
             flatHeader?.setTitle("正在刷新数据", for: .refreshing)
             
-            flatHeader?.lastUpdatedTimeLabelText = { date in
+            flatHeader?.lastUpdatedTimeConvertor = { date in
                 
                 guard let _date = date else { return "暂无刷新时间" }
                 

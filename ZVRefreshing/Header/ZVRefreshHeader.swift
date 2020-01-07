@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class ZVRefreshHeader: ZVRefreshComponent {
+open class ZVRefreshHeader: ZVRefreshControl {
     
     // MARK: - Property
     
@@ -30,32 +30,39 @@ open class ZVRefreshHeader: ZVRefreshComponent {
     }
 
     // MARK: - Observers
-    
-    override open func scrollView(_ scrollView: UIScrollView, contentOffsetDidChanged value: [NSKeyValueChangeKey : Any]?) {
-        
+
+    open override func scrollView(
+        _ scrollView: UIScrollView,
+        contentOffset oldValue: CGPoint?,
+        newValue: CGPoint?
+    ) {
+        super.scrollView(scrollView, contentOffset: oldValue, newValue: newValue)
+
         guard refreshState != .refreshing else {
-                        
-            var insetT = -scrollView.contentOffset.y > scrollViewOriginalInset.top ? -scrollView.contentOffset.y : scrollViewOriginalInset.top
-            insetT = insetT > frame.height + scrollViewOriginalInset.top ? frame.height + scrollViewOriginalInset.top : insetT
-            
-            scrollView.contentInset.top = insetT
-            insetTop = scrollViewOriginalInset.top - insetT
+       
+            let negativeOffsetY = -scrollView.contentOffset.y
+            var deltaTop = negativeOffsetY > defaultContentInset.top ? negativeOffsetY : defaultContentInset.top
+            deltaTop = deltaTop > frame.height + defaultContentInset.top
+                ? frame.height + defaultContentInset.top
+                : deltaTop
+            scrollView.contentInset.top = deltaTop
+            insetTop = defaultContentInset.top - deltaTop
             
             return
         }
         
-        scrollViewOriginalInset = scrollView.contentInset
+        defaultContentInset = scrollView.contentInset
         
         let offsetY = scrollView.contentOffset.y
-        let happenOffsetY = -scrollViewOriginalInset.top
+        let happenOffsetY = -defaultContentInset.top
         
         guard offsetY <= happenOffsetY else { return }
         
         let normal2pullingOffsetY = happenOffsetY - frame.height
-        let _pullingPercent = (happenOffsetY - offsetY) / frame.height
+        let percent = (happenOffsetY - offsetY) / frame.height
         
         if scrollView.isDragging {
-            pullingPercent = _pullingPercent
+            pullingPercent = percent
             if refreshState == .idle && offsetY < normal2pullingOffsetY {
                 refreshState = .pulling
             } else if refreshState == .pulling && offsetY >= normal2pullingOffsetY {
@@ -63,39 +70,41 @@ open class ZVRefreshHeader: ZVRefreshComponent {
             }
         } else if refreshState == .pulling {
             beginRefreshing()
-        }else if _pullingPercent < 1 {
-            pullingPercent = _pullingPercent
+        } else if percent < 1 {
+            pullingPercent = percent
         }
     }
-    
-    // MARK: - Do On State
-    
-    override open func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        guard oldState == .refreshing else { return }
-        
-        UIView.animate(withDuration: AnimationDuration.slow, animations: {
-            self.scrollView?.contentInset.top += self.insetTop
-            if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
-        }, completion: { _  in
-            self.pullingPercent = 0.0
-        })
-    }
-    
-    override open func doOnRefreshing(with oldState: RefreshState) {
-        super.doOnRefreshing(with: oldState)
-        
-        UIView.animate(withDuration: AnimationDuration.fast, animations: {
-            guard let scorllView = self.scrollView else { return }
-            let top = self.scrollViewOriginalInset.top + self.frame.height
-            scorllView.contentInset.top = top
-            var offset = scorllView.contentOffset
-            offset.y = -top
-            scorllView.setContentOffset(offset, animated: false)
-        }, completion: { _ in
-            self.executeRefreshCallback()
-        })
+
+    // MARK: - State Update
+
+    override open func refreshStateUpdate(
+        _ state: ZVRefreshControl.RefreshState,
+        oldState: ZVRefreshControl.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
+
+        switch state {
+        case .idle:
+            guard oldState == .refreshing else { return }
+            UIView.animate(withDuration: AnimationDuration.slow, animations: {
+                self.scrollView?.contentInset.top += self.insetTop
+                if self.isAutomaticallyChangeAlpha { self.alpha = 0.0 }
+            }, completion: { _  in
+                self.pullingPercent = 0.0
+            })
+        case .refreshing:
+            UIView.animate(withDuration: AnimationDuration.fast, animations: {
+                guard let scorllView = self.scrollView else { return }
+                let top = self.defaultContentInset.top + self.frame.height
+                scorllView.contentInset.top = top
+                var offset = scorllView.contentOffset
+                offset.y = -top
+                scorllView.setContentOffset(offset, animated: false)
+            }, completion: { _ in
+                self.executeRefreshCallback()
+            })
+        default:
+            break
+        }
     }
 }
-

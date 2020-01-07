@@ -21,13 +21,23 @@ extension UILabel {
     }
     
     var textWidth: CGFloat {
-        
         let size = CGSize(width: Int.max, height: Int.max)
         guard let text = self.text else { return 0 }
-        let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading, .usesDeviceMetrics, .truncatesLastVisibleLine]
-        let font: UIFont = self.font ?? UIFont.systemFont(ofSize: UIFont.systemFontSize)
-        let attributes: [NSAttributedString.Key: Any] = [NSAttributedString.Key.font: font]
-        let width = (text as NSString).boundingRect(with: size, options: options, attributes: attributes, context: nil).size.width
+        let options: NSStringDrawingOptions = [
+            .usesLineFragmentOrigin,
+            .usesFontLeading,
+            .usesDeviceMetrics,
+            .truncatesLastVisibleLine
+        ]
+        let font: UIFont = self.font ?? .systemFont(ofSize: UIFont.systemFontSize)
+        let attributes: [NSAttributedString.Key: Any] = [.font: font]
+        let string = text as NSString
+        let width = string.boundingRect(
+            with: size,
+            options: options,
+            attributes: attributes,
+            context: nil
+        ).size.width
         return width
     }
 }

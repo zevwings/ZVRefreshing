@@ -9,13 +9,13 @@
 import UIKit
 import ZVRefreshing
 
-enum ZVRefreshComponentType : Int {
+enum ZVRefreshControlType : Int {
     case flat
     case native
     case animation
 }
 
-extension ZVRefreshComponentType {
+extension ZVRefreshControlType {
     var title : String {
         switch self {
         case .flat:
@@ -127,7 +127,7 @@ extension ExampleMasterViewController : UITableViewDelegate {
             vc.isAutoFooter = isAutoFooter
             vc.isStateLabelHidden = isStateLabelHidden
             vc.isLastUpdateLabelHidden = isLastUpdateLabelHidden
-            vc.refreshComponentType = ZVRefreshComponentType(rawValue: indexPath.row)!
+            vc.refreshComponentType = ZVRefreshControlType(rawValue: indexPath.row)!
             
             navigationController?.pushViewController(vc, animated: true)
         } else if indexPath.section == 1 {
@@ -138,7 +138,7 @@ extension ExampleMasterViewController : UITableViewDelegate {
             vc.isAutoFooter = isAutoFooter
             vc.isStateLabelHidden = isStateLabelHidden
             vc.isLastUpdateLabelHidden = isLastUpdateLabelHidden
-            vc.refreshComponentType = ZVRefreshComponentType(rawValue: indexPath.row)!
+            vc.refreshComponentType = ZVRefreshControlType(rawValue: indexPath.row)!
             
             navigationController?.pushViewController(vc, animated: true)
         }

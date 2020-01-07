@@ -8,7 +8,7 @@
 
 import UIKit
 
-open class ZVRefreshFooter: ZVRefreshComponent {
+open class ZVRefreshFooter: ZVRefreshControl {
 
     // MARK: - Property
     
@@ -29,7 +29,7 @@ open class ZVRefreshFooter: ZVRefreshComponent {
             }
         }
     }
-    
+
     // MARK: - State Control
     
     public func endRefreshingWithNoMoreData() {
@@ -68,4 +68,3 @@ extension ZVRefreshFooter {
         }
     }
 }
-

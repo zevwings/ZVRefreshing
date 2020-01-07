@@ -29,7 +29,7 @@ public class ZVRefreshFlatHeader: ZVRefreshStateHeader {
         super.prepare()
         
         if activityIndicator == nil {
-            activityIndicator = ActivityIndicatorView(frame: .init(x: 0, y: 0, width: 24, height: 24))
+            activityIndicator = ActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
             activityIndicator?.tintColor = .lightGray
             activityIndicator?.hidesWhenStopped = false
             addSubview(activityIndicator!)
@@ -39,7 +39,7 @@ public class ZVRefreshFlatHeader: ZVRefreshStateHeader {
     override public func placeSubViews() {
         super.placeSubViews()
         
-        if let activityIndicator = activityIndicator, activityIndicator.constraints.count == 0 {
+        if let activityIndicator = activityIndicator, activityIndicator.constraints.isEmpty {
             
             var activityIndicatorCenterX = frame.width * 0.5
             if let stateLabel = stateLabel, !stateLabel.isHidden {
@@ -58,26 +58,31 @@ public class ZVRefreshFlatHeader: ZVRefreshStateHeader {
         }
     }
     
-    // MARK: - Do On State
-    
-    override public func doOnIdle(with oldState: RefreshState) {
-        super.doOnIdle(with: oldState)
-        
-        if refreshState == .refreshing {
-            UIView.animate(withDuration: AnimationDuration.slow, animations: {
-                self.activityIndicator?.alpha = 0.0
-            }, completion: { _ in
-                guard self.refreshState == .idle else { return }
-                self.activityIndicator?.stopAnimating()
-            })
-        } else {
-            activityIndicator?.stopAnimating()
+    // MARK: - State Update
+
+    public override func refreshStateUpdate(
+        _ state: ZVRefreshControl.RefreshState,
+        oldState: ZVRefreshControl.RefreshState
+    ) {
+        super.refreshStateUpdate(state, oldState: oldState)
+
+        switch state {
+        case .idle:
+            if refreshState == .refreshing {
+                UIView.animate(withDuration: AnimationDuration.slow, animations: {
+                    self.activityIndicator?.alpha = 0.0
+                }, completion: { _ in
+                    guard self.refreshState == .idle else { return }
+                    self.activityIndicator?.stopAnimating()
+                })
+            } else {
+                activityIndicator?.stopAnimating()
+            }
+        case .refreshing:
+            activityIndicator?.startAnimating()
+        default:
+            break
         }
-    }
-    
-    override public func doOnRefreshing(with oldState: RefreshState) {
-        super.doOnRefreshing(with: oldState)
-        activityIndicator?.startAnimating()
     }
 }
 

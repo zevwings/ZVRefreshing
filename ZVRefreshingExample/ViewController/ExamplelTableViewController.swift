@@ -24,7 +24,7 @@ class ExamplelTableViewController: UIViewController {
     var isAutoFooter: Bool = true
     var isStateLabelHidden: Bool = false
     var isLastUpdateLabelHidden: Bool = false
-    var refreshComponentType: ZVRefreshComponentType = .flat
+    var refreshComponentType: ZVRefreshControlType = .flat
     
     private var flatHeader: ZVRefreshFlatHeader?
     private var flatBackFooter: ZVRefreshBackFlatFooter?
@@ -43,8 +43,7 @@ class ExamplelTableViewController: UIViewController {
     */
     
     deinit {
-        flatHeader?.removeObservers()
-        flatAutoFooter?.removeObservers()
+        tableView.removeAllRefreshControls()
         print("ExamplelTableViewController : \(#function)")
     }
     
@@ -73,7 +72,7 @@ class ExamplelTableViewController: UIViewController {
             flatHeader?.setTitle("释放开始刷新数据", for: .pulling)
             flatHeader?.setTitle("正在刷新数据", for: .refreshing)
             
-            flatHeader?.lastUpdatedTimeLabelText = { date in
+            flatHeader?.lastUpdatedTimeConvertor = { date in
                 
                 guard let _date = date else { return "暂无刷新时间" }
                 
@@ -95,10 +94,10 @@ class ExamplelTableViewController: UIViewController {
                  WARNING:
                  the self must be weak, if not, the associated object can't be released.
                 */
-                flatAutoFooter?.refreshHandler = { [weak self] in
+                flatAutoFooter?.addHander { [weak self] in
                     print("\(String(describing: self))")
                 }
-                
+
                 // MARK: SetTitile
                 flatAutoFooter?.setTitle("点击或上拉加载更多数据" , for: .idle)
                 flatAutoFooter?.setTitle("正在刷新数据", for: .refreshing)
