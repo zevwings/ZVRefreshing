@@ -61,10 +61,12 @@ open class ZVRefreshBackFooter: ZVRefreshFooter {
         super.scrollView(scrollView, contentSize: oldValue, newValue: newValue)
 
         let contentHeight = scrollView.contentSize.height + ignoredScrollViewContentInsetBottom
-        
-        //swiftlint:disable:next line_length
-        let scrollHeight = scrollView.frame.height - defaultContentInset.top - defaultContentInset.bottom + ignoredScrollViewContentInsetBottom
-        
+
+        let scrollHeight = scrollView.frame.height -
+            defaultContentInset.top -
+            defaultContentInset.bottom +
+            ignoredScrollViewContentInsetBottom
+
         frame.origin.y = max(contentHeight, scrollHeight)
     }
     

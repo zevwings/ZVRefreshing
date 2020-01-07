@@ -40,12 +40,13 @@ open class ZVRefreshHeader: ZVRefreshControl {
 
         guard refreshState != .refreshing else {
        
-            //swiftlint:disable line_length
-            var insetT = -scrollView.contentOffset.y > defaultContentInset.top ? -scrollView.contentOffset.y : defaultContentInset.top
-            insetT = insetT > frame.height + defaultContentInset.top ? frame.height + defaultContentInset.top : insetT
-            //swiftlint:enable line_length
-            scrollView.contentInset.top = insetT
-            insetTop = defaultContentInset.top - insetT
+            let negativeOffsetY = -scrollView.contentOffset.y
+            var deltaTop = negativeOffsetY > defaultContentInset.top ? negativeOffsetY : defaultContentInset.top
+            deltaTop = deltaTop > frame.height + defaultContentInset.top
+                ? frame.height + defaultContentInset.top
+                : deltaTop
+            scrollView.contentInset.top = deltaTop
+            insetTop = defaultContentInset.top - deltaTop
             
             return
         }

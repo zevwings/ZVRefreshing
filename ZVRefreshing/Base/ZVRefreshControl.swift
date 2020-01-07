@@ -167,7 +167,6 @@ open class ZVRefreshControl: UIControl {
         state oldValue: UIPanGestureRecognizer.State?,
         newValue: UIPanGestureRecognizer.State?
     ) {}
-
 }
 
 // MARK: - System Override

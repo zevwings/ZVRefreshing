@@ -44,8 +44,10 @@ public class ZVRefreshAutoNativeFooter: ZVRefreshAutoStateFooter {
             
             var activityIndicatorCenterX = frame.width * 0.5
             if let stateLabel = stateLabel, !stateLabel.isHidden {
-                //swiftlint:disable:next line_length
-                activityIndicatorCenterX -= (stateLabel.textWidth * 0.5 + labelInsetLeft + activityIndicator.frame.width * 0.5)
+                let leftPadding = stateLabel.textWidth * 0.5 +
+                    labelInsetLeft +
+                    activityIndicator.frame.width * 0.5
+                activityIndicatorCenterX -= leftPadding
             }
             
             let activityIndicatorCenterY = frame.height * 0.5

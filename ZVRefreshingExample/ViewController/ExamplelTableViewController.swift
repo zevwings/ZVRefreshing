@@ -43,7 +43,7 @@ class ExamplelTableViewController: UIViewController {
     */
     
     deinit {
-//        tableView.removeRefreshControls()
+        tableView.removeAllRefreshControls()
         print("ExamplelTableViewController : \(#function)")
     }
     

@@ -13,7 +13,7 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
     // MARK: - Property
     
     public var isAutomaticallyRefresh: Bool = true
-    private var _triggerAutomaticallyRefreshPercent: CGFloat = 1.0
+    private var triggerAutomaticallyRefreshPercent: CGFloat = 1.0
     
     // MARK: - State Update
 
@@ -52,8 +52,13 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
         super.scrollView(scrollView, contentOffset: oldValue, newValue: newValue)
 
         if scrollView.contentInset.top + scrollView.contentSize.height > scrollView.frame.height {
-            //swiftlint:disable:next line_length
-            if scrollView.contentOffset.y >= (scrollView.contentSize.height - scrollView.frame.height + frame.height * _triggerAutomaticallyRefreshPercent + scrollView.contentInset.bottom - frame.height) {
+            let offsetY = scrollView.contentSize.height -
+                scrollView.frame.height +
+                frame.height * triggerAutomaticallyRefreshPercent +
+                scrollView.contentInset.bottom -
+                frame.height
+
+            if scrollView.contentOffset.y >= offsetY {
                 if oldValue != nil && newValue != nil && newValue!.y > oldValue!.y {
                     beginRefreshing()
                 }
@@ -77,8 +82,10 @@ open class ZVRefreshAutoFooter: ZVRefreshFooter {
                     beginRefreshing()
                 }
             } else {
-                //swiftlint:disable:next line_length
-                if scrollView.contentOffset.y >= (scrollView.contentSize.height + scrollView.contentInset.bottom - scrollView.frame.height) {
+                let offsetY = scrollView.contentSize.height +
+                    scrollView.contentInset.bottom -
+                    scrollView.frame.height
+                if scrollView.contentOffset.y >= offsetY {
                     beginRefreshing()
                 }
             }

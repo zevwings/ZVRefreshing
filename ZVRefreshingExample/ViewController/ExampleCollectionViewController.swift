@@ -36,7 +36,7 @@ class ExampleCollectionViewController: UICollectionViewController {
 
     
     deinit {
-        collectionView.removeRefreshControls()
+        collectionView.removeAllRefreshControls()
         print("DetailCollectionViewController deinit")
     }
     

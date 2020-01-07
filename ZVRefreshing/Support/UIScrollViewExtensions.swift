@@ -55,13 +55,10 @@ public extension UIScrollView {
             guard let refreshFooter = refreshFooter else { return }
             addSubview(refreshFooter)
             sendSubviewToBack(refreshFooter)
-//            onDeinit {
-//                print("refresh footer ....")
-//            }
         }
     }
 
-    func removeRefreshControls() {
+    func removeAllRefreshControls() {
         print("removeRefreshControls")
         refreshHeader?.removeScrollViewObservers()
         refreshHeader?.removeFromSuperview()
@@ -71,16 +68,6 @@ public extension UIScrollView {
         refreshFooter = nil
     }
 
-//    internal func addDeinitializer() {
-//        if deinitializationObserver == nil {
-//            print("add onDeinit")
-//            onDeinit {
-//                print("onDeinit")
-//                self.removeRefreshControls()
-//                self.removeDeinitializationObserver()
-//            }
-//        }
-//    }
 }
 
 extension UIScrollView {
@@ -185,7 +172,3 @@ extension UIApplication {
         return super.next
     }
 }
-
-//extension UIScrollView : ObservableDeinitialization {
-//
-//}
